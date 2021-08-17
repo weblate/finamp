@@ -40,7 +40,18 @@ import 'services/DownloadUpdateStream.dart';
 import 'models/JellyfinModels.dart';
 import 'models/FinampModels.dart';
 
+// https://stackoverflow.com/questions/68450768/flutter-chopper-allow-self-signed-certificate-for-use
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+  }
+}
+
 void main() async {
+  HttpOverrides.global = MyHttpOverrides();
   // If the app has failed, this is set to true. If true, we don't attempt to run the main app since the error app has started.
   bool hasFailed = false;
   try {
