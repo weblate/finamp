@@ -13,7 +13,10 @@ String? generateSubtitle(BaseItemDto item, String? parentType) {
 
   switch (item.type) {
     case "MusicAlbum":
-      return processArtist(item.albumArtist);
+      return processArtist(
+        item.albumArtists?.map<String?>((e) => e.name).join(", ") ??
+            item.albumArtist,
+      );
     case "Playlist":
       return "${item.childCount} Songs";
     // case "MusicGenre":
