@@ -223,8 +223,7 @@ class AudioServiceHelper {
     return MediaItem(
       id: uuid.v4(),
       album: item.album ?? "Unknown Album",
-      artist: item.albumArtists?.map<String?>((e) => e.name).join(", ") ??
-          item.albumArtist,
+      artist: item.artists?.join(", ") ?? item.albumArtist,
       artUri: _jellyfinApiData.getImageUrl(item: item),
       title: item.name ?? "Unknown Name",
       extras: {
