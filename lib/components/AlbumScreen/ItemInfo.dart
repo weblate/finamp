@@ -24,7 +24,11 @@ class ItemInfo extends StatelessWidget {
       children: [
         if (item.type != "Playlist")
           _IconAndText(
-              iconData: Icons.person, text: processArtist(item.albumArtist)),
+              iconData: Icons.person,
+              text: processArtist(
+                item.albumArtists?.map<String?>((e) => e.name).join(", ") ??
+                    item.albumArtist,
+              )),
         _IconAndText(
             iconData: Icons.music_note, text: "${itemSongs.toString()} Songs"),
         _IconAndText(
