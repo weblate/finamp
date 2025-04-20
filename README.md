@@ -61,22 +61,6 @@ Finamp is Legal. Because Finamp requires a Jellyfin server for streaming Music t
 
 If you encounter any errors, issues, accessibility problems or the likes please feel free to look the the [issue tracker](https://github.com/jmshrv/finamp/issues) and open a new issue if there isnt one already.
 
-## Contributing
-
-### Code
-
-Just like any [FOSS software](https://en.wikipedia.org/wiki/Free_and_open-source_software) Finamp also relies on your contributions!
-If you are interested you can consult the [Contribution Guidelines](https://github.com/jmshrv/finamp/blob/main/CONTRIBUTING.md) to get stated. Anything helps!
-
-### Translations
-
-You can also help out by translating Finamp using our [weblate page](https://hosted.weblate.org/engage/finamp/). Here is the current state of translations:
-<div align="center">
-    <a href="https://hosted.weblate.org/engage/finamp/">
-        <img src="https://hosted.weblate.org/widget/finamp/finamp/horizontal-auto.svg" alt="Translation status" />
-    </a>
-</div>
-
 ## Screenshots
 
 <h3 align="left">Login</h3>
@@ -170,6 +154,22 @@ TODO
 | Distro | Command         |
 |:-------|:----------------|
 | Arch   | `yay -S finamp` |
+
+## Contributing
+
+### Code
+
+Just like any [FOSS software](https://en.wikipedia.org/wiki/Free_and_open-source_software) Finamp also relies on your contributions!
+If you are interested you can consult the [Contribution Guidelines](https://github.com/jmshrv/finamp/blob/main/CONTRIBUTING.md) to get stated. Anything helps!
+
+### Translations
+
+You can also help out by translating Finamp using our [weblate page](https://hosted.weblate.org/engage/finamp/). Here is the current state of translations:
+<div align="center">
+    <a href="https://hosted.weblate.org/engage/finamp/">
+        <img src="https://hosted.weblate.org/widget/finamp/finamp/horizontal-auto.svg" alt="Translation status" />
+    </a>
+</div>
 
 # Shoutout
 
