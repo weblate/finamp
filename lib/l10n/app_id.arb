@@ -513,7 +513,7 @@
     },
     "landscape": "Lanskap",
     "showTextOnGridView": "Tampilkan teks pada tampilan kisi",
-    "showTextOnGridViewSubtitle": "Apakah teks (judul, artis, dll.) ditampilkan pada layar musik tampilan kisi.",
+    "showTextOnGridViewSubtitle": "Menampilkan atau menyembunyikan teks (judul, artis, dll) pada layar musik grid. Teks akan selalu ditampilkan dalam layar beranda, mengabaikan pengaturan ini.",
     "useCoverAsBackground": "Gunakan sampul buram sebagai latar belakang",
     "useCoverAsBackgroundSubtitle": "Apakah akan menggunakan sampul album yang diburamkan sebagai latar belakang di berbagai bagian aplikasi.",
     "playerScreenMinimumCoverPaddingEditorTitle": "Padding minimum sampul album",
