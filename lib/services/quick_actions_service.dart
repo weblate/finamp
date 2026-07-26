@@ -38,10 +38,10 @@ class QuickActionsService {
         await Navigator.pushNamed(context, PlaybackHistoryScreen.routeName);
         break;
       case FinampQuickActions.playRandomItem:
-        await audioServiceHelper.playRandomItem(limitItemTypes: action.itemTypes);
+        await audioServiceHelper.playRandomItem(limitContentTypes: action.itemTypes);
         break;
       case FinampQuickActions.playRandomFavoriteItem:
-        await audioServiceHelper.playRandomItem(favoritesOnly: true, limitItemTypes: action.itemTypes);
+        await audioServiceHelper.playRandomItem(favoritesOnly: true, limitContentTypes: action.itemTypes);
         break;
       case FinampQuickActions.playPreviousQueue:
         {

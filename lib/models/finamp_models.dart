@@ -1202,6 +1202,21 @@ enum ContentType {
     ContentType.inAlbumArtistAlbums => false,
   };
 
+  bool get isPlayableJellyfinType => switch (this) {
+    ContentType.albums => true,
+    ContentType.genericArtists => false,
+    ContentType.playlists => true,
+    ContentType.genres => true,
+    ContentType.tracks => true,
+    ContentType.home => false,
+    ContentType.performingArtists => true,
+    ContentType.albumArtists => true,
+    ContentType.inPlaylist => false,
+    ContentType.mixed => false,
+    ContentType.inPerformingArtistAlbums => false,
+    ContentType.inAlbumArtistAlbums => false,
+  };
+
   // This is basically whether we expect music_screen_tab_view to be able to display this type.
   bool get directlyDisplayable => switch (this) {
     ContentType.albums => true,
@@ -1832,46 +1847,29 @@ enum DownloadItemStatus {
 
 /// The type of a BaseItemDto as determined from its type field.
 /// Enumerated by Isar, do not modify order or delete existing entries
-@HiveType(typeId: 127)
 enum BaseItemDtoType {
   // TODO we should probably only have the types we care about
   // track, album, artist, playlist, library, collection.
   // Others should map to one if close enough, else throw.
-  @HiveField(0)
   noItem(null, true, null, null),
-  @HiveField(1)
   album("MusicAlbum", false, [track], DownloadItemType.collection),
-  @HiveField(2)
   artist("MusicArtist", true, [album, track], DownloadItemType.collection),
-  @HiveField(3)
   playlist("Playlist", true, [track], DownloadItemType.collection),
-  @HiveField(4)
   genre("MusicGenre", true, [album, track], DownloadItemType.collection),
-  @HiveField(5)
   track("Audio", false, [], DownloadItemType.track),
-  @HiveField(6)
   library("CollectionFolder", true, [album, track], DownloadItemType.collection),
-  @HiveField(7)
   folder("Folder", true, null, DownloadItemType.collection),
-  @HiveField(8)
   musicVideo("MusicVideo", false, [], DownloadItemType.track),
-  @HiveField(9)
   audioBook("AudioBook", false, [], DownloadItemType.track),
-  @HiveField(10)
   tvEpisode("Episode", false, [], DownloadItemType.track),
-  @HiveField(11)
   video("Video", false, [], DownloadItemType.track),
-  @HiveField(12)
   movie("Movie", false, [], DownloadItemType.track),
-  @HiveField(13)
   trailer("Trailer", false, [], DownloadItemType.track),
   //!!! apparently a typo in the API docs, "BoxSet" returns an invalid result (i.e. all libraries), but "BoxSets" returns the correct thing. at least for some requests?
-  @HiveField(14)
   collection("BoxSet", true, [
     album, track, playlist, artist, genre, audioBook,
     // collection,
   ], DownloadItemType.collection),
-  @HiveField(15)
   unknown(null, true, null, DownloadItemType.collection);
 
   // All possible types in Jellyfin as of 10.9:
@@ -4667,7 +4665,7 @@ class QuickActionConfig {
   @HiveField(2)
   final String? itemName;
   @HiveField(3)
-  final Set<BaseItemDtoType>? itemTypes;
+  final Set<ContentType>? itemTypes;
 
   const QuickActionConfig({required this.action, this.itemId, this.itemName, this.itemTypes});
 

@@ -106,7 +106,7 @@ class QuickActionsSelector extends ConsumerWidget {
                       subtitleWidgets: action.itemTypes
                           ?.map(
                             (itemType) =>
-                                Text(itemType.localized(context.l10n), style: TextTheme.of(context).labelSmall),
+                                Text(itemType.toLocalisedString(context.l10n), style: TextTheme.of(context).labelSmall),
                           )
                           .toList(),
                       key: ValueKey("quick-action-$action"),
@@ -578,7 +578,7 @@ class _ResponsiveListTile extends StatelessWidget {
                       style: Theme.of(
                         context,
                       ).textTheme.bodySmall!.copyWith(color: ColorScheme.of(context).onSurface.withOpacity(0.6)),
-                      child: Row(mainAxisSize: MainAxisSize.min, spacing: 8.0, children: subtitleWidgets ?? []),
+                      child: Wrap(spacing: 12.0, runSpacing: 4.0, children: subtitleWidgets ?? []),
                     ),
                   ),
               ],
@@ -613,7 +613,7 @@ class _ResponsiveListTile extends StatelessWidget {
                         style: Theme.of(
                           context,
                         ).textTheme.bodySmall!.copyWith(color: ColorScheme.of(context).onSurface.withOpacity(0.6)),
-                        child: Row(mainAxisSize: MainAxisSize.min, spacing: 8.0, children: subtitleWidgets ?? []),
+                        child: Wrap(spacing: 12.0, runSpacing: 4.0, children: subtitleWidgets ?? []),
                       ),
                     ),
                 ],
@@ -631,15 +631,15 @@ class _ResponsiveListTile extends StatelessWidget {
 class TargetItemTypesSelector extends ConsumerStatefulWidget {
   const TargetItemTypesSelector({super.key, required this.notifier, required this.initialValue});
 
-  final ValueNotifier<Set<BaseItemDtoType>> notifier;
-  final Set<BaseItemDtoType> initialValue;
+  final ValueNotifier<Set<ContentType>> notifier;
+  final Set<ContentType> initialValue;
 
   @override
   ConsumerState<TargetItemTypesSelector> createState() => _TargetItemTypesSelectorState();
 }
 
 class _TargetItemTypesSelectorState extends ConsumerState<TargetItemTypesSelector> {
-  late Set<BaseItemDtoType> selected;
+  late Set<ContentType> selected;
 
   @override
   void initState() {
@@ -649,9 +649,7 @@ class _TargetItemTypesSelectorState extends ConsumerState<TargetItemTypesSelecto
 
   @override
   Widget build(BuildContext context) {
-    final itemTypes = BaseItemDtoType.values
-        .where((itemType) => ContentType.values.any((contentType) => contentType.itemType == itemType))
-        .toList();
+    final itemTypes = ContentType.values.where((type) => type.isPlayableJellyfinType).toList();
     return Wrap(
       spacing: 6.0,
       runSpacing: 6.0,
@@ -663,7 +661,7 @@ class _TargetItemTypesSelectorState extends ConsumerState<TargetItemTypesSelecto
             highlightColor: ColorScheme.of(context).primary.withOpacity(0.05),
           ),
           child: FilterChip(
-            label: Text(itemType.localized(context.l10n)),
+            label: Text(itemType.toLocalisedString(context.l10n)),
             selected: isSelected,
             //selectedColor: Color.alphaBlend(ColorScheme.of(context).primary.withOpacity(0.15), Colors.transparent),
             backgroundColor: Colors.transparent,

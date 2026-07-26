@@ -558,14 +558,14 @@ void _migrateHomescreen() {
     if (action.action == FinampQuickActions.playRandomAlbum) {
       finampSettings.homeScreenConfiguration.actions[i] = QuickActionConfig(
         action: FinampQuickActions.playRandomItem,
-        itemTypes: {BaseItemDtoType.album},
+        itemTypes: {ContentType.albums},
       );
       changed = true;
     }
     if (action.action == FinampQuickActions.playRandomTrack) {
       finampSettings.homeScreenConfiguration.actions[i] = QuickActionConfig(
         action: FinampQuickActions.playRandomItem,
-        itemTypes: {BaseItemDtoType.track},
+        itemTypes: {ContentType.tracks},
       );
       changed = true;
     }

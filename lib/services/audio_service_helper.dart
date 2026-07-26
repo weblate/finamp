@@ -245,51 +245,70 @@ class AudioServiceHelper {
     }
   }
 
-  Future<void> playRandomItem({bool favoritesOnly = false, Set<BaseItemDtoType>? limitItemTypes}) async {
-    // get random favorite (any item type)
-    final randomFavorite = (await _jellyfinApiHelper.getItems(
-      parentItem: limitItemTypes?.contains(BaseItemDtoType.playlist) ?? false
-          ? null
-          : _finampUserHelper.currentUser!.currentView,
+  Future<void> playRandomItem({bool favoritesOnly = false, Set<ContentType>? limitContentTypes}) async {
+    assert(
+      limitContentTypes == null || limitContentTypes.isNotEmpty,
+      "limitContentTypes must not be empty if provided",
+    );
+    assert(
+      limitContentTypes?.every((type) => type.isPlayableJellyfinType && type.itemType != null) ?? true,
+      "limitContentTypes must only contain playable Jellyfin item types",
+    );
+
+    // randomly decide item type
+    final contentType =
+        ((limitContentTypes ??
+                    {
+                      ContentType.tracks,
+                      ContentType.albums,
+                      ContentType.albumArtists,
+                      ContentType.performingArtists,
+                      ContentType.genres,
+                      ContentType.playlists,
+                    })
+                .toList()
+              ..shuffle())
+            .firstOrNull;
+
+    // get random item (of the selected type)
+    final randomItem = (await _jellyfinApiHelper.getItems(
+      parentItem: contentType == ContentType.playlists ? null : _finampUserHelper.currentUser!.currentView,
       filters: favoritesOnly ? "IsFavorite" : null,
       // Jellyfin 10.10 and 10.11 use the [isFavorite] boolean filter instead of the list-based [filters] parameter for genres, so add that here
       // I guess part of the reason for this is that it's not possible to favorite a genre through the Jellyfin Web UI at all...
-      isFavorite: favoritesOnly,
-      includeItemTypes:
-          (limitItemTypes ??
-                  {
-                    BaseItemDtoType.track,
-                    BaseItemDtoType.album,
-                    BaseItemDtoType.artist,
-                    BaseItemDtoType.genre,
-                    BaseItemDtoType.playlist,
-                  })
-              .map((e) => e.jellyfinName)
-              .join(","),
+      // true = only favorites, false = exclude favorites, null = all items
+      isFavorite: contentType == ContentType.genres && favoritesOnly ? true : null,
+      includeItemTypes: contentType?.itemType?.jellyfinName,
+      artistType: switch (contentType) {
+        ContentType.albumArtists => ArtistType.albumArtist,
+        ContentType.performingArtists => ArtistType.artist,
+        _ => null,
+      },
       sortBy: SortBy.random.jellyfinName(null),
       limit: 1,
     ))?.firstOrNull;
 
-    if (randomFavorite == null) {
+    if (randomItem == null) {
       GlobalSnackbar.message((context) => context.l10n.nothingFoundToPlay);
       return;
     }
 
     // if item is a collection, get its tracks, otherwise just play the item
     List<jellyfin_models.BaseItemDto> itemsToPlay;
-    if (BaseItemDtoType.fromItem(randomFavorite) != BaseItemDtoType.track) {
+    if (BaseItemDtoType.fromItem(randomItem) != BaseItemDtoType.track) {
       itemsToPlay =
           await _jellyfinApiHelper.getItems(
-            parentItem: randomFavorite,
+            parentItem: randomItem,
             includeItemTypes: [BaseItemDtoType.track].map((e) => e.jellyfinName).join(","),
             sortBy: SortBy.defaultOrder.jellyfinName(ContentType.tracks),
             sortOrder: SortOrder.ascending.name,
+            limit: FinampSettingsHelper.finampSettings.trackShuffleItemCount,
           ) ??
           [];
     } else {
-      itemsToPlay = [randomFavorite];
+      itemsToPlay = [randomItem];
     }
 
-    await _queueService.startPlayback(items: itemsToPlay, source: QueueItemSource.fromBaseItem(randomFavorite));
+    await _queueService.startPlayback(items: itemsToPlay, source: QueueItemSource.fromBaseItem(randomItem));
   }
 }

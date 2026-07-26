@@ -54,7 +54,7 @@ class QuickActionConfigMenu extends ConsumerStatefulWidget {
 class QuickActionConfigMenuState extends ConsumerState<QuickActionConfigMenu> {
   FinampQuickActions? selected;
   final ValueNotifier<BaseItemDto?> itemNotifier = ValueNotifier(null);
-  final ValueNotifier<Set<BaseItemDtoType>> itemTypesNotifier = ValueNotifier(const {});
+  final ValueNotifier<Set<ContentType>> itemTypesNotifier = ValueNotifier(const {});
 
   @override
   void initState() {
