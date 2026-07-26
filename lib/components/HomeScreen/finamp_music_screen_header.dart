@@ -125,18 +125,16 @@ class FinampMusicScreenHeader extends ConsumerWidget implements PreferredSizeWid
                   Material(
                     elevation: 3.0,
                     surfaceTintColor: Colors.transparent,
-                    // mediaquery returns the real padding because we haven't had a builder since the SafeArea.
-                    //shape: DrawerOpenBorder(leftOffset: 12.0 + MediaQuery.paddingOf(context).left),
                     shadowColor: Theme.brightnessOf(context) == Brightness.dark
                         ? Colors.transparent
                         : Theme.of(context).colorScheme.shadow.withOpacity(0.4),
-                    // color: Color.alphaBlend(
-                    //   activeTabBackgroundColor.withOpacity(Theme.brightnessOf(context) == Brightness.dark ? 0.4 : 0.13),
-                    //   ColorScheme.of(context).surface,
-                    // ),
                     color: Theme.brightnessOf(context) == Brightness.dark
                         ? Color.alphaBlend(
-                            ref.watch(finampSettingsProvider.useMonochromeIcon)
+                            // only use primary accent if Finamp icon is guaranteed to look nice on it
+                            // otherwise use a static dark blue background
+                            ref.watch(finampSettingsProvider.useMonochromeIcon) ||
+                                    (!ref.watch(finampSettingsProvider.useSystemAccentColor) &&
+                                        ref.watch(finampSettingsProvider.accentColor) == null)
                                 ? ColorScheme.of(context).primary.withOpacity(0.1)
                                 : Color(0xff000e2e),
                             ColorScheme.of(context).surface,
