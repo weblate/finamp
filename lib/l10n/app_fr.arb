@@ -40,7 +40,7 @@
     "downloads": "Téléchargements",
     "settings": "Réglages",
     "offlineMode": "Mode hors-ligne",
-    "sortOrder": "",
+    "sortOrder": "Ordre",
     "sortBy": "Trier par",
     "album": "Album",
     "albumArtist": "Artiste d'album",
@@ -146,14 +146,14 @@
     "pathReturnSlashErrorMessage": "Les chemins qui retournent \"/\" ne peuvent pas être utilisés",
     "customLocationsBuggy": "Les emplacements personnalisés peuvent être extrêmement problématiques et ne sont pas recommandés dans la plupart des cas. Les emplacements situés dans le dossier système \"Musique\" empêchent l'enregistrement des pochettes d'album en raison des limitations de l'OS.",
     "enterLowPriorityStateOnPauseSubtitle": "Permet de supprimer la notification lorsque la lecture est en pause. Permet également à Android de fermer le service lorsqu'il est en pause.",
-    "shuffleAllTrackCount": "Lecture aléatoire de tous les titres",
+    "shuffleAllTrackCount": "Nombre de pistes aléatoires",
     "shuffleAllTrackCountSubtitle": "Nombre de titres à charger lorsque vous utilisez le bouton « Lecture aléatoire » dans l'onglet Titres ou l'écran Genre.",
     "viewType": "Disposition de l'affichage",
     "viewTypeSubtitle": "Type d'affichage pour l'écran Musique",
     "list": "Liste",
     "landscape": "Paysage",
     "showTextOnGridView": "Afficher le texte dans la vue mosaïque",
-    "showTextOnGridViewSubtitle": "Afficher ou non le texte (titre, artiste, etc.) sur l'écran de la grille musicale.",
+    "showTextOnGridViewSubtitle": "Afficher ou non le texte (titre, interprète, etc.) sur l'écran de la partition. Le texte s'affiche toujours sur l'écran d'accueil, quel que soit ce paramètre.",
     "useCoverAsBackground": "Afficher la couverture floutée en arrière-plan du lecteur",
     "addToQueue": "Ajouter à la liste d'attente",
     "disableGesture": "Désactiver les gestes",
@@ -633,7 +633,7 @@
     "@savedQueue": {
         "description": "Title for the queue source for tracks were previously in the queue before an app restart and have been reloaded"
     },
-    "playingFromType": "Lecture depuis {source, select, album{Album} playlist{Playlist} trackMix{Track Mix} artistMix{Artist Mix} albumMix{Album Mix} genreMix{Genre Mix} favorites{Favorites} allTracks{All Tracks} filteredList{Tracks} genre{Genre} artist{Artist} track{Track} nextUpAlbum{Album dans Next Up} nextUpPlaylist{Playlist dans Next Up} nextUpArtist{Artist dans Next Up} nextUpGenre{Genre dans Next Up} remoteClient{un client distant} radio{Radio} other{}}",
+    "playingFromType": "Lecture depuis {source, select, album{Album} playlist{Liste de Lecture} trackMix{Mix de Piste} artistMix{Mix d’Artiste} albumMix{Mix d’album} genreMix{Mix de Genre} favorites{Favoris} allTracks{Tous les Pistes} filteredList{Pistes} genre{Genre} artist{Artiste} track{Piste} nextUpAlbum{Album dans Suivant} nextUpPlaylist{Liste de Lecture dans Suivant} nextUpArtist{Artiste dans Suivant} nextUpGenre{Genre dans Suivant} remoteClient{un client distant} radio{Radio} homeScreenSection{} collection{Collection} collectionMix{Mix de Collection} other{}}",
     "@playingFromType": {
         "description": "Prefix shown before the type of the main queue source at the top of the player screen. Example: \"Playing From Album\"",
         "placeholders": {
@@ -862,7 +862,7 @@
     "@queueRetryMessage": {
         "description": "Message displayed on now-playing bar when all items in a saved queue fail to load."
     },
-    "shuffleAlbumsToNextUp": "Lecture aléatoire des albums jusqu'au suivant",
+    "shuffleAlbumsToNextUp": "Lecture aléatoire des albums",
     "@shuffleAlbumsToNextUp": {
         "description": "Label for action that shuffles all albums of an artist or genre and adds them at the end of Next Up"
     },
@@ -1042,7 +1042,7 @@
     "@reportQueueToServer": {
         "description": "Label for the setting that toggles reporting of the current queue to the Jellyfin server"
     },
-    "startInstantMixForIndividualTracksSwitchSubtitle": "Lorsque cette option est activée, appuyer sur un titre dans l’onglet Titres lancera un mix instantané de celui-ci au lieu d’une unique lecture.",
+    "startInstantMixForIndividualTracksSwitchSubtitle": "Lorsque cette option est activée, le fait d'appuyer sur un morceau dans l'onglet « Titres » lance un mix instantané de ce morceau au lieu d'une simple lecture.",
     "repairDownloads": "Réparation des problèmes avec les fichiers téléchargés ou leurs métadonnées.",
     "@repairDownloads": {
         "description": "Tooltip for downloads repair button."
@@ -1079,7 +1079,7 @@
     "@confirmShuffleToQueue": {
         "description": "A confirmation message that is shown after successfully shuffling a list (album, playlist, etc.) to the end of the regular queue"
     },
-    "shuffleAlbumsToQueue": "Lecture aléatoire des albums dans la file d'attente",
+    "shuffleAlbumsToQueue": "Ajouter des albums à la file d'attente",
     "@shuffleAlbumsToQueue": {
         "description": "Label for action that shuffles all albums of an artist or genre and adds them at the end of the regular queue"
     },
@@ -1219,7 +1219,7 @@
         "description": "Subtitle for the setting that controls if timestamps are shown for lyrics"
     },
     "swipeLeftToRightActionSubtitle": "Action déclenchée lors du glissement d'un titre de gauche à droite dans la liste.",
-    "swipeLeftToRightAction": "Balayage à droite",
+    "swipeLeftToRightAction": "Action de balayage vers la droite",
     "appearsOnAlbums": "Apparaît dans",
     "albumArtists": "Artistes d'album",
     "performingArtists": "Artistes interprètes",
@@ -1284,7 +1284,7 @@
         "description": "Font size option for things like the lyrics view. Small means a smaller font size."
     },
     "keepScreenOnDisabled": "Désactivé",
-    "fixedGridTileSizeEnum": "{size, select, small{Petit} medium{Moyen} large{Grand} veryLarge{Très Grand} other{???}}",
+    "fixedGridTileSizeEnum": "{size, select, tiny{Minuscule} small{Petit} medium{Moyen} large{Grand} veryLarge{Très Grand} huge{Énorme} giant{Géant} other{???}}",
     "@fixedGridTileSizeEnum": {
         "placeholders": {
             "size": {
@@ -2997,7 +2997,7 @@
     "@selectAnItem": {
         "description": "Title for 'play specific item' quick action edit menu"
     },
-    "libraryQualifierActive": "Activée",
+    "libraryQualifierActive": "Actif",
     "@libraryQualifierActive": {
         "description": "Label shown next to the currently selected library in the Finamp menu/drawer"
     },
@@ -3022,7 +3022,7 @@
     "@sectionTitle": {
         "description": "Title for custom section title editor in home screen section editor"
     },
-    "inPlaylist": "Dans playlist",
+    "inPlaylist": "Dans liste de lecture",
     "@inPlaylist": {
         "description": "Name of 'In Playlist' content type"
     },
@@ -3077,7 +3077,7 @@
         "description": "Server info in music screen menu"
     },
     "allTypes": "Tous les Types",
-    "frequentlyPlayedAlbums": "Albums Souvent Lus",
+    "frequentlyPlayedAlbums": "Albums souvent lus",
     "@frequentlyPlayedAlbums": {
         "description": "Name of a home screen section preset"
     },
@@ -3085,8 +3085,446 @@
     "@frequentlyPlayedTracks": {
         "description": "Name of a home screen section preset"
     },
-    "frequentlyPlayedArtists": "Artistes Souvent Lus",
+    "frequentlyPlayedArtists": "Artistes souvent écoutés",
     "@frequentlyPlayedArtists": {
         "description": "Name of a home screen section preset"
+    },
+    "showAll": "Afficher Toutes",
+    "@showAll": {
+        "description": "Tooltip for show all button on home screen sections"
+    },
+    "failedToLoadSection": "Échec lors du chargement de la section.",
+    "@failedToLoadSection": {
+        "description": "Message when an error is thrown while resolving home screen section"
+    },
+    "sectionContentsNotDownloaded": "Contenu de la section non téléchargé.",
+    "@sectionContentsNotDownloaded": {
+        "description": "Message when a home screen section has no items while offline"
+    },
+    "failedToLoadSectionMissingItem": "Échec lors du chargement de la section - article manquant.",
+    "@failedToLoadSectionMissingItem": {
+        "description": "Message when the parent item of a home screen section is missing from the server"
+    },
+    "errorLoadingItems": "Échec lors du chargement des articles.",
+    "@errorLoadingItems": {
+        "description": "Message when an error occurs while loading home screen section contents"
+    },
+    "noItemsAvailable": "Aucun article disponible.",
+    "@noItemsAvailable": {
+        "description": "Message when a home screen section has no items while online"
+    },
+    "removeFilter": "Retirer Ce Filtre",
+    "@removeFilter": {
+        "description": "Tooltip for removable filter chips in Sort & Filter row"
+    },
+    "timerTracks": "{tracks} pistes",
+    "@timerTracks": {
+        "placeholders": {
+            "tracks": {
+                "type": "int"
+            }
+        },
+        "description": "Label for sleep timer track count slider"
+    },
+    "quickActionsSubtitle": "Sélectionnez et réorganisez les actions rapides sur l’écran d’accueil.",
+    "@quickActionsSubtitle": {
+        "description": "Subtitle for quick actions edit menu"
+    },
+    "sectionsMenu": "Sections",
+    "@sectionsMenu": {
+        "description": "Title for home screen sections edit menu"
+    },
+    "sectionMenuSubtitle": "Sélectionnez et réorganisez les sections sur l’écran d’accueil.",
+    "@sectionMenuSubtitle": {
+        "description": "Subtitle for home screen sections edit menu"
+    },
+    "sectionType": "Type de Section",
+    "@sectionType": {
+        "description": "Title for home screen section editor section type dropdown (tab view, collection, ect...)"
+    },
+    "collection": "Collection",
+    "@collection": {
+        "description": "Name of home screen section type which uses the contents of a supplied playable item"
+    },
+    "queues": "Files d’attente",
+    "@queues": {
+        "description": "Name of home screen section type which shows the latest played queues"
+    },
+    "favoritePlaylists": "Listes de lecture favorites",
+    "@favoritePlaylists": {
+        "description": "Name of a home screen section preset"
+    },
+    "favoriteGenres": "Genres Favoris",
+    "@favoriteGenres": {
+        "description": "Name of a home screen section preset"
+    },
+    "newlyAddedAlbums": "Albums récemment ajoutés",
+    "@newlyAddedAlbums": {
+        "description": "Name of a home screen section preset"
+    },
+    "newlyAddedTracks": "Pistes récemment ajoutées",
+    "@newlyAddedTracks": {
+        "description": "Name of a home screen section preset"
+    },
+    "recentlyAddedTracksDescription": "Les pistes qui ont été récemment ajoutées à votre bibliothèque, commençant avec la plus récente",
+    "@recentlyAddedTracksDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "frequentlyPlayedAlbumsDescription": "Les albums auxquelles vous avez beaucoup écoutées, commençant avec la plus écoutée",
+    "@frequentlyPlayedAlbumsDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "frequentlyPlayedTracksDescription": "Les pistes auxquelles vous avez beaucoup écoutées, commençant avec la plus écoutée",
+    "@frequentlyPlayedTracksDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "frequentlyPlayedArtistsDescription": "Les artistes auxquels vous avez beaucoup écoutés, commençant avec le plus écouté",
+    "@frequentlyPlayedArtistsDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "neverPlayedAlbumsDescription": "Les albums auxquels vous n’avez pas encore écoutés, dans un ordre aléatoire",
+    "@neverPlayedAlbumsDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "recentQueuesDescription": "Les files d’attente que vous avez récemment créées, commençant avec la plus récente",
+    "@recentQueuesDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "configureOutputActionDescription": "Ouvre la configuration de périphérique de sortie",
+    "@configureOutputActionDescription": {
+        "description": "Description of a home screen quick action"
+    },
+    "previousQueueAction": "File d’attente précédente",
+    "@previousQueueAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "configureOutputAction": "Configurer la Sortie",
+    "@configureOutputAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "playSpecificItemAction": "Lire {itemName, select, finamp_placeholder{<Article>} other{{itemName}}}",
+    "@playSpecificItemAction": {
+        "placeholders": {
+            "itemName": {
+                "type": "String"
+            }
+        },
+        "description": "Name of a home screen quick action"
+    },
+    "featuredCollection": "Collection en Vedette",
+    "@featuredCollection": {
+        "description": "Title for home screen section editor collection selector"
+    },
+    "egFavoriteTracks": "par ex. Pistes favorites",
+    "@egFavoriteTracks": {
+        "description": "Placeholder text in custom section title editor in home screen section editor"
+    },
+    "searchNotAvailibleWhileOffline": "La recherche n’est pas disponible hors ligne !",
+    "@searchNotAvailibleWhileOffline": {
+        "description": "Message in home screen section editor search widget when offline"
+    },
+    "gridImageSizeTitle": "Taille des Tuiles de la Grille",
+    "@gridImageSizeTitle": {
+        "description": "Title of grid tile image size setting"
+    },
+    "gridImageSizeSubtitle": "Sélectionner la taille des articles dans la vue de grille",
+    "@gridImageSizeSubtitle": {
+        "description": "Subtitle of grid tile image size setting"
+    },
+    "gridImageSizeLabel": "{colCountExact, plural, =0{~} =1{} other{}}{colCount, plural, =0{{colCount} colonne ({sizeDescriptor})} =1{{colCount} colonne ({sizeDescriptor})} other{{colCount} colonnes ({sizeDescriptor})}}",
+    "@gridImageSizeLabel": {
+        "placeholders": {
+            "sizeDescriptor": {
+                "type": "String",
+                "example": "Very Small"
+            },
+            "colCount": {
+                "type": "int"
+            },
+            "colCountExact": {
+                "type": "int",
+                "description": "0 = not exact, add e.g. tilde character (~), 1 = exact, just show the number"
+            }
+        },
+        "description": "Slider label in grid tile image size setting"
+    },
+    "homeScreenImageSizeTitle": "Taille des tuiles sur l’ecran d’accueil",
+    "@homeScreenImageSizeTitle": {
+        "description": "Title of home screen tile image size setting"
+    },
+    "homeScreenImageSizeSubtitle": "Sélectionner la taille des articles sur l’écran d’accueil",
+    "@homeScreenImageSizeSubtitle": {
+        "description": "Subtitle of home screen tile image size setting"
+    },
+    "exteranlStorageTip": "Si l’emplacement ne contient pas « emulated », c’est probablement sur le stockage externe.",
+    "@exteranlStorageTip": {
+        "description": "Helper text in Appdirectory download location config form"
+    },
+    "activeFilterCount": "{filterCount, plural, =0{Pas de Filtre} =1{1 Filtre} other{{filterCount} Filtres}} Activé{filterCount, plural, =0{} =1{} other{s}}",
+    "@activeFilterCount": {
+        "placeholders": {
+            "filterCount": {
+                "type": "int"
+            }
+        },
+        "description": "Message in sort & filter row"
+    },
+    "customSectionTitleRequired": "Veuillez donner un titre à la section personnalisée",
+    "@customSectionTitleRequired": {
+        "description": "Message when a custom section title is needed in home screen section editor"
+    },
+    "editHomeScreenSection": "Modifier la Section de l’Écran d’accueil",
+    "@editHomeScreenSection": {
+        "description": "Title for home screen section editor menu"
+    },
+    "sectionConfigInvalid": "La configuration actuelle n’est pas valide.",
+    "@sectionConfigInvalid": {
+        "description": "Message in home screen section edit menu preview window when a valid preview cannot be generated"
+    },
+    "inCollection": "En collection",
+    "@inCollection": {
+        "description": "Name of jellyfin 'Collection' content type"
+    },
+    "tabView": "Vue d’Onglet",
+    "@tabView": {
+        "description": "Name of home screen section type which uses the contents of a music screen tab"
+    },
+    "unplayedAlbums": "Albums injoués",
+    "@unplayedAlbums": {
+        "description": "Name of a home screen section preset"
+    },
+    "browsePlaybackHistoryActionDescription": "Parcourir votre historique de lecture",
+    "@browsePlaybackHistoryActionDescription": {
+        "description": "Description of a home screen quick action"
+    },
+    "playRandomAlbumActionDescription": "Commencer à lire un album aléatoire",
+    "@playRandomAlbumActionDescription": {
+        "description": "Description of a home screen quick action"
+    },
+    "surpriseMeActionDescription": "Démarre la radio 'Continuous' à partir d’une piste aléatoire",
+    "@surpriseMeActionDescription": {
+        "description": "Description of a home screen quick action"
+    },
+    "playRandomTrackActionDescription": "Lance la lecture d'un morceau choisi au hasard",
+    "@playRandomTrackActionDescription": {
+        "description": "Description of a home screen quick action"
+    },
+    "playRandomFavoriteItemActionDescription": "Commence à lire à partir d'un article favori aléatoire",
+    "@playRandomFavoriteItemActionDescription": {
+        "description": "Description of a home screen quick action"
+    },
+    "removeAction": "Retirer l’Action",
+    "@removeAction": {
+        "description": "Button to remove a quick action"
+    },
+    "addNewAction": "Ajouter Nouvelle Action",
+    "@addNewAction": {
+        "description": "Button to add a new quick action"
+    },
+    "removeSection": "Retirer la Section",
+    "@removeSection": {
+        "description": "Button to remove a home screen section"
+    },
+    "recentQueues": "Files d'attente récentes",
+    "@recentQueues": {
+        "description": "Name of a home screen section preset"
+    },
+    "favoriteAlbumsDescription": "Albums favoris, par ordre aléatoire",
+    "@favoriteAlbumsDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "favoriteArtistsDescription": "Artistes favoris, par ordre aléatoire",
+    "@favoriteArtistsDescription": {
+        "description": "Description  of a home screen section preset"
+    },
+    "favoritePlaylistsDescription": "Playlists favorites, par ordre aléatoire",
+    "@favoritePlaylistsDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "favoriteGenresDescription": "Genres favoris, par ordre aléatoire",
+    "@favoriteGenresDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "recentlyAddedAlbumsDescription": "Les albums récemment ajoutés à votre bibliothèque, en commençant par les plus récents",
+    "@recentlyAddedAlbumsDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "shuffleTracksActionDescription": "Lecture aléatoire des morceaux de votre bibliothèque",
+    "@shuffleTracksActionDescription": {
+        "description": "Description of a home screen quick action"
+    },
+    "browseRecentQueuesActionDescription": "Faites votre choix parmi vos files d'attente récemment utilisées",
+    "@browseRecentQueuesActionDescription": {
+        "description": "Description of a home screen quick action"
+    },
+    "playPreviousQueueActionDescription": "Récupère et lit votre file d'attente archivée la plus récente",
+    "@playPreviousQueueActionDescription": {
+        "description": "Description of a home screen quick action"
+    },
+    "playSpecificItemActionDescription": "Lance un élément spécifique configuré",
+    "@playSpecificItemActionDescription": {
+        "description": "Description of a home screen quick action"
+    },
+    "shuffleTracksAction": "Lecture aléatoire des morceaux",
+    "@shuffleTracksAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "randomFavoriteAction": "Favoris aléatoire",
+    "@randomFavoriteAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "swapAction": "Échanger les actions",
+    "@swapAction": {
+        "description": "Button to swap the selected quick action"
+    },
+    "addNewSection": "Ajouter une nouvelle section",
+    "@addNewSection": {
+        "description": "Button to add a new home screen section"
+    },
+    "preview": "Aperçu",
+    "noTracksFound": "Aucun morceau n'a été trouvé pour lancer le « Surprise Me Mix ».",
+    "@noTracksFound": {
+        "description": "Message if SurpriseMeMix creation fails"
+    },
+    "nothingFoundToPlay": "Aucun contenu à lire n'a été trouvé.",
+    "@nothingFoundToPlay": {
+        "description": "Message if play random item fails"
+    },
+    "errorLoadingHomeSection": "Erreur lors du chargement de la rubrique « Accueil »",
+    "@errorLoadingHomeSection": {
+        "description": "Message if a home screen section cannot be loaded due to a missing item"
+    },
+    "noPreviousQueueFoundToPlay": "Aucune file d'attente précédente n'a été trouvée pour la lecture.",
+    "@noPreviousQueueFoundToPlay": {
+        "description": "Message if play previous queue quick action fails"
+    },
+    "isFavoriteFilter": "Favoris",
+    "@isFavoriteFilter": {
+        "description": "Name of favorite filter"
+    },
+    "isUnplayedFilter": "Non joué",
+    "@isUnplayedFilter": {
+        "description": "Name of unplayed items filter"
+    },
+    "startsWithFilter": "Commence par : {letter}",
+    "@startsWithFilter": {
+        "description": "Name of starts with letter filter",
+        "placeholders": {
+            "letter": {
+                "type": "String"
+            }
+        }
+    },
+    "customizeHomeScreen": "Personnaliser l'écran d'accueil",
+    "@customizeHomeScreen": {
+        "description": "Label for home screen customize button"
+    },
+    "performingArtistFilter": "Albums (figurant sur)",
+    "albumArtistFilter": "Albums (Artiste de l'album)",
+    "itemTypeFilterHeader": "Type d'enfant",
+    "recentlyPlayedTracksDescription": "Les titres que vous avez écoutés récemment, en commençant par le dernier écouté",
+    "@recentlyPlayedTracksDescription": {
+        "description": "Description for a home screen section preset"
+    },
+    "homeFavoritesDownloadWarning": "Êtes-vous sûr de vouloir télécharger vos favoris ?  Cette opération téléchargera tous les types de favoris, et pas seulement ceux de {sectionType}.",
+    "@homeFavoritesDownloadWarning": {
+        "description": "Warning presented when pressing the download button on certain home screen sections.  This is shown because home sections show a specific item type, like Albums, but the download covers all.",
+        "placeholders": {
+            "sectionType": {
+                "type": "String",
+                "example": "Albums"
+            }
+        }
+    },
+    "homeAllPlaylistsWarning": "Êtes-vous sûr de vouloir télécharger toutes les playlists ? Cela téléchargera toutes les playlists, et pas seulement celles de cette section.",
+    "@homeAllPlaylistsWarning": {
+        "description": "Warning presented when pressing the download button on playlist home sections with a filter applied.  This is shown because the download will not apply the filter."
+    },
+    "homeRecentAlbumsDownloadWarning": "Cela permettra de télécharger les 5 derniers albums disponibles sur le serveur.\t Cette liste sera mise à jour et les téléchargements en trop seront supprimés à mesure que de nouveaux albums seront ajoutés au serveur à l'avenir.",
+    "@homeRecentAlbumsDownloadWarning": {
+        "description": "Warning presented when pressing the download button on certain home screen sections.  This is shown because the behavior of the 5 latest albums download is not a 100% match to the home sections."
+    },
+    "alreadyRandomized": "Cette section est déjà présentée dans un ordre aléatoire",
+    "@alreadyRandomized": {
+        "description": "Tooltip for shuffle button on home screen sections using a random sort order, where it is disabled due to being unneeded"
+    },
+    "offlineSortFallback": "Le tri selon {onlineSort} n'est disponible qu'en ligne.  On utilise actuellement l'ordre de tri par défaut",
+    "@offlineSortFallback": {
+        "description": "Warning presented in sort and filter menu when an online-only sort is chosen.",
+        "placeholders": {
+            "onlineSort": {
+                "type": "String",
+                "example": "Play Count"
+            }
+        }
+    },
+    "retryPageLoad": "Échec du chargement des éléments depuis le serveur. Cliquez ici pour réessayer.",
+    "itemType": "{itemType, select, album{Album} playlist{Playlist} artist{Artiste} genre{Genre} track{Titre} library{Bibliothèque} collection{Collection} unknown{Élément} other{{itemType}}}",
+    "@itemType": {
+        "placeholders": {
+            "itemType": {
+                "type": "String",
+                "example": "album"
+            }
+        },
+        "description": "Item type name."
+    },
+    "connectionStateInfoString": "{state, select, syncing{Synchronisation avec le serveur} downloading{Téléchargement depuis le serveur} deleting{Suppression des anciens téléchargements} connectedLocal{Connecté via le réseau local} syncingLocal{Synchronisation via le réseau local} downloadingLocal{Téléchargement via le réseau local} other{}}",
+    "@connectionStateInfoString": {
+        "description": "String describing the current connection state to the server, shown in the music screen drawer/menu.",
+        "placeholders": {
+            "state": {
+                "type": "String",
+                "example": "syncingLocal"
+            }
+        }
+    },
+    "clientCertificate": "Certificat client mTLS (SSL)",
+    "@clientCertificate": {
+        "description": "Title for the setting that allows managing SSL client certificates used for authentication"
+    },
+    "clientCertificateUnavailable": "Aucun certificat configuré, authentification client désactivée",
+    "@clientCertificateUnavailable": {
+        "description": "Message shown when the user has no SSL client certificate available to use."
+    },
+    "clientCertificateInstalled": "Certificat installé",
+    "@clientCertificateInstalled": {
+        "description": "Message shown when the user has successfully installed an SSL client certificate."
+    },
+    "clientCertificateDescription": "Un certificat client TLS (.p12 ou .pfx) sert à authentifier cet appareil auprès de votre serveur Jellyfin. Il n'est requis que si votre serveur est configuré pour le protocole TLS réciproque.",
+    "@clientCertificateDescription": {
+        "description": "Explanatory text in the client certificate settings menu describing what a client certificate is used for"
+    },
+    "importClientCertificate": "Certificat d'importation",
+    "@importClientCertificate": {
+        "description": "Label for the button to import a new SSL client certificate."
+    },
+    "removeClientCertificate": "Supprimer le certificat",
+    "@removeClientCertificate": {
+        "description": "Label for the button to remove the currently installed SSL client certificate."
+    },
+    "clientCertificatePasswordTitle": "Mot de passe du certificat",
+    "@clientCertificatePasswordTitle": {
+        "description": "Title of the dialog prompting the user to enter the password for the client certificate being imported."
+    },
+    "clientCertificatePasswordHint": "Mot de passe",
+    "@clientCertificatePasswordHint": {
+        "description": "Hint text for the password input field when importing a client certificate."
+    },
+    "clientCertificateDeleteConfirm": "Supprimer le certificat installé ? L'authentification du client sera désactivée.",
+    "@clientCertificateDeleteConfirm": {
+        "description": "Confirmation prompt shown before removing the installed client certificate."
+    },
+    "clientCertificateImportSuccess": "Le certificat a été importé avec succès",
+    "@clientCertificateImportSuccess": {
+        "description": "Message shown after successfully importing a client certificate."
+    },
+    "clientCertificateImportError": "Échec de l'importation du certificat",
+    "@clientCertificateImportError": {
+        "description": "Error message shown when importing a client certificate fails."
+    },
+    "clientCertificateRequired": "Certificat client requis",
+    "@clientCertificateRequired": {
+        "description": "Message shown on the server selection screen when the server requires a client certificate to be provided."
     }
 }

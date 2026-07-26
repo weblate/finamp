@@ -190,7 +190,7 @@
     "customLocationsBuggy": "Las ubicaciones personalizadas pueden ser extremadamente problemáticas, y no son recomendadas para la mayoría de usos. Ubicaciones dentro de la carpeta del sistema \"Música\" podría impedir que las imágenes de los álbumes se guarden debido a limitaciones del sistema operativo.",
     "shuffleAllTrackCount": "Cantidad de canciones al reproducir aleatoriamente",
     "shuffleAllTrackCountSubtitle": "Cantidad de canciones a cargar cuando se use el botón de mezclar todo en la pestaña de canciones o en la pantalla de géneros.",
-    "showTextOnGridViewSubtitle": "Muestra el texto (título, artista, etc) en la pantalla de música al usar la vista de cuadrícula.",
+    "showTextOnGridViewSubtitle": "Muestra el texto (título, artista, etc) en la pantalla de música al usar la vista de cuadrícula. El texto siempre se muestra en la pantalla inicial, ignorando este ajuste.",
     "useCoverAsBackgroundSubtitle": "Usa la carátula del álbum desenfocada como fondo del reproductor.",
     "responseError401": "{error} Código de estado {statusCode}. Esto probablemente significa que has usado el nombre de usuario o la contraseña incorrecta, o que tu cliente ya no está autenticado.",
     "@responseError401": {
@@ -478,7 +478,7 @@
     "@volumeNormalizationModeTrackBased": {
         "description": "'Track-based' option for the replay gain mode dropdown. In track-based mode, the track gain is always used, regardless of whether an album is playing or not."
     },
-    "volumeNormalizationModeHybrid": "Híbrido (Canción + Álbum)",
+    "volumeNormalizationModeHybrid": "Dinámico",
     "@volumeNormalizationModeHybrid": {
         "description": "'Hybrid' option for the replay gain mode dropdown. In hybrid mode, the track gain is used for regular playback, but if an album is playing (either because it's the main playback queue source, or because it was added to the queue at some point), the album gain is used instead."
     },
@@ -924,7 +924,7 @@
     "@repairComplete": {
         "description": "Message displayed after download repair completes."
     },
-    "volumeNormalizationIOSBaseGainEditorSubtitle": "Actualmente, La normalización de volumen en iOS requiere cambiar el volumen de reproducción para emular el cambio de ganancia. Ya que no podemos aumentar el volumen por encima del 100%, necesitamos disminuirlo por defecto para poder potenciar el volumen en canciones con bajo volumen. El valor es en decibelios (dB), donde -10 dB es el ~30% del volumen, -4.5 dB es el ~60% del volumen y -2 dB es el ~80% del volumen.",
+    "volumeNormalizationIOSBaseGainEditorSubtitle": "Seleccione un desplazamiento de ganancia de volumen (en dB)",
     "@volumeNormalizationIOSBaseGainEditorSubtitle": {
         "description": "Subtitle for the input that sets the replay gain base gain on iOS and other non-Android platforms"
     },
@@ -2323,11 +2323,11 @@
     "@playbackActionPageRegularTrackOptions": {
         "description": "Label for the playback action page that contains all actions of the normal track menu, like starting a new queue or duplicating the track within the existing queue"
     },
-    "systemAccentColor": "Usar Énfasis del Sistema",
+    "systemAccentColor": "Usar color de acento del Sistema",
     "@systemAccentColor": {
         "description": "Title of the System Accent Color setting."
     },
-    "systemAccentColorHasPriorityInfo": "El color de énfasis personalizado está deshabilitado porque Énfasis de Sistema está actualmente en uso",
+    "systemAccentColorHasPriorityInfo": "El color de acento personalizado está deshabilitado porque Color de Acento del Sistema está actualmente en uso",
     "@systemAccentColorHasPriorityInfo": {
         "description": "Text under the AccentColorTitle which is only visible when the system color is enabled since the system color will be prioritized over custom accent color"
     },
@@ -2360,11 +2360,11 @@
     "@shuffleSomeToQueue": {
         "description": "Used for shuffling some tracks to the end of the regular queue, to play after all prior tracks from the queue have played"
     },
-    "moveAddToNextUp": "Mover hacia A Continuación",
+    "moveAddToNextUp": "Mover al siguiente",
     "@moveAddToNextUp": {
         "description": "Used for moving a track to the \"Next Up\" queue at the end, to play after all prior tracks from Next Up have played"
     },
-    "moveAddToQueue": "Mover hacia el final",
+    "moveAddToQueue": "Mover al final",
     "@moveAddToQueue": {
         "description": "Used for moving a track to the end of the queue, to play after all prior tracks from the queue have played"
     },
@@ -2397,5 +2397,25 @@
     "shuffleSomeAlbumsToQueue": "Mezclar algunos Álbumes al final de la Cola",
     "@shuffleSomeAlbumsToQueue": {
         "description": "Label for action that shuffles all albums of a genre and adds them at the end of the regular queue"
+    },
+    "ascending": "Ascendente",
+    "@ascending": {
+        "description": "Label for ascending order."
+    },
+    "descending": "Descendente",
+    "@descending": {
+        "description": "Label for descending order."
+    },
+    "volumeNormalizationIOSBaseGainEditorDescription": "Actualmente, la normalización de volumen en plataformas distintas a Android requiere modificar el volumen de reproducción para emular el cambio de ganancia. Dado que no es posible aumentar el volumen por encima del 100 %, es necesario reducir el volumen de forma predeterminada para poder amplificar el volumen de las pistas más silenciosas.\n\nEl valor se expresa en decibelios (dB): -10 dB equivale aproximadamente al 30 % del volumen, -4,5 dB al 60 % y -2 dB al 80 %.\nLos valores positivos implican que no se aplica reducción de volumen hasta alcanzar el umbral (es decir, una ganancia de -6,4 dB o superior para un ajuste de +6,4 dB), pero impiden que se amplifiquen las pistas más silenciosas.\n\nDeberías establecer este valor como el inverso de la ganancia más alta (la más positiva) de tu biblioteca; por ejemplo, ajústalo a +3 dB si la ganancia más alta de tu biblioteca es -3 dB (y el resto de las pistas tienen ganancias como -5 dB, -8 dB, -10 dB, etc.).",
+    "@volumeNormalizationIOSBaseGainEditorDescription": {
+        "description": "Description for the input that sets the replay gain base gain on iOS and other non-Android platforms"
+    },
+    "multichannelHandlingTitle": "Gestión de transcodificación multicanal",
+    "@multichannelHandlingTitle": {
+        "description": "Title for multi-channel handling dropdown"
+    },
+    "multichannelHandlingSubtitle": "Cómo gestionar pistas multicanal (más de 2 canales) al realizar la transcodificación. Se aplica tanto al streaming como a las descargas.",
+    "@multichannelHandlingSubtitle": {
+        "description": "Subtitle for multi-channel handling dropdown"
     }
 }

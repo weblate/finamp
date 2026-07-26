@@ -296,6 +296,7 @@ class DefaultSettings {
   static const homeScreenImageSizeDesktop = 120;
   static int get gridImageSize => isDesktop ? gridImageSizeDesktop : gridImageSizeMobile;
   static const useAndroidGainEffect = true;
+  static const ClientCertificate? clientCertificate = null;
 }
 
 @HiveType(typeId: 28)
@@ -919,11 +920,14 @@ class FinampSettings {
   @HiveField(150, defaultValue: DefaultSettings.homeScreenImageSizeMobile)
   int homeScreenImageSize;
 
+  @HiveField(151, defaultValue: DefaultSettings.clientCertificate)
+  ClientCertificate? clientCertificate = DefaultSettings.clientCertificate;
+
   /// Unique ID that stays the same for an install but may change across reinstalls
   /// Used to identify client activity within Jellyfin
   /// Ideally this ID would be identical across all clients on the same device,
   /// but that's unrealistic, so a random string should be fine
-  @HiveField(151, defaultValue: "unset") // pre-generation default
+  @HiveField(152, defaultValue: "unset") // pre-generation default
   String deviceId;
 
   static Future<FinampSettings> create() async {
@@ -4704,4 +4708,15 @@ class QuickActionConfig {
   String toString() {
     return jsonEncode(toJson());
   }
+}
+
+@HiveType(typeId: 127)
+class ClientCertificate {
+  ClientCertificate({required this.data, required this.password});
+
+  @HiveField(0)
+  final Uint8List data;
+
+  @HiveField(1)
+  final String password;
 }

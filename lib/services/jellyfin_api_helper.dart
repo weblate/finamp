@@ -6,6 +6,7 @@ import 'dart:isolate';
 import 'package:chopper/chopper.dart';
 import 'package:collection/collection.dart';
 import 'package:finamp/components/global_snackbar.dart';
+import 'package:finamp/services/client_certificate_installer.dart';
 import 'package:finamp/services/http_aggregate_logging_interceptor.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -48,9 +49,14 @@ class JellyfinApiHelper {
   JellyfinApiHelper() {
     ReceivePort startupPort = ReceivePort();
     var rootToken = RootIsolateToken.instance!;
+    // Pass client certificate to background isolates, since Hive isn't accessible from them.
+    var clientCertificate = ClientCertificateInstaller.isSupported
+        ? FinampSettingsHelper.finampSettings.clientCertificate
+        : null;
     Isolate.spawn(_processRequestsBackground, (
       startupPort.sendPort,
       rootToken,
+      clientCertificate,
       FinampSettingsHelper.finampSettings.deviceId,
     ));
     Future.sync(() async {
@@ -62,13 +68,18 @@ class JellyfinApiHelper {
 
   /// This should only be run in a worker isolate
   /// Sets up singletons and listens for work.
-  static Future<void> _processRequestsBackground((SendPort, RootIsolateToken, String) input) async {
+  static Future<void> _processRequestsBackground((SendPort, RootIsolateToken, ClientCertificate?, String) input) async {
     BackgroundIsolateBinaryMessenger.ensureInitialized(input.$2);
     ReceivePort requestPort = ReceivePort();
 
     // Extend the default security context to trust Android user certificates.
     // This is a workaround for <https://github.com/dart-lang/sdk/issues/50435>.
     await FlutterUserCertificatesAndroid().trustAndroidUserCertificates(SecurityContext.defaultContext);
+
+    // Configure SecurityContext to use client certificate, if provided.
+    if (input.$3 != null) {
+      ClientCertificateInstaller().installCertificateInSecurityContext(input.$3!, SecurityContext.defaultContext);
+    }
 
     input.$1.send(requestPort.sendPort);
     final dir = (Platform.isAndroid || Platform.isIOS)
@@ -82,7 +93,7 @@ class JellyfinApiHelper {
       relaxedDurability: true,
     );
     GetIt.instance.registerSingleton(isar);
-    GetIt.instance.registerSingleton(FinampUserHelper(deviceId: input.$3));
+    GetIt.instance.registerSingleton(FinampUserHelper(deviceId: input.$4));
     // TODO get logging working in background isolate
     await GetIt.instance<FinampUserHelper>().setAuthHeader();
     jellyfin_api.JellyfinApi backgroundApi = jellyfin_api.JellyfinApi.create(inForeground: false);
@@ -1279,7 +1290,11 @@ class JellyfinApiHelper {
     // Jellyfin 10.10 and 10.11 use the [isFavorite] boolean filter instead of the list-based [filters] parameter for genres, so add that here
     // I guess part of the reason for this is that it's not possible to favorite a genre through the Jellyfin Web UI at all...
     if ([finamp_models.ContentType.genres, finamp_models.ContentType.mixed].contains(contentType)) {
-      return filters.any((filter) => filter.type == ItemFilterType.isFavorite);
+      // Only send isFavorite when the filter is actually active. Passing isFavorite=false makes
+      // Jellyfin 10.11 return HTTP 500 on the /Genres endpoint, leaving the Genres tab empty (#1653).
+      // On Jellyfin 10.10 and 12.0, isFavorite=false returns only items that are *not* favorites,
+      // which is also not what we want here (we want all genres to be shown, unfiltered)
+      return filters.any((filter) => filter.type == ItemFilterType.isFavorite) ? true : null;
     }
     return null;
   }

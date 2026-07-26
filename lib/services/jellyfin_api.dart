@@ -230,6 +230,10 @@ abstract class JellyfinApi extends ChopperService {
     @Path() required BaseItemId id,
     @Query() required String userId,
     @Query() required int limit,
+    // when requesting Instant Mixes (Jellyfin 10.10.x & 10.11.x), Jellyfin omits the [hasOwnImage] field and other metadata, which leads to us (and Jellyfin Web) falling back to the album image, even though a track image is present.
+    // These parameters help to get more accurate image data
+    @Query() bool? enableImages = true,
+    @Query() List<String>? enableImageTypes = const ["Primary", "Disc", "Thumb", "Art"],
   });
 
   @FactoryConverter(request: JsonConverter.requestFactory, response: JsonConverter.responseFactory)

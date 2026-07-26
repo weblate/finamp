@@ -156,7 +156,7 @@
     "datePlayed": "Senast uppspelad datum",
     "downloads": "Nedladdningar",
     "errorScreenError": "Ett fel uppstod när listan över fel skulle hämtas! Vid det här laget bör du förmodligen bara skapa ett problem på GitHub och radera appdata",
-    "shuffleAllTrackCountSubtitle": "Antal ljudspår att ladda vid användning av Shuffle-knappen.",
+    "shuffleAllTrackCountSubtitle": "Antal ljudspår att ladda vid användning av Shuffle-knappen på spårfliken eller genre-skärmen.",
     "shuffleAll": "Shuffla alla",
     "shuffleButtonLabel": "Shuffla",
     "audioService": "Ljudtjänst",
@@ -166,7 +166,7 @@
     "shareLogs": "Dela loggar",
     "logsCopied": "Loggar kopierade.",
     "showTextOnGridView": "Visa text i rutnätsvy",
-    "showTextOnGridViewSubtitle": "Huruvida text (titel, artist etc.) ska visas på rutnäts-musikskärmen.",
+    "showTextOnGridViewSubtitle": "Huruvida text (titel, artist etc.) ska visas på rutnäts-musikskärmen. Texten visas alltid på hemskärmen, oberoende av denna inställning.",
     "tabs": "Flikar",
     "sleepTimerTooltip": "Sovtimer",
     "playlistCreated": "Spellista skapad.",
@@ -517,7 +517,7 @@
     "@skipToNextTrackButtonTooltip": {
         "description": "Tooltip for the button that skips to the next track"
     },
-    "confirmAddToNextUp": "Lade till {type, select, track{Track} album{album} artist{artist} playlist{playlist} genre{genre} other{item}} i Nästa",
+    "confirmAddToNextUp": "Lade till {type, select, track{Track} album{album} artist{artist} playlist{playlist} disc{disk} genre{genre} other{item}} i Nästa",
     "@confirmAddToNextUp": {
         "description": "A confirmation message that is shown after successfully adding a track to the end of the \"Next Up\" queue",
         "placeholders": {
@@ -651,7 +651,7 @@
             }
         }
     },
-    "confirmAddToQueue": "Lade till {type, select, track{track} album{album} artist{artist} playlist{playlist} genre{genre} other{item}} i spelkön",
+    "confirmAddToQueue": "Lade till {type, select, track{track} album{album} artist{artist} playlist{playlist} disc{disk} genre{genre} other{item}} i spelkön",
     "@confirmAddToQueue": {
         "description": "A confirmation message that is shown after successfully adding a track to the end of the regular queue",
         "placeholders": {
@@ -760,7 +760,7 @@
     "@queueRestoreButtonLabel": {
         "description": "Button to restore archived now playing queue, overwriting current queue"
     },
-    "playingFromType": "Spelar ifrån {source, select, album{album} playlist{spellista} trackMix{spårmix} artistMix{artistmix} albumMix{albummix} genreMix{genremix} favorites{favoriter} allTracks{alla spår} filteredList{spår} genre{genre} artist{artist} track{spår} nextUpAlbum{album i Nästa} nextUpPlaylist{spellista i Nästa} nextUpArtist{artist i Nästa} nextUpGenre{genre i Nästa} remoteClient{en fjärrenhet} other{}}",
+    "playingFromType": "Spelar ifrån {source, select, album{album} playlist{spellista} trackMix{spårmix} artistMix{artistmix} albumMix{albummix} genreMix{genremix} favorites{favoriter} allTracks{alla spår} filteredList{spår} genre{genre} artist{artist} track{spår} nextUpAlbum{album i Nästa} nextUpPlaylist{spellista i Nästa} nextUpArtist{artist i Nästa} nextUpGenre{genre i Nästa} remoteClient{en fjärrenhet} radio{Radio} homeScreenSection{} collection{Samling} collectionMix{Samlingsmix} other{}}",
     "@playingFromType": {
         "description": "Prefix shown before the type of the main queue source at the top of the player screen. Example: \"Playing From Album\"",
         "placeholders": {
@@ -2238,5 +2238,634 @@
     "@shuffleSomeAlbumsToNextUp": {
         "description": "Label for action that shuffles all albums of a genre and adds them at the end of Next Up"
     },
-    "none": "Ingen"
+    "none": "Ingen",
+    "ascending": "Stigande",
+    "@ascending": {
+        "description": "Label for ascending order."
+    },
+    "descending": "Fallande",
+    "@descending": {
+        "description": "Label for descending order."
+    },
+    "downloadAllPlaylistsSettingWarning": "Obs: Detta kommer att ladda ner alla objekt i alla spellistor, oavsett vilket bibliotek de är från.",
+    "lyricsEmptyStateLoading": "Laddar sångtexter...",
+    "@lyricsEmptyStateLoading": {
+        "description": "Message shown while lyrics are being loaded"
+    },
+    "lyricsEmptyStateFailed": "Kunde inte ladda sångtexter",
+    "@lyricsEmptyStateFailed": {
+        "description": "Message shown when lyrics failed to load"
+    },
+    "lyricsEmptyStateNoLyrics": "Inga sångtexter tillgängliga",
+    "@lyricsEmptyStateNoLyrics": {
+        "description": "Message shown when no lyrics are available for the current track"
+    },
+    "lyricsMissingLyricLinePlaceholder": "sångtextlinje saknas",
+    "@lyricsMissingLyricLinePlaceholder": {
+        "description": "Placeholder text for missing lyric lines in synchronized lyrics"
+    },
+    "emptyAlbum": "Inga spår.",
+    "@emptyAlbum": {
+        "description": "Message shown as a placeholder when an album or playlist is empty."
+    },
+    "confirmAddCollectionItemToPlaylist": "Vill du verkligen lägga till alla spår från {itemType, select, album{albumet} playlist{spellistan} artist{artisten} genre{genren} other{artikeln}} '{itemName}' till den här spellistan? De kan endast tas bort individuellt.",
+    "@confirmAddCollectionItemToPlaylist": {
+        "description": "Warning dialog for adding an album, artist, etc. or multiple tracks to a playlist, clarifying that this cannot be undone without removing all tracks individually and manually.",
+        "placeholders": {
+            "itemType": {
+                "type": "String",
+                "example": "album"
+            },
+            "itemName": {
+                "type": "String"
+            }
+        }
+    },
+    "confirmAddMultipleTracksToPlaylist": "Är du säker på att du vill lägga till {trackCount} spår i den här spellistan? De kan endast tas bort individuellt.",
+    "@confirmAddMultipleTracksToPlaylist": {
+        "description": "Warning dialog for adding multiple tracks to a playlist, clarifying that this cannot be undone without removing all tracks individually and manually.",
+        "placeholders": {
+            "trackCount": {
+                "type": "int"
+            }
+        }
+    },
+    "additionalBaseItemInfoTitle": "Ytterligare objekt info",
+    "@additionalBaseItemInfoTitle": {
+        "description": "Title for the setting that controls the displayed additional item info."
+    },
+    "additionalBaseItemInfoSubtitle": "Kontroller vilken typ av ytterligare information visas i objektlistor för varje objekttyp. När den är inställd på \"Adaptive\" väljs informationen automatiskt utifrån den aktuella sorteringen eller kontexten.",
+    "@additionalBaseItemInfoSubtitle": {
+        "description": "Subtitle for the setting that controls the displayed additional item info."
+    },
+    "autoOfflineOptionUnreachable": "Oåtkomlig",
+    "@autoOfflineOptionUnreachable": {
+        "description": "This is shown when the autoOffline feature is set to Unreachable, this means offline mode will be automatically enabled when - after a network change - the server cant be pinged"
+    },
+    "autoOfflineSettingSubtitle": "Automatiskt aktivera Offline Läge baserat på nätverksanslutning eller serverns tillgänglighet.",
+    "@autoOfflineSettingSubtitle": {
+        "description": "Subtitle for the automated offline mode setting."
+    },
+    "radioModeMenuTitle": "Välj Radio Läge",
+    "@radioModeMenuTitle": {
+        "description": "Title for menu that allows users to choose the radio mode."
+    },
+    "radioModeUnavailableWhileOfflineSubtitle": "{modeName} otillgänglig medan offline",
+    "@radioModeUnavailableWhileOfflineSubtitle": {
+        "placeholders": {
+            "modeName": {
+                "type": "String",
+                "description": "The pre-translated radio mode name"
+            }
+        },
+        "description": "Shown as the subtitle for radio modes when the user is offline and the radio mode requires the user to be online to function."
+    },
+    "radioModeUnavailableForSourceItemDescription": "Otillgänglig för denna kökälla",
+    "@radioModeUnavailableForSourceItemDescription": {
+        "description": "Shown as the subtitle for radio modes when the queue source item type is not supported."
+    },
+    "radioModeUnavailableForSourceItemSubtitle": "{modeName} otillgänglig för denna kökälla",
+    "@radioModeUnavailableForSourceItemSubtitle": {
+        "placeholders": {
+            "modeName": {
+                "type": "String",
+                "description": "The pre-translated radio mode name"
+            }
+        },
+        "description": "Shown as the subtitle for radio modes when the queue source item type is not supported."
+    },
+    "radioModeUnavailableQueueEmptyDescription": "Otillgänglig eftersom kön är tom",
+    "@radioModeUnavailableQueueEmptyDescription": {
+        "description": "Shown as the subtitle for radio modes when the queue is empty."
+    },
+    "radioModeUnavailableQueueEmptySubtitle": "{modeName} otillgänglig eftersom kön är tom",
+    "@radioModeUnavailableQueueEmptySubtitle": {
+        "placeholders": {
+            "modeName": {
+                "type": "String",
+                "description": "The pre-translated radio mode name"
+            }
+        },
+        "description": "Shown as the subtitle for radio modes when the queue is empty."
+    },
+    "radioModeRandomUnavailableNotDownloadedDescription": "Otillgänglig eftersom '{sourceName}' inte har laddats ner",
+    "@radioModeRandomUnavailableNotDownloadedDescription": {
+        "description": "Shown as the subtitle for radio modes when the user is offline and the random radio mode can't be used since the queue source hasn't been downloaded.",
+        "placeholders": {
+            "sourceName": {
+                "type": "String"
+            }
+        }
+    },
+    "radioModeRandomUnavailableNotDownloadedSubtitle": "{modeName} otillgänglig eftersom '{sourceName}' inte har laddats ner",
+    "@radioModeRandomUnavailableNotDownloadedSubtitle": {
+        "description": "Shown as the subtitle for radio modes when the user is offline and the random radio mode can't be used since the queue source hasn't been downloaded.",
+        "placeholders": {
+            "modeName": {
+                "type": "String",
+                "description": "The pre-translated radio mode name"
+            },
+            "sourceName": {
+                "type": "String"
+            }
+        }
+    },
+    "radioModeRandomUnavailableNotDownloadedGenericDescription": "Otillgänglig eftersom källan inte har laddats ner",
+    "@radioModeRandomUnavailableNotDownloadedGenericDescription": {
+        "description": "Shown as the generic subtitle for radio modes when the user is offline and the random radio mode can't be used since the queue source hasn't been downloaded, when the queue source has no name."
+    },
+    "radioModeRandomUnavailableNotDownloadedGenericSubtitle": "{modeName} otillgänglig eftersom källan inte har laddats ner",
+    "@radioModeRandomUnavailableNotDownloadedGenericSubtitle": {
+        "placeholders": {
+            "modeName": {
+                "type": "String",
+                "description": "The pre-translated radio mode name"
+            }
+        },
+        "description": "Shown as the generic subtitle for radio modes when the user is offline and the random radio mode can't be used since the queue source hasn't been downloaded, when the queue source has no name."
+    },
+    "radioNoTracksFound": "Kan inte starta radio eftersom inga lämpliga spår hittades.",
+    "@radioNoTracksFound": {
+        "description": "Shown when the user tries to start radio mode but no suitable tracks were found to start the radio with."
+    },
+    "loopingUnavailableWhileRadioActiveWarning": "Att ändra loopläget är inte möjligt medan radio är aktiv, eftersom kön kommer att fortsätta oändligt.",
+    "@loopingUnavailableWhileRadioActiveWarning": {
+        "description": "Warning message when trying to change the loop mode while radio is active."
+    },
+    "syncPlaybackSpeedAndPitchLabel": "Synkronisera Hastighet & Tonhöjd",
+    "@syncPlaybackSpeedAndPitchLabel": {
+        "description": "Label for the checkbox that toggled is the pitch is adjusted along with the playback speed, or if the pitch is kept constant. Shown in the speed submenu on the track menu"
+    },
+    "serverSharingMenuTitle": "Lokal nätverksserverdelning",
+    "@serverSharingMenuTitle": {
+        "description": "Title for the server sharing menu that allows the user to share their server address with other devices on the local network"
+    },
+    "serverSharingMenuButtonTitle": "Dela Server",
+    "@serverSharingMenuButtonTitle": {
+        "description": "Title for the button in the drawer that opens the server sharing menu"
+    },
+    "serverSharingMenuConfirmationDialogText": "Är du säker på att du vill aktivera serverdelning trots att du är i Offline läge? Detta kommer att leda till att Finamp skickar data över det lokala nätverket.",
+    "@serverSharingMenuConfirmationDialogText": {
+        "description": "Dialog text shown when enabling server sharing while offline mode is enabled"
+    },
+    "serverSharingMenuConfirmationDialogConfirmationButtonLabel": "Bekräfta och aktivera",
+    "@serverSharingMenuConfirmationDialogConfirmationButtonLabel": {
+        "description": "Positive action label for the dialog shown when enabling server sharing while offline mode is enabled"
+    },
+    "serverSharingMenuControlTitleSharingEnabled": "Delar Server",
+    "@serverSharingMenuControlTitleSharingEnabled": {
+        "description": "Title of the toggle control in the server sharing menu used to turn server sharing on or off, when it's currently turned on"
+    },
+    "serverSharingMenuControlSubtitleSharingDisabled": "Tryck för att Dela",
+    "@serverSharingMenuControlSubtitleSharingDisabled": {
+        "description": "Subtitle of the toggle control in the server sharing menu used to turn server sharing on or off, when it's currently turned off"
+    },
+    "serverSharingMenuControlTitleSharingDisabled": "Delar Inte",
+    "@serverSharingMenuControlTitleSharingDisabled": {
+        "description": "Title of the toggle control in the server sharing menu used to turn server sharing on or off, when it's currently turned off"
+    },
+    "serverSharingMenuControlSubtitleSharingEnabled": "Tryck för att Sluta",
+    "@serverSharingMenuControlSubtitleSharingEnabled": {
+        "description": "Subtitle of the toggle control in the server sharing menu used to turn server sharing on or off, when it's currently turned on"
+    },
+    "serverSharingMenuDescription": "Att dela din serveradress kan vara användbart för att sätta upp nya klienter som inte finns på samma lokala nätverk som din Jellyfin-server, dvs. hotell-TVer, din dator på jobbet eller en ny klient på din telefon medan du är på språng.",
+    "@serverSharingMenuDescription": {
+        "description": "Description text shown in the server sharing menu, right below the controls"
+    },
+    "serverSharingMenuDetails": "Det fungerar genom att lyssna på serverupptäcktsförfrågningar från andra klienter på det lokala nätverket och sedan svara på dessa förfrågningar med den konfigurerade adressen till din Jellyfin-server.\nOm du har både en lokal och offentlig adress konfigurerad, kommer Finamp att ge båda till den begärande klienten.",
+    "@serverSharingMenuDetails": {
+        "description": "Description text shown in the server sharing menu, below the description"
+    },
+    "quickConnectAuthorizationMenuButtonTitle": "Tillåt Snabb Anslutning",
+    "@quickConnectAuthorizationMenuButtonTitle": {
+        "description": "Title for the button in the drawer that opens the quick connect authorization menu"
+    },
+    "quickConnectAuthorizationMenuPrompt": "Ange Snabb Anslutningskod",
+    "@quickConnectAuthorizationMenuPrompt": {
+        "description": "Title for the button in server sharing menu that opens the quick connect authorization menu"
+    },
+    "quickConnectAuthorizationMenuTitle": "Tillåt Snabb Anslutningsbegäran",
+    "@quickConnectAuthorizationMenuTitle": {
+        "description": "Title for the quick connect authorization menu that allows the user to authorize a quick connect request from another device"
+    },
+    "quickConnectAuthorizationMenuInputLabel": "Snabb Anslutningskod",
+    "@quickConnectAuthorizationMenuInputLabel": {
+        "description": "Label for the quick connect code input, shown below the input field"
+    },
+    "quickConnectAuthorizationMenuStateSubtitleIdle": "Vänligen ange eller klistra in koden nedan",
+    "@quickConnectAuthorizationMenuStateSubtitleIdle": {
+        "description": "Subtitle for the quick connect authorization menu state info (above the input field) while the code hasn't been submitted yet"
+    },
+    "quickConnectAuthorizationMenuStateTitleProcessing": "Försöker att Auktorisera Begäran",
+    "@quickConnectAuthorizationMenuStateTitleProcessing": {
+        "description": "Title for the quick connect authorization menu state info (above the input field) while a request is being processed"
+    },
+    "quickConnectAuthorizationMenuStateTitleSuccess": "Lyckades Auktorisera Begäran",
+    "@quickConnectAuthorizationMenuStateTitleSuccess": {
+        "description": "Title for the quick connect authorization menu state info (above the input field) when the authorization was successful"
+    },
+    "quickConnectAuthorizationMenuStateTitleFailed": "Snabb anslutningskod ogiltig",
+    "@quickConnectAuthorizationMenuStateTitleFailed": {
+        "description": "Title for the quick connect authorization menu state info (above the input field) when the authorization was unsuccessful"
+    },
+    "quickConnectAuthorizationMenuStateSubtitleFailed": "Vänligen kontrollera koden och försök igen",
+    "@quickConnectAuthorizationMenuStateSubtitleFailed": {
+        "description": "Subtitle for the quick connect authorization menu state info (above the input field) when the authorization was unsuccessful"
+    },
+    "quickConnectAuthorizationMenuDescription": "Om du försöker logga in på en annan Jellyfin-klient via Snabb Anslutning kan du ange eller klistra in den 6-siffriga koden i fältet ovan. Detta kommer att godkänna inloggningsbegäran av den andra klienten och logga in dig på samma konto som du använder för Finamp.",
+    "@quickConnectAuthorizationMenuDescription": {
+        "description": "Description for the quick connect authorization menu, shown at the bottom"
+    },
+    "accessibility": "Tillgänglighet",
+    "@accessibility": {
+        "description": "Title for the accessibility settings screen"
+    },
+    "useHighContrastColorsTitle": "Använd Färger med Hög Kontrast",
+    "@useHighContrastColorsTitle": {
+        "description": "Title for the setting that controls if high contrast colors are used throughout the app"
+    },
+    "useHighContrastColorsSubtitle": "Använd hög kontrast dynamiska färger för bättre synlighet.",
+    "@useHighContrastColorsSubtitle": {
+        "description": "Subtitle for the setting that controls if high contrast colors are used throughout the app"
+    },
+    "autoExpandPlayerScreenTitle": "Open Spelarskärmen då Uppspelning Startar",
+    "@autoExpandPlayerScreenTitle": {
+        "description": "Title for the setting that controls if the player screen is opened directly after starting a new queue"
+    },
+    "autoExpandPlayerScreenSubtitle": "Detta öppnar nu seplas skärmen när du börjar spela upp en ny kö",
+    "@autoExpandPlayerScreenSubtitle": {
+        "description": "Subtitle for the setting that controls if the player screen is opened directly after starting a new queue"
+    },
+    "discordRPCSettingTitle": "Discord RPC",
+    "@discordRPCSettingTitle": {
+        "description": "Title for the setting that controls if the Discord RPC (Rich Presence) feature is enabled"
+    },
+    "discordRPCSettingDescription": "Aktivera Discord Rich Presence för att visa vad du spelar i din discord status. Ansluter inte till discord om Offline Läge är aktiverat.",
+    "@discordRPCSettingDescription": {
+        "description": "Description for the setting that controls if the Discord RPC (Rich Presence) feature is enabled"
+    },
+    "discordRPCIconSettingTitle": "RPC Fallback-Ikon",
+    "@discordRPCIconSettingTitle": {
+        "description": "Title for the setting that controls which icon gets shown in the Discord RPC (Rich Presence) in case the local address is in use"
+    },
+    "discordRPCIconSettingDescription": "Fallback Ikon som visas när ingen offentlig adress upptäcks. (Eftersom discord inte kan ladda bilder från den lokala adressen och skulle använda deras Fallback)",
+    "@discordRPCIconSettingDescription": {
+        "description": "Description for the setting that controls which Icon the discord RPC displays as a Fallback in case no public address is detected (it doenst matter what connection is active)."
+    },
+    "discordRPCIconDark": "Finamp - Mörk",
+    "@discordRPCIconDark": {
+        "description": "A REALLY short description of the icon in use. Its format is 'ICON, BACKGROUND'. This one is the Finamp logo with the Dark-Theme Background"
+    },
+    "discordRPCIconBlack": "Finamp - Svart",
+    "@discordRPCIconBlack": {
+        "description": "A REALLY short description of the icon in use. Its format is 'ICON, BACKGROUND'. This one is the Finamp logo with a Black Background"
+    },
+    "discordRPCIconLight": "Finamp - Vit",
+    "@discordRPCIconLight": {
+        "description": "A REALLY short description of the icon in use. Its format is 'ICON, BACKGROUND'. This one is the Finamp logo with a White Background"
+    },
+    "discordRPCIconJFTransparent": "Jellyfin - Genomsynlig",
+    "@discordRPCIconJFTransparent": {
+        "description": "A REALLY short description of the icon in use. Its format is 'ICON, BACKGROUND'. This one is the Jellyfin logo with a Transparent Background"
+    },
+    "discordRPCIconTransparent": "Finamp - Genomsynlig",
+    "@discordRPCIconTransparent": {
+        "description": "A REALLY short description of the icon in use. Its format is 'ICON, BACKGROUND'. This one is the Finamp logo with a Transparent Background"
+    },
+    "discordRPCIconWhiteTransparent": "White Finamp - Genomsynlig",
+    "@discordRPCIconWhiteTransparent": {
+        "description": "A REALLY short description of the icon in use. Its format is 'ICON, BACKGROUND'. This one is the full white Finamp logo with a Transparent Background"
+    },
+    "preferAddingToFavoritesOverPlaylistsTitle": "Lägg till i Favoriter när du trycker på Hjärtikonen",
+    "@preferAddingToFavoritesOverPlaylistsTitle": {
+        "description": "Title for the setting that swaps the default behavior of short- vs. long-press on the heart/favorite icon"
+    },
+    "preferAddingToFavoritesOverPlaylistsSubtitle": "När det är aktiverat kommer ett kort tryck att lägga till i favoriter, och ett långt tryck öppnar menyn \"Lägg till i spellista\". Förvalet är det omvända.",
+    "@preferAddingToFavoritesOverPlaylistsSubtitle": {
+        "description": "Subtitle for the setting that swaps the default behavior of short- vs. long-press on the heart/favorite icon"
+    },
+    "nameRequired": "Namn (krävs)",
+    "@nameRequired": {
+        "description": "Descriptor for the required name field when adding download locations."
+    },
+    "exteranlStorageTip": "Om sökvägen inte innehåller \"emulerad\", är det förmodligen extern lagring.",
+    "@exteranlStorageTip": {
+        "description": "Helper text in Appdirectory download location config form"
+    },
+    "tooltipDisabled": "{tip} (Avstängd)",
+    "@tooltipDisabled": {
+        "placeholders": {
+            "tip": {
+                "type": "String"
+            }
+        },
+        "description": "Added to tooltips on disabled buttons"
+    },
+    "noDownloadsInLocation": "Inga nedladdningar finns för närvarande på denna plats.",
+    "@noDownloadsInLocation": {
+        "description": "Message when deleting a downloads location informing the user it is empty."
+    },
+    "deleteDownloadLocation": "Radera plats",
+    "@deleteDownloadLocation": {
+        "description": "Button for confirming deletion of deownload location"
+    },
+    "cannotDeleteLocation": "Kan inte ta bort plats",
+    "@cannotDeleteLocation": {
+        "description": "Message that a download location cannot currently be deleted."
+    },
+    "cannotDeleteLocationEplanation": "Denna plats innehåller för närvarande nedladdningar och kan inte raderas. Ta bort dessa nedladdningar först:",
+    "@cannotDeleteLocationEplanation": {
+        "description": "Explanation that the download location cannot be deleted due to not being empty."
+    },
+    "search": "Sök",
+    "@search": {
+        "description": "Tooltip for music screen search button"
+    },
+    "globalMenu": "Menu",
+    "@globalMenu": {
+        "description": "Tooltip for menu open button on music screen"
+    },
+    "lookingForSomethingElse": "Letar du efter något annat?",
+    "@lookingForSomethingElse": {
+        "description": "Header for home screen customization button"
+    },
+    "builtWithByTheFinampContributors": "Byggt med ♥ av Finamp bidragsgivarna.",
+    "@builtWithByTheFinampContributors": {
+        "description": "Message in home screen footer"
+    },
+    "showAll": "Visa alla",
+    "@showAll": {
+        "description": "Tooltip for show all button on home screen sections"
+    },
+    "failedToLoadSection": "Misslyckades att ladda avsnitt.",
+    "@failedToLoadSection": {
+        "description": "Message when an error is thrown while resolving home screen section"
+    },
+    "sectionContentsNotDownloaded": "Avsnittsinnehåll icke nedladdat.",
+    "@sectionContentsNotDownloaded": {
+        "description": "Message when a home screen section has no items while offline"
+    },
+    "failedToLoadSectionMissingItem": "Misslyckades med att ladda avsnitt - saknade objekt.",
+    "@failedToLoadSectionMissingItem": {
+        "description": "Message when the parent item of a home screen section is missing from the server"
+    },
+    "errorLoadingItems": "Ett fel upstod när objekten laddades in.",
+    "@errorLoadingItems": {
+        "description": "Message when an error occurs while loading home screen section contents"
+    },
+    "noItemsAvailable": "Inga objekt tillgängliga.",
+    "@noItemsAvailable": {
+        "description": "Message when a home screen section has no items while online"
+    },
+    "filters": "Filter",
+    "@filters": {
+        "description": "Label for filters in Sort & Filter menu"
+    },
+    "removeFilter": "Ta bort detta filter",
+    "@removeFilter": {
+        "description": "Tooltip for removable filter chips in Sort & Filter row"
+    },
+    "removeFilters": "Ta bort filter",
+    "@removeFilters": {
+        "description": "Title for remove filters only variant of sort and filter menu"
+    },
+    "sortFilter": "Sortera & Filtrera",
+    "@sortFilter": {
+        "description": "title for Sort & Filter menu"
+    },
+    "editSection": "Redigera avsnitt",
+    "@editSection": {
+        "description": "Label for edit home section menu entry"
+    },
+    "connected": "Ansluten",
+    "@connected": {
+        "description": "Fallback for 'Connected to <server name>' message while server info is loaded"
+    },
+    "timerMinutes": "{minutes} min",
+    "@timerMinutes": {
+        "placeholders": {
+            "minutes": {
+                "type": "int"
+            }
+        },
+        "description": "Label for sleep timer duration slider"
+    },
+    "timerTracks": "{tracks} spår",
+    "@timerTracks": {
+        "placeholders": {
+            "tracks": {
+                "type": "int"
+            }
+        },
+        "description": "Label for sleep timer track count slider"
+    },
+    "quickActionsSubtitle": "Välj och ordna om de snabbåtgärderna som visas på startskärmen.",
+    "@quickActionsSubtitle": {
+        "description": "Subtitle for quick actions edit menu"
+    },
+    "selectAnItem": "Välj ett objekt",
+    "@selectAnItem": {
+        "description": "Title for 'play specific item' quick action edit menu"
+    },
+    "sectionsMenu": "Avsnitt",
+    "@sectionsMenu": {
+        "description": "Title for home screen sections edit menu"
+    },
+    "sectionMenuSubtitle": "Välj och ordna om de avsnitt som visas på startskärmen.",
+    "@sectionMenuSubtitle": {
+        "description": "Subtitle for home screen sections edit menu"
+    },
+    "sectionType": "Avsnittstyp",
+    "@sectionType": {
+        "description": "Title for home screen section editor section type dropdown (tab view, collection, ect...)"
+    },
+    "frequentlyPlayedArtists": "Ofta spelade artister",
+    "@frequentlyPlayedArtists": {
+        "description": "Name of a home screen section preset"
+    },
+    "unplayedAlbums": "Unplayed album",
+    "@unplayedAlbums": {
+        "description": "Name of a home screen section preset"
+    },
+    "recentQueues": "Nyligen spelade Köer",
+    "@recentQueues": {
+        "description": "Name of a home screen section preset"
+    },
+    "favoriteAlbumsDescription": "Gillade album i slumpmässig ordning",
+    "@favoriteAlbumsDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "favoriteArtistsDescription": "Gillade artister i slumpmässig ordning",
+    "@favoriteArtistsDescription": {
+        "description": "Description  of a home screen section preset"
+    },
+    "favoritePlaylistsDescription": "Gillade spellistor i slumpmässig ordning",
+    "@favoritePlaylistsDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "favoriteGenresDescription": "Gillar genrer i slumpmässig ordning",
+    "@favoriteGenresDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "recentlyAddedAlbumsDescription": "Album som nyligen lagts till i ditt bibliotek, nyaste först",
+    "@recentlyAddedAlbumsDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "recentlyAddedTracksDescription": "Spår som nyligen lagts till i ditt bibliotek, nyaste först",
+    "@recentlyAddedTracksDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "frequentlyPlayedAlbumsDescription": "Album som du har lyssnat på mycket, det mest spelade först",
+    "@frequentlyPlayedAlbumsDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "frequentlyPlayedTracksDescription": "Spår du har lyssnat på mycket, det mest spelade först",
+    "@frequentlyPlayedTracksDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "frequentlyPlayedArtistsDescription": "Artister du har lyssnat på mycket, den mest spelade först",
+    "@frequentlyPlayedArtistsDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "neverPlayedAlbumsDescription": "Album du ännu inte har lyssnat på, i slumpmässig ordning",
+    "@neverPlayedAlbumsDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "recentQueuesDescription": "Köer du har skapat nyligen, nyaste först",
+    "@recentQueuesDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "shuffleTracksActionDescription": "Shufflar slumpmässiga spår från ditt bibliotek",
+    "@shuffleTracksActionDescription": {
+        "description": "Description of a home screen quick action"
+    },
+    "browseRecentQueuesActionDescription": "Välj från dina nyligen spelade köer",
+    "@browseRecentQueuesActionDescription": {
+        "description": "Description of a home screen quick action"
+    },
+    "browsePlaybackHistoryActionDescription": "Bläddra i din uppspelningshistorik",
+    "@browsePlaybackHistoryActionDescription": {
+        "description": "Description of a home screen quick action"
+    },
+    "playRandomAlbumActionDescription": "Spelar ett slumpmässigt album",
+    "@playRandomAlbumActionDescription": {
+        "description": "Description of a home screen quick action"
+    },
+    "surpriseMeActionDescription": "Startar \"Continuous\" radio från ett slumpmässigt spår",
+    "@surpriseMeActionDescription": {
+        "description": "Description of a home screen quick action"
+    },
+    "playRandomTrackActionDescription": "Spelar ett slumpmässigt spår",
+    "@playRandomTrackActionDescription": {
+        "description": "Description of a home screen quick action"
+    },
+    "playRandomFavoriteItemActionDescription": "Börjar spela ett slumpmässigt favoritobjekt",
+    "@playRandomFavoriteItemActionDescription": {
+        "description": "Description of a home screen quick action"
+    },
+    "playPreviousQueueActionDescription": "Återställer och spelar din senaste arkiverade kö",
+    "@playPreviousQueueActionDescription": {
+        "description": "Description of a home screen quick action"
+    },
+    "configureOutputActionDescription": "Öppnar utenhetskonfigurationen",
+    "@configureOutputActionDescription": {
+        "description": "Description of a home screen quick action"
+    },
+    "playSpecificItemActionDescription": "Spelar ett specifikt konfigurerat objekt",
+    "@playSpecificItemActionDescription": {
+        "description": "Description of a home screen quick action"
+    },
+    "shuffleTracksAction": "Shuffla Spår",
+    "@shuffleTracksAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "randomAlbumAction": "Slumpmässigt album",
+    "@randomAlbumAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "randomTrackAction": "Slumpmässigt Spår",
+    "@randomTrackAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "randomFavoriteAction": "Slumpmässig Favorit",
+    "@randomFavoriteAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "previousQueueAction": "Föregående Kö",
+    "@previousQueueAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "configureOutputAction": "Konfigurera Utenhet",
+    "@configureOutputAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "playSpecificItemAction": "Spela {itemName, select, finamp_placeholder{<Objekt>} other{{itemName}}}",
+    "@playSpecificItemAction": {
+        "placeholders": {
+            "itemName": {
+                "type": "String"
+            }
+        },
+        "description": "Name of a home screen quick action"
+    },
+    "surpriseMeAction": "Överraska Mig",
+    "@surpriseMeAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "libraryQualifierActive": "Aktivt",
+    "@libraryQualifierActive": {
+        "description": "Label shown next to the currently selected library in the Finamp menu/drawer"
+    },
+    "voiceSearch": "Röstsökning",
+    "@voiceSearch": {
+        "description": "Heading for the page that prompts the user to perform a voice search."
+    },
+    "carPlaySiriHint": "Säg \"Hej Siri, spela [spår/artist/album] på Finamp\"",
+    "@carPlaySiriHint": {
+        "description": "Hint text for how to use Siri to search in CarPlay."
+    },
+    "carPlayLoginPrompt": "Öppna Finamp-appen på din telefon för att logga in på din Jellyfin-server.",
+    "@carPlayLoginPrompt": {
+        "description": "Label shown when the user is trying to use CarPlay without being logged in."
+    },
+    "offlineSortFallback": "Sortering med {onlineSort} är endast tillgängligt online.  Faller för närvarande tillbaka till standard sorteringsordning",
+    "@offlineSortFallback": {
+        "description": "Warning presented in sort and filter menu when an online-only sort is chosen.",
+        "placeholders": {
+            "onlineSort": {
+                "type": "String",
+                "example": "Play Count"
+            }
+        }
+    },
+    "retry": "Försök igen",
+    "retryPageLoad": "Misslyckades med att ladda objekt från servern. Klicka för att försöka igen.",
+    "itemType": "{itemType, select, album{Album} playlist{Spellistas} artist{Artist} genre{Genre} track{Spår} library{Bibliotek} collection{Samling} unknown{Objekt} other{{itemType}}}",
+    "@itemType": {
+        "placeholders": {
+            "itemType": {
+                "type": "String",
+                "example": "album"
+            }
+        },
+        "description": "Item type name."
+    },
+    "connectionStateInfoString": "{state, select, syncing{Synkroniserar med Server} downloading{Laddar ner från Server} deleting{Tar Bort Gamla Nedladdningar} connectedLocal{Ansluten via lokalt nätverk} syncingLocal{Synkroniserar via lokalt nätverk} downloadingLocal{Laddar ner via lokalt nätverk} other{}}",
+    "@connectionStateInfoString": {
+        "description": "String describing the current connection state to the server, shown in the music screen drawer/menu.",
+        "placeholders": {
+            "state": {
+                "type": "String",
+                "example": "syncingLocal"
+            }
+        }
+    },
+    "systemAccentColorHasPriorityInfo": "Anpassad accentfärg inaktiverad eftersom Systemets accentfärg används för närvarande",
+    "@systemAccentColorHasPriorityInfo": {
+        "description": "Text under the AccentColorTitle which is only visible when the system color is enabled since the system color will be prioritized over custom accent color"
+    },
+    "shuffleSomeAlbumsToQueue": "Shuffla vissa Album till Kö",
+    "@shuffleSomeAlbumsToQueue": {
+        "description": "Label for action that shuffles all albums of a genre and adds them at the end of the regular queue"
+    }
 }

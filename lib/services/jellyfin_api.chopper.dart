@@ -326,11 +326,15 @@ final class _$JellyfinApi extends JellyfinApi {
     required BaseItemId id,
     required String userId,
     required int limit,
+    bool? enableImages = true,
+    List<String>? enableImageTypes = const ["Primary", "Disc", "Thumb", "Art"],
   }) async {
     final Uri $url = Uri.parse('/Items/${id}/InstantMix');
     final Map<String, dynamic> $params = <String, dynamic>{
       'userId': userId,
       'limit': limit,
+      'enableImages': enableImages,
+      'enableImageTypes': enableImageTypes,
     };
     final Request $request = Request(
       'GET',
