@@ -462,7 +462,7 @@ enum PlayerHideable {
   bigPlayButton(14, 14, 1),
   bottomActions(0, 27, 2),
   progressSlider(0, 20, 4),
-  twoLineTitle(0, 48, 3),
+  twoLineTitle(0, 46, 3),
   features(0, 20, 3),
   loopShuffleButtons(96, 0, 0),
   unhideableElements(144, 165, 0),
