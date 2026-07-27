@@ -593,6 +593,7 @@ Future<(HomeScreenSectionPresetType?,)?> showSectionPresetPickerMenu(
   int? editingSectionIndex,
 }) async {
   final List<Widget> menuItems = HomeScreenSectionPresetType.values
+      .where((x) => x.isEnabled)
       .map<Widget>((presetType) {
         return Consumer(
           builder: (context, ref, child) {

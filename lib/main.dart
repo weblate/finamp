@@ -556,6 +556,26 @@ void _migrateHomescreen() {
     }
   }
 
+  for (int i = 0; i < finampSettings.homeScreenConfiguration.sections.length; i++) {
+    final section = finampSettings.homeScreenConfiguration.sections[i];
+    if (section.presetType == HomeScreenSectionPresetType.frequentlyPlayedAlbums) {
+      finampSettings.homeScreenConfiguration.sections[i] = HomeScreenSectionConfiguration.fromPreset(
+        HomeScreenSectionPresetType.favoriteAlbums,
+      );
+      changed = true;
+    } else if (section.presetType == HomeScreenSectionPresetType.frequentlyPlayedArtists) {
+      finampSettings.homeScreenConfiguration.sections[i] = HomeScreenSectionConfiguration.fromPreset(
+        HomeScreenSectionPresetType.favoriteArtists,
+      );
+      changed = true;
+    } else if (section.presetType == HomeScreenSectionPresetType.neverPlayedAlbums) {
+      finampSettings.homeScreenConfiguration.sections[i] = HomeScreenSectionConfiguration.fromPreset(
+        HomeScreenSectionPresetType.randomAlbums,
+      );
+      changed = true;
+    }
+  }
+
   for (int i = 0; i < finampSettings.homeScreenConfiguration.actions.length; i++) {
     final action = finampSettings.homeScreenConfiguration.actions[i];
     if (action.action == FinampQuickActions.playRandomAlbum) {
@@ -564,8 +584,7 @@ void _migrateHomescreen() {
         itemTypes: {ContentType.albums},
       );
       changed = true;
-    }
-    if (action.action == FinampQuickActions.playRandomTrack) {
+    } else if (action.action == FinampQuickActions.playRandomTrack) {
       finampSettings.homeScreenConfiguration.actions[i] = QuickActionConfig(
         action: FinampQuickActions.playRandomItem,
         itemTypes: {ContentType.tracks},

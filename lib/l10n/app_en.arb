@@ -3222,6 +3222,10 @@
     "@recentQueues": {
         "description": "Name of a home screen section preset"
     },
+    "randomAlbums": "Random Albums",
+    "@randomAlbums": {
+        "description": "Name of a home screen section preset"
+    },
     "favoriteAlbumsDescription": "Liked Albums in random order",
     "@favoriteAlbumsDescription": {
         "description": "Description of a home screen section preset"
@@ -3264,6 +3268,10 @@
     },
     "recentQueuesDescription": "Queues you have created recently, starting with newest",
     "@recentQueuesDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "randomAlbumsDescription": "Albums in random order",
+    "@randomAlbumsDescription": {
         "description": "Description of a home screen section preset"
     },
     "shuffleTracksActionDescription": "Shuffles random tracks from your library",

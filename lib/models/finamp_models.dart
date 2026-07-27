@@ -292,8 +292,9 @@ class DefaultSettings {
     sections: [
       HomeScreenSectionConfiguration.fromPreset(HomeScreenSectionPresetType.recentlyAddedAlbums),
       HomeScreenSectionConfiguration.fromPreset(HomeScreenSectionPresetType.favoriteTracks),
-      HomeScreenSectionConfiguration.fromPreset(HomeScreenSectionPresetType.frequentlyPlayedAlbums),
+      HomeScreenSectionConfiguration.fromPreset(HomeScreenSectionPresetType.favoriteAlbums),
       HomeScreenSectionConfiguration.fromPreset(HomeScreenSectionPresetType.favoritePlaylists),
+      HomeScreenSectionConfiguration.fromPreset(HomeScreenSectionPresetType.favoriteArtists),
       HomeScreenSectionConfiguration.fromPreset(HomeScreenSectionPresetType.forgottenFavoriteTracks),
       HomeScreenSectionConfiguration.fromPreset(HomeScreenSectionPresetType.recentQueues),
     ],
@@ -4167,18 +4168,6 @@ class HomeScreenSectionConfiguration {
       customSectionTitle: null,
       presetType: presetType,
     ),
-    // HomeScreenSectionPresetType.recentlyPlayedPlaylists => HomeScreenSectionConfiguration(
-    //   type: HomeScreenSectionType.tabView,
-    //   itemId: null,
-    //   contentType: TabContentType.playlists,
-    //   sortAndFilterConfiguration: SortAndFilterConfiguration(
-    //     sortBy: SortBy.datePlayed,
-    //     sortOrder: SortOrder.descending,
-    //     filters: {},
-    //   ),
-    //   customSectionTitle: null,
-    //   presetType: presetType,
-    // ),
     HomeScreenSectionPresetType.frequentlyPlayedAlbums => HomeScreenSectionConfiguration(
       base: TabsHomeSection(libraryId: currentLibraryPlaceholder, contentType: ContentType.albums),
       sortConfig: SortAndFilterConfiguration(sortBy: SortBy.playCount, sortOrder: SortOrder.descending, filters: {}),
@@ -4229,6 +4218,12 @@ class HomeScreenSectionConfiguration {
       customSectionTitle: null,
       presetType: presetType,
     ),
+    HomeScreenSectionPresetType.randomAlbums => HomeScreenSectionConfiguration(
+      base: TabsHomeSection(libraryId: currentLibraryPlaceholder, contentType: ContentType.albums),
+      sortConfig: SortAndFilterConfiguration(sortBy: SortBy.random, sortOrder: SortOrder.ascending, filters: {}),
+      customSectionTitle: null,
+      presetType: presetType,
+    ),
   };
 
   String getTitle(AppLocalizations l10n) =>
@@ -4243,7 +4238,6 @@ class HomeScreenSectionConfiguration {
         HomeScreenSectionPresetType.favoriteGenres => l10n.favoriteGenres,
         HomeScreenSectionPresetType.recentlyAddedAlbums => l10n.newlyAddedAlbums,
         HomeScreenSectionPresetType.recentlyAddedTracks => l10n.newlyAddedTracks,
-        // HomeScreenSectionPresetType.recentlyPlayedPlaylists => "Recent Playlists*",
         HomeScreenSectionPresetType.frequentlyPlayedAlbums => l10n.frequentlyPlayedAlbums,
         HomeScreenSectionPresetType.frequentlyPlayedTracks => l10n.frequentlyPlayedTracks,
         HomeScreenSectionPresetType.frequentlyPlayedArtists => l10n.frequentlyPlayedArtists,
@@ -4251,6 +4245,7 @@ class HomeScreenSectionConfiguration {
         HomeScreenSectionPresetType.forgottenFavoriteTracks => l10n.homeScreenSectionPresetForgottenFavoriteTracksTitle,
         HomeScreenSectionPresetType.recentQueues => l10n.recentQueues,
         HomeScreenSectionPresetType.recentlyPlayedTracks => l10n.recentlyPlayedTracks,
+        HomeScreenSectionPresetType.randomAlbums => l10n.randomAlbums,
       };
 
   String getDescription(AppLocalizations l10n) =>
@@ -4266,8 +4261,6 @@ class HomeScreenSectionConfiguration {
     HomeScreenSectionPresetType.favoriteGenres => l10n.favoriteGenresDescription,
     HomeScreenSectionPresetType.recentlyAddedAlbums => l10n.recentlyAddedAlbumsDescription,
     HomeScreenSectionPresetType.recentlyAddedTracks => l10n.recentlyAddedTracksDescription,
-    // HomeScreenSectionPresetType.recentlyPlayedPlaylists =>
-    //   "Playlists you listened to recently, starting with last played*",
     HomeScreenSectionPresetType.frequentlyPlayedAlbums => l10n.frequentlyPlayedAlbumsDescription,
     HomeScreenSectionPresetType.frequentlyPlayedTracks => l10n.frequentlyPlayedTracksDescription,
     HomeScreenSectionPresetType.frequentlyPlayedArtists => l10n.frequentlyPlayedArtistsDescription,
@@ -4276,6 +4269,7 @@ class HomeScreenSectionConfiguration {
       l10n.homeScreenSectionPresetForgottenFavoriteTracksDescription,
     HomeScreenSectionPresetType.recentQueues => l10n.recentQueuesDescription,
     HomeScreenSectionPresetType.recentlyPlayedTracks => l10n.recentlyPlayedTracksDescription,
+    HomeScreenSectionPresetType.randomAlbums => l10n.randomAlbumsDescription,
   };
 
   Map<String, dynamic> toJson() => _$HomeScreenSectionConfigurationToJson(this);
@@ -4328,12 +4322,15 @@ enum HomeScreenSectionPresetType {
   @HiveField(6)
   recentlyAddedTracks,
   @HiveField(7)
+  @Deprecated("Not actually tracked by Jellyfin, so we don't have any data for this section")
   frequentlyPlayedAlbums,
   @HiveField(8)
   frequentlyPlayedTracks,
   @HiveField(9)
+  @Deprecated("Not actually tracked by Jellyfin, so we don't have any data for this section")
   frequentlyPlayedArtists,
   @HiveField(10)
+  @Deprecated("Not actually tracked by Jellyfin, so we don't have any data for this section")
   neverPlayedAlbums,
   @HiveField(11)
   forgottenFavoriteTracks,
@@ -4341,11 +4338,18 @@ enum HomeScreenSectionPresetType {
   recentQueues,
   @HiveField(13)
   recentlyPlayedTracks,
-  //TODO once we can track playlists plays, add this back in
-  // @HiveField(7)
-  // recentlyPlayedPlaylists,
+  @HiveField(14)
+  randomAlbums;
   //TODO add section with generated mixes, e.g. via AudioMuse
   //TODO add more
+
+  // deprecated/unavailable presets that shouldn't be shown to people
+  bool get isEnabled => switch (this) {
+    HomeScreenSectionPresetType.frequentlyPlayedAlbums => false,
+    HomeScreenSectionPresetType.frequentlyPlayedArtists => false,
+    HomeScreenSectionPresetType.neverPlayedAlbums => false,
+    _ => true,
+  };
 }
 
 @HiveType(typeId: 121)
