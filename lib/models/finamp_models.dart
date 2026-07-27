@@ -4686,9 +4686,17 @@ class QuickActionConfig {
       case FinampQuickActions.playRandomTrack:
         return "deprecated";
       case FinampQuickActions.playRandomItem:
-        return l10n.randomItemAction;
+        return l10n.randomItemAction(switch (itemTypes?.toList()) {
+          null => "none",
+          [var type] => type.name,
+          _ => "multiple",
+        });
       case FinampQuickActions.playRandomFavoriteItem:
-        return l10n.randomFavoriteAction;
+        return l10n.randomFavoriteAction(switch (itemTypes?.toList()) {
+          null => "none",
+          [var type] => type.name,
+          _ => "multiple",
+        });
       case FinampQuickActions.playPreviousQueue:
         return l10n.previousQueueAction;
       case FinampQuickActions.configureOutput:

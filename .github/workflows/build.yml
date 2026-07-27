@@ -69,6 +69,8 @@ jobs:
         # arch can be removed later once isar aarch64 is easily available on pub.dev and overriding is not needed anymore
         pub-cache-key: "flutter-pub-:os:-:channel:-:version:-:arch:-:hash:"
 
+    - name: Update flutter jdk version
+      run: flutter config --jdk-dir $JAVA_HOME
     
     - name: Gradle cache
       uses: actions/cache@v5
@@ -244,6 +246,9 @@ jobs:
         # Include arch as linux aarch64 include isar overriding
         # arch can be removed later once isar aarch64 is easily available on pub.dev and overriding is not needed anymore
         pub-cache-key: "flutter-pub-:os:-:channel:-:version:-:arch:-:hash:"
+
+    - name: Update flutter jdk version
+      run: flutter config --jdk-dir $JAVA_HOME
 
     - name: Cache Dart build cache
       uses: actions/cache@v5

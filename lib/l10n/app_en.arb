@@ -3306,12 +3306,24 @@
     "@shuffleTracksAction": {
         "description": "Name of a home screen quick action"
     },
-    "randomItemAction": "Random Item",
+    "randomItemAction": "Random {itemType, select, albums{Album} tracks{Track} playlists{Playlist} performingArtists{Performing Artist} albumArtists{Album Artist} none{Item of <Type>} other{Item}}",
     "@randomItemAction": {
+        "placeholders": {
+            "itemType": {
+                "type": "String",
+                "description": "Localized name of item type to be selected, or placeholder 'multiple'"
+            }
+        },
         "description": "Name of a home screen quick action"
     },
-    "randomFavoriteAction": "Random Favorite",
+    "randomFavoriteAction": "Random Favorite {itemType, select, albums{Album} tracks{Track} playlists{Playlist} performingArtists{Performing Artist} albumArtists{Album Artist} none{of <Type>} other{}}",
     "@randomFavoriteAction": {
+        "placeholders": {
+            "itemType": {
+                "type": "String",
+                "description": "Localized name of item type to be selected, or placeholder 'multiple'"
+            }
+        },
         "description": "Name of a home screen quick action"
     },
     "previousQueueAction": "Previous Queue",

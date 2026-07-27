@@ -270,6 +270,8 @@ class AudioServiceHelper {
               ..shuffle())
             .firstOrNull;
 
+    audioServiceHelperLogger.info("Attempting to play random $contentType (favorite: $favoritesOnly)");
+
     // get random item (of the selected type)
     final randomItem = (await _jellyfinApiHelper.getItems(
       parentItem: contentType == ContentType.playlists ? null : _finampUserHelper.currentUser!.currentView,
