@@ -298,7 +298,7 @@ class PlayOnService {
                 break;
               case "GoToSettings":
                 _playOnServiceLogger.fine("Server requested to open settings");
-                unawaited(Navigator.of(GlobalSnackbar.navigatorState!.context).pushNamed(SettingsScreen.routeName));
+                unawaited(GlobalSnackbar.navigatorState?.pushNamed(SettingsScreen.routeName));
                 break;
               case "GoHome":
                 _playOnServiceLogger.fine("Server requested to open home");
