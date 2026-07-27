@@ -3629,7 +3629,7 @@
     "@cancelChanges": {
         "description": "Button on sort and filter menu that clears any pending changes."
     },
-    "applyChangesOnClose": "Changes will apply automatically upon menu close.",
+    "applyChangesOnClose": "Changes will apply when menu is closed",
     "@applyChangesOnClose": {
         "description": "Notification on sort and filter menu that currently pending changes will be automatically applied on close."
     },

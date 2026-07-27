@@ -639,10 +639,20 @@ class _SortAndFilterMenuState extends ConsumerState<SortAndFilterMenu>
       SizedBox(
         height: 40.0,
         child: currentConfig != controller._config
-            ? Align(alignment: AlignmentGeometry.directional(0.0, 0.7), child: Text(context.l10n.applyChangesOnClose))
+            ? Align(
+                alignment: AlignmentGeometry.directional(0.0, 0.7),
+                child: Text(
+                  context.l10n.applyChangesOnClose,
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    fontStyle: FontStyle.italic,
+                    color: TextTheme.of(context).bodyMedium?.color?.withOpacity(0.7),
+                  ),
+                ),
+              )
             : null,
       ),
-      CTAMedium(
+      SizedBox(height: 8.0),
+      SimpleButton(
         disabled: currentConfig == controller._config,
         text: context.l10n.cancelChanges,
         icon: TablerIcons.x,

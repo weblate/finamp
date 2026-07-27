@@ -366,25 +366,25 @@ Future<List<BaseItemDto>> generateRadioTracks(
 
     // If forNewQueue, use separate branch to ignore main queue body.
 
-    /*final queueSources = currentQueue.fullQueue.map((x) => x.source).followedBy([currentQueue.source]).toSet();
-    final potentialPagedSources = queueSources
-        .where(
-          (x) => [
-            QueueItemSourceType.genre,
-            QueueItemSourceType.allTracks,
-            QueueItemSourceType.favorites,
-          ].contains(x.type),
-        )
-        .toSet();
-    final pagedSources = potentialPagedSources.where((source) {
-      if (source.type != QueueItemSourceType.genre) return true;
-      final count = currentQueue.fullQueue.where((x) => x.source == source).length;
-      return count >= FinampSettingsHelper.finampSettings.trackShuffleItemCount - 10;
-    }).toSet();
+    // final queueSources = currentQueue.fullQueue.map((x) => x.source).followedBy([currentQueue.source]).toSet();
+    // final potentialPagedSources = queueSources
+    //     .where(
+    //       (x) => [
+    //         QueueItemSourceType.genre,
+    //         QueueItemSourceType.allTracks,
+    //         QueueItemSourceType.favorites,
+    //       ].contains(x.type),
+    //     )
+    //     .toSet();
+    // final pagedSources = potentialPagedSources.where((source) {
+    //   if (source.type != QueueItemSourceType.genre) return true;
+    //   final count = currentQueue.fullQueue.where((x) => x.source == source).length;
+    //   return count >= FinampSettingsHelper.finampSettings.trackShuffleItemCount - 10;
+    // }).toSet();
 
-    if (currentQueue.source.type == QueueItemSourceType.radio) {
-      pagedSources.add(currentQueue.source);
-    }*/
+    // if (currentQueue.source.type == QueueItemSourceType.radio) {
+    //   pagedSources.add(currentQueue.source);
+    // }
 
     final List<BaseItemDto> queueTracks;
     List<BaseItemDto> sourceTracks = [];
@@ -433,6 +433,8 @@ Future<List<BaseItemDto>> generateRadioTracks(
             sourceTracks = record.$1;
             sourceTracksLength = record.$2;
             // Rebalance to still pull a reasonable amount of tracks from the queue if present, even with shuffleAll.
+            // This will increase the chance of tracks being randomly pulled from the existing queue,
+            // even if there are a ton of tracks of the server
             sourceTracksLength = min(record.$2, max(queueTracks.length * 3, 500));
           }
         }
@@ -441,7 +443,6 @@ Future<List<BaseItemDto>> generateRadioTracks(
           item: actualSeed!,
           sortConfig: SortAndFilterConfiguration.defaultForItem(actualSeed),
         )).map((item) => item).toList();
-        // Rebalance to still pull a reasonable amount of tracks from the queue if present, even with shuffleAll.
         sourceTracksLength = sourceTracks.length;
       }
     }
