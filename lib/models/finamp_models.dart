@@ -276,7 +276,16 @@ class DefaultSettings {
   static final homeScreenConfiguration = FinampHomeScreenConfiguration(
     actions: [
       QuickActionConfig(action: FinampQuickActions.shuffleTracks),
-      QuickActionConfig(action: FinampQuickActions.playRandomFavoriteItem),
+      QuickActionConfig(
+        action: FinampQuickActions.playRandomFavoriteItem,
+        itemTypes: {
+          ContentType.tracks,
+          ContentType.albums,
+          ContentType.performingArtists,
+          ContentType.albumArtists,
+          ContentType.playlists,
+        },
+      ),
       QuickActionConfig(action: FinampQuickActions.playPreviousQueue),
       QuickActionConfig(action: FinampQuickActions.surpriseMe),
     ],
