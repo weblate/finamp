@@ -179,7 +179,15 @@ class CarPlayHelper {
   /// Holds list data alive for later taps. CarPlay has no pop event, so entries release on root rebuild.
   final List<ProviderSubscription> _templateSubscriptions = [];
 
+  /// Cancel unfinished list loads.
+  final List<void Function()> _pendingLoadCancellers = [];
+
   void _closeTemplateSubscriptions() {
+    // Cancel pending loads first
+    for (final cancel in List.of(_pendingLoadCancellers)) {
+      cancel();
+    }
+    _pendingLoadCancellers.clear();
     for (final subscription in _templateSubscriptions) {
       subscription.close();
     }
@@ -193,12 +201,15 @@ class CarPlayHelper {
     final provider = pagedContentProvider(request);
     final completer = Completer<List<FinampDisplayableOrPlayable>>();
 
+    if (providerRef.read(provider).error != null) {
+      providerRef.read(provider.notifier).retry();
+    }
+
     // Retain the paged data so it survives for later taps, until the next root
     // rebuild releases it.
     _templateSubscriptions.add(providerRef.listen(provider, (_, _) {}));
 
-    // Drive the load on a private subscription so a root rebuild closing the
-    // retained subscriptions cannot strand this pending load.
+    // Whatever closes this driver subscription must also settle the completer, or the caller hangs
     ProviderSubscription? driver;
     driver = providerRef.listen<PagingState<int, FinampDisplayableOrPlayable>>(provider, fireImmediately: true, (
       _,
@@ -219,15 +230,26 @@ class CarPlayHelper {
       }
       driver?.close();
     });
+    // The immediate fire can finish before `driver` is assigned
+    if (completer.isCompleted) {
+      driver.close();
+    }
 
+    // Stop paging and settle the caller with whatever is cached
+    void cancel() {
+      if (!completer.isCompleted) {
+        completer.complete(providerRef.read(provider).items ?? []);
+      }
+      driver?.close();
+    }
+
+    _pendingLoadCancellers.add(cancel);
     try {
       final items = await completer.future;
       // pagedContentProvider isn't generic enough to express that children here are always FinampPlayableDto.
       return items.take(limit).map((x) => (x as FinampPlayableDto).item).toList();
-    } catch (_) {
-      // Reset the failed pages like the main UI retry button so the next tap refetches cleanly.
-      providerRef.read(provider.notifier).retry();
-      rethrow;
+    } finally {
+      _pendingLoadCancellers.remove(cancel);
     }
   }
 
