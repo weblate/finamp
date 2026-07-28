@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:finamp/components/global_snackbar.dart';
 import 'package:finamp/extensions/localizations.dart';
 import 'package:finamp/models/jellyfin_models.dart';
@@ -291,8 +292,14 @@ class AudioServiceHelper {
     ))?.firstOrNull;
 
     if (randomItem == null) {
-      GlobalSnackbar.message((context) => context.l10n.nothingFoundToPlay);
-      return;
+      final additionalContentType = limitContentTypes?.whereNot((x) => x == contentType).toSet() ?? <ContentType>{};
+      // If no results are found, we may have just chosen a bad contentType.  Recursively cycle through the others if they exist.
+      if (additionalContentType.isNotEmpty) {
+        return playRandomItem(favoritesOnly: favoritesOnly, limitContentTypes: additionalContentType);
+      } else {
+        GlobalSnackbar.message((context) => context.l10n.nothingFoundToPlay);
+        return;
+      }
     }
 
     // if item is a collection, get its tracks, otherwise just play the item

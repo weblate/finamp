@@ -135,14 +135,15 @@ Future<void> maybeAddRadioTracks() async {
               source: QueueItemSource.rawId(
                 type: QueueItemSourceType.radio,
                 // TODO should the source vary per radio type?
-                name: currentQueue.source.item != null
-                    ? QueueItemSourceName(
-                        type: QueueItemSourceNameType.radio,
-                        localizationParameter: currentQueue.source.item?.name ?? "",
-                      )
-                    : QueueItemSourceName(type: QueueItemSourceNameType.radio),
+                name: QueueItemSourceName(
+                  type: QueueItemSourceNameType.radio,
+                  localizationParameter:
+                      currentQueue.source.item?.name ??
+                      currentQueue.source.name.getLocalized(GlobalSnackbar.requireL10n),
+                ),
                 id: currentQueue.source.item?.id.raw ?? currentQueue.source.id,
                 item: currentQueue.source.item,
+                library: currentQueue.source.library,
               ),
               shuffleState: SliceShuffleState.linear,
             ),
@@ -219,6 +220,7 @@ Future<void> startRadioPlayback(BaseItemDto source) async {
       name: QueueItemSourceName(type: QueueItemSourceNameType.radio, localizationParameter: source.name ?? ""),
       id: source.id,
       item: source,
+      library: GetIt.instance<FinampUserHelper>().currentUser?.currentViewId,
     ),
     skipRadioCacheInvalidation: true,
   );
@@ -439,6 +441,9 @@ Future<List<BaseItemDto>> generateRadioTracks(
           }
         }
       } else {
+        // sourceTracks is expected to be randomized, but this might load in order.
+        // however, this will also load all tracks, so they will be immediately copied into queueTracks and drawn
+        // from randomly regardkless.
         sourceTracks = (await loadChildTracksFromBaseItem(
           item: actualSeed!,
           sortConfig: SortAndFilterConfiguration.defaultForItem(actualSeed),
