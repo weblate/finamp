@@ -302,7 +302,7 @@ class PlayOnService {
                 break;
               case "GoHome":
                 _playOnServiceLogger.fine("Server requested to open home");
-                Navigator.of(GlobalSnackbar.navigatorState!.context).popUntil((route) {
+                GlobalSnackbar.navigatorState?.popUntil((route) {
                   return MusicScreen.routeName == route.settings.name;
                 });
                 break;
@@ -312,7 +312,7 @@ class PlayOnService {
                 break;
               case "Back":
                 _playOnServiceLogger.fine("Server requested to go back");
-                unawaited(Navigator.of(GlobalSnackbar.navigatorState!.context).maybePop());
+                unawaited(GlobalSnackbar.navigatorState?.maybePop());
                 break;
             }
             break;
