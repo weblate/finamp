@@ -3226,6 +3226,14 @@
     "@randomAlbums": {
         "description": "Name of a home screen section preset"
     },
+    "randomAlbumArtists": "Random Album Artists",
+    "@randomAlbumArtists": {
+        "description": "Name of a home screen section preset"
+    },
+    "recentlyAddedPlaylists": "Recently Created Playlists",
+    "@recentlyAddedPlaylists": {
+        "description": "Name of a home screen section preset"
+    },
     "favoriteAlbumsDescription": "Liked Albums in random order",
     "@favoriteAlbumsDescription": {
         "description": "Description of a home screen section preset"
@@ -3272,6 +3280,14 @@
     },
     "randomAlbumsDescription": "Albums in random order",
     "@randomAlbumsDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "randomArtistsDescription": "Artists in random order",
+    "@randomArtistsDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "recentlyAddedPlaylistsDescription": "Playlists by creation date, starting with newest",
+    "@recentlyAddedPlaylistsDescription": {
         "description": "Description of a home screen section preset"
     },
     "shuffleTracksActionDescription": "Shuffles random tracks from your library",

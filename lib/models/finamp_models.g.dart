@@ -3590,6 +3590,10 @@ class HomeScreenSectionPresetTypeAdapter
         return HomeScreenSectionPresetType.recentlyPlayedTracks;
       case 14:
         return HomeScreenSectionPresetType.randomAlbums;
+      case 15:
+        return HomeScreenSectionPresetType.randomAlbumArtists;
+      case 16:
+        return HomeScreenSectionPresetType.recentlyAddedPlaylists;
       default:
         return HomeScreenSectionPresetType.favoriteTracks;
     }
@@ -3628,6 +3632,10 @@ class HomeScreenSectionPresetTypeAdapter
         writer.writeByte(13);
       case HomeScreenSectionPresetType.randomAlbums:
         writer.writeByte(14);
+      case HomeScreenSectionPresetType.randomAlbumArtists:
+        writer.writeByte(15);
+      case HomeScreenSectionPresetType.recentlyAddedPlaylists:
+        writer.writeByte(16);
     }
   }
 
@@ -9696,6 +9704,8 @@ const _$HomeScreenSectionPresetTypeEnumMap = {
   HomeScreenSectionPresetType.recentQueues: 'recentQueues',
   HomeScreenSectionPresetType.recentlyPlayedTracks: 'recentlyPlayedTracks',
   HomeScreenSectionPresetType.randomAlbums: 'randomAlbums',
+  HomeScreenSectionPresetType.randomAlbumArtists: 'randomAlbumArtists',
+  HomeScreenSectionPresetType.recentlyAddedPlaylists: 'recentlyAddedPlaylists',
 };
 
 Map<String, dynamic> _$FinampHomeScreenConfigurationToJson(

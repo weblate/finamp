@@ -293,8 +293,8 @@ class DefaultSettings {
       HomeScreenSectionConfiguration.fromPreset(HomeScreenSectionPresetType.recentlyAddedAlbums),
       HomeScreenSectionConfiguration.fromPreset(HomeScreenSectionPresetType.favoriteTracks),
       HomeScreenSectionConfiguration.fromPreset(HomeScreenSectionPresetType.favoriteAlbums),
-      HomeScreenSectionConfiguration.fromPreset(HomeScreenSectionPresetType.favoritePlaylists),
-      HomeScreenSectionConfiguration.fromPreset(HomeScreenSectionPresetType.favoriteArtists),
+      HomeScreenSectionConfiguration.fromPreset(HomeScreenSectionPresetType.randomAlbumArtists),
+      HomeScreenSectionConfiguration.fromPreset(HomeScreenSectionPresetType.recentlyAddedPlaylists),
       HomeScreenSectionConfiguration.fromPreset(HomeScreenSectionPresetType.forgottenFavoriteTracks),
       HomeScreenSectionConfiguration.fromPreset(HomeScreenSectionPresetType.recentQueues),
     ],
@@ -4224,6 +4224,18 @@ class HomeScreenSectionConfiguration {
       customSectionTitle: null,
       presetType: presetType,
     ),
+    HomeScreenSectionPresetType.randomAlbumArtists => HomeScreenSectionConfiguration(
+      base: TabsHomeSection(libraryId: currentLibraryPlaceholder, contentType: ContentType.albumArtists),
+      sortConfig: SortAndFilterConfiguration(sortBy: SortBy.random, sortOrder: SortOrder.ascending, filters: {}),
+      customSectionTitle: null,
+      presetType: presetType,
+    ),
+    HomeScreenSectionPresetType.recentlyAddedPlaylists => HomeScreenSectionConfiguration(
+      base: TabsHomeSection(libraryId: currentLibraryPlaceholder, contentType: ContentType.playlists),
+      sortConfig: SortAndFilterConfiguration(sortBy: SortBy.dateCreated, sortOrder: SortOrder.descending, filters: {}),
+      customSectionTitle: null,
+      presetType: presetType,
+    ),
   };
 
   String getTitle(AppLocalizations l10n) =>
@@ -4246,6 +4258,8 @@ class HomeScreenSectionConfiguration {
         HomeScreenSectionPresetType.recentQueues => l10n.recentQueues,
         HomeScreenSectionPresetType.recentlyPlayedTracks => l10n.recentlyPlayedTracks,
         HomeScreenSectionPresetType.randomAlbums => l10n.randomAlbums,
+        HomeScreenSectionPresetType.randomAlbumArtists => l10n.randomAlbumArtists,
+        HomeScreenSectionPresetType.recentlyAddedPlaylists => l10n.recentlyAddedPlaylists,
       };
 
   String getDescription(AppLocalizations l10n) =>
@@ -4270,6 +4284,8 @@ class HomeScreenSectionConfiguration {
     HomeScreenSectionPresetType.recentQueues => l10n.recentQueuesDescription,
     HomeScreenSectionPresetType.recentlyPlayedTracks => l10n.recentlyPlayedTracksDescription,
     HomeScreenSectionPresetType.randomAlbums => l10n.randomAlbumsDescription,
+    HomeScreenSectionPresetType.randomAlbumArtists => l10n.randomArtistsDescription,
+    HomeScreenSectionPresetType.recentlyAddedPlaylists => l10n.recentlyAddedPlaylistsDescription,
   };
 
   Map<String, dynamic> toJson() => _$HomeScreenSectionConfigurationToJson(this);
@@ -4339,7 +4355,12 @@ enum HomeScreenSectionPresetType {
   @HiveField(13)
   recentlyPlayedTracks,
   @HiveField(14)
-  randomAlbums;
+  randomAlbums,
+  @HiveField(15)
+  randomAlbumArtists,
+  @HiveField(16)
+  recentlyAddedPlaylists;
+
   //TODO add section with generated mixes, e.g. via AudioMuse
   //TODO add more
 

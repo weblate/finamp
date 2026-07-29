@@ -565,7 +565,7 @@ void _migrateHomescreen() {
       changed = true;
     } else if (section.presetType == HomeScreenSectionPresetType.frequentlyPlayedArtists) {
       finampSettings.homeScreenConfiguration.sections[i] = HomeScreenSectionConfiguration.fromPreset(
-        HomeScreenSectionPresetType.favoriteArtists,
+        HomeScreenSectionPresetType.randomAlbumArtists,
       );
       changed = true;
     } else if (section.presetType == HomeScreenSectionPresetType.neverPlayedAlbums) {
