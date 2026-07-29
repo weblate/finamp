@@ -417,7 +417,7 @@
     "@playlistActionsMenuButtonTooltip": {
         "description": "Tooltip for the (currently heart) button that opens the playlist actions menu / playlist picker by default and can toggle the favorite status on long press"
     },
-    "playbackModeDirectPlaying": "suoratoistaa",
+    "playbackModeDirectPlaying": "Suoratoistaa",
     "@playbackModeDirectPlaying": {
         "description": "Feature chip that is shown when tracks are being played directly from the server, without transcoding"
     },
