@@ -284,6 +284,7 @@ class DefaultSettings {
           ContentType.performingArtists,
           ContentType.albumArtists,
           ContentType.playlists,
+          ContentType.genres,
         },
       ),
       QuickActionConfig(action: FinampQuickActions.playPreviousQueue),

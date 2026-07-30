@@ -554,10 +554,6 @@ void _migrateHomescreen() {
         changed = true;
       }
     }
-  }
-
-  for (int i = 0; i < finampSettings.homeScreenConfiguration.sections.length; i++) {
-    final section = finampSettings.homeScreenConfiguration.sections[i];
     if (section.presetType == HomeScreenSectionPresetType.frequentlyPlayedAlbums) {
       finampSettings.homeScreenConfiguration.sections[i] = HomeScreenSectionConfiguration.fromPreset(
         HomeScreenSectionPresetType.favoriteAlbums,
@@ -590,6 +586,21 @@ void _migrateHomescreen() {
         itemTypes: {ContentType.tracks},
       );
       changed = true;
+    } else if (action.action == FinampQuickActions.playRandomFavoriteItem) {
+      if (action.itemTypes?.isEmpty ?? true) {
+        finampSettings.homeScreenConfiguration.actions[i] = QuickActionConfig(
+          action: FinampQuickActions.playRandomFavoriteItem,
+          itemTypes: {
+            ContentType.tracks,
+            ContentType.albums,
+            ContentType.performingArtists,
+            ContentType.albumArtists,
+            ContentType.playlists,
+            ContentType.genres,
+          },
+        );
+        changed = true;
+      }
     }
   }
 
