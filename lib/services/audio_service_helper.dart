@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:finamp/components/global_snackbar.dart';
 import 'package:finamp/extensions/localizations.dart';
 import 'package:finamp/models/jellyfin_models.dart';
@@ -23,35 +24,12 @@ class AudioServiceHelper {
 
   /// Shuffles every track in the user's current view.
   Future<void> shuffleAll({required bool onlyShowFavorites, BaseItemDto? genreFilter, int? itemCount}) async {
-    List<jellyfin_models.BaseItemDto>? items;
-
-    if (FinampSettingsHelper.finampSettings.isOffline) {
-      // If offline, get a shuffled list of tracks from _downloadsHelper.
-      // This is a bit inefficient since we have to get all of the tracks and
-      // shuffle them before making a sublist, but I couldn't think of a better
-      // way.
-      items = (await _isarDownloader.getAllTracks(
-        viewFilter: _finampUserHelper.currentUser?.currentView?.id,
-        genreFilter: genreFilter?.id,
-        onlyFavorites: onlyShowFavorites,
-        nullableViewFilters: FinampSettingsHelper.finampSettings.showDownloadsWithUnknownLibrary,
-      )).map((e) => e.baseItem!).toList();
-      items.shuffle();
-      final count = itemCount ?? FinampSettingsHelper.finampSettings.trackShuffleItemCount;
-      if (items.length - 1 > count) {
-        items = items.sublist(0, count);
-      }
-    } else {
-      // If online, get all audio items from the user's view
-      items = await _jellyfinApiHelper.getItems(
-        parentItem: _finampUserHelper.currentUser!.currentView,
-        includeItemTypes: "Audio",
-        filters: onlyShowFavorites ? "IsFavorite" : null,
-        limit: itemCount ?? FinampSettingsHelper.finampSettings.trackShuffleItemCount,
-        sortBy: "Random",
-        genreFilter: genreFilter?.id,
-      );
-    }
+    List<jellyfin_models.BaseItemDto>? items = (await getShuffleAllTracks(
+      onlyShowFavorites: onlyShowFavorites,
+      library: _finampUserHelper.currentUser!.currentView!,
+      genreFilter: genreFilter,
+      itemCount: itemCount,
+    ))?.$1;
 
     if (items != null) {
       QueueItemSource source = (genreFilter != null)
@@ -70,15 +48,58 @@ class AudioServiceHelper {
                 type: onlyShowFavorites ? QueueItemSourceNameType.yourLikes : QueueItemSourceNameType.shuffleAll,
               ),
               id: "shuffleAll",
+              library: _finampUserHelper.currentUser!.currentView!.id,
             );
 
       await _queueService.startPlayback(items: items, source: source, order: FinampPlaybackOrder.shuffled);
     }
   }
 
+  Future<(List<BaseItemDto>, int)?> getShuffleAllTracks({
+    required bool onlyShowFavorites,
+    required BaseItemDto library,
+    BaseItemDto? genreFilter,
+    int? itemCount,
+  }) async {
+    if (FinampSettingsHelper.finampSettings.isOffline) {
+      // If offline, get a shuffled list of tracks from _downloadsHelper.
+      // This is a bit inefficient since we have to get all of the tracks and
+      // shuffle them before making a sublist, but I couldn't think of a better
+      // way.
+      final items = (await _isarDownloader.getAllTracks(
+        viewFilter: library.id,
+        genreFilter: genreFilter?.id,
+        onlyFavorites: onlyShowFavorites,
+        nullableViewFilters: FinampSettingsHelper.finampSettings.showDownloadsWithUnknownLibrary,
+      )).map((e) => e.baseItem!).toList();
+      items.shuffle();
+      final count = itemCount ?? FinampSettingsHelper.finampSettings.trackShuffleItemCount;
+      if (items.length - 1 > count) {
+        return (items.sublist(0, count), items.length);
+      }
+      return (items, items.length);
+    } else {
+      // If online, get all audio items from the user's view
+      final record = await _jellyfinApiHelper.getItemsWithTotalRecordCount(
+        parentItem: library,
+        includeItemTypes: "Audio",
+        filters: onlyShowFavorites ? "IsFavorite" : null,
+        limit: itemCount ?? FinampSettingsHelper.finampSettings.trackShuffleItemCount,
+        sortBy: "Random",
+        genreFilter: genreFilter?.id,
+      );
+      return (record.items ?? [], record.totalRecordCount);
+    }
+  }
+
   /// Start instant mix from item.
   Future<void> startInstantMixForItem(jellyfin_models.BaseItemDto item) async {
     List<jellyfin_models.BaseItemDto>? items;
+
+    if (FinampSettingsHelper.finampSettings.isOffline) {
+      GlobalSnackbar.message((scaffold) => scaffold.l10n.notAvailableInOfflineMode);
+      return;
+    }
 
     try {
       items = await _jellyfinApiHelper.getInstantMix(item);
@@ -225,49 +246,78 @@ class AudioServiceHelper {
     }
   }
 
-  Future<void> playRandomItem({bool favoritesOnly = false, List<BaseItemDtoType>? limitItemTypes}) async {
-    // get random favorite (any item type)
-    final randomFavorite = (await _jellyfinApiHelper.getItems(
-      parentItem: _finampUserHelper.currentUser!.currentView,
+  Future<void> playRandomItem({bool favoritesOnly = false, Set<ContentType>? limitContentTypes}) async {
+    assert(
+      limitContentTypes == null || limitContentTypes.isNotEmpty,
+      "limitContentTypes must not be empty if provided",
+    );
+    assert(
+      limitContentTypes?.every((type) => type.isPlayableJellyfinType && type.itemType != null) ?? true,
+      "limitContentTypes must only contain playable Jellyfin item types",
+    );
+
+    // randomly decide item type
+    final contentType =
+        ((limitContentTypes ??
+                    {
+                      ContentType.tracks,
+                      ContentType.albums,
+                      ContentType.albumArtists,
+                      ContentType.performingArtists,
+                      ContentType.genres,
+                      ContentType.playlists,
+                    })
+                .toList()
+              ..shuffle())
+            .firstOrNull;
+
+    audioServiceHelperLogger.info("Attempting to play random $contentType (favorite: $favoritesOnly)");
+
+    // get random item (of the selected type)
+    final randomItem = (await _jellyfinApiHelper.getItems(
+      parentItem: contentType == ContentType.playlists ? null : _finampUserHelper.currentUser!.currentView,
       filters: favoritesOnly ? "IsFavorite" : null,
       // Jellyfin 10.10 and 10.11 use the [isFavorite] boolean filter instead of the list-based [filters] parameter for genres, so add that here
       // I guess part of the reason for this is that it's not possible to favorite a genre through the Jellyfin Web UI at all...
-      isFavorite: favoritesOnly,
-      includeItemTypes:
-          (limitItemTypes ??
-                  [
-                    BaseItemDtoType.track,
-                    BaseItemDtoType.album,
-                    BaseItemDtoType.artist,
-                    BaseItemDtoType.genre,
-                    BaseItemDtoType.playlist,
-                  ])
-              .map((e) => e.jellyfinName)
-              .join(","),
+      // true = only favorites, false = exclude favorites, null = all items
+      isFavorite: contentType == ContentType.genres && favoritesOnly ? true : null,
+      includeItemTypes: contentType?.itemType?.jellyfinName,
+      artistType: switch (contentType) {
+        ContentType.albumArtists => ArtistType.albumArtist,
+        ContentType.performingArtists => ArtistType.artist,
+        _ => null,
+      },
       sortBy: SortBy.random.jellyfinName(null),
       limit: 1,
     ))?.firstOrNull;
 
-    if (randomFavorite == null) {
-      GlobalSnackbar.message((context) => context.l10n.nothingFoundToPlay);
-      return;
+    if (randomItem == null) {
+      final additionalContentType = limitContentTypes?.whereNot((x) => x == contentType).toSet() ?? <ContentType>{};
+      // If no results are found, we may have just chosen a bad contentType.  Recursively cycle through the others if they exist.
+      if (additionalContentType.isNotEmpty) {
+        return playRandomItem(favoritesOnly: favoritesOnly, limitContentTypes: additionalContentType);
+      } else {
+        GlobalSnackbar.message((context) => context.l10n.nothingFoundToPlay);
+        return;
+      }
     }
 
     // if item is a collection, get its tracks, otherwise just play the item
     List<jellyfin_models.BaseItemDto> itemsToPlay;
-    if (BaseItemDtoType.fromItem(randomFavorite) != BaseItemDtoType.track) {
+    if (BaseItemDtoType.fromItem(randomItem) != BaseItemDtoType.track) {
       itemsToPlay =
           await _jellyfinApiHelper.getItems(
-            parentItem: randomFavorite,
+            parentItem: randomItem,
             includeItemTypes: [BaseItemDtoType.track].map((e) => e.jellyfinName).join(","),
             sortBy: SortBy.defaultOrder.jellyfinName(ContentType.tracks),
             sortOrder: SortOrder.ascending.name,
+            limit: FinampSettingsHelper.finampSettings.trackShuffleItemCount,
           ) ??
           [];
     } else {
-      itemsToPlay = [randomFavorite];
+      itemsToPlay = [randomItem];
     }
 
-    await _queueService.startPlayback(items: itemsToPlay, source: QueueItemSource.fromBaseItem(randomFavorite));
+    await _queueService.startPlayback(items: itemsToPlay, source: QueueItemSource.fromBaseItem(randomItem));
   }
 }

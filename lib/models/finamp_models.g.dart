@@ -448,6 +448,7 @@ class FinampSettingsAdapter extends TypeAdapter<FinampSettings> {
             ? 90
             : (fields[150] as num).toInt(),
         useAndroidGainEffect: fields[149] == null ? true : fields[149] as bool,
+        deviceId: fields[152] == null ? 'unset' : fields[152] as String,
       )
       ..sortBy = fields[7] as SortBy?
       ..sortOrder = fields[8] as SortOrder?
@@ -464,13 +465,14 @@ class FinampSettingsAdapter extends TypeAdapter<FinampSettings> {
       ..radioEnabled = fields[140] == null ? false : fields[140] as bool
       ..radioMode = fields[141] == null
           ? RadioMode.similar
-          : fields[141] as RadioMode;
+          : fields[141] as RadioMode
+      ..clientCertificate = fields[151] as ClientCertificate?;
   }
 
   @override
   void write(BinaryWriter writer, FinampSettings obj) {
     writer
-      ..writeByte(144)
+      ..writeByte(146)
       ..writeByte(0)
       ..write(obj.isOffline)
       ..writeByte(1)
@@ -758,7 +760,11 @@ class FinampSettingsAdapter extends TypeAdapter<FinampSettings> {
       ..writeByte(149)
       ..write(obj.useAndroidGainEffect)
       ..writeByte(150)
-      ..write(obj.homeScreenImageSize);
+      ..write(obj.homeScreenImageSize)
+      ..writeByte(151)
+      ..write(obj.clientCertificate)
+      ..writeByte(152)
+      ..write(obj.deviceId);
   }
 
   @override
@@ -1037,13 +1043,14 @@ class QueueItemSourceAdapter extends TypeAdapter<QueueItemSource> {
       name: fields[1] as QueueItemSourceName,
       id: fields[2] as BaseItemId,
       contextNormalizationGain: (fields[4] as num?)?.toDouble(),
+      library: fields[5] as BaseItemId?,
     );
   }
 
   @override
   void write(BinaryWriter writer, QueueItemSource obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.type)
       ..writeByte(1)
@@ -1051,7 +1058,9 @@ class QueueItemSourceAdapter extends TypeAdapter<QueueItemSource> {
       ..writeByte(2)
       ..write(obj.id)
       ..writeByte(4)
-      ..write(obj.contextNormalizationGain);
+      ..write(obj.contextNormalizationGain)
+      ..writeByte(5)
+      ..write(obj.library);
   }
 
   @override
@@ -1197,61 +1206,6 @@ class FinampQueueOrderAdapter extends TypeAdapter<FinampQueueOrder> {
           typeId == other.typeId;
 }
 
-class FinampQueueInfoAdapter extends TypeAdapter<FinampQueueInfo> {
-  @override
-  final typeId = 59;
-
-  @override
-  FinampQueueInfo read(BinaryReader reader) {
-    final numOfFields = reader.readByte();
-    final fields = <int, dynamic>{
-      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
-    };
-    return FinampQueueInfo(
-      id: fields[6] as String,
-      previousTracks: (fields[0] as List).cast<FinampQueueItem>(),
-      currentTrack: fields[1] as FinampQueueItem?,
-      nextUp: (fields[2] as List).cast<FinampQueueItem>(),
-      queue: (fields[3] as List).cast<FinampQueueItem>(),
-      source: fields[4] as QueueItemSource,
-      saveState: fields[5] as SavedQueueState,
-      sourceLibrary: fields[7] as BaseItemDto?,
-    );
-  }
-
-  @override
-  void write(BinaryWriter writer, FinampQueueInfo obj) {
-    writer
-      ..writeByte(8)
-      ..writeByte(0)
-      ..write(obj.previousTracks)
-      ..writeByte(1)
-      ..write(obj.currentTrack)
-      ..writeByte(2)
-      ..write(obj.nextUp)
-      ..writeByte(3)
-      ..write(obj.queue)
-      ..writeByte(4)
-      ..write(obj.source)
-      ..writeByte(5)
-      ..write(obj.saveState)
-      ..writeByte(6)
-      ..write(obj.id)
-      ..writeByte(7)
-      ..write(obj.sourceLibrary);
-  }
-
-  @override
-  int get hashCode => typeId.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is FinampQueueInfoAdapter &&
-          runtimeType == other.runtimeType &&
-          typeId == other.typeId;
-}
-
 class FinampHistoryItemAdapter extends TypeAdapter<FinampHistoryItem> {
   @override
   final typeId = 60;
@@ -1349,17 +1303,20 @@ class FinampFeatureChipsConfigurationAdapter
     return FinampFeatureChipsConfiguration(
       enabled: fields[0] as bool,
       features: (fields[1] as List).cast<FinampFeatureChipType>(),
+      migrated: fields[2] == null ? false : fields[2] as bool,
     );
   }
 
   @override
   void write(BinaryWriter writer, FinampFeatureChipsConfiguration obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(3)
       ..writeByte(0)
       ..write(obj.enabled)
       ..writeByte(1)
-      ..write(obj.features);
+      ..write(obj.features)
+      ..writeByte(2)
+      ..write(obj.migrated);
   }
 
   @override
@@ -1858,19 +1815,22 @@ class QuickActionConfigAdapter extends TypeAdapter<QuickActionConfig> {
       action: fields[0] as FinampQuickActions,
       itemId: fields[1] as BaseItemId?,
       itemName: fields[2] as String?,
+      itemTypes: (fields[3] as Set?)?.cast<ContentType>(),
     );
   }
 
   @override
   void write(BinaryWriter writer, QuickActionConfig obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.action)
       ..writeByte(1)
       ..write(obj.itemId)
       ..writeByte(2)
-      ..write(obj.itemName);
+      ..write(obj.itemName)
+      ..writeByte(3)
+      ..write(obj.itemTypes);
   }
 
   @override
@@ -1880,6 +1840,43 @@ class QuickActionConfigAdapter extends TypeAdapter<QuickActionConfig> {
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is QuickActionConfigAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
+
+class ClientCertificateAdapter extends TypeAdapter<ClientCertificate> {
+  @override
+  final typeId = 127;
+
+  @override
+  ClientCertificate read(BinaryReader reader) {
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    };
+    return ClientCertificate(
+      data: fields[0] as Uint8List,
+      password: fields[1] as String,
+    );
+  }
+
+  @override
+  void write(BinaryWriter writer, ClientCertificate obj) {
+    writer
+      ..writeByte(2)
+      ..writeByte(0)
+      ..write(obj.data)
+      ..writeByte(1)
+      ..write(obj.password);
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ClientCertificateAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
@@ -2286,6 +2283,8 @@ class QueueItemSourceNameTypeAdapter
         return QueueItemSourceNameType.radio;
       case 11:
         return QueueItemSourceNameType.homeScreenSection;
+      case 12:
+        return QueueItemSourceNameType.musicScreenTracks;
       default:
         return QueueItemSourceNameType.preTranslated;
     }
@@ -2318,6 +2317,8 @@ class QueueItemSourceNameTypeAdapter
         writer.writeByte(10);
       case QueueItemSourceNameType.homeScreenSection:
         writer.writeByte(11);
+      case QueueItemSourceNameType.musicScreenTracks:
+        writer.writeByte(12);
     }
   }
 
@@ -2848,52 +2849,52 @@ class FinampFeatureChipTypeAdapter extends TypeAdapter<FinampFeatureChipType> {
   FinampFeatureChipType read(BinaryReader reader) {
     switch (reader.readByte()) {
       case 0:
-        return FinampFeatureChipType.playCount;
-      case 1:
-        return FinampFeatureChipType.additionalPeople;
-      case 2:
-        return FinampFeatureChipType.playbackMode;
-      case 3:
-        return FinampFeatureChipType.codec;
-      case 4:
-        return FinampFeatureChipType.bitRate;
-      case 5:
-        return FinampFeatureChipType.bitDepth;
-      case 6:
-        return FinampFeatureChipType.size;
-      case 7:
-        return FinampFeatureChipType.normalizationGain;
-      case 8:
-        return FinampFeatureChipType.sampleRate;
-      case 9:
         return FinampFeatureChipType.explicit;
-      default:
+      case 1:
         return FinampFeatureChipType.playCount;
+      case 2:
+        return FinampFeatureChipType.additionalPeople;
+      case 3:
+        return FinampFeatureChipType.playbackMode;
+      case 4:
+        return FinampFeatureChipType.codec;
+      case 5:
+        return FinampFeatureChipType.bitRate;
+      case 6:
+        return FinampFeatureChipType.bitDepth;
+      case 7:
+        return FinampFeatureChipType.sampleRate;
+      case 8:
+        return FinampFeatureChipType.size;
+      case 9:
+        return FinampFeatureChipType.normalizationGain;
+      default:
+        return FinampFeatureChipType.explicit;
     }
   }
 
   @override
   void write(BinaryWriter writer, FinampFeatureChipType obj) {
     switch (obj) {
-      case FinampFeatureChipType.playCount:
-        writer.writeByte(0);
-      case FinampFeatureChipType.additionalPeople:
-        writer.writeByte(1);
-      case FinampFeatureChipType.playbackMode:
-        writer.writeByte(2);
-      case FinampFeatureChipType.codec:
-        writer.writeByte(3);
-      case FinampFeatureChipType.bitRate:
-        writer.writeByte(4);
-      case FinampFeatureChipType.bitDepth:
-        writer.writeByte(5);
-      case FinampFeatureChipType.size:
-        writer.writeByte(6);
-      case FinampFeatureChipType.normalizationGain:
-        writer.writeByte(7);
-      case FinampFeatureChipType.sampleRate:
-        writer.writeByte(8);
       case FinampFeatureChipType.explicit:
+        writer.writeByte(0);
+      case FinampFeatureChipType.playCount:
+        writer.writeByte(1);
+      case FinampFeatureChipType.additionalPeople:
+        writer.writeByte(2);
+      case FinampFeatureChipType.playbackMode:
+        writer.writeByte(3);
+      case FinampFeatureChipType.codec:
+        writer.writeByte(4);
+      case FinampFeatureChipType.bitRate:
+        writer.writeByte(5);
+      case FinampFeatureChipType.bitDepth:
+        writer.writeByte(6);
+      case FinampFeatureChipType.sampleRate:
+        writer.writeByte(7);
+      case FinampFeatureChipType.size:
+        writer.writeByte(8);
+      case FinampFeatureChipType.normalizationGain:
         writer.writeByte(9);
     }
   }
@@ -3587,6 +3588,12 @@ class HomeScreenSectionPresetTypeAdapter
         return HomeScreenSectionPresetType.recentQueues;
       case 13:
         return HomeScreenSectionPresetType.recentlyPlayedTracks;
+      case 14:
+        return HomeScreenSectionPresetType.randomAlbums;
+      case 15:
+        return HomeScreenSectionPresetType.randomAlbumArtists;
+      case 16:
+        return HomeScreenSectionPresetType.recentlyAddedPlaylists;
       default:
         return HomeScreenSectionPresetType.favoriteTracks;
     }
@@ -3623,6 +3630,12 @@ class HomeScreenSectionPresetTypeAdapter
         writer.writeByte(12);
       case HomeScreenSectionPresetType.recentlyPlayedTracks:
         writer.writeByte(13);
+      case HomeScreenSectionPresetType.randomAlbums:
+        writer.writeByte(14);
+      case HomeScreenSectionPresetType.randomAlbumArtists:
+        writer.writeByte(15);
+      case HomeScreenSectionPresetType.recentlyAddedPlaylists:
+        writer.writeByte(16);
     }
   }
 
@@ -3664,6 +3677,8 @@ class FinampQuickActionsAdapter extends TypeAdapter<FinampQuickActions> {
         return FinampQuickActions.surpriseMe;
       case 9:
         return FinampQuickActions.playSpecificItem;
+      case 10:
+        return FinampQuickActions.playRandomItem;
       default:
         return FinampQuickActions.shuffleTracks;
     }
@@ -3692,6 +3707,8 @@ class FinampQuickActionsAdapter extends TypeAdapter<FinampQuickActions> {
         writer.writeByte(8);
       case FinampQuickActions.playSpecificItem:
         writer.writeByte(9);
+      case FinampQuickActions.playRandomItem:
+        writer.writeByte(10);
     }
   }
 
@@ -9559,6 +9576,7 @@ FinampFeatureChipsConfiguration _$FinampFeatureChipsConfigurationFromJson(
   features: (json['features'] as List<dynamic>)
       .map((e) => $enumDecode(_$FinampFeatureChipTypeEnumMap, e))
       .toList(),
+  migrated: json['migrated'] as bool,
 );
 
 Map<String, dynamic> _$FinampFeatureChipsConfigurationToJson(
@@ -9568,19 +9586,20 @@ Map<String, dynamic> _$FinampFeatureChipsConfigurationToJson(
   'features': instance.features
       .map((e) => _$FinampFeatureChipTypeEnumMap[e]!)
       .toList(),
+  'migrated': instance.migrated,
 };
 
 const _$FinampFeatureChipTypeEnumMap = {
+  FinampFeatureChipType.explicit: 'explicit',
   FinampFeatureChipType.playCount: 'playCount',
   FinampFeatureChipType.additionalPeople: 'additionalPeople',
   FinampFeatureChipType.playbackMode: 'playbackMode',
   FinampFeatureChipType.codec: 'codec',
   FinampFeatureChipType.bitRate: 'bitRate',
   FinampFeatureChipType.bitDepth: 'bitDepth',
+  FinampFeatureChipType.sampleRate: 'sampleRate',
   FinampFeatureChipType.size: 'size',
   FinampFeatureChipType.normalizationGain: 'normalizationGain',
-  FinampFeatureChipType.sampleRate: 'sampleRate',
-  FinampFeatureChipType.explicit: 'explicit',
 };
 
 FinampOutputRoute _$FinampOutputRouteFromJson(Map<String, dynamic> json) =>
@@ -9684,6 +9703,9 @@ const _$HomeScreenSectionPresetTypeEnumMap = {
       'forgottenFavoriteTracks',
   HomeScreenSectionPresetType.recentQueues: 'recentQueues',
   HomeScreenSectionPresetType.recentlyPlayedTracks: 'recentlyPlayedTracks',
+  HomeScreenSectionPresetType.randomAlbums: 'randomAlbums',
+  HomeScreenSectionPresetType.randomAlbumArtists: 'randomAlbumArtists',
+  HomeScreenSectionPresetType.recentlyAddedPlaylists: 'recentlyAddedPlaylists',
 };
 
 Map<String, dynamic> _$FinampHomeScreenConfigurationToJson(
@@ -9763,6 +9785,9 @@ QuickActionConfig _$QuickActionConfigFromJson(Map<String, dynamic> json) =>
         const BaseItemIdConverter().fromJson,
       ),
       itemName: json['itemName'] as String?,
+      itemTypes: (json['itemTypes'] as List<dynamic>?)
+          ?.map((e) => $enumDecode(_$ContentTypeEnumMap, e))
+          .toSet(),
     );
 
 Map<String, dynamic> _$QuickActionConfigToJson(QuickActionConfig instance) =>
@@ -9775,6 +9800,9 @@ Map<String, dynamic> _$QuickActionConfigToJson(QuickActionConfig instance) =>
           case final value?)
         'itemId': value,
       if (instance.itemName case final value?) 'itemName': value,
+      if (instance.itemTypes?.map((e) => _$ContentTypeEnumMap[e]!).toList()
+          case final value?)
+        'itemTypes': value,
     };
 
 const _$FinampQuickActionsEnumMap = {
@@ -9783,6 +9811,7 @@ const _$FinampQuickActionsEnumMap = {
   FinampQuickActions.browsePlaybackHistory: 'browsePlaybackHistory',
   FinampQuickActions.playRandomAlbum: 'playRandomAlbum',
   FinampQuickActions.playRandomTrack: 'playRandomTrack',
+  FinampQuickActions.playRandomItem: 'playRandomItem',
   FinampQuickActions.playRandomFavoriteItem: 'playRandomFavoriteItem',
   FinampQuickActions.playPreviousQueue: 'playPreviousQueue',
   FinampQuickActions.configureOutput: 'configureOutput',

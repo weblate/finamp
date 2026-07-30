@@ -34,6 +34,7 @@ import 'package:finamp/services/album_image_provider.dart';
 import 'package:finamp/services/android_auto_helper.dart';
 import 'package:finamp/services/audio_service_smtc.dart';
 import 'package:finamp/services/carplay_helper.dart';
+import 'package:finamp/services/client_certificate_installer.dart';
 import 'package:finamp/services/data_source_service.dart';
 import 'package:finamp/services/dbus_manager.dart';
 import 'package:finamp/services/discord_rpc.dart';
@@ -117,7 +118,7 @@ late DateTime startTime;
 
 final providerScopeKey = GlobalKey();
 
-Future<void> main({bool integrationTesting = false, bool loginTesting = false}) async {
+Future<void> main(List<String> args, {bool integrationTesting = false, bool loginTesting = false}) async {
   if (loginTesting) {
     // Note that download baseDirectories cannot be redirected, so use of this flag
     // causes errors in downloader on mobile platforms
@@ -139,10 +140,14 @@ Future<void> main({bool integrationTesting = false, bool loginTesting = false}) 
     _migrateSortOptions();
     _migrateGridSize();
     _migrateHomescreen();
+    _migrateFeatureChips();
+    _migrateDeviceId();
     await _migrateThemeModeLocale();
     _mainLog.info("Completed applicable migrations");
     await _trustAndroidUserCerts();
     _mainLog.info("Trusted Android user certs");
+    await ClientCertificateInstaller().installClientCertificate();
+    _mainLog.info("Installed client certificate");
     await _setupFinampUserHelper();
     _mainLog.info("Setup user helper");
     await _setupJellyfinApiData();
@@ -153,7 +158,7 @@ Future<void> main({bool integrationTesting = false, bool loginTesting = false}) 
     _mainLog.info("Setup downloads service");
     await _setupProviders();
     _mainLog.info("Setup providers");
-    await _setupOSIntegration();
+    await _setupOSIntegration(args);
     _mainLog.info("Setup os integrations");
     await _setupPlayOnService();
     _mainLog.info("Setup PlayOnService");
@@ -355,7 +360,7 @@ Future<void> _setupProviders() async {
   );
 }
 
-Future<void> _setupOSIntegration() async {
+Future<void> _setupOSIntegration(List<String> commandLineArgs) async {
   // set up window manager on desktop, mainly to restrict minimum size
   if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
     final screenSize = FinampSettingsHelper.finampSettings.screenSize;
@@ -367,7 +372,9 @@ Future<void> _setupOSIntegration() async {
       backgroundColor: Colors.transparent,
       skipTaskbar: false,
       titleBarStyle: TitleBarStyle.normal,
-      minimumSize: Size(336, 607),
+      minimumSize: Size(400, 250),
+      // This matches the size of the iPhone 5, which is probably the smallest screen size worth testing against
+      //minimumSize: Size(336, 607),
     );
     unawaited(
       WindowManager.instance.waitUntilReadyToShow(windowOptions, () async {
@@ -377,6 +384,9 @@ Future<void> _setupOSIntegration() async {
         GetIt.instance<ProviderContainer>().listen(brightnessProvider, fireImmediately: true, (_, brightness) {
           windowManager.setBrightness(brightness);
         });
+        if (commandLineArgs.contains("--fullscreen")) {
+          await windowManager.setFullScreen(true);
+        }
         await windowManager.show();
         await windowManager.focus();
       }),
@@ -533,8 +543,81 @@ void _migrateHomescreen() {
     changed = true;
   }
 
+  for (int i = 0; i < finampSettings.homeScreenConfiguration.sections.length; i++) {
+    final section = finampSettings.homeScreenConfiguration.sections[i];
+    if (section.presetType == HomeScreenSectionPresetType.recentlyAddedAlbums) {
+      if (section.base case TabsHomeSection base when base.libraryId == allLibraryPlaceholder) {
+        // We do not preserve the preset value on modified configs, so this section is still default and can be reset.
+        finampSettings.homeScreenConfiguration.sections[i] = HomeScreenSectionConfiguration.fromPreset(
+          HomeScreenSectionPresetType.recentlyAddedAlbums,
+        );
+        changed = true;
+      }
+    }
+    if (section.presetType == HomeScreenSectionPresetType.frequentlyPlayedAlbums) {
+      finampSettings.homeScreenConfiguration.sections[i] = HomeScreenSectionConfiguration.fromPreset(
+        HomeScreenSectionPresetType.favoriteAlbums,
+      );
+      changed = true;
+    } else if (section.presetType == HomeScreenSectionPresetType.frequentlyPlayedArtists) {
+      finampSettings.homeScreenConfiguration.sections[i] = HomeScreenSectionConfiguration.fromPreset(
+        HomeScreenSectionPresetType.randomAlbumArtists,
+      );
+      changed = true;
+    } else if (section.presetType == HomeScreenSectionPresetType.neverPlayedAlbums) {
+      finampSettings.homeScreenConfiguration.sections[i] = HomeScreenSectionConfiguration.fromPreset(
+        HomeScreenSectionPresetType.randomAlbums,
+      );
+      changed = true;
+    }
+  }
+
+  for (int i = 0; i < finampSettings.homeScreenConfiguration.actions.length; i++) {
+    final action = finampSettings.homeScreenConfiguration.actions[i];
+    if (action.action == FinampQuickActions.playRandomAlbum) {
+      finampSettings.homeScreenConfiguration.actions[i] = QuickActionConfig(
+        action: FinampQuickActions.playRandomItem,
+        itemTypes: {ContentType.albums},
+      );
+      changed = true;
+    } else if (action.action == FinampQuickActions.playRandomTrack) {
+      finampSettings.homeScreenConfiguration.actions[i] = QuickActionConfig(
+        action: FinampQuickActions.playRandomItem,
+        itemTypes: {ContentType.tracks},
+      );
+      changed = true;
+    } else if (action.action == FinampQuickActions.playRandomFavoriteItem) {
+      if (action.itemTypes?.isEmpty ?? true) {
+        finampSettings.homeScreenConfiguration.actions[i] = QuickActionConfig(
+          action: FinampQuickActions.playRandomFavoriteItem,
+          itemTypes: {
+            ContentType.tracks,
+            ContentType.albums,
+            ContentType.performingArtists,
+            ContentType.albumArtists,
+            ContentType.playlists,
+            ContentType.genres,
+          },
+        );
+        changed = true;
+      }
+    }
+  }
+
   if (changed) {
     FinampSettingsHelper.overwriteFinampSettings(finampSettings);
+  }
+}
+
+void _migrateFeatureChips() {
+  if (!FinampSettingsHelper.finampSettings.featureChipsConfiguration.migrated) {
+    FinampSetters.setFeatureChipsConfiguration(
+      FinampFeatureChipsConfiguration(
+        enabled: FinampSettingsHelper.finampSettings.featureChipsConfiguration.enabled,
+        features: DefaultSettings.featureChipsConfiguration.features,
+        migrated: true,
+      ),
+    );
   }
 }
 
@@ -671,6 +754,13 @@ Future<void> _migrateThemeModeLocale() async {
   }
 }
 
+/// Migrates to the new randomly-generated device ID and stores it
+void _migrateDeviceId() {
+  if (FinampSettingsHelper.finampSettings.deviceId == "unset") {
+    FinampSetters.setDeviceId(const Uuid().v4());
+  }
+}
+
 Future<void> _trustAndroidUserCerts() async {
   // Extend the default security context to trust Android user certificates.
   // This is a workaround for <https://github.com/dart-lang/sdk/issues/50435>.
@@ -684,7 +774,7 @@ Future<void> _trustAndroidUserCerts() async {
 }
 
 Future<void> _setupFinampUserHelper() async {
-  GetIt.instance.registerSingleton(FinampUserHelper());
+  GetIt.instance.registerSingleton(FinampUserHelper(deviceId: FinampSettingsHelper.finampSettings.deviceId));
   if (!FinampSettingsHelper.finampSettings.hasCompletedIsarUserMigration) {
     await GetIt.instance<FinampUserHelper>().migrateFromHive();
     FinampSetters.setHasCompletedIsarUserMigration(true);
@@ -797,12 +887,12 @@ class _FinampState extends State<Finamp> with WindowListener {
       container: GetIt.instance<ProviderContainer>(),
       child: GestureDetector(
         onTap: () {
-          // Never rebuild FinampApp context, it breaks ProviderScope
-          FocusScopeNode currentFocus = FocusScope.of(context, createDependency: false);
-
-          if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
-            FocusManager.instance.primaryFocus?.unfocus();
-          }
+          // This code resets focus and removes the focus highlight whenever we tap/click on the background
+          // TODO is this actually needed?
+          final navigatorContext = GlobalSnackbar.navigatorState?.context;
+          if (navigatorContext == null) return;
+          FocusScopeNode navigatorFocus = FocusScope.of(navigatorContext, createDependency: false);
+          navigatorFocus.requestScopeFocus();
         },
         child: FinampProviderBuilder(child: FinampApp()),
       ),
@@ -816,7 +906,8 @@ class _FinampState extends State<Finamp> with WindowListener {
     windowManagerLogger.finer("[WindowManager] onWindowEvent: $eventName");
 
     if (eventName == "moved" || eventName == "resized") {
-      FinampSetters.setScreenSize(ScreenSize.from(await windowManager.getSize(), await windowManager.getPosition()));
+      FinampSetters.setScreenSize(ScreenSize.from(await windowManager.getBounds()));
+
       windowManagerLogger.finer("Saved window size and position");
     }
   }
@@ -900,9 +991,7 @@ class FinampApp extends ConsumerWidget {
       },
       initialRoute: SplashScreen.routeName,
       navigatorObservers: [SplitScreenNavigatorObserver(), KeepScreenOnObserver()],
-      builder: (BuildContext context, Widget? widget) {
-        return GlobalShortcutManager(child: buildPlayerSplitScreenScaffold(context, widget));
-      },
+      builder: buildPlayerSplitScreenScaffold,
       theme: ThemeData(
         brightness: Brightness.light,
         colorScheme: getColorScheme(accentColor, Brightness.light, amoledTheme),
@@ -924,7 +1013,7 @@ class FinampApp extends ConsumerWidget {
           // ),
           dismissDirection: DismissDirection.horizontal,
         ),
-        tooltipTheme: const TooltipThemeData(waitDuration: Duration(milliseconds: 800)),
+        tooltipTheme: const TooltipThemeData(waitDuration: Duration(milliseconds: 800), preferBelow: false),
         pageTransitionsTheme: transitionBuilder,
       ),
       darkTheme: ThemeData(
@@ -960,6 +1049,8 @@ class FinampApp extends ConsumerWidget {
       locale: locale,
       scaffoldMessengerKey: GlobalSnackbar.rawMaterialAppScaffoldKey,
       navigatorKey: GlobalSnackbar.rawMaterialAppNavigatorKey,
+      shortcuts: GlobalShortcuts.shortcutMap,
+      actions: GlobalShortcuts.actionMap,
     );
   }
 }
