@@ -476,7 +476,7 @@
     "@placeholderSource": {
         "description": "Placeholder text used when the source of the current track/queue is unknown"
     },
-    "yourLikes": "Tykkäyksesi",
+    "yourLikes": "Tykkäyksesi (kohteesta \"{trackName}\")",
     "@yourLikes": {
         "description": "Title for the queue source when the user is playing their liked tracks"
     },
@@ -2184,7 +2184,7 @@
     "@quickConnectAuthorizationMenuStateSubtitleIdle": {
         "description": "Subtitle for the quick connect authorization menu state info (above the input field) while the code hasn't been submitted yet"
     },
-    "quickConnectAuthorizationMenuStateTitleProcessing": "Yritetään vahvistaa pyyntöä",
+    "quickConnectAuthorizationMenuStateTitleProcessing": "Valtuutetaan pyyntöä",
     "@quickConnectAuthorizationMenuStateTitleProcessing": {
         "description": "Title for the quick connect authorization menu state info (above the input field) while a request is being processed"
     },
@@ -3268,7 +3268,7 @@
     "@shuffleTracksAction": {
         "description": "Name of a home screen quick action"
     },
-    "randomFavoriteAction": "Random suosikki",
+    "randomFavoriteAction": "Satunnainen suosikki{itemType, select, albums{albumi} tracks{kappale} playlists{soittolista} performingArtists{esiintyvä artisti} albumArtists{albumin artisti} none{ tyypistä <Type>} other{}}",
     "@randomFavoriteAction": {
         "description": "Name of a home screen quick action"
     },
@@ -3522,5 +3522,112 @@
     "recentlyAddedPlaylists": "Äskettäin luodut soittolistat",
     "@recentlyAddedPlaylists": {
         "description": "Name of a home screen section preset"
+    },
+    "randomAlbumsDescription": "Albumit satunnaisessa järjestyksessä",
+    "@randomAlbumsDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "randomArtistsDescription": "Artistit satunnaisessa järjestyksessä",
+    "@randomArtistsDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "recentlyAddedPlaylistsDescription": "Soittolistat luomispäivän mukaan, uusimmasta alkaen",
+    "@recentlyAddedPlaylistsDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "playRandomItemActionDescription": "Aloittaa toiston satunnaisesta kohteesta",
+    "@playRandomItemActionDescription": {
+        "description": "Description of a home screen quick action"
+    },
+    "randomItemAction": "Satunnainen {itemType, select, albums{albumi} tracks{kappale} playlists{soittolista} performingArtists{esiintyjä} albumArtists{albumiartisti} none{tyypin <Type> kohde} other{kohde}}",
+    "@randomItemAction": {
+        "placeholders": {
+            "itemType": {
+                "type": "String",
+                "description": "Localized name of item type to be selected, or placeholder 'multiple'"
+            }
+        },
+        "description": "Name of a home screen quick action"
+    },
+    "randomPlaylistAction": "Random soittolista",
+    "@randomPlaylistAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "randomArtistAction": "Random artisti",
+    "@randomArtistAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "randomGenreAction": "Random tyylilaji",
+    "@randomGenreAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "randomFavoriteAlbumAction": "Random suosikkialbumi",
+    "@randomFavoriteAlbumAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "randomFavoriteTrackAction": "Random suosikkikappale",
+    "@randomFavoriteTrackAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "randomFavoritePlaylistAction": "Random suosikkisoittolista",
+    "@randomFavoritePlaylistAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "randomFavoriteArtistAction": "Random suosikkiartisti",
+    "@randomFavoriteArtistAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "randomFavoriteGenreAction": "Random suosikkityylilaji",
+    "@randomFavoriteGenreAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "cancelChanges": "Peru muutokset",
+    "@cancelChanges": {
+        "description": "Button on sort and filter menu that clears any pending changes."
+    },
+    "applyChangesOnClose": "Muutokset tulevat voimaan kun valikko suljetaan",
+    "@applyChangesOnClose": {
+        "description": "Notification on sort and filter menu that currently pending changes will be automatically applied on close."
+    },
+    "removeFromQueue": "Poista jonosta",
+    "featureChipName": "{chipName, select, explicit{Explisiittinen} playCount{Toistokerrat} additionalPeople{Muut tekijät} playbackMode{Toistotila} codec{Koodekki} bitRate{Bittinopeus} bitDepth{Bittisyvyys} sampleRate{Näytteenottotaajuus} size{Koko} normalizationGain{Normalisointivahvistus} other{{chipName}}}",
+    "@featureChipName": {
+        "placeholders": {
+            "chipName": {
+                "type": "String",
+                "example": "playCount"
+            }
+        },
+        "description": "Titles for settings controlling which pieces of advanced track info are displayed."
+    },
+    "featureChipDescription": "{chipName, select, additionalPeople{Muut kappaleeseen liitetyt henkilöt kuin esiintyjät, jos saatavilla (säveltäjät, sanoittajat jne.)} playbackMode{Suoratoisto- ja uudelleenkoodaustilan tiedot} bitDepth{Bittiä ääninäytettä kohden. Koskee vain häviöttömiä koodekkeja, yleensä 16 bittiä.} sampleRate{Ääninäytettä sekunnissa. Yleensä 44,1 kHz.} normalizationGain{Tällä hetkellä aktiivinen ReplayGain-taso} other{null}}",
+    "@featureChipDescription": {
+        "placeholders": {
+            "chipName": {
+                "type": "String",
+                "example": "playCount"
+            }
+        },
+        "description": "Descriptions of different pieces of advanced track info."
+    },
+    "maximizePlayer": "Laajenna soitin",
+    "collapsePlayer": "Pienennä soitin sivupalkkiin",
+    "addSpecialDownloads": "Lisää erikoislatauksia",
+    "@addSpecialDownloads": {
+        "description": "Button on downloads screen which allows adding special downloads, such as all playlists or all favorites."
+    },
+    "allTracks": "Kaikki kappaleet (kohteesta ”{trackName}”)",
+    "@allTracks": {
+        "description": "Queue source when playing from tracks screen.",
+        "placeholders": {
+            "trackName": {
+                "type": "String",
+                "example": "Never Gonna Give You Up"
+            }
+        }
+    },
+    "volumeControlDisabledCastingHint": "Ääntä suoratoistetaan laitteessa, joka ei tue sovelluksen sisäistä äänenvoimakkuuden säätöä.",
+    "@volumeControlDisabledCastingHint": {
+        "description": "Hint text displayed below the volume bar when the in-app volume slider is disabled because audio is being cast to a device that bypasses the in-app volume handling and handles its own volume, such as when using Airplay."
     }
 }
