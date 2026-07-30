@@ -3518,5 +3518,9 @@
     "randomAlbumArtists": "Satunnaiset albumin artistit",
     "@randomAlbumArtists": {
         "description": "Name of a home screen section preset"
+    },
+    "recentlyAddedPlaylists": "Äskettäin luodut soittolistat",
+    "@recentlyAddedPlaylists": {
+        "description": "Name of a home screen section preset"
     }
 }
