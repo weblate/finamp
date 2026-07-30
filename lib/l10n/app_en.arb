@@ -178,6 +178,10 @@
     "@allLibraries": {
         "description": "All Libraries"
     },
+    "activeLibraries": "Active Libraries",
+    "@activeLibraries": {
+        "description": "Active Libraries"
+    },
     "unknownName": "Unknown Name",
     "tracks": "Tracks",
     "albums": "Albums",
@@ -860,10 +864,6 @@
     "shareOfflineListens": "Share offline listens",
     "@shareOfflineListens": {
         "description": "Button for exporting the JSON file containing any playback events that couldn't be submitted to the server, either because offline mode was enabled or the connection failed"
-    },
-    "yourLikes": "Your Likes",
-    "@yourLikes": {
-        "description": "Title for the queue source when the user is playing their liked tracks"
     },
     "mix": "{mixSource} - Mix",
     "@mix": {
@@ -2616,7 +2616,7 @@
     "@quickConnectAuthorizationMenuStateSubtitleIdle": {
         "description": "Subtitle for the quick connect authorization menu state info (above the input field) while the code hasn't been submitted yet"
     },
-    "quickConnectAuthorizationMenuStateTitleProcessing": "Attempting to Authorize Request",
+    "quickConnectAuthorizationMenuStateTitleProcessing": "Authorizing Request",
     "@quickConnectAuthorizationMenuStateTitleProcessing": {
         "description": "Title for the quick connect authorization menu state info (above the input field) while a request is being processed"
     },
@@ -3052,6 +3052,10 @@
     "@selectAnItem": {
         "description": "Title for 'play specific item' quick action edit menu"
     },
+    "selectItemTypes": "Select item types",
+    "@selectItemTypes": {
+        "description": "Title for 'play random item' quick action edit menu"
+    },
     "sectionsMenu": "Sections",
     "@sectionsMenu": {
         "description": "Title for home screen sections edit menu"
@@ -3218,6 +3222,18 @@
     "@recentQueues": {
         "description": "Name of a home screen section preset"
     },
+    "randomAlbums": "Random Albums",
+    "@randomAlbums": {
+        "description": "Name of a home screen section preset"
+    },
+    "randomAlbumArtists": "Random Album Artists",
+    "@randomAlbumArtists": {
+        "description": "Name of a home screen section preset"
+    },
+    "recentlyAddedPlaylists": "Recently Created Playlists",
+    "@recentlyAddedPlaylists": {
+        "description": "Name of a home screen section preset"
+    },
     "favoriteAlbumsDescription": "Liked Albums in random order",
     "@favoriteAlbumsDescription": {
         "description": "Description of a home screen section preset"
@@ -3262,6 +3278,18 @@
     "@recentQueuesDescription": {
         "description": "Description of a home screen section preset"
     },
+    "randomAlbumsDescription": "Albums in random order",
+    "@randomAlbumsDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "randomArtistsDescription": "Artists in random order",
+    "@randomArtistsDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "recentlyAddedPlaylistsDescription": "Playlists by creation date, starting with newest",
+    "@recentlyAddedPlaylistsDescription": {
+        "description": "Description of a home screen section preset"
+    },
     "shuffleTracksActionDescription": "Shuffles random tracks from your library",
     "@shuffleTracksActionDescription": {
         "description": "Description of a home screen quick action"
@@ -3274,16 +3302,12 @@
     "@browsePlaybackHistoryActionDescription": {
         "description": "Description of a home screen quick action"
     },
-    "playRandomAlbumActionDescription": "Starts playback of a random album",
-    "@playRandomAlbumActionDescription": {
-        "description": "Description of a home screen quick action"
-    },
     "surpriseMeActionDescription": "Starts 'Continuous' radio from a random track",
     "@surpriseMeActionDescription": {
         "description": "Description of a home screen quick action"
     },
-    "playRandomTrackActionDescription": "Starts playback of a random track",
-    "@playRandomTrackActionDescription": {
+    "playRandomItemActionDescription": "Starts playback of a random item",
+    "@playRandomItemActionDescription": {
         "description": "Description of a home screen quick action"
     },
     "playRandomFavoriteItemActionDescription": "Starts playback from a random favorite item",
@@ -3306,16 +3330,24 @@
     "@shuffleTracksAction": {
         "description": "Name of a home screen quick action"
     },
-    "randomAlbumAction": "Random Album",
-    "@randomAlbumAction": {
+    "randomItemAction": "Random {itemType, select, albums{Album} tracks{Track} playlists{Playlist} performingArtists{Performing Artist} albumArtists{Album Artist} none{Item of <Type>} other{Item}}",
+    "@randomItemAction": {
+        "placeholders": {
+            "itemType": {
+                "type": "String",
+                "description": "Localized name of item type to be selected, or placeholder 'multiple'"
+            }
+        },
         "description": "Name of a home screen quick action"
     },
-    "randomTrackAction": "Random Track",
-    "@randomTrackAction": {
-        "description": "Name of a home screen quick action"
-    },
-    "randomFavoriteAction": "Random Favorite",
+    "randomFavoriteAction": "Random Favorite {itemType, select, albums{Album} tracks{Track} playlists{Playlist} performingArtists{Performing Artist} albumArtists{Album Artist} none{of <Type>} other{}}",
     "@randomFavoriteAction": {
+        "placeholders": {
+            "itemType": {
+                "type": "String",
+                "description": "Localized name of item type to be selected, or placeholder 'multiple'"
+            }
+        },
         "description": "Name of a home screen quick action"
     },
     "previousQueueAction": "Previous Queue",
@@ -3337,6 +3369,38 @@
     },
     "surpriseMeAction": "Surprise Me",
     "@surpriseMeAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "randomPlaylistAction": "Random Playlist",
+    "@randomPlaylistAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "randomArtistAction": "Random Artist",
+    "@randomArtistAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "randomGenreAction": "Random Genre",
+    "@randomGenreAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "randomFavoriteAlbumAction": "Random Favorite Album",
+    "@randomFavoriteAlbumAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "randomFavoriteTrackAction": "Random Favorite Track",
+    "@randomFavoriteTrackAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "randomFavoritePlaylistAction": "Random Favorite Playlist",
+    "@randomFavoritePlaylistAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "randomFavoriteArtistAction": "Random Favorite Artist",
+    "@randomFavoriteArtistAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "randomFavoriteGenreAction": "Random Favorite Genre",
+    "@randomFavoriteGenreAction": {
         "description": "Name of a home screen quick action"
     },
     "editAction": "Edit Action",
@@ -3576,5 +3640,60 @@
     "clientCertificateRequired": "Client certificate required",
     "@clientCertificateRequired": {
         "description": "Message shown on the server selection screen when the server requires a client certificate to be provided."
+    },
+    "cancelChanges": "Cancel changes",
+    "@cancelChanges": {
+        "description": "Button on sort and filter menu that clears any pending changes."
+    },
+    "applyChangesOnClose": "Changes will apply when menu is closed",
+    "@applyChangesOnClose": {
+        "description": "Notification on sort and filter menu that currently pending changes will be automatically applied on close."
+    },
+    "removeFromQueue": "Remove From Queue",
+    "featureChipName": "{chipName, select, explicit{Explicit} playCount{Play Count} additionalPeople{Additional People} playbackMode{Playback Mode} codec{Codec} bitRate{Bitrate} bitDepth{Bit Depth} sampleRate{Sample Rate} size{Size} normalizationGain{Normalization Gain} other{{chipName}}}",
+    "@featureChipName": {
+        "placeholders": {
+            "chipName": {
+                "type": "String",
+                "example": "playCount"
+            }
+        },
+        "description": "Titles for settings controlling which pieces of advanced track info are displayed."
+    },
+    "featureChipDescription": "{chipName, select, additionalPeople{Non-artist people linked to the track, if available (writers, lyricists, etc.)} playbackMode{Streaming and transcoding status information} bitDepth{Bits per audio sample.  Only applicable to lossless codecs, generally 16 bits.} sampleRate{Audio samples per second.  Generally 44.1 kHz.} normalizationGain{Currently active ReplayGain level} other{null}}",
+    "@featureChipDescription": {
+        "placeholders": {
+            "chipName": {
+                "type": "String",
+                "example": "playCount"
+            }
+        },
+        "description": "Descriptions of different pieces of advanced track info."
+    },
+    "maximizePlayer": "Maximize player",
+    "collapsePlayer": "Collapse player to sidebar",
+    "addSpecialDownloads": "Add special download",
+    "@addSpecialDownloads": {
+        "description": "Button on downloads screen which allows adding special downloads, such as all playlists or all favorites."
+    },
+    "allTracks": "All Tracks (from \"{trackName}\")",
+    "@allTracks": {
+        "description": "Queue source when playing from tracks screen.",
+        "placeholders": {
+            "trackName": {
+                "type": "String",
+                "example": "Never Gonna Give You Up"
+            }
+        }
+    },
+    "yourLikes": "Your Likes (from \"{trackName}\")",
+    "@yourLikes": {
+        "description": "Queue source when playing from tracks screen with favorite filter active.",
+        "placeholders": {
+            "trackName": {
+                "type": "String",
+                "example": "Never Gonna Give You Up"
+            }
+        }
     }
 }

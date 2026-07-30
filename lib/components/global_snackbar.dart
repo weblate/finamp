@@ -69,7 +69,7 @@ class GlobalSnackbar {
     if (scaffoldState != null && (enqueueContext?.mounted ?? false)) {
       // Schedule snackbar creation for as soon as possible outside of build()
       SchedulerBinding.instance.scheduleTask(() {
-        if (scaffoldState == null || !(enqueueContext?.mounted ?? false)) {
+        if (scaffoldState == null || !scaffoldState!.mounted || !(enqueueContext?.mounted ?? false)) {
           _logger.warning("Global Snackbar context unmounted during async gap.");
           _enqueue(func);
         } else {
@@ -236,7 +236,7 @@ class GlobalSnackbar {
               content: Text(errorText),
               actions: [
                 TextButton(
-                  onPressed: () => Navigator.of(context).pop(),
+                  onPressed: () => Navigator.of(context).maybePop(),
                   child: Text(MaterialLocalizations.of(context).closeButtonLabel),
                 ),
               ],
@@ -279,7 +279,7 @@ class GlobalSnackbar {
         content: Text(text.$2),
         actions: [
           TextButton(
-            onPressed: () => Navigator.of(context).pop(),
+            onPressed: () => Navigator.of(context).maybePop(),
             child: Text(MaterialLocalizations.of(context).closeButtonLabel),
           ),
         ],
