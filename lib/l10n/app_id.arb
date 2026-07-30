@@ -352,7 +352,7 @@
     "@playbackActionPageNext": {
         "description": "Label for the playback action page that contains all actions related to playing tracks directly after the current one"
     },
-    "playbackActionPageNextUp": "Tambahkan berikutnya",
+    "playbackActionPageNextUp": "Masukkan Berikutnya",
     "@playbackActionPageNextUp": {
         "description": "Label for the playback action page that contains all actions related to appending tracks to Next Up"
     },
@@ -427,7 +427,7 @@
             }
         }
     },
-    "transcoding": "Transkode",
+    "transcoding": "Transcoding",
     "downloadLocations": "Lokasi Unduhan",
     "audioService": "Layanan Audio",
     "interactions": "Interaksi",
@@ -437,8 +437,8 @@
     "logOut": "Keluar",
     "logoutButtonSubtitle": "Masuk ke server lain akan menghapus unduhan yang ada",
     "areYouSure": "Apakah Anda yakin?",
-    "enableTranscoding": "Aktifkan transcoding",
-    "enableTranscodingSubtitle": "Melakukan transcoding stream musik di sisi server.",
+    "enableTranscoding": "Aktifkan Transcoding",
+    "enableTranscodingSubtitle": "Transcode stream musik dari sisi server.",
     "bitrate": "Bitrate",
     "bitrateSubtitle": "Bitrate yang lebih tinggi memberikan kualitas audio lebih tinggi dengan biaya bandwidth yang lebih tinggi. Tidak berlaku untuk codec lossless, misalnya FLAC",
     "customLocation": "Lokasi kustom",
@@ -630,7 +630,7 @@
     },
     "addToPlaylistTooltip": "Tambahkan ke daftar putar",
     "addToPlaylistTitle": "Tambahkan ke Daftar Putar",
-    "addToMorePlaylistsTitle": "Tambahkan ke Lebih Banyak Daftar Putar",
+    "addToMorePlaylistsTitle": "Tambahkan ke Daftar Putar Lainnya",
     "removeFromPlaylistTooltip": "Hapus dari daftar putar ini",
     "removeFromPlaylistTitle": "Hapus Dari Daftar Putar Ini",
     "newPlaylist": "Daftar Putar Baru",
@@ -651,7 +651,7 @@
     "@playbackModeDirectPlaying": {
         "description": "Feature chip that is shown when tracks are being played directly from the server, without transcoding"
     },
-    "playbackModeTranscoding": "Mentranskode",
+    "playbackModeTranscoding": "Transcoding",
     "@playbackModeTranscoding": {
         "description": "Feature chip that is shown when tracks are being transcoded by the server"
     },
@@ -815,7 +815,7 @@
             }
         }
     },
-    "confirmAddToNextUp": "Menambahkan {type, select, track{Trek} album{album} artist{artis} playlist{daftar putar} genre{genre} disc{disk} other{item}} untuk Berikutnya",
+    "confirmAddToNextUp": "Menambahkan {type, select, track{Trek} album{album} artist{artis} playlist{daftar putar} genre{genre} disc{disk} other{item}} ke Berikutnya",
     "@confirmAddToNextUp": {
         "description": "A confirmation message that is shown after successfully adding a track to the end of the \"Next Up\" queue",
         "placeholders": {
@@ -1524,16 +1524,16 @@
         },
         "description": "Localized names of special downloadable collection representing cached images for a certain library."
     },
-    "transcodingStreamingFormatTitle": "Pilih format transcoding",
+    "transcodingStreamingFormatTitle": "Pilih Format Transcoding",
     "@transcodingStreamingFormatTitle": {
         "description": "Title for the dropdown that selects the format for transcoded streams"
     },
-    "transcodingStreamingFormatSubtitle": "Pilih format yang digunakan saat streaming audio yang ditranskode. Trek yang sudah diantrikan tidak akan terpengaruh.",
-    "downloadTranscodeEnableTitle": "Aktifkan unduhan yang ditranskode",
+    "transcodingStreamingFormatSubtitle": "Pilih format yang digunakan saat streaming audio transcoded. Trek yang sudah masuk dalam antrian tidak akan terpengaruh.",
+    "downloadTranscodeEnableTitle": "Aktifkan Unduhan Transcoded",
     "@downloadTranscodeEnableTitle": {
         "description": "Title for Enable Transcoded Downloads dropdown"
     },
-    "downloadTranscodeCodecTitle": "Pilih codec unduhan",
+    "downloadTranscodeCodecTitle": "Pilih Codec Unduhan",
     "@downloadTranscodeCodecTitle": {
         "description": "Title for Select Download Codec dropdown"
     },
@@ -1554,11 +1554,11 @@
     "@downloadBitrateSubtitle": {
         "description": "subtitle for Download Bitrate settings slider"
     },
-    "transcodeHint": "Transkode?",
+    "transcodeHint": "Transcode?",
     "@transcodeHint": {
         "description": "Initial text in downloads dropdown when 'Enable Transcoded Downloads' is set to ask."
     },
-    "doTranscode": "Unduh sebagai {codec} @ {bitrate}{size, select, null{} other{ - \\(\\sim\\){size}}}",
+    "doTranscode": "Unduh sebagai {codec} @ {bitrate}{size, select, null{} other{ - ~{size}}}",
     "@doTranscode": {
         "placeholders": {
             "bitrate": {
@@ -1576,7 +1576,7 @@
         },
         "description": "Dropdown option to download transcoded version of tracks"
     },
-    "downloadInfo": "{size} {codec}{bitrate, select, null{} other{ @ {bitrate} Ditranskode}}{location, select, null{} other{ ({location})}}",
+    "downloadInfo": "{size} {codec}{bitrate, select, null{} other{ @ {bitrate} Transcoded}}{location, select, null{} other{ ({location})}}",
     "@downloadInfo": {
         "placeholders": {
             "bitrate": {
@@ -1620,7 +1620,7 @@
         },
         "description": "Collection info line in downloads screen lists"
     },
-    "dontTranscode": "Unduh asli{description, select, null{} other{ - {description}}}",
+    "dontTranscode": "Unduh Versi Asli{description, select, null{} other{ - {description}}}",
     "@dontTranscode": {
         "placeholders": {
             "description": {
@@ -1630,11 +1630,11 @@
         },
         "description": "Dropdown option to download original version of tracks"
     },
-    "redownloadcomplete": "Unduhan ulang transcode diantrikan.",
+    "redownloadcomplete": "Unduhan Ulang Transcode diantrikan.",
     "@redownloadcomplete": {
         "description": "Mesage when Automatically Redownload Transcodes transcode setting completes operations."
     },
-    "redownloadTitle": "Unduh ulang transcode secara otomatis",
+    "redownloadTitle": "Unduh Ulang Transcode Secara Otomatis",
     "@redownloadTitle": {
         "description": "Title for download transcode setting which redownloads tracks with higher allowed qualities"
     },
@@ -2679,7 +2679,7 @@
     "@preferNextUpPrependingTitle": {
         "description": "Title for the setting to prefer prepending to Next Up over appending"
     },
-    "preferNextUpPrependingSubtitle": "Jika diaktifkan, tombol \\\"Putar Berikutnya\\\" akan ditampilkan ketika Berikutnya kosong. Jika tidak, \\\"Tambahkan ke Berikutnya\\\" akan menjadi default.",
+    "preferNextUpPrependingSubtitle": "Jika diaktifkan, tombol \"Putar Berikutnya\" akan ditampilkan ketika Berikutnya kosong. Jika tidak, \"Tambahkan ke Berikutnya\" akan menjadi default.",
     "@preferNextUpPrependingSubtitle": {
         "description": "Subtitle for the setting that swaps the default behavior of short- vs. long-press on the heart/favorite icon"
     },
@@ -2817,11 +2817,11 @@
         "description": "Toggles the dark color scheme between dark gray and pure black."
     },
     "amoledThemeSubtitle": "Mengganti skema warna gelap dengan tema hitam pekat.",
-    "multichannelHandlingTitle": "Penanganan Transcode Multi-Saluran",
+    "multichannelHandlingTitle": "Penanganan Transcode Multi-Channel",
     "@multichannelHandlingTitle": {
         "description": "Title for multi-channel handling dropdown"
     },
-    "multichannelHandlingSubtitle": "Cara menangani trek multi-saluran (> 2 saluran) saat melakukan transcode. Berlaku untuk streaming maupun unduhan.",
+    "multichannelHandlingSubtitle": "Cara menangani trek multi-channel (> 2 channel) saat melakukan transcode. Berlaku untuk streaming maupun unduhan.",
     "@multichannelHandlingSubtitle": {
         "description": "Subtitle for multi-channel handling dropdown"
     },
@@ -3526,7 +3526,7 @@
             }
         }
     },
-    "clientCertificate": "Sertifikat Klien mTLS (SSL)",
+    "clientCertificate": "Sertifikat Client mTLS (SSL)",
     "@clientCertificate": {
         "description": "Title for the setting that allows managing SSL client certificates used for authentication"
     },
