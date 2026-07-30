@@ -3502,5 +3502,21 @@
     "clientCertificateRequired": "Asiakasvarmenne vaaditaan",
     "@clientCertificateRequired": {
         "description": "Message shown on the server selection screen when the server requires a client certificate to be provided."
+    },
+    "activeLibraries": "Aktiiviset kirjastot",
+    "@activeLibraries": {
+        "description": "Active Libraries"
+    },
+    "selectItemTypes": "Valitse sisältötyypit",
+    "@selectItemTypes": {
+        "description": "Title for 'play random item' quick action edit menu"
+    },
+    "randomAlbums": "Satunnaiset albumit",
+    "@randomAlbums": {
+        "description": "Name of a home screen section preset"
+    },
+    "randomAlbumArtists": "Satunnaiset albumin artistit",
+    "@randomAlbumArtists": {
+        "description": "Name of a home screen section preset"
     }
 }
