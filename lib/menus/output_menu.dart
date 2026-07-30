@@ -48,22 +48,22 @@ Future<void> showOutputMenu({required BuildContext context, bool usePlayerTheme 
             // receiver and the per-app volume has no audible effect, so pin the
             // slider to 100% and disable it. Other platforms and output modes
             // (e.g. Bluetooth) keep the normal per-app volume control.
-            final airPlayActive = ref.watch(airPlayActiveProvider).valueOrNull ?? false;
+            final volumeControlDisabled = ref.watch(airPlayActiveProvider).valueOrNull ?? false;
             return Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 VolumeSlider(
-                  initialValue: airPlayActive
+                  initialValue: volumeControlDisabled
                       ? 1.0
                       : (ref.watch(finampSettingsProvider.currentVolume) * 100).floor() / 100.0,
-                  enabled: !airPlayActive,
+                  enabled: !volumeControlDisabled,
                   onChange: (double currentValue) async {
                     final audioHandler = GetIt.instance<MusicPlayerBackgroundTask>();
                     audioHandler.setVolume(currentValue);
                   },
                   forceLoading: true,
                 ),
-                if (airPlayActive)
+                if (volumeControlDisabled)
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
                     child: Text(
@@ -76,17 +76,23 @@ Future<void> showOutputMenu({required BuildContext context, bool usePlayerTheme 
             );
           },
         ),
-        if (isDesktop)
-          Center(
-            child: Text(
-              AppLocalizations.of(context)!.volumeControlHint(
-                "${GlobalShortcuts.getDisplay(VolumeUpIntent)} / "
-                "${GlobalShortcuts.getDisplay(VolumeDownIntent)}",
-              ),
-              style: Theme.of(context).textTheme.bodySmall,
-              textAlign: TextAlign.center,
-            ),
-          ),
+        Consumer(
+          builder: (context, ref, child) {
+            final volumeControlDisabled = ref.watch(airPlayActiveProvider).valueOrNull ?? false;
+            return isDesktop && !volumeControlDisabled
+                ? Center(
+                    child: Text(
+                      AppLocalizations.of(context)!.volumeControlHint(
+                        "${GlobalShortcuts.getDisplay(VolumeUpIntent)} / "
+                        "${GlobalShortcuts.getDisplay(VolumeDownIntent)}",
+                      ),
+                      style: Theme.of(context).textTheme.bodySmall,
+                      textAlign: TextAlign.center,
+                    ),
+                  )
+                : SizedBox.shrink();
+          },
+        ),
         const SizedBox(height: 10),
       ];
 
