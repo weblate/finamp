@@ -28,7 +28,7 @@ import 'finamp_user_helper.dart';
 import 'jellyfin_api.dart' as jellyfin_api;
 
 class JellyfinApiHelper {
-  final jellyfinApi = jellyfin_api.JellyfinApi.create(true);
+  final jellyfinApi = jellyfin_api.JellyfinApi.create(inForeground: true);
   final _jellyfinApiHelperLogger = Logger("JellyfinApiHelper");
 
   // Stores the ids of the artists that the user selected to mix
@@ -53,7 +53,12 @@ class JellyfinApiHelper {
     var clientCertificate = ClientCertificateInstaller.isSupported
         ? FinampSettingsHelper.finampSettings.clientCertificate
         : null;
-    Isolate.spawn(_processRequestsBackground, (startupPort.sendPort, rootToken, clientCertificate));
+    Isolate.spawn(_processRequestsBackground, (
+      startupPort.sendPort,
+      rootToken,
+      clientCertificate,
+      FinampSettingsHelper.finampSettings.deviceId,
+    ));
     Future.sync(() async {
       _workerIsolatePort = await startupPort.first as SendPort?;
     });
@@ -63,7 +68,7 @@ class JellyfinApiHelper {
 
   /// This should only be run in a worker isolate
   /// Sets up singletons and listens for work.
-  static Future<void> _processRequestsBackground((SendPort, RootIsolateToken, ClientCertificate?) input) async {
+  static Future<void> _processRequestsBackground((SendPort, RootIsolateToken, ClientCertificate?, String) input) async {
     BackgroundIsolateBinaryMessenger.ensureInitialized(input.$2);
     ReceivePort requestPort = ReceivePort();
 
@@ -88,10 +93,10 @@ class JellyfinApiHelper {
       relaxedDurability: true,
     );
     GetIt.instance.registerSingleton(isar);
-    GetIt.instance.registerSingleton(FinampUserHelper());
+    GetIt.instance.registerSingleton(FinampUserHelper(deviceId: input.$4));
     // TODO get logging working in background isolate
     await GetIt.instance<FinampUserHelper>().setAuthHeader();
-    jellyfin_api.JellyfinApi backgroundApi = jellyfin_api.JellyfinApi.create(false);
+    jellyfin_api.JellyfinApi backgroundApi = jellyfin_api.JellyfinApi.create(inForeground: false);
     await for (var request in requestPort) {
       var (func, outputPort) = request as (Future<dynamic> Function(jellyfin_api.JellyfinApi), SendPort);
       try {
