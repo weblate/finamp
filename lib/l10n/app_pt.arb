@@ -3251,20 +3251,8 @@
     "@browsePlaybackHistoryActionDescription": {
         "description": "Description of a home screen quick action"
     },
-    "playRandomAlbumActionDescription": "Iniciar reprodução de um álbum aleatório",
-    "@playRandomAlbumActionDescription": {
-        "description": "Description of a home screen quick action"
-    },
     "shuffleTracksAction": "Embaralhar Faixas",
     "@shuffleTracksAction": {
-        "description": "Name of a home screen quick action"
-    },
-    "randomAlbumAction": "Álbum Aleatório",
-    "@randomAlbumAction": {
-        "description": "Name of a home screen quick action"
-    },
-    "randomTrackAction": "Faixa Aleatória",
-    "@randomTrackAction": {
         "description": "Name of a home screen quick action"
     },
     "randomFavoriteAction": "Favorito Aleatório",
@@ -3386,10 +3374,6 @@
     },
     "surpriseMeActionDescription": "Inicia rádio \"Contínuo\" a partir duma faixa aleatória",
     "@surpriseMeActionDescription": {
-        "description": "Description of a home screen quick action"
-    },
-    "playRandomTrackActionDescription": "Inicia reprodução a partir duma faixa aleatória",
-    "@playRandomTrackActionDescription": {
         "description": "Description of a home screen quick action"
     },
     "playRandomFavoriteItemActionDescription": "Inicia reprodução a partir dum item favorito aleatório",

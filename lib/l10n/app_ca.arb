@@ -3280,16 +3280,8 @@
     "@browsePlaybackHistoryActionDescription": {
         "description": "Description of a home screen quick action"
     },
-    "playRandomAlbumActionDescription": "Inicia la reproducció d'un àlbum aleatori",
-    "@playRandomAlbumActionDescription": {
-        "description": "Description of a home screen quick action"
-    },
     "surpriseMeActionDescription": "Inicia la ràdio 'contínua' a partir d'una cançó aleatòria",
     "@surpriseMeActionDescription": {
-        "description": "Description of a home screen quick action"
-    },
-    "playRandomTrackActionDescription": "Inicia la reproducció d'una cançó aleatòria",
-    "@playRandomTrackActionDescription": {
         "description": "Description of a home screen quick action"
     },
     "playRandomFavoriteItemActionDescription": "Inicia la reproducció des d'un element preferit aleatori",
@@ -3310,14 +3302,6 @@
     },
     "shuffleTracksAction": "Barreja les cançons",
     "@shuffleTracksAction": {
-        "description": "Name of a home screen quick action"
-    },
-    "randomAlbumAction": "Àlbum aleatori",
-    "@randomAlbumAction": {
-        "description": "Name of a home screen quick action"
-    },
-    "randomTrackAction": "Cançó aleatòria",
-    "@randomTrackAction": {
         "description": "Name of a home screen quick action"
     },
     "randomFavoriteAction": "Preferit aleatori",

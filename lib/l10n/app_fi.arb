@@ -3244,16 +3244,8 @@
     "@browsePlaybackHistoryActionDescription": {
         "description": "Description of a home screen quick action"
     },
-    "playRandomAlbumActionDescription": "Aloittaa toiston satunnaisesta albumista",
-    "@playRandomAlbumActionDescription": {
-        "description": "Description of a home screen quick action"
-    },
     "surpriseMeActionDescription": "Aloittaa 'jatkuvan' radion satunnaisesta kappaleesta",
     "@surpriseMeActionDescription": {
-        "description": "Description of a home screen quick action"
-    },
-    "playRandomTrackActionDescription": "Aloittaa toiston satunnaisesta kappaleesta",
-    "@playRandomTrackActionDescription": {
         "description": "Description of a home screen quick action"
     },
     "playRandomFavoriteItemActionDescription": "Aloittaa toiston satunnaisesta suosikkikohteesta",
@@ -3274,14 +3266,6 @@
     },
     "shuffleTracksAction": "Sekoita kappaleet",
     "@shuffleTracksAction": {
-        "description": "Name of a home screen quick action"
-    },
-    "randomAlbumAction": "Satunnainen albumi",
-    "@randomAlbumAction": {
-        "description": "Name of a home screen quick action"
-    },
-    "randomTrackAction": "Random kappale",
-    "@randomTrackAction": {
         "description": "Name of a home screen quick action"
     },
     "randomFavoriteAction": "Random suosikki",

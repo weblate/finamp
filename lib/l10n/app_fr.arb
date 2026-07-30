@@ -3026,14 +3026,6 @@
     "@inPlaylist": {
         "description": "Name of 'In Playlist' content type"
     },
-    "randomAlbumAction": "Album Aléatoire",
-    "@randomAlbumAction": {
-        "description": "Name of a home screen quick action"
-    },
-    "randomTrackAction": "Piste aléatoire",
-    "@randomTrackAction": {
-        "description": "Name of a home screen quick action"
-    },
     "surpriseMeAction": "Surprenez-moi",
     "@surpriseMeAction": {
         "description": "Name of a home screen quick action"
@@ -3297,16 +3289,8 @@
     "@browsePlaybackHistoryActionDescription": {
         "description": "Description of a home screen quick action"
     },
-    "playRandomAlbumActionDescription": "Commencer à lire un album aléatoire",
-    "@playRandomAlbumActionDescription": {
-        "description": "Description of a home screen quick action"
-    },
     "surpriseMeActionDescription": "Démarre la radio 'Continuous' à partir d’une piste aléatoire",
     "@surpriseMeActionDescription": {
-        "description": "Description of a home screen quick action"
-    },
-    "playRandomTrackActionDescription": "Lance la lecture d'un morceau choisi au hasard",
-    "@playRandomTrackActionDescription": {
         "description": "Description of a home screen quick action"
     },
     "playRandomFavoriteItemActionDescription": "Commence à lire à partir d'un article favori aléatoire",

@@ -3283,16 +3283,8 @@
     "@browsePlaybackHistoryActionDescription": {
         "description": "Description of a home screen quick action"
     },
-    "playRandomAlbumActionDescription": "Memulai pemutaran album acak",
-    "@playRandomAlbumActionDescription": {
-        "description": "Description of a home screen quick action"
-    },
     "surpriseMeActionDescription": "Memulai radio 'Continuous' dari track acak",
     "@surpriseMeActionDescription": {
-        "description": "Description of a home screen quick action"
-    },
-    "playRandomTrackActionDescription": "Memulai pemutaran track acak",
-    "@playRandomTrackActionDescription": {
         "description": "Description of a home screen quick action"
     },
     "playRandomFavoriteItemActionDescription": "Memulai pemutaran dari item favorit acak",
@@ -3313,14 +3305,6 @@
     },
     "shuffleTracksAction": "Acak Track",
     "@shuffleTracksAction": {
-        "description": "Name of a home screen quick action"
-    },
-    "randomAlbumAction": "Album Acak",
-    "@randomAlbumAction": {
-        "description": "Name of a home screen quick action"
-    },
-    "randomTrackAction": "Track Acak",
-    "@randomTrackAction": {
         "description": "Name of a home screen quick action"
     },
     "randomFavoriteAction": "Favorit Acak",

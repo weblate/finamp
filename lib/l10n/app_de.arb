@@ -3200,16 +3200,8 @@
     "@browsePlaybackHistoryActionDescription": {
         "description": "Description of a home screen quick action"
     },
-    "playRandomAlbumActionDescription": "Startet die Wiedergabe eines zufälligen Albums",
-    "@playRandomAlbumActionDescription": {
-        "description": "Description of a home screen quick action"
-    },
     "surpriseMeActionDescription": "Startet den \"Kontinuierlich\" Radio-Mode mit einem zufälligen Titel",
     "@surpriseMeActionDescription": {
-        "description": "Description of a home screen quick action"
-    },
-    "playRandomTrackActionDescription": "Startet die Wiedergabe mit einem zufälligen Titel",
-    "@playRandomTrackActionDescription": {
         "description": "Description of a home screen quick action"
     },
     "playRandomFavoriteItemActionDescription": "Startet die Wiedergabe eines zufälligen favorisierten Items",
@@ -3230,14 +3222,6 @@
     },
     "shuffleTracksAction": "Zufällige Titel",
     "@shuffleTracksAction": {
-        "description": "Name of a home screen quick action"
-    },
-    "randomAlbumAction": "Zufällige Alben",
-    "@randomAlbumAction": {
-        "description": "Name of a home screen quick action"
-    },
-    "randomTrackAction": "Zufälliger Titel",
-    "@randomTrackAction": {
         "description": "Name of a home screen quick action"
     },
     "randomFavoriteAction": "Zufälliger Favorit",
