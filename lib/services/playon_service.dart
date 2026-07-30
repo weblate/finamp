@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:finamp/components/global_snackbar.dart';
 import 'package:finamp/models/finamp_models.dart';
@@ -175,16 +176,18 @@ class PlayOnService {
     if (retryActive) return;
     try {
       retryActive = true;
-      final startTime = DateTime.now();
+      var retryCount = 0;
       while (true) {
-        await Future<void>.delayed(Duration(seconds: FinampSettingsHelper.finampSettings.playOnReconnectionDelay));
+        final retryDelay = (FinampSettingsHelper.finampSettings.playOnReconnectionDelay * pow(1.3, retryCount)).round();
+        await Future<void>.delayed(Duration(seconds: retryDelay));
+        retryCount++;
         assert(retryActive);
         if (abortConnect) {
           return;
         }
         switch (socketState) {
           case SocketState.disconnected:
-            if (startTime.difference(DateTime.now()) > Duration(minutes: 5)) {
+            if (retryDelay > 5 * 60) {
               // Retry loop has timed out
               _playOnServiceLogger.warning("Stopped attempting to connect playon");
               socketState = SocketState.disconnected;
@@ -208,12 +211,12 @@ class PlayOnService {
 
   Future<void> _connectWebsocket() async {
     assert(socketState == SocketState.connecting);
-    final deviceInfo = await getDeviceInfo();
+    final deviceInfo = await getDeviceInfo(deviceId: FinampSettingsHelper.finampSettings.deviceId);
     //FIXME the websocket connection doesn't work on 10.11 with legacy auth disabled (https://gist.github.com/nielsvanvelzen/ea047d9028f676185832e51ffaf12a6f#disabling-deprecated-authorization-methods)
     // the [api_key] parameter is deprecated, but there's no way to set HTTP headers for our websocket client
     // apparently this is because it's not possible to do on the web, which would mean that Jellyfin Web (which is also broken as of 10.11.5) would also need an alternative to authenticate, for example sending the auth token in the first message after connecting
     final url =
-        "${_finampUserHelper.currentUser!.baseURL}/socket?api_key=${_finampUserHelper.currentUser!.accessToken}&deviceId=${deviceInfo.id}";
+        "${_finampUserHelper.currentUser!.baseURL}/socket?ApiKey=${_finampUserHelper.currentUser!.accessToken}&deviceId=${deviceInfo.id}";
     final parsedUrl = Uri.parse(url);
     final wsUrl = parsedUrl.replace(scheme: parsedUrl.scheme == "https" ? "wss" : "ws");
     _channel = WebSocketChannel.connect(wsUrl);

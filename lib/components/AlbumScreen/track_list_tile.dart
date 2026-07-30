@@ -14,10 +14,13 @@ import 'package:finamp/models/jellyfin_models.dart';
 import 'package:finamp/services/current_album_image_provider.dart';
 import 'package:finamp/services/datetime_helper.dart';
 import 'package:finamp/services/feedback_helper.dart';
+import 'package:finamp/services/media_state_stream.dart';
+import 'package:finamp/services/music_player_background_task.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get_it/get_it.dart';
+import 'package:mini_music_visualizer/mini_music_visualizer.dart';
 
 import '../../extensions/localizations.dart';
 import '../../models/music_models.dart';
@@ -114,8 +117,31 @@ class TrackListTile extends ConsumerWidget {
         return;
       }
 
+      final FinampPlayable sourcedParent;
+      if (parentPlayable case MusicScreenPlayable musicScreen) {
+        sourcedParent = MusicScreenPlayable(
+          tab: musicScreen.tab,
+          library: musicScreen.library,
+          source: QueueItemSource.rawId(
+            type: musicScreen.source.type,
+            name: switch (musicScreen.source.name.type) {
+              QueueItemSourceNameType.yourLikes || QueueItemSourceNameType.musicScreenTracks => QueueItemSourceName(
+                type: musicScreen.source.name.type,
+                localizationParameter: item.name ?? "",
+              ),
+              _ => musicScreen.source.name,
+            },
+            item: item,
+            id: "allTracks-${item.id}",
+          ),
+          sortConfig: musicScreen.sortConfig,
+        );
+      } else {
+        sourcedParent = parentPlayable;
+      }
+
       PlayableSlice slice = await ref.watch(
-        getPlayableSliceProvider(item: parentPlayable, startingOffset: index!).future,
+        getPlayableSliceProvider(item: sourcedParent, startingOffset: index!).future,
       );
 
       // start linear playback of album from the given index
@@ -160,7 +186,7 @@ class TrackListTile extends ConsumerWidget {
         showCover ? TrackListItemFeatures.cover : null,
         TrackListItemFeatures.duration,
         TrackListItemFeatures.addToPlaylistOrFavorite,
-        playable && allowDismiss ? TrackListItemFeatures.swipeable : null,
+        playable && allowDismiss ? TrackListItemFeatures.swipeableInTrackList : null,
       ].nonNulls.toList(),
     );
   }
@@ -257,7 +283,6 @@ class QueueListTile extends StatelessWidget {
   final FinampQueueItem queueItem;
   final BaseItemDto? parentItem;
   final int? listIndex;
-  final bool isCurrentTrack;
   final bool isInPlaylist;
   final bool allowReorder;
   final bool highlightCurrentTrack;
@@ -273,7 +298,6 @@ class QueueListTile extends StatelessWidget {
     required this.queueItem,
     required this.listIndex,
     required this.onTap,
-    required this.isCurrentTrack,
     required this.isInPlaylist,
     required this.allowReorder,
     this.highlightCurrentTrack = false,
@@ -303,7 +327,8 @@ class QueueListTile extends StatelessWidget {
         TrackListItemFeatures.cover,
         TrackListItemFeatures.duration,
         TrackListItemFeatures.addToPlaylistOrFavorite,
-        TrackListItemFeatures.swipeable,
+        TrackListItemFeatures.swipeableInTrackList,
+        TrackListItemFeatures.swipeableInQueue,
         allowReorder ? TrackListItemFeatures.dragHandle : null,
       ].nonNulls.toList(),
     );
@@ -346,7 +371,7 @@ class EditListTile extends StatelessWidget {
         TrackListItemFeatures.cover,
         TrackListItemFeatures.dragHandle,
         TrackListItemFeatures.fullyDraggable,
-        TrackListItemFeatures.swipeable,
+        TrackListItemFeatures.swipeableInTrackList,
         restoreInsteadOfRemove ? TrackListItemFeatures.restoreButton : TrackListItemFeatures.removeFromListButton,
       ].nonNulls.toList(),
     );
@@ -408,7 +433,11 @@ class TrackListItem extends ConsumerWidget {
     final bool showAlbum = baseItem.albumId != parentItem?.id;
 
     final isCurrentlyPlaying = ref.watch(
-      currentTrackProvider.select((queueItem) => queueItem.valueOrNull?.baseItemId == baseItem.id),
+      currentTrackProvider.select(
+        (playingItem) => queueItem != null
+            ? queueItem!.id == playingItem.valueOrNull?.id
+            : playingItem.valueOrNull?.baseItemId == baseItem.id,
+      ),
     );
 
     var listCard = Padding(
@@ -461,15 +490,20 @@ class TrackListItem extends ConsumerWidget {
           onSecondaryTapDown: features.contains(TrackListItemFeatures.fullyDraggable)
               ? null
               : (details) => menuCallback(),
-          child: features.contains(TrackListItemFeatures.swipeable) && !ref.watch(finampSettingsProvider.disableGesture)
+          child:
+              (features.contains(TrackListItemFeatures.swipeableInTrackList) ||
+                      features.contains(TrackListItemFeatures.swipeableInQueue)) &&
+                  !ref.watch(finampSettingsProvider.disableGesture)
               ? Dismissible(
                   key: Key(listIndex.toString()),
-                  direction: getAllowedDismissDirection(
-                    swipeLeftEnabled:
-                        ref.watch(finampSettingsProvider.itemSwipeActionLeftToRight) != ItemSwipeActions.nothing,
-                    swipeRightEnabled:
-                        ref.watch(finampSettingsProvider.itemSwipeActionRightToLeft) != ItemSwipeActions.nothing,
-                  ),
+                  direction: features.contains(TrackListItemFeatures.swipeableInQueue)
+                      ? DismissDirection.endToStart
+                      : getAllowedDismissDirection(
+                          swipeLeftEnabled:
+                              ref.watch(finampSettingsProvider.itemSwipeActionLeftToRight) != ItemSwipeActions.nothing,
+                          swipeRightEnabled:
+                              ref.watch(finampSettingsProvider.itemSwipeActionRightToLeft) != ItemSwipeActions.nothing,
+                        ),
                   dismissThresholds: const {DismissDirection.startToEnd: 0.65, DismissDirection.endToStart: 0.65},
                   // no background, dismissing really dismisses here
                   confirmDismiss: confirmDismiss,
@@ -524,9 +558,10 @@ enum TrackListItemFeatures {
   addToPlaylistOrFavorite,
   dragHandle,
   fullyDraggable,
-  swipeable,
+  swipeableInTrackList,
   removeFromListButton,
   restoreButton,
+  swipeableInQueue,
 }
 
 class TrackListItemTile extends ConsumerWidget {
@@ -565,7 +600,7 @@ class TrackListItemTile extends ConsumerWidget {
 
   static const double defaultTileHeight = 60.0;
   static const double defaultTitleGap = 10.0;
-  static const double albumCoverCornerRadius = 8.0;
+  static const double albumCoverBorderRadius = 8.0;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -622,6 +657,10 @@ class TrackListItemTile extends ConsumerWidget {
 
     final showPlaybackProgress = !highlightCurrentTrack && playbackProgress != null && playbackProgress! < 0.99;
 
+    final isCurrentlyPlaying = ref.watch(
+      mediaStateProvider.select((x) => x.playbackState.playing || x.fadeDirection == FadeDirection.fadeOut),
+    );
+
     final tileLead = Row(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -640,24 +679,46 @@ class TrackListItemTile extends ConsumerWidget {
                 : const EdgeInsets.only(left: 6.0, right: 0.0),
             child: Container(
               constraints: const BoxConstraints(minWidth: 22.0),
-              child: Text(
-                features.contains(TrackListItemFeatures.listIndex)
-                    ? ((listIndex ?? 0) + 1).toString()
-                    : actualIndex.toString(),
-                textAlign: TextAlign.center,
-                maxLines: 1,
-                softWrap: false,
-                overflow: TextOverflow.clip,
-                style: TextStyle(
-                  color: Theme.of(context).textTheme.bodyMedium?.color,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
+              child: isCurrentTrack && isCurrentlyPlaying && !features.contains(TrackListItemFeatures.cover)
+                  ? MiniMusicVisualizer(
+                      animate: true,
+                      color: Theme.of(context).colorScheme.secondary,
+                      width: 4,
+                      height: 15,
+                      radius: 2,
+                    )
+                  : Text(
+                      features.contains(TrackListItemFeatures.listIndex)
+                          ? ((listIndex ?? 0) + 1).toString()
+                          : actualIndex.toString(),
+                      textAlign: TextAlign.center,
+                      maxLines: 1,
+                      softWrap: false,
+                      overflow: TextOverflow.clip,
+                      style: TextStyle(
+                        color: Theme.of(context).textTheme.bodyMedium?.color,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
             ),
           ),
         if (features.contains(TrackListItemFeatures.cover))
-          AlbumImage(item: baseItem, borderRadius: BorderRadius.circular(albumCoverCornerRadius)),
+          isCurrentTrack && isCurrentlyPlaying
+              ? Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Container(
+                      foregroundDecoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(albumCoverBorderRadius),
+                        color: Colors.black.withOpacity(0.4),
+                      ),
+                      child: AlbumImage(item: baseItem, borderRadius: BorderRadius.circular(albumCoverBorderRadius)),
+                    ),
+                    MiniMusicVisualizer(animate: true, color: Colors.white, width: 4, height: 15, radius: 2),
+                  ],
+                )
+              : AlbumImage(item: baseItem, borderRadius: BorderRadius.circular(albumCoverBorderRadius)),
       ],
     );
     final tileTitle = ConstrainedBox(
@@ -679,7 +740,10 @@ class TrackListItemTile extends ConsumerWidget {
                 height: 1.1,
               ),
               overflow: TextOverflow.ellipsis,
-              maxLines: 2,
+              // It would be better to increase tile height instead of clamping titles to one line and hoping things
+              // now fit, but getting the tile height scaling correct across all widgets is difficult.
+              // TODO properly scale track list tile height
+              maxLines: MediaQuery.textScalerOf(context).scale(15.5) > 15.5 * 1.11 ? 1 : 2,
             ),
           ),
           Flexible(
@@ -868,11 +932,11 @@ class TrackListItemTile extends ConsumerWidget {
       hasOverflowed: (BoxConstraints constraints) => constraints.maxWidth > 750,
       builder: (context, showOverflowMenu) {
         return ListTile(
-          visualDensity: const VisualDensity(horizontal: 0.0, vertical: 0.5),
+          visualDensity: const VisualDensity(horizontal: 0.0, vertical: 1.0),
           minVerticalPadding: 0.0,
           horizontalTitleGap: defaultTitleGap,
           contentPadding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 0.0),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(albumCoverCornerRadius)),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(albumCoverBorderRadius)),
           tileColor: highlightTrack ? Theme.of(context).colorScheme.surfaceContainer : Colors.transparent,
           leading: tileLead,
           title: tileTitle,
@@ -888,7 +952,7 @@ class TrackListItemTile extends ConsumerWidget {
                     printDuration(baseItem.runTimeTicksDuration(), leadingZeroes: false),
                     semanticsLabel: durationLabelString,
                     textAlign: TextAlign.end,
-                    style: TextStyle(color: Theme.of(context).textTheme.bodySmall?.color),
+                    style: TextStyle(color: Theme.of(context).textTheme.bodySmall?.color?.withOpacity(0.6)),
                   ),
                 if (features.contains(TrackListItemFeatures.addToPlaylistOrFavorite))
                   Semantics(
@@ -972,7 +1036,7 @@ class TrackListItemTile extends ConsumerWidget {
                       decoration: ShapeDecoration(
                         color: Theme.of(context).textTheme.bodyMedium!.color!.withOpacity(0.1),
                         shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(albumCoverCornerRadius)),
+                          borderRadius: BorderRadius.all(Radius.circular(albumCoverBorderRadius)),
                         ),
                       ),
                     ),
