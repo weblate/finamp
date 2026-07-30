@@ -872,6 +872,10 @@ class _CurrentTrackState extends ConsumerState<CurrentTrack> {
                                                     color: primaryTextColor,
                                                     fontSize: 14,
                                                     fontWeight: FontWeight.w400,
+                                                    fontFeatures: const [
+                                                      // fixed-width digits
+                                                      FontFeature.tabularFigures(),
+                                                    ],
                                                   );
                                                   if (snapshot.hasData) {
                                                     playbackPosition = snapshot.data;
@@ -906,6 +910,10 @@ class _CurrentTrackState extends ConsumerState<CurrentTrack> {
                                                   color: primaryTextColor,
                                                   fontSize: 14,
                                                   fontWeight: FontWeight.w400,
+                                                  fontFeatures: const [
+                                                    // fixed-width digits
+                                                    FontFeature.tabularFigures(),
+                                                  ],
                                                 ),
                                               ),
                                             ],

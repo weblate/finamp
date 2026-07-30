@@ -401,6 +401,10 @@ class NowPlayingBar extends ConsumerWidget {
                                                               fontSize: 14,
                                                               fontWeight: FontWeight.w400,
                                                               color: primaryTextColor.withOpacity(0.8),
+                                                              fontFeatures: const [
+                                                                // fixed-width digits
+                                                                FontFeature.tabularFigures(),
+                                                              ],
                                                             ),
                                                           ),
                                                           if (!showRemaining) ...[
@@ -411,6 +415,10 @@ class NowPlayingBar extends ConsumerWidget {
                                                                 color: primaryTextColor.withOpacity(0.8),
                                                                 fontSize: 14,
                                                                 fontWeight: FontWeight.w400,
+                                                                fontFeatures: const [
+                                                                  // fixed-width digits
+                                                                  FontFeature.tabularFigures(),
+                                                                ],
                                                               ),
                                                             ),
                                                             const SizedBox(width: 2),
@@ -423,6 +431,10 @@ class NowPlayingBar extends ConsumerWidget {
                                                                 color: primaryTextColor.withOpacity(0.8),
                                                                 fontSize: 14,
                                                                 fontWeight: FontWeight.w400,
+                                                                fontFeatures: const [
+                                                                  // fixed-width digits
+                                                                  FontFeature.tabularFigures(),
+                                                                ],
                                                               ),
                                                             ),
                                                           ],
