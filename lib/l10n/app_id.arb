@@ -49,7 +49,7 @@
             }
         }
     },
-    "loginFlowSlogan": "Musik Anda, sesuai yang Anda inginkan.",
+    "loginFlowSlogan": "Musik Anda, seperti yang Anda inginkan.",
     "@loginFlowSlogan": {
         "description": "Slogan shown on the login screen."
     },
@@ -260,7 +260,7 @@
             }
         }
     },
-    "downloadedCountUnified": "{trackCount,plural,=1{{trackCount} trek} other{{trackCount} trek}}, {imageCount,plural,=1{{imageCount} gambar} other{{imageCount} gambar}}\\\n{syncCount,plural,=1{{syncCount} node sedang sinkron} other{{syncCount} node sedang sinkron}}{repairing, plural, =0{} other{\\\nSaat ini sedang memperbaiki}}",
+    "downloadedCountUnified": "{trackCount,plural,=1{{trackCount} trek} other{{trackCount} trek}}, {imageCount,plural,=1{{imageCount} gambar} other{{imageCount} gambar}}\n{syncCount,plural,=1{{syncCount} node sedang sinkron} other{{syncCount} node sedang sinkron}}{repairing, plural, =0{} other{\\\nSaat ini sedang memperbaiki}}",
     "@downloadedCountUnified": {
         "description": "Display of downloaded track and image count on downloads screen.",
         "placeholders": {
@@ -849,7 +849,7 @@
     "@placeholderSource": {
         "description": "Placeholder text used when the source of the current track/queue is unknown"
     },
-    "playbackHistory": "Riwayat pemutaran",
+    "playbackHistory": "Riwayat Pemutaran",
     "@playbackHistory": {
         "description": "Title for the playback history screen, where the user can see a list of recently played tracks, sorted by "
     },
@@ -2720,7 +2720,7 @@
     "@addDownloadLocationsErrorPrompt": {
         "description": "Label shown on popup dialog when adding a download location when writing songs fails"
     },
-    "androidImageErrorPrompt": "Kami tidak dapat menulis gambar ke folder Music Android karena pembatasan OS. Anda harus memilih lokasi lain.",
+    "androidImageErrorPrompt": "Kami tidak dapat menulis gambar ke folder Music Android karena pembatasan dari OS. Anda harus memilih lokasi lain.",
     "@androidImageErrorPrompt": {
         "description": "Label shown on popup dialog when adding a download location when writing songs succeeds but writing images fails, which can occur on android."
     },
@@ -3199,7 +3199,7 @@
     "@favoriteGenres": {
         "description": "Name of a home screen section preset"
     },
-    "newlyAddedAlbums": "Album yang Baru Ditambahkan",
+    "newlyAddedAlbums": "Album Baru Ditambahkan",
     "@newlyAddedAlbums": {
         "description": "Name of a home screen section preset"
     },
