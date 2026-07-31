@@ -65,9 +65,10 @@ class _MusicScreenState extends ConsumerState<MusicScreen> with TickerProviderSt
     name: QueueItemSourceName(
       type: ref.watch(finampSettingsProvider.onlyShowFavorites)
           ? QueueItemSourceNameType.yourLikes
-          : QueueItemSourceNameType.shuffleAll,
+          : QueueItemSourceNameType.musicScreenTracks,
     ),
-    id: "shuffleAll",
+    id: "allTracks",
+    library: currentLibraryPlaceholder.resolve2(ref),
   );
 
   void _stopSearching() {
@@ -346,7 +347,7 @@ class _MusicScreenState extends ConsumerState<MusicScreen> with TickerProviderSt
             // uses this variable and a check of the tab index to determine when to fire.
             bool tabbarScrolling = false;
 
-            if (Platform.isAndroid) {
+            if (Platform.isAndroid || Platform.isIOS) {
               return TransparentRightSwipeDetector(
                 action: (wonArena) {
                   if (_tabController?.index == 0 &&
