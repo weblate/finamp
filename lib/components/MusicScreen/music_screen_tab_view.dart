@@ -330,9 +330,13 @@ class _MusicScreenTabViewState extends ConsumerState<MusicScreenTabView>
                                   // when the tabBar was filtered and we only have the tracks tab,
                                   // we can allow Dismiss gestures in the track list
                                   allowDismiss: widget.allowTrackGestures,
-                                  parentItem: widget.sortConfig.genreFilter != null
-                                      ? ref.watch(itemByIdProvider(widget.sortConfig.genreFilter!.id)).value
-                                      : null,
+                                  parentItem: switch (true) {
+                                    _ when widget.sortConfig.genreFilter != null =>
+                                      ref.watch(itemByIdProvider(widget.sortConfig.genreFilter!.id)).value,
+                                    _ when widget.sortConfig.artistFilter != null =>
+                                      ref.watch(itemByIdProvider(widget.sortConfig.artistFilter!.id)).value,
+                                    _ => null,
+                                  },
                                   forceAlbumArtists: (widget.sortConfig.sortBy == SortBy.albumArtist),
                                   adaptiveAdditionalInfoSortBy: widget.sortConfig.sortBy,
                                   parentPlayable:

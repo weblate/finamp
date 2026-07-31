@@ -296,6 +296,18 @@ class FinampSettingsAdapter extends TypeAdapter<FinampSettings> {
         defaultArtistType: fields[92] == null
             ? ArtistType.albumArtist
             : fields[92] as ArtistType,
+        artistScreenAlbumsSortBy: fields[153] == null
+            ? SortBy.premiereDate
+            : fields[153] as SortBy,
+        artistScreenAlbumsSortOrder: fields[154] == null
+            ? SortOrder.ascending
+            : fields[154] as SortOrder,
+        artistScreenAppearsOnSortBy: fields[156] == null
+            ? SortBy.premiereDate
+            : fields[156] as SortBy,
+        artistScreenAppearsOnSortOrder: fields[157] == null
+            ? SortOrder.ascending
+            : fields[157] as SortOrder,
         autoOffline: fields[88] == null
             ? AutoOfflineOption.disconnected
             : fields[88] as AutoOfflineOption,
@@ -472,7 +484,7 @@ class FinampSettingsAdapter extends TypeAdapter<FinampSettings> {
   @override
   void write(BinaryWriter writer, FinampSettings obj) {
     writer
-      ..writeByte(146)
+      ..writeByte(150)
       ..writeByte(0)
       ..write(obj.isOffline)
       ..writeByte(1)
@@ -764,7 +776,15 @@ class FinampSettingsAdapter extends TypeAdapter<FinampSettings> {
       ..writeByte(151)
       ..write(obj.clientCertificate)
       ..writeByte(152)
-      ..write(obj.deviceId);
+      ..write(obj.deviceId)
+      ..writeByte(153)
+      ..write(obj.artistScreenAlbumsSortBy)
+      ..writeByte(154)
+      ..write(obj.artistScreenAlbumsSortOrder)
+      ..writeByte(156)
+      ..write(obj.artistScreenAppearsOnSortBy)
+      ..writeByte(157)
+      ..write(obj.artistScreenAppearsOnSortOrder);
   }
 
   @override
@@ -3742,6 +3762,8 @@ class ItemFilterTypeAdapter extends TypeAdapter<ItemFilterType> {
         return ItemFilterType.searchTerm;
       case 5:
         return ItemFilterType.isUnplayed;
+      case 6:
+        return ItemFilterType.artistFilter;
       default:
         return ItemFilterType.isFavorite;
     }
@@ -3762,6 +3784,8 @@ class ItemFilterTypeAdapter extends TypeAdapter<ItemFilterType> {
         writer.writeByte(4);
       case ItemFilterType.isUnplayed:
         writer.writeByte(5);
+      case ItemFilterType.artistFilter:
+        writer.writeByte(6);
     }
   }
 
@@ -9733,6 +9757,7 @@ const _$ItemFilterTypeEnumMap = {
   ItemFilterType.genreFilter: 'genreFilter',
   ItemFilterType.searchTerm: 'searchTerm',
   ItemFilterType.isUnplayed: 'isUnplayed',
+  ItemFilterType.artistFilter: 'artistFilter',
 };
 
 SortAndFilterConfiguration _$SortAndFilterConfigurationFromJson(

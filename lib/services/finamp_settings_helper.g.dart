@@ -1290,6 +1290,47 @@ extension FinampSetters on FinampSettingsHelper {
     ).put("FinampSettings", finampSettingsTemp);
   }
 
+  static void setArtistScreenAlbumsSortBy(SortBy newArtistScreenAlbumsSortBy) {
+    FinampSettings finampSettingsTemp = FinampSettingsHelper.finampSettings;
+    finampSettingsTemp.artistScreenAlbumsSortBy = newArtistScreenAlbumsSortBy;
+    Hive.box<FinampSettings>(
+      "FinampSettings",
+    ).put("FinampSettings", finampSettingsTemp);
+  }
+
+  static void setArtistScreenAlbumsSortOrder(
+    SortOrder newArtistScreenAlbumsSortOrder,
+  ) {
+    FinampSettings finampSettingsTemp = FinampSettingsHelper.finampSettings;
+    finampSettingsTemp.artistScreenAlbumsSortOrder =
+        newArtistScreenAlbumsSortOrder;
+    Hive.box<FinampSettings>(
+      "FinampSettings",
+    ).put("FinampSettings", finampSettingsTemp);
+  }
+
+  static void setArtistScreenAppearsOnSortBy(
+    SortBy newArtistScreenAppearsOnSortBy,
+  ) {
+    FinampSettings finampSettingsTemp = FinampSettingsHelper.finampSettings;
+    finampSettingsTemp.artistScreenAppearsOnSortBy =
+        newArtistScreenAppearsOnSortBy;
+    Hive.box<FinampSettings>(
+      "FinampSettings",
+    ).put("FinampSettings", finampSettingsTemp);
+  }
+
+  static void setArtistScreenAppearsOnSortOrder(
+    SortOrder newArtistScreenAppearsOnSortOrder,
+  ) {
+    FinampSettings finampSettingsTemp = FinampSettingsHelper.finampSettings;
+    finampSettingsTemp.artistScreenAppearsOnSortOrder =
+        newArtistScreenAppearsOnSortOrder;
+    Hive.box<FinampSettings>(
+      "FinampSettings",
+    ).put("FinampSettings", finampSettingsTemp);
+  }
+
   static void setBufferDuration(Duration newBufferDuration) {
     FinampSettings finampSettingsTemp = FinampSettingsHelper.finampSettings;
     finampSettingsTemp.bufferDuration = newBufferDuration;
@@ -1730,6 +1771,22 @@ extension FinampSettingsProviderSelectors on StreamProvider<FinampSettings> {
       );
   ProviderListenable<String> get deviceId =>
       finampSettingsProvider.select((value) => value.requireValue.deviceId);
+  ProviderListenable<SortBy> get artistScreenAlbumsSortBy =>
+      finampSettingsProvider.select(
+        (value) => value.requireValue.artistScreenAlbumsSortBy,
+      );
+  ProviderListenable<SortOrder> get artistScreenAlbumsSortOrder =>
+      finampSettingsProvider.select(
+        (value) => value.requireValue.artistScreenAlbumsSortOrder,
+      );
+  ProviderListenable<SortBy> get artistScreenAppearsOnSortBy =>
+      finampSettingsProvider.select(
+        (value) => value.requireValue.artistScreenAppearsOnSortBy,
+      );
+  ProviderListenable<SortOrder> get artistScreenAppearsOnSortOrder =>
+      finampSettingsProvider.select(
+        (value) => value.requireValue.artistScreenAppearsOnSortOrder,
+      );
   ProviderListenable<DownloadProfile> get downloadTranscodingProfile =>
       finampSettingsProvider.select(
         (value) => value.requireValue.downloadTranscodingProfile,
