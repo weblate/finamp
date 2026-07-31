@@ -3623,7 +3623,7 @@
             }
         }
     },
-    "featureChipDescription": "{chipName, select, additionalPeople{Pessoas não-artistas vinculadas à faixa, se disponíveis (compositores, escritores, etc.)} playbackMode{Informação de estado de fluxo e transcodificação} bitDepth{Bits por amostra de áudio.  Apenas aplicável a codecs sem perdas, geralmente 16 bits.} sampleRate{Amostras de áudio por segundo.  Geralmente 44.1 kHz.} normalizationGain{Nível de ganho de reprodução atualmente ativo} other{null}}",
+    "featureChipDescription": "{chipName, select,  explicit{Marcas e faixas que contém conteúdo explícito} additionalPeople{Pessoas não-artistas vinculadas à faixa, se disponíveis (compositores, escritores, etc.)} playbackMode{Informação de estado de fluxo e transcodificação} bitDepth{Bits por amostra de áudio.  Apenas aplicável a codecs sem perdas, geralmente 16 bits.} sampleRate{Amostras de áudio por segundo.  Geralmente 44.1 kHz.} normalizationGain{Nível de ganho de reprodução atualmente ativo}  size{O tamanho do ficheiro original da faixa} other{null}}",
     "@featureChipDescription": {
         "placeholders": {
             "chipName": {
