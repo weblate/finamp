@@ -204,7 +204,7 @@
     "bitrateSubtitle": "Высокий битрейт обеспечивает лучшее качество звука за счет большего потребления трафика. Не распространяется на форматы без потерь, например FLAC",
     "shuffleAllTrackCount": "Количество композиций случайного проигрывания",
     "showTextOnGridView": "Показывать текст в режиме отображения сеткой",
-    "showTextOnGridViewSubtitle": "Показывать ли текст (название, исполнитель и т.д.) на экране музыки в режиме отображения сеткой.",
+    "showTextOnGridViewSubtitle": "Показывать ли текст (название, исполнитель и т.д.) на экране музыки в режиме отображения сеткой. На домашнем экране текст всегда включен, игнорируя эту настройку.",
     "useCoverAsBackground": "Показывать размытую обложку на фоне",
     "useCoverAsBackgroundSubtitle": "Использовать ли размытую обложку альбома в качестве фона в различных частях приложения.",
     "minutes": "Минуты",
@@ -604,7 +604,7 @@
     "@playbackOrderLinearButtonTooltip": {
         "description": "Tooltip for the button that toggles the playback order between linear/in-order and shuffle, while the queue is in linear/in-order mode"
     },
-    "playingFromType": "Воспроизведение из {source, select, album{альбома} playlist{плейлиста} trackMix{микса композиций} artistMix{микса исполнителей} albumMix{микса альбомов} genreMix{микса жанров} favorites{избранного} allTracks{всех композиций} filteredList{композиций} genre{жанра} artist{исполнителя} track{композиции} nextUpAlbum{альбома в следующих} nextUpPlaylist{плейлиста в следующих} nextUpArtist{исполнителя в следующих} nextUpGenre{жанра в следующих} remoteClient{удаленного клиента} radio{радио} other{}}",
+    "playingFromType": "Воспроизведение из {source, select, album{альбома} playlist{плейлиста} trackMix{микса композиций} artistMix{микса исполнителей} albumMix{микса альбомов} genreMix{микса жанров} favorites{избранного} allTracks{всех композиций} filteredList{композиций} genre{жанра} artist{исполнителя} track{композиции} nextUpAlbum{альбома в следующих} nextUpPlaylist{плейлиста в следующих} nextUpArtist{исполнителя в следующих} nextUpGenre{жанра в следующих} remoteClient{удаленного клиента} radio{радио} homeScreenSection{} collection{коллекции} collectionMix{микса коллекций} other{}}",
     "@playingFromType": {
         "description": "Prefix shown before the type of the main queue source at the top of the player screen. Example: \"Playing From Album\"",
         "placeholders": {
@@ -1319,7 +1319,7 @@
     "@defaultDownloadLocationButton": {
         "description": "Tooltip for button that sets a download location as the default."
     },
-    "fixedGridTileSizeEnum": "{size, select, small{Маленький} medium{Средний} large{Большой} veryLarge{Очень большой} other{???}}",
+    "fixedGridTileSizeEnum": "{size, select, tiny{крошечный} verySmall{очень маленький} small{маленький} medium{средний} large{большой} veryLarge{очень большой} huge{огромный} giant{гигантский} other{???}}",
     "@fixedGridTileSizeEnum": {
         "placeholders": {
             "size": {
@@ -2179,7 +2179,7 @@
     "@quickConnectAuthorizationMenuStateSubtitleIdle": {
         "description": "Subtitle for the quick connect authorization menu state info (above the input field) while the code hasn't been submitted yet"
     },
-    "quickConnectAuthorizationMenuStateTitleProcessing": "Пытаемся Авторизовать Запрос",
+    "quickConnectAuthorizationMenuStateTitleProcessing": "Авторизуем запрос",
     "@quickConnectAuthorizationMenuStateTitleProcessing": {
         "description": "Title for the quick connect authorization menu state info (above the input field) while a request is being processed"
     },
@@ -2747,5 +2747,135 @@
     "explicit": "Explicit",
     "@explicit": {
         "description": "Label for content that is considered explicit, usually marked by an 'E' in music apps"
+    },
+    "activeLibraries": "Активные библиотеки",
+    "@activeLibraries": {
+        "description": "Active Libraries"
+    },
+    "systemAccentColor": "Использовать системный акцент",
+    "@systemAccentColor": {
+        "description": "Title of the System Accent Color setting."
+    },
+    "amoledTheme": "Использовать AMOLED тему",
+    "@amoledTheme": {
+        "description": "Toggles the dark color scheme between dark gray and pure black."
+    },
+    "amoledThemeSubtitle": "Заменяет тёмную цветовую схему на полностью чёрную тему.",
+    "useMonochromeIcon": "Использовать монохромное лого",
+    "@useMonochromeIcon": {
+        "description": "Toggles the Finamp icon between classic and it being monochromic. This does not change the outside-app-icon"
+    },
+    "useMonochromeIconSubtitle": "Эта настройка влияет только на лого в приложении и не затрагивает иконку в лаунчере.",
+    "@useMonochromeIconSubtitle": {
+        "description": "Subtitle for the toggle that switches the Finamp icon between classic and it being monochromic."
+    },
+    "ascending": "По возрастанию",
+    "@ascending": {
+        "description": "Label for ascending order."
+    },
+    "descending": "По убыванию",
+    "@descending": {
+        "description": "Label for descending order."
+    },
+    "multichannelHandlingTitle": "Обработка многоканального транскодирования",
+    "@multichannelHandlingTitle": {
+        "description": "Title for multi-channel handling dropdown"
+    },
+    "multichannelHandlingSubtitle": "Как обращаться с многоканальными треками (> 2 каналов) при транскодировании. Применяется как к потоковому воспроизведению (стримингу), так и к загрузкам.",
+    "@multichannelHandlingSubtitle": {
+        "description": "Subtitle for multi-channel handling dropdown"
+    },
+    "multichannelHandlingOption": "{option, select, stereoDownmixLossy{Сводить в стерео только кодеки с потерями} stereoDownmixAll{Сводить всё в стерео} fixedBitrate{Никогда не выполнять сведение} other{{option}} }",
+    "@multichannelHandlingOption": {
+        "placeholders": {
+            "option": {
+                "type": "String"
+            }
+        },
+        "description": "Options in multi-channel handling dropdown"
+    },
+    "volumeControlHint": "Используйте {shortcut}, чтобы регулировать громкость",
+    "@volumeControlHint": {
+        "description": "Hint text displayed below the volume bar to inform users about keyboard shortcuts for volume control.",
+        "placeholders": {
+            "shortcut": {
+                "type": "String",
+                "example": "Ctrl + ↑/↓"
+            }
+        }
+    },
+    "volumeControlDisabledCastingHint": "Звук передается на устройство, которое не поддерживает регулировку громкости в приложении.",
+    "@volumeControlDisabledCastingHint": {
+        "description": "Hint text displayed below the volume bar when the in-app volume slider is disabled because audio is being cast to a device that bypasses the in-app volume handling and handles its own volume, such as when using Airplay."
+    },
+    "seekControlHint": "{shortcut} для перемотки на -5 сек. / +30 сек.",
+    "@seekControlHint": {
+        "description": "Shortcut hint for seeking backward 5s or forward 30s.",
+        "placeholders": {
+            "shortcut": {
+                "type": "String",
+                "example": "Ctrl + ←/→"
+            }
+        }
+    },
+    "previousTracksPersistenceModeSelectorTitle": "Отображение предыдущих треков на панели очереди",
+    "@previousTracksPersistenceModeSelectorTitle": {
+        "description": "Title for setting that allows to override state of previous tracks header in queue list"
+    },
+    "previousTracksPersistenceModeSelectorSubtitle": "Если открыть панель очереди, раздел «Предыдущие треки» должен...",
+    "@previousTracksPersistenceModeSelectorSubtitle": {
+        "description": "Subtitle for setting that allows to override state of previous tracks header in queue list"
+    },
+    "previousTracksPersistenceModePersistent": "Запоминать предыдущее состояние (открыт/закрыт)",
+    "@previousTracksPersistenceModePersistent": {
+        "description": "Does nothing to previous tracks header in queue list, using its saved value"
+    },
+    "previousTracksPersistenceModeCollapsed": "Быть закрытым (скрытым)",
+    "@previousTracksPersistenceModeCollapsed": {
+        "description": "Overrides saved value to collapse previous tracks header on queue list open"
+    },
+    "previousTracksPersistenceModeExpanded": "Быть раскрытым (видимым)",
+    "@previousTracksPersistenceModeExpanded": {
+        "description": "Overrides saved value to expand previous tracks header on queue list open"
+    },
+    "home": "Главная",
+    "@home": {
+        "description": "Label for the home tab in the main navigation bar"
+    },
+    "homeScreenSettingsTitle": "Главный экран",
+    "@homeScreenSettingsTitle": {
+        "description": "Title for the home screen settings"
+    },
+    "homeScreenSectionPresetPickerMenuTitle": "Выберите один из готовых вариантов",
+    "@homeScreenSectionPresetPickerMenuTitle": {
+        "description": "Title for the preset picker menu, which allows users to pick a preset section to add to the home screen"
+    },
+    "homeScreenSectionCustomSectionTitle": "Своя секция",
+    "@homeScreenSectionCustomSectionTitle": {
+        "description": "Title for the custom section type, which can be added to the home screen"
+    },
+    "homeScreenSectionCustomSectionDescription": "Настройте секцию самостоятельно",
+    "@homeScreenSectionCustomSectionDescription": {
+        "description": "Description for the custom section type, which can be added to the home screen"
+    },
+    "homeScreenQuickActionPickerMenuTitle": "Выберите действие",
+    "@homeScreenQuickActionPickerMenuTitle": {
+        "description": "Title for the quick action picker menu, which allows users to pick a quick action to add to the home screen"
+    },
+    "homeScreenSectionPresetFavoriteTracksTitle": "Любимые треки",
+    "@homeScreenSectionPresetFavoriteTracksTitle": {
+        "description": "Title for the favorite tracks preset section, which can be added to the home screen"
+    },
+    "homeScreenSectionPresetFavoriteTracksDescription": "Треки из избранных в случайном порядке",
+    "@homeScreenSectionPresetFavoriteTracksDescription": {
+        "description": "Description for the favorite tracks preset section, which can be added to the home screen"
+    },
+    "homeScreenSectionPresetForgottenFavoriteTracksTitle": "Забытые любимые треки",
+    "@homeScreenSectionPresetForgottenFavoriteTracksTitle": {
+        "description": "Title for the forgotten favorite tracks preset section, which can be added to the home screen"
+    },
+    "homeScreenSectionPresetForgottenFavoriteTracksDescription": "Треки из избранных, которые вы давно не слушали",
+    "@homeScreenSectionPresetForgottenFavoriteTracksDescription": {
+        "description": "Description for the forgotten favorite tracks preset section, which can be added to the home screen"
     }
 }
