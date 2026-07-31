@@ -92,7 +92,7 @@ Future<List<BaseItemDto>> loadChildTracksFromBaseItem({
   }
 
   if (BaseItemDtoType.fromItem(item) == BaseItemDtoType.artist) {
-    return sortArtistTracks(newItems);
+    return sortTracksLikeAlbums(newItems, ref.read(resolveSortProvider(SortAndFilterController.trackArtistAlbums())));
   }
 
   return newItems;
@@ -150,7 +150,7 @@ Future<List<BaseItemDto>?> loadChildTracksOffline({
           onlyFavorites: sortConfig.favoritesFilter,
         ).future,
       );
-      items = sortArtistTracks(items);
+      items = sortTracksLikeAlbums(items, sortConfig);
       break;
     default:
       items = await downloadsService.getCollectionTracks(item, playable: true, genreFilter: sortConfig.genreFilter?.id);

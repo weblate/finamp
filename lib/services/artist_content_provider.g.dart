@@ -836,7 +836,7 @@ class _GetPerformingArtistTracksProviderElement
       (origin as GetPerformingArtistTracksProvider).onlyFavorites;
 }
 
-String _$getArtistTracksHash() => r'b2ee5c6140d7286bf0585a84f5f8a6bf14f9eaad';
+String _$getArtistTracksHash() => r'be6bc9a56a6900f1a5b60eea9d1e745dfb0d89d9';
 
 /// See also [getArtistTracks].
 @ProviderFor(getArtistTracks)
@@ -853,8 +853,8 @@ class GetArtistTracksFamily extends Family<AsyncValue<List<BaseItemDto>>> {
     LibraryId? libraryFilter,
     BaseItemId? genreFilter,
     bool onlyFavorites = false,
-    SortBy? sortBy,
-    SortOrder sortOrder = SortOrder.ascending,
+    SortAndFilterConfiguration? sortAndFilterConfiguration,
+    bool sortLikeAlbums = true,
     ArtistType? filterOfflineArtistType,
   }) {
     return GetArtistTracksProvider(
@@ -862,8 +862,8 @@ class GetArtistTracksFamily extends Family<AsyncValue<List<BaseItemDto>>> {
       libraryFilter: libraryFilter,
       genreFilter: genreFilter,
       onlyFavorites: onlyFavorites,
-      sortBy: sortBy,
-      sortOrder: sortOrder,
+      sortAndFilterConfiguration: sortAndFilterConfiguration,
+      sortLikeAlbums: sortLikeAlbums,
       filterOfflineArtistType: filterOfflineArtistType,
     );
   }
@@ -877,8 +877,8 @@ class GetArtistTracksFamily extends Family<AsyncValue<List<BaseItemDto>>> {
       libraryFilter: provider.libraryFilter,
       genreFilter: provider.genreFilter,
       onlyFavorites: provider.onlyFavorites,
-      sortBy: provider.sortBy,
-      sortOrder: provider.sortOrder,
+      sortAndFilterConfiguration: provider.sortAndFilterConfiguration,
+      sortLikeAlbums: provider.sortLikeAlbums,
       filterOfflineArtistType: provider.filterOfflineArtistType,
     );
   }
@@ -907,8 +907,8 @@ class GetArtistTracksProvider
     LibraryId? libraryFilter,
     BaseItemId? genreFilter,
     bool onlyFavorites = false,
-    SortBy? sortBy,
-    SortOrder sortOrder = SortOrder.ascending,
+    SortAndFilterConfiguration? sortAndFilterConfiguration,
+    bool sortLikeAlbums = true,
     ArtistType? filterOfflineArtistType,
   }) : this._internal(
          (ref) => getArtistTracks(
@@ -917,8 +917,8 @@ class GetArtistTracksProvider
            libraryFilter: libraryFilter,
            genreFilter: genreFilter,
            onlyFavorites: onlyFavorites,
-           sortBy: sortBy,
-           sortOrder: sortOrder,
+           sortAndFilterConfiguration: sortAndFilterConfiguration,
+           sortLikeAlbums: sortLikeAlbums,
            filterOfflineArtistType: filterOfflineArtistType,
          ),
          from: getArtistTracksProvider,
@@ -933,8 +933,8 @@ class GetArtistTracksProvider
          libraryFilter: libraryFilter,
          genreFilter: genreFilter,
          onlyFavorites: onlyFavorites,
-         sortBy: sortBy,
-         sortOrder: sortOrder,
+         sortAndFilterConfiguration: sortAndFilterConfiguration,
+         sortLikeAlbums: sortLikeAlbums,
          filterOfflineArtistType: filterOfflineArtistType,
        );
 
@@ -949,8 +949,8 @@ class GetArtistTracksProvider
     required this.libraryFilter,
     required this.genreFilter,
     required this.onlyFavorites,
-    required this.sortBy,
-    required this.sortOrder,
+    required this.sortAndFilterConfiguration,
+    required this.sortLikeAlbums,
     required this.filterOfflineArtistType,
   }) : super.internal();
 
@@ -958,8 +958,8 @@ class GetArtistTracksProvider
   final LibraryId? libraryFilter;
   final BaseItemId? genreFilter;
   final bool onlyFavorites;
-  final SortBy? sortBy;
-  final SortOrder sortOrder;
+  final SortAndFilterConfiguration? sortAndFilterConfiguration;
+  final bool sortLikeAlbums;
   final ArtistType? filterOfflineArtistType;
 
   @override
@@ -979,8 +979,8 @@ class GetArtistTracksProvider
         libraryFilter: libraryFilter,
         genreFilter: genreFilter,
         onlyFavorites: onlyFavorites,
-        sortBy: sortBy,
-        sortOrder: sortOrder,
+        sortAndFilterConfiguration: sortAndFilterConfiguration,
+        sortLikeAlbums: sortLikeAlbums,
         filterOfflineArtistType: filterOfflineArtistType,
       ),
     );
@@ -998,8 +998,8 @@ class GetArtistTracksProvider
         other.libraryFilter == libraryFilter &&
         other.genreFilter == genreFilter &&
         other.onlyFavorites == onlyFavorites &&
-        other.sortBy == sortBy &&
-        other.sortOrder == sortOrder &&
+        other.sortAndFilterConfiguration == sortAndFilterConfiguration &&
+        other.sortLikeAlbums == sortLikeAlbums &&
         other.filterOfflineArtistType == filterOfflineArtistType;
   }
 
@@ -1010,8 +1010,8 @@ class GetArtistTracksProvider
     hash = _SystemHash.combine(hash, libraryFilter.hashCode);
     hash = _SystemHash.combine(hash, genreFilter.hashCode);
     hash = _SystemHash.combine(hash, onlyFavorites.hashCode);
-    hash = _SystemHash.combine(hash, sortBy.hashCode);
-    hash = _SystemHash.combine(hash, sortOrder.hashCode);
+    hash = _SystemHash.combine(hash, sortAndFilterConfiguration.hashCode);
+    hash = _SystemHash.combine(hash, sortLikeAlbums.hashCode);
     hash = _SystemHash.combine(hash, filterOfflineArtistType.hashCode);
 
     return _SystemHash.finish(hash);
@@ -1033,11 +1033,11 @@ mixin GetArtistTracksRef on AutoDisposeFutureProviderRef<List<BaseItemDto>> {
   /// The parameter `onlyFavorites` of this provider.
   bool get onlyFavorites;
 
-  /// The parameter `sortBy` of this provider.
-  SortBy? get sortBy;
+  /// The parameter `sortAndFilterConfiguration` of this provider.
+  SortAndFilterConfiguration? get sortAndFilterConfiguration;
 
-  /// The parameter `sortOrder` of this provider.
-  SortOrder get sortOrder;
+  /// The parameter `sortLikeAlbums` of this provider.
+  bool get sortLikeAlbums;
 
   /// The parameter `filterOfflineArtistType` of this provider.
   ArtistType? get filterOfflineArtistType;
@@ -1059,9 +1059,10 @@ class _GetArtistTracksProviderElement
   @override
   bool get onlyFavorites => (origin as GetArtistTracksProvider).onlyFavorites;
   @override
-  SortBy? get sortBy => (origin as GetArtistTracksProvider).sortBy;
+  SortAndFilterConfiguration? get sortAndFilterConfiguration =>
+      (origin as GetArtistTracksProvider).sortAndFilterConfiguration;
   @override
-  SortOrder get sortOrder => (origin as GetArtistTracksProvider).sortOrder;
+  bool get sortLikeAlbums => (origin as GetArtistTracksProvider).sortLikeAlbums;
   @override
   ArtistType? get filterOfflineArtistType =>
       (origin as GetArtistTracksProvider).filterOfflineArtistType;

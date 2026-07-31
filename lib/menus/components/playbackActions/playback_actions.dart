@@ -65,11 +65,7 @@ Map<PlaybackActionRowPage, Widget> getPlaybackActionPages({
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           if (itemType != BaseItemDtoType.genre)
-            PlayPlaybackAction(
-              item: item,
-              popContext: popContext,
-              compactLayout: compactLayout,
-            ),
+            PlayPlaybackAction(item: item, popContext: popContext, compactLayout: compactLayout),
           ShufflePlaybackAction(
             item: item,
             itemType: itemType,

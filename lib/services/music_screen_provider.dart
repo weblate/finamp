@@ -407,7 +407,7 @@ Future<List<BaseItemDto>?> loadHomeSectionItemsOffline({
         includeItemTypes: [request.tab.itemType ?? BaseItemDtoType.album], //FIXME support allowing multiple types
         // TODO use the filter config for this instead of global(several places)?
         // Might need to refactor sortconfig into some preexising providers to eliminate direct global setting usage
-      fullyDownloaded: ref.watch(finampSettingsProvider.onlyShowFullyDownloaded),
+        fullyDownloaded: ref.watch(finampSettingsProvider.onlyShowFullyDownloaded),
         viewFilter: libraryId,
         childViewFilter: [ContentType.albums, ContentType.playlists].contains(request.tab) ? null : libraryId,
         nullableViewFilters: ref.watch(finampSettingsProvider.showDownloadsWithUnknownLibrary),
@@ -547,6 +547,9 @@ List<BaseItemDto> sortItems(List<BaseItemDto> itemsToSort, SortBy? sortBy, SortO
   return sortOrder == SortOrder.descending ? itemsToSort.reversed.toList() : itemsToSort;
 }
 
+// TODO / NOTE: Legacy Way of sorting artist tracks. New function is sortTracksLikeAlbums (see below)
+// Left in for comparison because we did not finally decide yet how we should sort the Play Artist tracks.
+//
 // This function helps to sort artist tracks in order they appear in the album list
 // There are scenarios where cached provider-data might return a shuffled resultset, I guess,
 // so this function should definitely sort all artist tracks always the same
@@ -599,6 +602,117 @@ List<BaseItemDto> sortArtistTracks(List<BaseItemDto> items) {
   });
 
   return items;
+}
+
+// This function applies an album-targeted SortAndFilterConfiguration to tracks.
+// It keeps albums as a whole in tact so that the internal album order is preserved.
+List<BaseItemDto> sortTracksLikeAlbums(List<BaseItemDto> tracks, SortAndFilterConfiguration config) {
+  int compareNullable<T extends Comparable<dynamic>>(T? a, T? b, {bool nullsFirst = false}) {
+    if (a == null && b == null) return 0;
+    if (a == null) return nullsFirst ? -1 : 1;
+    if (b == null) return nullsFirst ? 1 : -1;
+    return a.compareTo(b);
+  }
+
+  int compareAlbumName(String? a, String? b) {
+    if (a == null && b == null) return 0;
+    if (a == null) return 1;
+    if (b == null) return -1;
+
+    final numRegex = RegExp(r'^(\d+)');
+    final matchA = numRegex.firstMatch(a);
+    final matchB = numRegex.firstMatch(b);
+
+    if (matchA != null && matchB != null) {
+      final numA = int.tryParse(matchA.group(1)!);
+      final numB = int.tryParse(matchB.group(1)!);
+
+      if (numA != null && numB != null) {
+        final cmp = numA.compareTo(numB);
+        if (cmp != 0) return cmp;
+      }
+    }
+
+    return a.compareTo(b);
+  }
+
+  int albumRuntime(List<BaseItemDto> album) => album.fold(0, (sum, track) => sum + (track.runTimeTicks ?? 0));
+
+  final modifier = config.sortOrder == SortOrder.descending ? -1 : 1;
+
+  // 1. Group tracks by AlbumId
+  final Map<String, List<BaseItemDto>> albumGroups = {};
+
+  for (final track in tracks) {
+    final key = track.albumId?.raw ?? track.id.raw;
+    albumGroups.putIfAbsent(key, () => []).add(track);
+  }
+
+  // 2. Sort tracks inside every album (always ascending)
+  for (final albumTracks in albumGroups.values) {
+    albumTracks.sort((a, b) {
+      final disc = compareNullable<int>(a.parentIndexNumber, b.parentIndexNumber);
+
+      if (disc != 0) return disc;
+
+      final track = compareNullable<int>(a.indexNumber, b.indexNumber);
+
+      if (track != 0) return track;
+
+      return compareNullable<String>(a.sortName ?? a.name, b.sortName ?? b.name);
+    });
+  }
+
+  // 3. Sort the albums
+  final albums = albumGroups.values.toList();
+
+  if (config.sortBy == SortBy.random) {
+    albums.shuffle();
+  } else {
+    albums.sort((albumA, albumB) {
+      final a = albumA.first;
+      final b = albumB.first;
+
+      switch (config.sortBy) {
+        case SortBy.sortName:
+          return compareAlbumName(a.album ?? a.name, b.album ?? b.name) * modifier;
+
+        case SortBy.albumArtist:
+          return compareNullable<String>(a.albumArtist, b.albumArtist) * modifier;
+
+        case SortBy.premiereDate:
+        case SortBy.productionYear:
+          final dateA = a.premiereDate == null ? null : DateTime.tryParse(a.premiereDate!.trim());
+          final dateB = b.premiereDate == null ? null : DateTime.tryParse(b.premiereDate!.trim());
+
+          final cmp = compareNullable<DateTime>(dateA, dateB, nullsFirst: true);
+          if (cmp != 0) return cmp * modifier;
+
+          return compareAlbumName(a.album, b.album) * modifier;
+
+        case SortBy.dateCreated:
+          final dateA = a.dateCreated == null ? null : DateTime.tryParse(a.dateCreated!.trim());
+          final dateB = b.dateCreated == null ? null : DateTime.tryParse(b.dateCreated!.trim());
+
+          final cmp = compareNullable<DateTime>(dateA, dateB);
+          if (cmp != 0) return cmp * modifier;
+
+          return compareAlbumName(a.album, b.album) * modifier;
+
+        case SortBy.runtime:
+          final cmp = compareNullable<int>(albumRuntime(albumA), albumRuntime(albumB));
+          if (cmp != 0) return cmp * modifier;
+
+          return compareAlbumName(a.album, b.album) * modifier;
+
+        default:
+          return compareAlbumName(a.album ?? a.name, b.album ?? b.name) * modifier;
+      }
+    });
+  }
+
+  // 4. Flatten back into a track list
+  return albums.expand((album) => album).toList();
 }
 
 List<BaseItemDto> filterItemsByGenreName(List<BaseItemDto> items, BaseItemDto genreFilter) {

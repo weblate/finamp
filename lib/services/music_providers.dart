@@ -401,14 +401,20 @@ Future<List<Track>> getChildTracks(Ref ref, {required FinampUnpagedDisplayable<T
       return items.map((baseItem) => Track(baseItem, source: item.source)).toList();*/
     case Artist<Track>():
       assert(item.type == ArtistChildType.tracks);
-      final children = await ref.watch(
-        getArtistTracksProvider(
-          artist: item.item,
-          libraryFilter: item.library,
-          genreFilter: item.sortConfig.genreFilter?.id,
-          onlyFavorites: item.sortConfig.favoritesFilter,
-        ).future,
-      );
+      final albumsSortConfig = resolveSortProvider(SortAndFilterController.trackArtistAlbums());
+
+      final children = await ref
+          .watch(
+            getArtistTracksProvider(
+              artist: item.item,
+              libraryFilter: item.library,
+              genreFilter: item.sortConfig.genreFilter?.id,
+              onlyFavorites: item.sortConfig.favoritesFilter,
+            ).future,
+          )
+          .then((tracks) {
+            return sortTracksLikeAlbums(tracks, ref.read(albumsSortConfig));
+          });
       return children.map<Track>((child) => Track(child)).toList();
   }
 }

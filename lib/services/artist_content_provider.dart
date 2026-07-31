@@ -295,8 +295,8 @@ Future<List<BaseItemDto>> getArtistTracks(
   LibraryId? libraryFilter,
   BaseItemId? genreFilter,
   bool onlyFavorites = false,
-  SortBy? sortBy,
-  SortOrder sortOrder = SortOrder.ascending,
+  SortAndFilterConfiguration? sortAndFilterConfiguration,
+  bool sortLikeAlbums = true,
   ArtistType? filterOfflineArtistType,
 }) async {
   final jellyfinApiHelper = GetIt.instance<JellyfinApiHelper>();
@@ -336,6 +336,12 @@ Future<List<BaseItemDto>> getArtistTracks(
         .toList();
     // Add the remaining tracks
     sortedTracks.addAll(allPerformingArtistTracksFiltered);
+    
+    if (sortAndFilterConfiguration != null) {
+      return sortLikeAlbums
+          ? sortTracksLikeAlbums(sortedTracks, sortAndFilterConfiguration)
+          : sortItems(sortedTracks, sortAndFilterConfiguration.sortBy, sortAndFilterConfiguration.sortOrder);
+    }
     // And return the tracks
     return sortedTracks;
   } else {
@@ -369,8 +375,10 @@ Future<List<BaseItemDto>> getArtistTracks(
     // combine and return
     final combinedTracks = [...allAlbumArtistTracks, ...filteredPerformingTracks];
 
-    if (sortBy != null) {
-      return sortItems(combinedTracks, sortBy, sortOrder);
+    if (sortAndFilterConfiguration != null) {
+      return sortLikeAlbums
+          ? sortTracksLikeAlbums(combinedTracks, sortAndFilterConfiguration)
+          : sortItems(combinedTracks, sortAndFilterConfiguration.sortBy, sortAndFilterConfiguration.sortOrder);
     }
     return combinedTracks;
   }

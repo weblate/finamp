@@ -18,6 +18,7 @@ import 'package:finamp/services/downloads_service.dart';
 import 'package:finamp/services/finamp_settings_helper.dart';
 import 'package:finamp/services/finamp_user_helper.dart';
 import 'package:finamp/services/jellyfin_api_helper.dart';
+import 'package:finamp/services/music_screen_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
@@ -37,16 +38,24 @@ class _ArtistScreenContentState extends ConsumerState<ArtistScreenContent> {
   JellyfinApiHelper jellyfinApiHelper = GetIt.instance<JellyfinApiHelper>();
   final _downloadsService = GetIt.instance<DownloadsService>();
   final Set<CuratedItemSelectionType> _disabledTrackFilters = {};
+
   SortAndFilterController controller = SortAndFilterController(
     startingConfig: SortAndFilterConfiguration.defaultSort,
     contentType: ContentType.mixed,
   );
+
+  late final SortAndFilterController albumsController;
+  late final SortAndFilterController appearsOnController;
+
   CuratedItemSelectionType? clickedCuratedItemSelectionType;
 
   StreamSubscription<void>? _refreshStream;
 
   @override
   void initState() {
+    albumsController = SortAndFilterController.trackArtistAlbums();
+    appearsOnController = SortAndFilterController.trackArtistAppearsOn();
+
     _refreshStream = _downloadsService.offlineDeletesStream.listen((event) {
       _refresh();
     });
@@ -127,6 +136,16 @@ class _ArtistScreenContentState extends ConsumerState<ArtistScreenContent> {
     );
   }
 
+  List<BaseItemDto> _applySortAndFilterLocally(List<BaseItemDto> items, SortAndFilterConfiguration config) {
+    var filteredList = items.where((item) {
+      if (config.favoritesFilter == true && !(item.userData?.isFavorite ?? false)) return false;
+      // Note: the genre filter gets set globally for this artist and gets applied directly inside of the providers
+      return true;
+    }).toList();
+
+    return sortItems(filteredList, config.sortBy, config.sortOrder);
+  }
+
   @override
   Widget build(BuildContext context) {
     final finampUserHelper = GetIt.instance<FinampUserHelper>();
@@ -134,7 +153,11 @@ class _ArtistScreenContentState extends ConsumerState<ArtistScreenContent> {
     final artistItemSectionsOrder = ref.watch(finampSettingsProvider.artistItemSectionsOrder);
     final artistCuratedItemSectionFilterOrder = ref.watch(finampSettingsProvider.artistItemSectionFilterChipOrder);
     final bool autoSwitchItemCurationTypeEnabled = ref.watch(finampSettingsProvider.autoSwitchItemCurationType);
+
     final sortConfig = ref.watch(resolveSortProvider(controller));
+    final albumsSortConfig = ref.watch(resolveSortProvider(albumsController));
+    final appearsOnSortConfig = ref.watch(resolveSortProvider(appearsOnController));
+
     final disableDownloads = sortConfig.filters.isNotEmpty;
 
     List<BaseItemDto> allChildren = [];
@@ -181,11 +204,14 @@ class _ArtistScreenContentState extends ConsumerState<ArtistScreenContent> {
           ),
         )
         .valueOrNull;
+
     final allTracks = ref.watch(
       getArtistTracksProvider(
         artist: widget.parent,
         libraryFilter: widget.library?.id,
         genreFilter: sortConfig.genreFilter?.id,
+        sortAndFilterConfiguration: albumsSortConfig,
+        sortLikeAlbums: true,
       ).future,
     );
 
@@ -218,15 +244,23 @@ class _ArtistScreenContentState extends ConsumerState<ArtistScreenContent> {
     }
 
     final topTracks = topTracksAsync ?? [];
-    final albumArtistAlbums = albumArtistAlbumsAsync ?? [];
-    final performingArtistAlbums = performingArtistAlbumsAsync ?? [];
-    final allPerformingArtistTracks = allPerformingArtistTracksAsync ?? [];
+    final albumArtistAlbums = albumArtistAlbumsAsync != null
+        ? _applySortAndFilterLocally(albumArtistAlbumsAsync, albumsSortConfig)
+        : <BaseItemDto>[];
 
-    var appearsOnAlbums = performingArtistAlbums.where((a) => !albumArtistAlbums.any((b) => b.id == a.id)).toList();
+    final performingArtistAlbums = performingArtistAlbumsAsync ?? [];
+    var appearsOnAlbumsList = performingArtistAlbums
+        .where((a) => !(albumArtistAlbumsAsync ?? []).any((b) => b.id == a.id))
+        .toList();
+    final appearsOnAlbums = appearsOnAlbumsList.isNotEmpty
+        ? _applySortAndFilterLocally(appearsOnAlbumsList, appearsOnSortConfig)
+        : <BaseItemDto>[];
+
+    final allPerformingArtistTracks = allPerformingArtistTracksAsync ?? [];
 
     // Combine Children to get correct ChildrenCount
     // for the Download Status Sync Display for Artists
-    allChildren = [...albumArtistAlbums, ...allPerformingArtistTracks];
+    allChildren = [...(albumArtistAlbumsAsync ?? []), ...allPerformingArtistTracks];
 
     return RefreshIndicator(
       onRefresh: _refresh,
@@ -323,6 +357,9 @@ class _ArtistScreenContentState extends ConsumerState<ArtistScreenContent> {
                         itemsText: AppLocalizations.of(context)!.albums,
                         items: albumArtistAlbums,
                         albumsShowYearAndDurationInstead: true,
+                        sortAndFilterRow: albumArtistAlbums.length > 1
+                            ? SortAndFilterRow(controller: albumsController, tabType: ContentType.albums)
+                            : null,
                       ),
                     );
                   }
@@ -336,6 +373,9 @@ class _ArtistScreenContentState extends ConsumerState<ArtistScreenContent> {
                         itemsText: AppLocalizations.of(context)!.appearsOnAlbums,
                         items: appearsOnAlbums,
                         albumsShowYearAndDurationInstead: true,
+                        sortAndFilterRow: appearsOnAlbums.length > 1
+                            ? SortAndFilterRow(controller: appearsOnController, tabType: ContentType.albums)
+                            : null,
                       ),
                     );
                   }

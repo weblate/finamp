@@ -9,6 +9,7 @@ import 'package:finamp/models/jellyfin_models.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_sticky_header/flutter_sticky_header.dart';
+import 'package:finamp/components/MusicScreen/sort_and_filter_row.dart';
 
 class TracksSection extends ConsumerStatefulWidget {
   const TracksSection({
@@ -232,6 +233,7 @@ class CollectionsSection extends ConsumerStatefulWidget {
     this.selectedFilter,
     this.disabledFilters,
     this.onFilterSelected,
+    this.sortAndFilterRow,
   });
 
   final BaseItemDto parent;
@@ -245,6 +247,7 @@ class CollectionsSection extends ConsumerStatefulWidget {
   final CuratedItemSelectionType? selectedFilter;
   final List<CuratedItemSelectionType>? disabledFilters;
   final void Function(CuratedItemSelectionType type)? onFilterSelected;
+  final SortAndFilterRow? sortAndFilterRow;
 
   @override
   ConsumerState<CollectionsSection> createState() => _ItemsSectionState();
@@ -380,6 +383,7 @@ class _ItemsSectionState extends ConsumerState<CollectionsSection> {
       sliver: _showItems
           ? SliverMainAxisGroup(
               slivers: [
+                if (widget.sortAndFilterRow != null) SliverToBoxAdapter(child: widget.sortAndFilterRow),
                 if (widget.includeFilterRowFor != null)
                   buildCuratedItemFilterRow(
                     ref: ref,
