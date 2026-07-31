@@ -3664,7 +3664,7 @@
         },
         "description": "Titles for settings controlling which pieces of advanced track info are displayed."
     },
-    "featureChipDescription": "{chipName, select, additionalPeople{Non-artist people linked to the track, if available (writers, lyricists, etc.)} playbackMode{Streaming and transcoding status information} bitDepth{Bits per audio sample.  Only applicable to lossless codecs, generally 16 bits.} sampleRate{Audio samples per second.  Generally 44.1 kHz.} normalizationGain{Currently active ReplayGain level} other{null}}",
+    "featureChipDescription": "{chipName, select, explicit{Marks tracks containing explicit content} additionalPeople{Non-artist people linked to the track, if available (writers, lyricists, etc.)} playbackMode{Streaming and transcoding status information} bitDepth{Bits per audio sample.  Only applicable to lossless codecs, generally 16 bits.} sampleRate{Audio samples per second.  Generally 44.1 kHz.} normalizationGain{Currently active ReplayGain level} size{The original file size of the track} other{null}}",
     "@featureChipDescription": {
         "placeholders": {
             "chipName": {

@@ -203,6 +203,7 @@ class DefaultSettings {
     enabled: true,
     features: [
       FinampFeatureChipType.explicit,
+      FinampFeatureChipType.additionalPeople,
       FinampFeatureChipType.playCount,
       FinampFeatureChipType.playbackMode,
       FinampFeatureChipType.codec,
