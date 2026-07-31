@@ -336,7 +336,7 @@ Future<List<BaseItemDto>> getArtistTracks(
         .toList();
     // Add the remaining tracks
     sortedTracks.addAll(allPerformingArtistTracksFiltered);
-    
+
     if (sortAndFilterConfiguration != null) {
       return sortLikeAlbums
           ? sortTracksLikeAlbums(sortedTracks, sortAndFilterConfiguration)
