@@ -1144,7 +1144,7 @@
     "@genreListsInheritSorting": {
         "description": "Label for the setting that controls if a See All Genre Lists should inherit the Genre Sorting and Filtering."
     },
-    "genreListsInheritSortingSubtitle": "Jika diaktifkan, daftar \\\"Lihat Semua\\\" akan mewarisi urutan dan filter dari Layar Genre. Jika dinonaktifkan, pengaturan dari tab pustaka yang sesuai akan digunakan sebagai gantinya. Mengetuk jumlah di bagian atas Layar Genre atau tombol \\\"Telusuri Playlist\\\" akan selalu membuka daftar penuh dengan pengaturan urutan dari tab pustaka.",
+    "genreListsInheritSortingSubtitle": "Jika diaktifkan, daftar \"Lihat Semua\" akan mewarisi urutan dan filter dari Layar Genre. Jika dinonaktifkan, pengaturan dari tab pustaka yang sesuai akan digunakan sebagai gantinya. Mengetuk jumlah di bagian atas Layar Genre atau tombol \"Telusuri Playlist\" akan selalu membuka daftar penuh dengan pengaturan urutan dari tab pustaka.",
     "@genreListsInheritSortingSubtitle": {
         "description": "Description of the setting that controls if a See All Genre Lists should inherit the Genre Sorting and Filtering."
     },
