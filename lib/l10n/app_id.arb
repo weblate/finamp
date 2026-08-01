@@ -260,7 +260,7 @@
             }
         }
     },
-    "downloadedCountUnified": "{trackCount,plural,=1{{trackCount} trek} other{{trackCount} trek}}, {imageCount,plural,=1{{imageCount} gambar} other{{imageCount} gambar}}\n{syncCount,plural,=1{{syncCount} node sedang sinkron} other{{syncCount} node sedang sinkron}}{repairing, plural, =0{} other{\\\nSaat ini sedang memperbaiki}}",
+    "downloadedCountUnified": "{trackCount,plural,=1{{trackCount} trek} other{{trackCount} trek}}, {imageCount,plural,=1{{imageCount} gambar} other{{imageCount} gambar}}\n{syncCount,plural,=1{{syncCount} node sedang sinkron} other{{syncCount} node sedang sinkron}}{repairing, plural, =0{} other{\nSaat ini sedang memperbaiki}}",
     "@downloadedCountUnified": {
         "description": "Display of downloaded track and image count on downloads screen.",
         "placeholders": {
@@ -326,7 +326,7 @@
         "description": "Shown on the downloads screen for sections without any downloaded items."
     },
     "error": "Kesalahan",
-    "discNumber": "Disk {number}",
+    "discNumber": "Disc {number}",
     "@discNumber": {
         "placeholders": {
             "number": {
@@ -418,7 +418,7 @@
     "logsCopied": "Log disalin.",
     "message": "Pesan",
     "stackTrace": "Jejak stack",
-    "applicationLegalese": "Dilisensikan dengan Mozilla Public License 2.0.\\\nKode sumber tersedia di {sourceCodeLink}.",
+    "applicationLegalese": "Dilisensikan dengan Mozilla Public License 2.0.\nKode sumber tersedia di {sourceCodeLink}.",
     "@applicationLegalese": {
         "placeholders": {
             "sourceCodeLink": {
@@ -427,7 +427,7 @@
             }
         }
     },
-    "transcoding": "Transcoding",
+    "transcoding": "Transkode",
     "downloadLocations": "Lokasi Unduhan",
     "audioService": "Layanan Audio",
     "interactions": "Interaksi",
@@ -437,8 +437,8 @@
     "logOut": "Keluar",
     "logoutButtonSubtitle": "Masuk ke server lain akan menghapus unduhan yang ada",
     "areYouSure": "Apakah Anda yakin?",
-    "enableTranscoding": "Aktifkan Transcoding",
-    "enableTranscodingSubtitle": "Transcode stream musik dari sisi server.",
+    "enableTranscoding": "Aktifkan Transkode",
+    "enableTranscodingSubtitle": "Transkode stream musik dari sisi server.",
     "bitrate": "Bitrate",
     "bitrateSubtitle": "Bitrate yang lebih tinggi memberikan kualitas audio lebih tinggi dengan biaya bandwidth yang lebih tinggi. Tidak berlaku untuk codec lossless, misalnya FLAC",
     "customLocation": "Lokasi kustom",
@@ -469,7 +469,7 @@
     "@playbackSpeedControlSettingSubtitle": {
         "description": "Subtitle for the playback speed visibility setting"
     },
-    "playbackSpeedControlSettingDescription": "Otomatis:\\\nFinamp mencoba mengidentifikasi apakah trek yang Anda putar adalah podcast atau (bagian dari) buku audio. Ini dianggap demikian jika trek lebih panjang dari {trackDuration} menit, jika album trek tersebut lebih panjang dari {albumDuration} jam, atau jika trek memiliki setidaknya satu genre berikut: {genreList}\\\nKontrol kecepatan pemutaran kemudian akan ditampilkan di menu layar pemutar.\\\n\\\nDitampilkan:\\\nKontrol kecepatan pemutaran akan selalu ditampilkan di menu layar pemutar.\\\n\\\nDisembunyikan:\\\nKontrol kecepatan pemutaran di menu layar pemutar selalu disembunyikan.",
+    "playbackSpeedControlSettingDescription": "Otomatis:\nFinamp mencoba mengidentifikasi apakah trek yang Anda putar adalah podcast atau (bagian dari) buku audio. Ini dianggap demikian jika trek lebih panjang dari {trackDuration} menit, jika album trek tersebut lebih panjang dari {albumDuration} jam, atau jika trek memiliki setidaknya satu genre berikut: {genreList}\nKontrol kecepatan pemutaran kemudian akan ditampilkan di menu layar pemutar.\n\nDitampilkan:\nKontrol kecepatan pemutaran akan selalu ditampilkan di menu layar pemutar.\n\nDisembunyikan:\nKontrol kecepatan pemutaran di menu layar pemutar selalu disembunyikan.",
     "@playbackSpeedControlSettingDescription": {
         "description": "Description for the dropdown that selects the replay gain mode, shown in a dialog that opens when the user presses the info icon next to the dropdown",
         "placeholders": {
@@ -651,7 +651,7 @@
     "@playbackModeDirectPlaying": {
         "description": "Feature chip that is shown when tracks are being played directly from the server, without transcoding"
     },
-    "playbackModeTranscoding": "Transcoding",
+    "playbackModeTranscoding": "Transkode",
     "@playbackModeTranscoding": {
         "description": "Feature chip that is shown when tracks are being transcoded by the server"
     },
@@ -806,7 +806,7 @@
     "@moveAddToQueue": {
         "description": "Used for moving a track to the end of the queue, to play after all prior tracks from the queue have played"
     },
-    "confirmPlayNext": "{type, select, track{Trek} album{Album} artist{Artis} playlist{Daftar Putar} genre{Genre} other{Item}} akan diputar berikutnya",
+    "confirmPlayNext": "{type, select, track{Trek} album{Album} artist{Artis} playlist{Daftar Putar} genre{Genre} disc{Disc} other{Item}} akan diputar berikutnya",
     "@confirmPlayNext": {
         "description": "A confirmation message that is shown after successfully adding a track to the front of the \"Next Up\" queue",
         "placeholders": {
@@ -815,7 +815,7 @@
             }
         }
     },
-    "confirmAddToNextUp": "Menambahkan {type, select, track{Trek} album{album} artist{artis} playlist{daftar putar} genre{genre} disc{disk} other{item}} ke Berikutnya",
+    "confirmAddToNextUp": "Menambahkan {type, select, track{trek} album{album} artist{artis} playlist{daftar putar} genre{genre} disc{disc} other{item}} untuk Berikutnya",
     "@confirmAddToNextUp": {
         "description": "A confirmation message that is shown after successfully adding a track to the end of the \"Next Up\" queue",
         "placeholders": {
@@ -857,11 +857,11 @@
     "@shareOfflineListens": {
         "description": "Button for exporting the JSON file containing any playback events that couldn't be submitted to the server, either because offline mode was enabled or the connection failed"
     },
-    "yourLikes": "Suka Anda",
+    "yourLikes": "Anda Sukai (dari \"{trackName}\")",
     "@yourLikes": {
         "description": "Title for the queue source when the user is playing their liked tracks"
     },
-    "mix": "{mixSource} - Mix",
+    "mix": "{mixSource} - Campur",
     "@mix": {
         "description": "Suffix added to a queue source when playing a mix. Example: \"Never Gonna Give You Up - Mix\"",
         "placeholders": {
@@ -1228,7 +1228,7 @@
             }
         }
     },
-    "couldNotLoad": "Tidak dapat memuat {source, select, album{album} playlist{daftar putar} trackMix{mix trek} artistMix{mix artis} albumMix{mix album} genreMix{mix genre} favorites{favorit} allTracks{semua trek} filteredList{trek} genre{genre} artist{artis} track{trek} nextUpAlbum{album dalam berikutnya} nextUpPlaylist{daftar putar dalam berikutnya} nextUpArtist{artis dalam berikutnya} nextUpGenre{genre dalam berikutnya} other{}}",
+    "couldNotLoad": "Tidak dapat memuat {source, select, album{album} playlist{daftar putar} trackMix{mix trek} artistMix{mix artis} albumMix{mix album} genreMix{mix genre} favorites{favorit} allTracks{semua trek} filteredList{trek} genre{genre} artist{artis} track{trek} nextUpAlbum{album dari berikutnya} nextUpPlaylist{daftar putar dari berikutnya} nextUpArtist{artis dari berikutnya} nextUpGenre{genre dari berikutnya} other{}}",
     "@couldNotLoad": {
         "placeholders": {
             "source": {
@@ -1271,7 +1271,7 @@
     "@volumeNormalizationModeSelectorSubtitle": {
         "description": "Subtitle for the dropdown that selects the replay gain mode"
     },
-    "volumeNormalizationModeSelectorDescription": "Dinamis:\\\nSaat memutar beberapa trek dari album yang sama secara berurutan, gain album digunakan (mis. saat memutar sebuah album, atau trek dari album yang sama dalam sebuah daftar putar). Jika tidak, gain trek digunakan.\\\n\\\nBerbasis trek:\\\nGain trek selalu digunakan, terlepas dari apakah album sedang diputar atau tidak.\\\n\\\nBerbasis album:\\\nGain album selalu digunakan, tetapi jika tidak tersedia (mis. untuk single), gain trek akan digunakan sebagai gantinya.\\\n\\\nHanya Album:\\\nNormalisasi volume hanya diterapkan saat memutar album (menggunakan gain album), tetapi tidak untuk trek individual.",
+    "volumeNormalizationModeSelectorDescription": "Dinamis:\\\nSaat memutar beberapa trek dari album yang sama secara berurutan, penguat album digunakan (contoh: saat memutar sebuah album, atau trek dari album yang sama dalam sebuah daftar putar). Jika tidak, penguat trek digunakan.\\\n\\\nBerbasis trek:\\\nPenguat trek selalu digunakan, terlepas dari apakah album sedang diputar atau tidak.\\\n\\\nBerbasis album:\\\nPenguat album selalu digunakan, tetapi jika tidak tersedia (contoh: untuk tunggal), penguat trek akan digunakan sebagai gantinya.\\\n\\\nHanya Album:\\\nNormalisasi volume hanya diterapkan saat memutar album (menggunakan penguat album), tetapi tidak untuk trek tunggal.",
     "@volumeNormalizationModeSelectorDescription": {
         "description": "Description for the dropdown that selects the replay gain mode, shown in a dialog that opens when the user presses the info icon next to the dropdown"
     },
@@ -1299,7 +1299,7 @@
     "@volumeNormalizationIOSBaseGainEditorSubtitle": {
         "description": "Subtitle for the input that sets the replay gain base gain on iOS and other non-Android platforms"
     },
-    "volumeNormalizationIOSBaseGainEditorDescription": "Saat ini, Normalisasi Volume pada platform selain Android memerlukan perubahan volume pemutaran untuk meniru perubahan gain. Karena kami tidak dapat menaikkan volume di atas 100%, kami perlu menurunkan volume secara default agar kami dapat meningkatkan volume trek yang pelan.\\\n\\\nNilainya dalam desibel (dB), dengan -10 dB \\(\\sim\\)30% volume, -4.5 dB \\(\\sim\\)60% volume, dan -2 dB \\(\\sim\\)80% volume.\\\nNilai positif berarti tidak ada penurunan volume yang diterapkan hingga ambang batas (mis. gain -6.4 dB (dan yang lebih positif) untuk offset +6.4 dB), tetapi mencegah trek yang lebih pelan untuk ditingkatkan.\\\n\\\nAnda sebaiknya mengatur ini ke kebalikan dari gain tertinggi (paling positif) di pustaka Anda, yaitu atur ke +3 dB jika gain tertinggi di pustaka Anda adalah -3 dB (dan semua trek lain memiliki gain seperti -5 dB, -8 dB, -10 dB, dll.).",
+    "volumeNormalizationIOSBaseGainEditorDescription": "Saat ini, Normalisasi Volume pada platform selain Android memerlukan perubahan volume pemutaran untuk meniru perubahan penguat. Karena kami tidak dapat menaikkan volume di atas 100%, kami perlu menurunkan volume secara default agar kami dapat meningkatkan volume trek yang pelan.\n\nNilainya dalam desibel (dB), dengan -10 dB ~30% volume, -4.5 dB ~60% volume, dan -2 dB \\(\\sim\\)80% volume.\nNilai positif berarti tidak ada penurunan volume yang diterapkan hingga ambang batas (misal: gain -6.4 dB (dan yang lebih positif) untuk offset +6.4 dB), tetapi mencegah trek yang lebih pelan untuk ditingkatkan.\n\nAnda sebaiknya mengatur ini ke kebalikan dari gain tertinggi (paling positif) di pustaka Anda, misal: atur ke +3 dB jika gain tertinggi di pustaka Anda adalah -3 dB (dan semua trek lain memiliki gain seperti -5 dB, -8 dB, -10 dB, dll.).",
     "@volumeNormalizationIOSBaseGainEditorDescription": {
         "description": "Description for the input that sets the replay gain base gain on iOS and other non-Android platforms"
     },
@@ -1524,12 +1524,12 @@
         },
         "description": "Localized names of special downloadable collection representing cached images for a certain library."
     },
-    "transcodingStreamingFormatTitle": "Pilih Format Transcoding",
+    "transcodingStreamingFormatTitle": "Pilih Format Transkode",
     "@transcodingStreamingFormatTitle": {
         "description": "Title for the dropdown that selects the format for transcoded streams"
     },
-    "transcodingStreamingFormatSubtitle": "Pilih format yang digunakan saat streaming audio transcoded. Trek yang sudah masuk dalam antrian tidak akan terpengaruh.",
-    "downloadTranscodeEnableTitle": "Aktifkan Unduhan Transcoded",
+    "transcodingStreamingFormatSubtitle": "Pilih format yang digunakan saat streaming audio transkode. Trek yang sudah masuk dalam antrean tidak akan terpengaruh.",
+    "downloadTranscodeEnableTitle": "Aktifkan Unduhan Transkode",
     "@downloadTranscodeEnableTitle": {
         "description": "Title for Enable Transcoded Downloads dropdown"
     },
@@ -1554,7 +1554,7 @@
     "@downloadBitrateSubtitle": {
         "description": "subtitle for Download Bitrate settings slider"
     },
-    "transcodeHint": "Transcode?",
+    "transcodeHint": "Transkode?",
     "@transcodeHint": {
         "description": "Initial text in downloads dropdown when 'Enable Transcoded Downloads' is set to ask."
     },
@@ -1576,7 +1576,7 @@
         },
         "description": "Dropdown option to download transcoded version of tracks"
     },
-    "downloadInfo": "{size} {codec}{bitrate, select, null{} other{ @ {bitrate} Transcoded}}{location, select, null{} other{ ({location})}}",
+    "downloadInfo": "{size} {codec}{bitrate, select, null{} other{ @ {bitrate} Transkode}}{location, select, null{} other{ ({location})}}",
     "@downloadInfo": {
         "placeholders": {
             "bitrate": {
@@ -1630,11 +1630,11 @@
         },
         "description": "Dropdown option to download original version of tracks"
     },
-    "redownloadcomplete": "Unduhan Ulang Transcode diantrikan.",
+    "redownloadcomplete": "Unduhan Ulang Transkode diantrikan.",
     "@redownloadcomplete": {
         "description": "Mesage when Automatically Redownload Transcodes transcode setting completes operations."
     },
-    "redownloadTitle": "Unduh Ulang Transcode Secara Otomatis",
+    "redownloadTitle": "Unduh Ulang Transkode Secara Otomatis",
     "@redownloadTitle": {
         "description": "Title for download transcode setting which redownloads tracks with higher allowed qualities"
     },
@@ -1943,7 +1943,7 @@
     "@size": {
         "description": "Label for the feature chips showing the size (original file size or transcoded size, if available) of a track"
     },
-    "normalizationGain": "Gain",
+    "normalizationGain": "Penguat",
     "@normalizationGain": {
         "description": "Label for the feature chips showing the normalization gain / LUFS offset of a track"
     },
@@ -2043,7 +2043,7 @@
     "@allowDeleteFromServerSubtitle": {
         "description": "Subtitle for the setting that controls if items can be deleted from the server"
     },
-    "deleteFromTargetDialogText": "Anda akan menghapus {itemType, select, album{album} playlist{daftar putar} artist{artis} genre{genre} track{trek} library{pustaka} other{item}} dari {device, select, device{perangkat ini} server{sistem file dan pustaka server.{deleteType, select, canDelete{ Ini juga akan Menghapus item ini dari Perangkat ini.} cantDelete{ Item ini akan tetap berada di perangkat ini sampai sinkronisasi berikutnya.} notDownloaded{} other{}}\\\nTindakan ini tidak dapat dibatalkan} other{}}.",
+    "deleteFromTargetDialogText": "Anda akan menghapus {itemType, select, album{album} playlist{daftar putar} artist{artis} genre{genre} track{trek} library{pustaka} other{item}} dari {device, select, device{perangkat ini} server{sistem file dan pustaka server.{deleteType, select, canDelete{ Ini juga akan Menghapus item ini dari Perangkat ini.} cantDelete{ Item ini akan tetap berada di perangkat ini sampai sinkronisasi berikutnya.} notDownloaded{} other{}} ini\nTindakan ini tidak dapat dikembalikan} other{}}.",
     "@deleteFromTargetDialogText": {
         "description": "(Important: Note the space in front of some cases) A Confirm Prompt used whenever an item is about to be deleted from the device or server. The Server case should explain that this cannot be reverted, this information is not needed for the device since the user can just download the track again. The delete Type adapts the server text even more in can the user can or cant delete the item."
     },
@@ -2297,19 +2297,19 @@
     "@ping": {
         "description": "Gets shown in the Snackbar when using the Test Connection Button inside the Network Settings. true means reachable, false means unreachable. the first value is for the public address, the second value is fot the home address."
     },
-    "autoReloadQueueTitle": "Otomatis Memuat Ulang Antrian",
+    "autoReloadQueueTitle": "Otomatis Memuat Ulang Antrean",
     "@autoReloadQueueTitle": {
         "description": "Title for the setting that controls if the queue is automatically reloaded when the source changes"
     },
-    "autoReloadQueueSubtitle": "Otomatis Memuat Ulang Antrian ketika sumber berubah (misalnya, mode luring diaktifkan atau alamat server berubah). Jika nonaktif, Finamp akan memunculkan prompt kepada Anda.",
+    "autoReloadQueueSubtitle": "Otomatis Memuat Ulang Antrean ketika sumber berubah (misal: mode offline diaktifkan atau alamat server berubah). Jika nonaktif, Finamp akan menampilkan pesan kepada Anda.",
     "@autoReloadQueueSubtitle": {
         "description": "Subtitle for the setting that controls if the queue is automatically reloaded when the source changes"
     },
-    "clearQueueOnStopEventTitle": "Bersihkan Antrian Saat Berhenti Eksternal",
+    "clearQueueOnStopEventTitle": "Bersihkan Antrean Saat Berhenti Eksternal",
     "@clearQueueOnStopEventTitle": {
         "description": "Title for the setting that controls if OS stop commands clear the queue."
     },
-    "clearQueueOnStopEventSubtitle": "Bersihkan antrian dan tutup pemutar musik jika sebuah perintah 'stop' diterima dari OS. Tindakan stop dari dalam aplikasi akan selalu menutup pemutar dan membersihkan antrian.",
+    "clearQueueOnStopEventSubtitle": "Bersihkan antrean dan tutup pemutar musik jika sebuah perintah 'stop' diterima dari OS. Tindakan stop dari dalam aplikasi akan selalu menutup pemutar dan membersihkan antrean.",
     "@clearQueueOnStopEventSubtitle": {
         "description": "Subtitle for the setting that controls if OS stop commands clear the queue."
     },
@@ -2377,7 +2377,7 @@
     "@radioModeDisabledSubtitle": {
         "description": "Subtitle displayed in the queue to show that radio mode is disabled."
     },
-    "radioModeDescription": "{mode, select, reshuffle{Acak ulang antrian secara terus-menerus} random{Tambahkan trek secara acak dari pilihan awal} similar{Tambahkan berdasarkan antrian awal} continuous{Tambahkan berdasarkan trek saat ini} albumMix{Tambahkan album yang mirip} other{}}",
+    "radioModeDescription": "{mode, select, reshuffle{Acak ulang antrean secara terus-menerus} random{Tambahkan trek secara acak dari pilihan awal} similar{Tambahkan berdasarkan antrean awal} continuous{Tambahkan berdasarkan trek saat ini} albumMix{Tambahkan album yang mirip} other{}}",
     "@radioModeDescription": {
         "placeholders": {
             "mode": {
@@ -2401,11 +2401,11 @@
         },
         "description": "Shown as the subtitle for radio modes when the user is offline and the radio mode requires the user to be online to function."
     },
-    "radioModeUnavailableForSourceItemDescription": "Tidak tersedia untuk sumber antrian ini",
+    "radioModeUnavailableForSourceItemDescription": "Tidak tersedia untuk sumber antrean ini",
     "@radioModeUnavailableForSourceItemDescription": {
         "description": "Shown as the subtitle for radio modes when the queue source item type is not supported."
     },
-    "radioModeUnavailableForSourceItemSubtitle": "{modeName} tidak tersedia untuk sumber antrian ini",
+    "radioModeUnavailableForSourceItemSubtitle": "{modeName} tidak tersedia untuk sumber antrean ini",
     "@radioModeUnavailableForSourceItemSubtitle": {
         "placeholders": {
             "modeName": {
@@ -2415,11 +2415,11 @@
         },
         "description": "Shown as the subtitle for radio modes when the queue source item type is not supported."
     },
-    "radioModeUnavailableQueueEmptyDescription": "Tidak tersedia karena antrian kosong",
+    "radioModeUnavailableQueueEmptyDescription": "Tidak tersedia karena antrean kosong",
     "@radioModeUnavailableQueueEmptyDescription": {
         "description": "Shown as the subtitle for radio modes when the queue is empty."
     },
-    "radioModeUnavailableQueueEmptySubtitle": "{modeName} tidak tersedia karena antrian kosong",
+    "radioModeUnavailableQueueEmptySubtitle": "{modeName} tidak tersedia karena antrean kosong",
     "@radioModeUnavailableQueueEmptySubtitle": {
         "placeholders": {
             "modeName": {
@@ -2469,11 +2469,11 @@
     "@radioNoTracksFound": {
         "description": "Shown when the user tries to start radio mode but no suitable tracks were found to start the radio with."
     },
-    "loopingUnavailableWhileRadioActiveWarning": "Mengubah perulangan tidak tersedia saat radio aktif, karena antrian akan berlanjut selamanya.",
+    "loopingUnavailableWhileRadioActiveWarning": "Mengubah perulangan tidak tersedia saat radio aktif, karena antrean akan dilanjutkan selamanya.",
     "@loopingUnavailableWhileRadioActiveWarning": {
         "description": "Warning message when trying to change the loop mode while radio is active."
     },
-    "autoReloadPrompt": "Muat ulang antrian untuk memasang {type, select, network{pengaturan jaringan} transcoding{pengaturan transcoding} other{pengaturan}} baru",
+    "autoReloadPrompt": "Muat ulang antrean untuk memasang {type, select, network{pengaturan jaringan} transcoding{pengaturan transkode} other{pengaturan}} baru",
     "@autoReloadPrompt": {
         "description": "Prompt shown when the queue needs to be reloaded after changing network settings",
         "placeholders": {
@@ -2482,7 +2482,7 @@
             }
         }
     },
-    "autoReloadPromptMissingTracks": "{amountUndownloadedTracks, plural, =1{1 trek} other{{amountUndownloadedTracks} trek}} akan dihapus dari antrian karena belum diunduh.",
+    "autoReloadPromptMissingTracks": "{amountUndownloadedTracks, plural, =1{1 trek} other{{amountUndownloadedTracks} trek}} akan dihapus dari antrean karena belum diunduh.",
     "@autoReloadPromptMissingTracks": {
         "description": "Additional prompt text shown when the queue needs to be reloaded after changing network settings and some undownloaded tracks are in the queue",
         "placeholders": {
@@ -2535,7 +2535,7 @@
     "@serverSharingMenuButtonTitle": {
         "description": "Title for the button in the drawer that opens the server sharing menu"
     },
-    "serverSharingMenuConfirmationDialogText": "Apakah anda yakin ingin mengaktifkan berbagi server meskipun anda berada dalam Mode Luring? Tindakan ini akan membuat Finamp mengirimkan data melalui jaringan lokal.",
+    "serverSharingMenuConfirmationDialogText": "Apakah anda yakin ingin mengaktifkan berbagi server meskipun anda berada dalam Mode Offline? Tindakan ini akan membuat Finamp mengirimkan data melalui jaringan lokal.",
     "@serverSharingMenuConfirmationDialogText": {
         "description": "Dialog text shown when enabling server sharing while offline mode is enabled"
     },
@@ -2559,7 +2559,7 @@
     "@serverSharingMenuControlSubtitleSharingEnabled": {
         "description": "Subtitle of the toggle control in the server sharing menu used to turn server sharing on or off, when it's currently turned on"
     },
-    "serverSharingMenuDescription": "Berbagi alamat server Anda dapat berguna untuk menyiapkan klien baru yang tidak berada di jaringan lokal yang sama dengan server Jellyfin Anda, misalnya TV hotel, PC Anda di kantor, atau klien baru di ponsel Anda saat bepergian.",
+    "serverSharingMenuDescription": "Berbagi alamat server Anda dapat berguna untuk menyiapkan klien baru yang tidak berada di jaringan lokal yang sama dengan server Jellyfin Anda, misal: TV hotel, PC Anda di kantor, atau klien baru di ponsel Anda saat bepergian.",
     "@serverSharingMenuDescription": {
         "description": "Description text shown in the server sharing menu, right below the controls"
     },
@@ -2587,7 +2587,7 @@
     "@quickConnectAuthorizationMenuStateSubtitleIdle": {
         "description": "Subtitle for the quick connect authorization menu state info (above the input field) while the code hasn't been submitted yet"
     },
-    "quickConnectAuthorizationMenuStateTitleProcessing": "Mencoba mengotorisasikan permintaan",
+    "quickConnectAuthorizationMenuStateTitleProcessing": "Mengotorisasi Permintaan",
     "@quickConnectAuthorizationMenuStateTitleProcessing": {
         "description": "Title for the quick connect authorization menu state info (above the input field) while a request is being processed"
     },
@@ -2691,7 +2691,7 @@
     "@rememberLastUsedPlaybackActionRowPageSubtitle": {
         "description": "Subtitle for the setting to remember the last used playback mode."
     },
-    "discOfAlbum": "[Disk {number}] {albumName}",
+    "discOfAlbum": "[Disc {number}] {albumName}",
     "@discOfAlbum": {
         "description": "Used when a single disc of album is opened, then album name is replaced with this string",
         "placeholders": {
@@ -2704,7 +2704,7 @@
             }
         }
     },
-    "moreActionsOnAlbumDisc": "Aksi lainnya pada disk album",
+    "moreActionsOnAlbumDisc": "Aksi lainnya pada disc album",
     "@moreActionsOnAlbumDisc": {
         "description": "Label for the disc header menu button."
     },
@@ -2817,11 +2817,11 @@
         "description": "Toggles the dark color scheme between dark gray and pure black."
     },
     "amoledThemeSubtitle": "Mengganti skema warna gelap dengan tema hitam pekat.",
-    "multichannelHandlingTitle": "Penanganan Transcode Multi-Channel",
+    "multichannelHandlingTitle": "Penanganan Transkode Multi-Channel",
     "@multichannelHandlingTitle": {
         "description": "Title for multi-channel handling dropdown"
     },
-    "multichannelHandlingSubtitle": "Cara menangani trek multi-channel (> 2 channel) saat melakukan transcode. Berlaku untuk streaming maupun unduhan.",
+    "multichannelHandlingSubtitle": "Cara menangani trek multi-channel (> 2 channel) saat melakukan transkode. Berlaku untuk streaming maupun unduhan.",
     "@multichannelHandlingSubtitle": {
         "description": "Subtitle for multi-channel handling dropdown"
     },
@@ -3307,7 +3307,7 @@
     "@shuffleTracksAction": {
         "description": "Name of a home screen quick action"
     },
-    "randomFavoriteAction": "Favorit Acak",
+    "randomFavoriteAction": "Favorit Acak{itemType, select, albums{Album} tracks{Trek} playlists{Daftar Putar} performingArtists{Artis Pemain} albumArtists{Artis Album} none{dari <Type>} other{}}",
     "@randomFavoriteAction": {
         "description": "Name of a home screen quick action"
     },
@@ -3432,7 +3432,7 @@
     "albumArtistFilter": "Album (Sebagai Artis Album dari)",
     "allTypes": "Semua Jenis",
     "itemTypeFilterHeader": "Jenis Turunan",
-    "losslessNoBitrate": "Tidak berlaku untuk transcode FLAC",
+    "losslessNoBitrate": "Tidak berlaku untuk transkode FLAC",
     "@losslessNoBitrate": {
         "description": "Settings text informing the user that transcoding bitrate does not apply to lossless transcodes."
     },
@@ -3440,7 +3440,7 @@
     "@recentlyPlayedTracksDescription": {
         "description": "Description for a home screen section preset"
     },
-    "homeFavoritesDownloadWarning": "Apakah Anda yakin ingin mengunduh favorit? Ini akan mengunduh favorit dari semua jenis, bukan hanya {sectionType}.",
+    "homeFavoritesDownloadWarning": "Apakah Anda yakin ingin mengunduh favorit? Ini akan mengunduh favorit untuk semua jenis, bukan hanya {sectionType}.",
     "@homeFavoritesDownloadWarning": {
         "description": "Warning presented when pressing the download button on certain home screen sections.  This is shown because home sections show a specific item type, like Albums, but the download covers all.",
         "placeholders": {
@@ -3557,5 +3557,141 @@
     "clientCertificateDescription": "Sebuah sertifikat klien TLS (.p12 atau .pfx) digunakan untuk mengautentikasi perangkat ini dengan server Jellyfin anda. Hanya diperlukan jika server anda diatur untuk Mutual TLS.",
     "@clientCertificateDescription": {
         "description": "Explanatory text in the client certificate settings menu describing what a client certificate is used for"
+    },
+    "activeLibraries": "Pustaka Aktif",
+    "@activeLibraries": {
+        "description": "Active Libraries"
+    },
+    "volumeControlDisabledCastingHint": "Audio akan disiarkan ke perangkat yang tidak mendukung kendali volume dalam aplikasi.",
+    "@volumeControlDisabledCastingHint": {
+        "description": "Hint text displayed below the volume bar when the in-app volume slider is disabled because audio is being cast to a device that bypasses the in-app volume handling and handles its own volume, such as when using Airplay."
+    },
+    "selectItemTypes": "Pilih tipe item",
+    "@selectItemTypes": {
+        "description": "Title for 'play random item' quick action edit menu"
+    },
+    "randomAlbums": "Album Acak",
+    "@randomAlbums": {
+        "description": "Name of a home screen section preset"
+    },
+    "randomAlbumArtists": "Artis Album Acak",
+    "@randomAlbumArtists": {
+        "description": "Name of a home screen section preset"
+    },
+    "recentlyAddedPlaylists": "Daftar Putar yang Baru Dibuat",
+    "@recentlyAddedPlaylists": {
+        "description": "Name of a home screen section preset"
+    },
+    "randomAlbumsDescription": "Album dalam urutan acak",
+    "@randomAlbumsDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "randomArtistsDescription": "Artis dalam urutan acak",
+    "@randomArtistsDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "recentlyAddedPlaylistsDescription": "Daftar Putar berdasarkan tanggal pembuatan, dimulai dari yang terbaru",
+    "@recentlyAddedPlaylistsDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "playRandomItemActionDescription": "Mulai pemutaran item acak",
+    "@playRandomItemActionDescription": {
+        "description": "Description of a home screen quick action"
+    },
+    "randomItemAction": "Acak {itemType, select, albums{Album} tracks{Trek} playlists{Daftar Putar} performingArtists{Artis Pemain} albumArtists{Artis Album} none{Item dari <Type>} other{Item}}",
+    "@randomItemAction": {
+        "placeholders": {
+            "itemType": {
+                "type": "String",
+                "description": "Localized name of item type to be selected, or placeholder 'multiple'"
+            }
+        },
+        "description": "Name of a home screen quick action"
+    },
+    "randomPlaylistAction": "Daftar Putar Acak",
+    "@randomPlaylistAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "randomArtistAction": "Artis Acak",
+    "@randomArtistAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "randomGenreAction": "Genre Acak",
+    "@randomGenreAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "randomFavoriteAlbumAction": "Album Favorit Acak",
+    "@randomFavoriteAlbumAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "randomFavoriteTrackAction": "Trek Favorit Acak",
+    "@randomFavoriteTrackAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "randomFavoritePlaylistAction": "Daftar Putar Favorit Acak",
+    "@randomFavoritePlaylistAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "randomFavoriteArtistAction": "Artis Favorit Acak",
+    "@randomFavoriteArtistAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "randomFavoriteGenreAction": "Genre Favorit Acak",
+    "@randomFavoriteGenreAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "artistFilter": "Artis: {name}",
+    "@artistFilter": {
+        "description": "Name of artistFilter",
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "cancelChanges": "Batalkan Perubahan",
+    "@cancelChanges": {
+        "description": "Button on sort and filter menu that clears any pending changes."
+    },
+    "applyChangesOnClose": "Perubahan akan diterapkan ketika menu ditutup",
+    "@applyChangesOnClose": {
+        "description": "Notification on sort and filter menu that currently pending changes will be automatically applied on close."
+    },
+    "removeFromQueue": "Hapus Dari Antrean",
+    "featureChipName": "{chipName, select, explicit{Eksplisit} playCount{Jumlah Putaran} additionalPeople{Orang Tambahan} playbackMode{Mode Pemutaran} codec{Codec} bitRate{Bitrate} bitDepth{Bit Depth} sampleRate{Sample Rate} size{Ukuran} normalizationGain{Gain Normalisasi} other{{chipName}}}",
+    "@featureChipName": {
+        "placeholders": {
+            "chipName": {
+                "type": "String",
+                "example": "playCount"
+            }
+        },
+        "description": "Titles for settings controlling which pieces of advanced track info are displayed."
+    },
+    "featureChipDescription": "{chipName, select, explicit{Tandai trek dengan konten eksplisit} additionalPeople{Orang non-artis yang berhubungan dengan trek, jika tersedia (penulis, penulis lirik, dll.)} playbackMode{Informasi status streaming dan transkode} bitDepth{Bit per sampel audio. Hanya dapat diterapkan untuk codec lossless, biasanya 16 bit.} sampleRate{Sampel audio per detik. Biasanya 44.1 kHz.} normalizationGain{Level ReplayGain yang aktif saat ini} size{Ukuran file asli dari trek} other{null}}",
+    "@featureChipDescription": {
+        "placeholders": {
+            "chipName": {
+                "type": "String",
+                "example": "playCount"
+            }
+        },
+        "description": "Descriptions of different pieces of advanced track info."
+    },
+    "maximizePlayer": "Maksimalkan pemutar",
+    "collapsePlayer": "Lipat pemutar ke sidebar",
+    "addSpecialDownloads": "Tambahkan unduhan spesial",
+    "@addSpecialDownloads": {
+        "description": "Button on downloads screen which allows adding special downloads, such as all playlists or all favorites."
+    },
+    "allTracks": "Semua Trek (dari \"{trackName}\")",
+    "@allTracks": {
+        "description": "Queue source when playing from tracks screen.",
+        "placeholders": {
+            "trackName": {
+                "type": "String",
+                "example": "Never Gonna Give You Up"
+            }
+        }
     }
 }
