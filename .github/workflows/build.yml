@@ -197,7 +197,7 @@ jobs:
 
     - name: Run Integration Tests
       if: *integration_if
-      run: flutter test integration_test/test_cases.dart -d 'iPhone 16'
+      run: flutter test integration_test/test_cases.dart -d 'iPhone 17'
 
   build-linux:
     name: Build for Linux
