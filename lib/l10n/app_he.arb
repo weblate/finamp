@@ -1099,7 +1099,7 @@
             }
         }
     },
-    "confirmPlayNext": "{type, select, track{רצעות שמע} album{אלבום} artist{Artist} playlist {פלייליסט} genre{ג'אנר} other{פריט}} ינוגן הבא",
+    "confirmPlayNext": "תתבצע נגינה של {type, select, track{רצועת השמע} album{האלבום} artist{האמן} playlist{הפלייליסט} genre{הג׳אנר} disc{הדיסק} other{הפריט}} לאחר מכן",
     "@confirmPlayNext": {
         "description": "A confirmation message that is shown after successfully adding a track to the front of the \"Next Up\" queue",
         "placeholders": {
@@ -1111,7 +1111,7 @@
     "stackTrace": "מעקב המדד (Stack Trace)",
     "autoSwitchItemCurationTypeSubtitle": "כאשר מופעל, סקציות פריטים במסכי האמנים והג'אנרים יוחלפו לסוג בחירה שונה אם אין פריטים מתאימים (למשל, אין מועדפים לאמן ספציפי).",
     "autoSwitchItemCurationTypeTitle": "שינוי אוטומטי של מצב בחירת פריט",
-    "confirmAddToNextUp": "נוסף {type, select, track{רצועת שמע} album{אלבום} artist{אמן} playlist{פלייליסט} genre{ג'אנר} disc{דיסק} other{פריט}} לבא בתור",
+    "confirmAddToNextUp": "בוצעה הוספה של {type, select, track{רצועת השמע} album{האלבום} artist{האמן} playlist{הפלייליסט} genre{הג'אנר} disc{הדיסק} other{הפריט}} לבא בתור",
     "@confirmAddToNextUp": {
         "description": "A confirmation message that is shown after successfully adding a track to the end of the \"Next Up\" queue",
         "placeholders": {
@@ -3614,5 +3614,90 @@
     "homeScreenImageSizeTitle": "גודל אריח מסך בית",
     "@homeScreenImageSizeTitle": {
         "description": "Title of home screen tile image size setting"
+    },
+    "losslessNoBitrate": "לא חל על קידודי FLAC",
+    "@losslessNoBitrate": {
+        "description": "Settings text informing the user that transcoding bitrate does not apply to lossless transcodes."
+    },
+    "homeAllPlaylistsWarning": "האם להוריד את כל הפלייליסטים?  זה יוריד את כל פלייליסט, לא רק את אלו שבסקציה הזאת.",
+    "@homeAllPlaylistsWarning": {
+        "description": "Warning presented when pressing the download button on playlist home sections with a filter applied.  This is shown because the download will not apply the filter."
+    },
+    "offlineSortFallback": "מיון לפי {onlineSort} אפשרי רק במצב מקוון.  כרגע חוזר למיון לפי סידור ברירת מחדל",
+    "@offlineSortFallback": {
+        "description": "Warning presented in sort and filter menu when an online-only sort is chosen.",
+        "placeholders": {
+            "onlineSort": {
+                "type": "String",
+                "example": "Play Count"
+            }
+        }
+    },
+    "collapsePlayer": "צימצום נגן לסרגל צד",
+    "homeScreenSectionPresetPickerMenuTitle": "בחירת הגדרה",
+    "@homeScreenSectionPresetPickerMenuTitle": {
+        "description": "Title for the preset picker menu, which allows users to pick a preset section to add to the home screen"
+    },
+    "featuredCollection": "אוסף מודגש",
+    "@featuredCollection": {
+        "description": "Title for home screen section editor collection selector"
+    },
+    "sectionConfigInvalid": "ההגדרה הנוכחית לא תקינה.",
+    "@sectionConfigInvalid": {
+        "description": "Message in home screen section edit menu preview window when a valid preview cannot be generated"
+    },
+    "gridImageSizeTitle": "גודל אריח רשת",
+    "@gridImageSizeTitle": {
+        "description": "Title of grid tile image size setting"
+    },
+    "gridImageSizeSubtitle": "בחירת הגודל של פריטים בתצגות רשת",
+    "@gridImageSizeSubtitle": {
+        "description": "Subtitle of grid tile image size setting"
+    },
+    "gridImageSizeLabel": "{colCountExact, plural, =0{~} =1{} other{}}{colCount, plural, =1{עמודה אחת ({sizeDescriptor})} other{{colCount} עמודות ({sizeDescriptor})}}",
+    "@gridImageSizeLabel": {
+        "placeholders": {
+            "sizeDescriptor": {
+                "type": "String",
+                "example": "Very Small"
+            },
+            "colCount": {
+                "type": "int"
+            },
+            "colCountExact": {
+                "type": "int",
+                "description": "0 = not exact, add e.g. tilde character (~), 1 = exact, just show the number"
+            }
+        },
+        "description": "Slider label in grid tile image size setting"
+    },
+    "artistFilter": "אמן: {name}",
+    "@artistFilter": {
+        "description": "Name of artistFilter",
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "featureChipName": "{chipName, select, explicit{תוכן בוטה} playCount{כמות נגינות} additionalPeople{אנשים נוספים} playbackMode{מצב נגינה} codec{Codec} bitRate{Bitrate} bitDepth{Bit Depth} sampleRate{Sample Rate} size{גודל} normalizationGain{Normalization Gain} other{{chipName}}}",
+    "@featureChipName": {
+        "placeholders": {
+            "chipName": {
+                "type": "String",
+                "example": "playCount"
+            }
+        },
+        "description": "Titles for settings controlling which pieces of advanced track info are displayed."
+    },
+    "featureChipDescription": "{chipName, select, explicit{מסמן רצועות שמע שכוללות תוכן בוטה} additionalPeople{Non-artist people linked to the track, if available (writers, lyricists, etc.)} playbackMode{Streaming and transcoding status information} bitDepth{Bits per audio sample.  Only applicable to lossless codecs, generally 16 bits.} sampleRate{Audio samples per second.  Generally 44.1 kHz.} normalizationGain{Currently active ReplayGain level} size{הגודל קובץ המקורי של רצועת השמע} other{null}}",
+    "@featureChipDescription": {
+        "placeholders": {
+            "chipName": {
+                "type": "String",
+                "example": "playCount"
+            }
+        },
+        "description": "Descriptions of different pieces of advanced track info."
     }
 }
