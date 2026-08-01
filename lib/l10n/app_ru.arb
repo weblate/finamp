@@ -721,7 +721,7 @@
             }
         }
     },
-    "offlineTrackCount": "{count,plural,=1{{count} Композиция} few{{count} Компоозиции} other{{count} Композиций}}, {downloads} загружено",
+    "offlineTrackCount": "{count,plural,=1{{count} Композиция} few{{count} Композиции} other{{count} Композиций}}, {downloads} загружено",
     "@offlineTrackCount": {
         "placeholders": {
             "count": {
@@ -766,7 +766,7 @@
     "@shuffleToQueue": {
         "description": "Used for shuffling a list (album, playlist, etc.) to the end of the regular queue, to play after all prior tracks from the queue have played"
     },
-    "confirmPlayNext": "{type, select, track{Композиция} album{Альбом} artist{Исполнитель} playlist{Плейлист} genre{Жанр} other{Элемент}} будет играть дальше",
+    "confirmPlayNext": "{type, select, track{Композиция} album{Альбом} artist{Исполнитель} playlist{Плейлист} genre{Жанр} disc{Диск} other{Элемент}} будет играть дальше",
     "@confirmPlayNext": {
         "description": "A confirmation message that is shown after successfully adding a track to the front of the \"Next Up\" queue",
         "placeholders": {
@@ -3085,7 +3085,7 @@
     "@gridImageSizeSubtitle": {
         "description": "Subtitle of grid tile image size setting"
     },
-    "gridImageSizeLabel": "{colCountExact, plural, =0{~} =1{} other{}}{colCount, plural, =1{1 колонка ({sizeDescriptor})} other{{colCount} колонок(-ки) ({sizeDescriptor})}}",
+    "gridImageSizeLabel": "{colCountExact, plural, =0{~} =1{} other{}}{colCount, plural, =1{1 колонка ({sizeDescriptor})} few{{colCount} колонки ({sizeDescriptor})} other{{colCount} колонок ({sizeDescriptor})}}",
     "@gridImageSizeLabel": {
         "placeholders": {
             "sizeDescriptor": {
@@ -3114,7 +3114,7 @@
     "@noFilterActive": {
         "description": "Message in sort & filter row when no filters are active"
     },
-    "activeFilterCount": "{filterCount, plural, =0{Нет фильтров} =1{1 Фильтр} other{{filterCount} Фильтров(-а)}} Active",
+    "activeFilterCount": "{filterCount, plural, =0{Нет фильтров} =1{1 Фильтр} few{{filterCount} Фильтра} other{{filterCount} Фильтров}} Active",
     "@activeFilterCount": {
         "placeholders": {
             "filterCount": {
@@ -3636,6 +3636,15 @@
             "trackName": {
                 "type": "String",
                 "example": "Never Gonna Give You Up"
+            }
+        }
+    },
+    "artistFilter": "Исполнитель: {name}",
+    "@artistFilter": {
+        "description": "Name of artistFilter",
+        "placeholders": {
+            "name": {
+                "type": "String"
             }
         }
     }
