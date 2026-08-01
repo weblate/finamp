@@ -92,7 +92,10 @@ Future<List<BaseItemDto>> loadChildTracksFromBaseItem({
   }
 
   if (BaseItemDtoType.fromItem(item) == BaseItemDtoType.artist) {
-    return sortTracksLikeAlbums(newItems, ref.read(resolveSortProvider(SortAndFilterController.trackArtistAlbums())));
+    return sortTracksLikeAlbums(
+      newItems,
+      ref.read(resolveSortProvider(SortAndFilterController.trackSettings(ContentType.inAlbumArtistAlbums))),
+    );
   }
 
   return newItems;

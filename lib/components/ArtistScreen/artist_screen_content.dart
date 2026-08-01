@@ -53,8 +53,8 @@ class _ArtistScreenContentState extends ConsumerState<ArtistScreenContent> {
 
   @override
   void initState() {
-    albumsController = SortAndFilterController.trackArtistAlbums();
-    appearsOnController = SortAndFilterController.trackArtistAppearsOn();
+    albumsController = SortAndFilterController.trackSettings(ContentType.inAlbumArtistAlbums);
+    appearsOnController = SortAndFilterController.trackSettings(ContentType.inPerformingArtistAlbums);
 
     _refreshStream = _downloadsService.offlineDeletesStream.listen((event) {
       _refresh();

@@ -401,7 +401,8 @@ Future<List<Track>> getChildTracks(Ref ref, {required FinampUnpagedDisplayable<T
       return items.map((baseItem) => Track(baseItem, source: item.source)).toList();*/
     case Artist<Track>():
       assert(item.type == ArtistChildType.tracks);
-      final albumsSortConfig = resolveSortProvider(SortAndFilterController.trackArtistAlbums());
+      final controller = SortAndFilterController.trackSettings(ContentType.inAlbumArtistAlbums);
+      final albumsSortConfig = ref.watch(resolveSortProvider(controller));
 
       final children = await ref
           .watch(
@@ -413,7 +414,7 @@ Future<List<Track>> getChildTracks(Ref ref, {required FinampUnpagedDisplayable<T
             ).future,
           )
           .then((tracks) {
-            return sortTracksLikeAlbums(tracks, ref.read(albumsSortConfig));
+            return sortTracksLikeAlbums(tracks, albumsSortConfig);
           });
       return children.map<Track>((child) => Track(child)).toList();
   }

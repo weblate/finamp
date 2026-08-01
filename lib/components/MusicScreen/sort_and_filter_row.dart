@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:collection/collection.dart';
-import 'package:finamp/components/Buttons/cta_medium.dart';
 import 'package:finamp/components/Buttons/simple_button.dart';
 import 'package:finamp/components/SettingsScreen/finamp_settings_dropdown.dart';
 import 'package:finamp/components/themed_bottom_sheet.dart';
@@ -75,16 +74,6 @@ abstract class SortAndFilterController {
   factory SortAndFilterController.trackSettings(ContentType contentType) =>
       TrackingSortAndFilterController(contentType: contentType);
 
-  factory SortAndFilterController.trackArtistAlbums() => ArtistSectionTrackingSortAndFilterController(
-    contentType: ContentType.albums,
-    sectionType: ArtistSectionType.albums,
-  );
-
-  factory SortAndFilterController.trackArtistAppearsOn() => ArtistSectionTrackingSortAndFilterController(
-    contentType: ContentType.albums,
-    sectionType: ArtistSectionType.appearsOn,
-  );
-
   factory SortAndFilterController({
     required ContentType contentType,
     required SortAndFilterConfiguration startingConfig,
@@ -149,9 +138,12 @@ class StaticSortAndFilterController extends SortAndFilterController {
 class TrackingSortAndFilterController extends SortAndFilterController {
   TrackingSortAndFilterController({required super.contentType})
     : super._(
-        startingConfig: contentType == ContentType.inPlaylist
-            ? ResolvedSortConfig.defaultInAlbumSort
-            : ResolvedSortConfig.defaultSort,
+        startingConfig: switch (contentType) {
+          ContentType.inPlaylist => ResolvedSortConfig.defaultInAlbumSort,
+          ContentType.inPerformingArtistAlbums => ResolvedSortConfig.defaultArtistAlbumSort,
+          ContentType.inAlbumArtistAlbums => ResolvedSortConfig.defaultArtistAlbumSort,
+          _ => ResolvedSortConfig.defaultSort,
+        },
       );
 
   @override
@@ -186,76 +178,6 @@ class TrackingSortAndFilterController extends SortAndFilterController {
       sortOrder: ref.watch(finampSettingsProvider.tabSortOrder(_type)),
       favoriteFilter: ref.watch(finampSettingsProvider.onlyShowFavorites),
       onlyShowFullyDownloadedFilter: ref.watch(finampSettingsProvider.onlyShowFullyDownloaded),
-    );
-  }
-}
-
-enum ArtistSectionType { albums, appearsOn }
-
-class ArtistSectionTrackingSortAndFilterController extends SortAndFilterController {
-  final ArtistSectionType sectionType;
-
-  ArtistSectionTrackingSortAndFilterController({required super.contentType, required this.sectionType})
-    : super._(startingConfig: ResolvedSortConfig.defaultArtistAlbumSort);
-
-  @override
-  void _updateConfiguration(SortAndFilterConfiguration newConfig) {
-    super._updateConfiguration(newConfig);
-
-    // Save sort settings based on which section this is
-    if (sectionType == ArtistSectionType.albums) {
-      if (newConfig.sortBy != FinampSettingsHelper.finampSettings.artistScreenAlbumsSortBy) {
-        FinampSetters.setArtistScreenAlbumsSortBy(newConfig.sortBy);
-      }
-      if (newConfig.sortOrder != FinampSettingsHelper.finampSettings.artistScreenAlbumsSortOrder) {
-        FinampSetters.setArtistScreenAlbumsSortOrder(newConfig.sortOrder);
-      }
-    } else {
-      if (newConfig.sortBy != FinampSettingsHelper.finampSettings.artistScreenAppearsOnSortBy) {
-        FinampSetters.setArtistScreenAppearsOnSortBy(newConfig.sortBy);
-      }
-      if (newConfig.sortOrder != FinampSettingsHelper.finampSettings.artistScreenAppearsOnSortOrder) {
-        FinampSetters.setArtistScreenAppearsOnSortOrder(newConfig.sortOrder);
-      }
-    }
-
-    // Favorite and Download filters remain tied to the Global settings
-    if (newConfig.filters.contains(ItemFilter(type: ItemFilterType.isFavorite)) !=
-        FinampSettingsHelper.finampSettings.onlyShowFavorites) {
-      FinampSetters.setOnlyShowFavorites(newConfig.filters.contains(ItemFilter(type: ItemFilterType.isFavorite)));
-    }
-    if (newConfig.filters.contains(ItemFilter(type: ItemFilterType.isFullyDownloaded)) !=
-        FinampSettingsHelper.finampSettings.onlyShowFullyDownloaded) {
-      FinampSetters.setOnlyShowFullyDownloaded(
-        newConfig.filters.contains(ItemFilter(type: ItemFilterType.isFullyDownloaded)),
-      );
-    }
-  }
-
-  @override
-  SortAndFilterConfiguration _getValue(Ref ref) {
-    _notifier.addListener(ref.invalidateSelf);
-    ref.onDispose(() => _notifier.removeListener(ref.invalidateSelf));
-
-    final sortBy = sectionType == ArtistSectionType.albums
-        ? ref.watch(finampSettingsProvider.select((s) => s.value?.artistScreenAlbumsSortBy ?? SortBy.productionYear))
-        : ref.watch(
-            finampSettingsProvider.select((s) => s.value?.artistScreenAppearsOnSortBy ?? SortBy.productionYear),
-          );
-
-    final sortOrder = sectionType == ArtistSectionType.albums
-        ? ref.watch(finampSettingsProvider.select((s) => s.value?.artistScreenAlbumsSortOrder ?? SortOrder.ascending))
-        : ref.watch(
-            finampSettingsProvider.select((s) => s.value?.artistScreenAppearsOnSortOrder ?? SortOrder.ascending),
-          );
-
-    return _config.copyWith(
-      sortBy: sortBy,
-      sortOrder: sortOrder,
-      favoriteFilter: ref.watch(finampSettingsProvider.select((s) => s.value?.onlyShowFavorites ?? false)),
-      onlyShowFullyDownloadedFilter: ref.watch(
-        finampSettingsProvider.select((s) => s.value?.onlyShowFullyDownloaded ?? false),
-      ),
     );
   }
 }

@@ -123,7 +123,7 @@ jobs:
           disk-size: 5120M
           script: |
             adb logcat -c
-            adb logcat &
+            adb logcat *:I &
             timeout 13m flutter test integration_test/test_cases.dart -d emulator
 
     - name: Run Integration tests on api 25
@@ -142,7 +142,7 @@ jobs:
           disk-size: 5120M
           script: |
             adb logcat -c
-            adb logcat &
+            adb logcat *:I &
             timeout 13m flutter test integration_test/test_cases.dart -d emulator
 
   build-ios:

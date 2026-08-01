@@ -231,10 +231,6 @@ class DefaultSettings {
   static const audioFadeOutDuration = Duration(milliseconds: 0);
   static const audioFadeInDuration = Duration(milliseconds: 0);
   static const defaultArtistType = ArtistType.albumArtist;
-  static const artistScreenAlbumsSortBy = SortBy.premiereDate;
-  static const artistScreenAlbumsSortOrder = SortOrder.ascending;
-  static const artistScreenAppearsOnSortBy = SortBy.premiereDate;
-  static const artistScreenAppearsOnSortOrder = SortOrder.ascending;
   static const isLocal = false;
   static const preferLocalNetwork = false;
   static const localNetworkAddress = "http://0.0.0.0:8096";
@@ -408,10 +404,6 @@ class FinampSettings {
     this.showAlbumReleaseDateOnPlayerScreen = DefaultSettings.showAlbumReleaseDateOnPlayerScreen,
     this.releaseDateFormat = DefaultSettings.releaseDateFormat,
     this.defaultArtistType = DefaultSettings.defaultArtistType,
-    this.artistScreenAlbumsSortBy = DefaultSettings.artistScreenAlbumsSortBy,
-    this.artistScreenAlbumsSortOrder = DefaultSettings.artistScreenAlbumsSortOrder,
-    this.artistScreenAppearsOnSortBy = DefaultSettings.artistScreenAppearsOnSortBy,
-    this.artistScreenAppearsOnSortOrder = DefaultSettings.artistScreenAppearsOnSortOrder,
     this.autoOffline = DefaultSettings.autoOffline,
     this.autoOfflineListenerActive = DefaultSettings.autoOfflineListenerActive,
     this.audioFadeOutDuration = DefaultSettings.audioFadeOutDuration,
@@ -949,18 +941,6 @@ class FinampSettings {
   /// but that's unrealistic, so a random string should be fine
   @HiveField(152, defaultValue: "unset") // pre-generation default
   String deviceId;
-
-  @HiveField(153, defaultValue: DefaultSettings.artistScreenAlbumsSortBy)
-  SortBy artistScreenAlbumsSortBy;
-
-  @HiveField(154, defaultValue: DefaultSettings.artistScreenAlbumsSortOrder)
-  SortOrder artistScreenAlbumsSortOrder;
-
-  @HiveField(156, defaultValue: DefaultSettings.artistScreenAppearsOnSortBy)
-  SortBy artistScreenAppearsOnSortBy;
-
-  @HiveField(157, defaultValue: DefaultSettings.artistScreenAppearsOnSortOrder)
-  SortOrder artistScreenAppearsOnSortOrder;
 
   static Future<FinampSettings> create() async {
     final downloadLocation = await DownloadLocation.create(
@@ -4678,6 +4658,8 @@ class SortAndFilterConfiguration {
   static const defaultSort = ResolvedSortConfig.defaultSort;
 
   static const defaultInAlbumSort = ResolvedSortConfig.defaultInAlbumSort;
+
+  static const defaultArtistAlbumSort = ResolvedSortConfig.defaultArtistAlbumSort;
 
   static const randomSort = ResolvedSortConfig.randomSort;
 
