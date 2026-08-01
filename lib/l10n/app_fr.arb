@@ -588,7 +588,7 @@
     "@queueRestoreButtonLabel": {
         "description": "Button to restore archived now playing queue, overwriting current queue"
     },
-    "confirmAddToNextUp": "Ajout de {type, select, track{Track} album{album} artist{artiste} playlist{playlist} genre{genre} disc{disque} other{élément}} à Suivant",
+    "confirmAddToNextUp": "Ajout de {type, select, track{Track} album{album} artist{artiste} playlist{playlist} genre{genre} disc{disque} other{élément}} à \"Next Up\"",
     "@confirmAddToNextUp": {
         "description": "A confirmation message that is shown after successfully adding a track to the end of the \"Next Up\" queue",
         "placeholders": {
@@ -814,7 +814,7 @@
     "@tracksFormerNextUp": {
         "description": "Title for the queue source for tracks that were once added to the queue via the \"Next Up\" feature, but have since been played"
     },
-    "queueRestoreSubtitle1": "Lecture: {track}",
+    "queueRestoreSubtitle1": "Lecture : {track}",
     "@queueRestoreSubtitle1": {
         "description": "Description of playing track in a saved queue",
         "placeholders": {
@@ -1107,7 +1107,7 @@
     "@redownloadcomplete": {
         "description": "Mesage when Automatically Redownload Transcodes transcode setting completes operations."
     },
-    "queueRestoreError": "Avertissement: {count,plural, =1{{count} track} other{{count} tracks}} n'a pas pu être ajouté à la queue.",
+    "queueRestoreError": "Avertissement: {count,plural, =1{{count} track} other{{count} tracks}} n'a pas pu être ajouté à la file d'attente.",
     "@queueRestoreError": {
         "description": "Message that shows when some, but not all, tracks in the Now-Playing queue from the previous session cannot be restored due to server issues or being offline.",
         "placeholders": {
@@ -3637,5 +3637,14 @@
     "randomFavoritePlaylistAction": "Playlist aléatoire de mes titres préférés",
     "@randomFavoritePlaylistAction": {
         "description": "Name of a home screen quick action"
+    },
+    "artistFilter": "Artiste : {name}",
+    "@artistFilter": {
+        "description": "Name of artistFilter",
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
     }
 }
