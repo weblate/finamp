@@ -3471,15 +3471,15 @@
     "genreFilter": "Genre: {name}",
     "@genreFilter": {
         "description": "Name of genreFilter",
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
-  "artistFilter": "Artist: {name}",
-  "@artistFilter": {
-    "description": "Name of artistFilter",
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "artistFilter": "Artist: {name}",
+    "@artistFilter": {
+        "description": "Name of artistFilter",
         "placeholders": {
             "name": {
                 "type": "String"
@@ -3546,7 +3546,7 @@
             }
         }
     },
-    "homeAllPlaylistsWarning": "Are you sure you want to all playlists?  This will download every playlist, not just the ones in this section.",
+    "homeAllPlaylistsWarning": "Are you sure you want to download all playlists? This will download every playlist, not just the ones in this section.",
     "@homeAllPlaylistsWarning": {
         "description": "Warning presented when pressing the download button on playlist home sections with a filter applied.  This is shown because the download will not apply the filter."
     },

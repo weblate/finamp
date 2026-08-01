@@ -815,7 +815,7 @@
     "bufferDisableSizeConstraintsSubtitle": "Desativa as restrições do tamanho do buffer. O buffer será sempre carregado de acordo com a duração configurada, mesmo para ficheiros muito grandes. Pode causar instabilidade. É necessário reiniciar.",
     "bufferSizeTitle": "Tamanho do Buffer",
     "bufferSizeSubtitle": "O tamanho do buffer em MB. É necessário reiniciar",
-    "confirmPlayNext": "{type, select, track{Track} album{Album} artist{Artist} playlist{Playlist} genre{Genre} other{Item}} vai tocar a seguir",
+    "confirmPlayNext": "{type, select, track{Faixa} album{Álbum} artist{Artista} playlist{Lista de Reprodução} genre{Estilo} disc{Disco} other{Item}} vai tocar a seguir",
     "@confirmPlayNext": {
         "description": "A confirmation message that is shown after successfully adding a track to the front of the \"Next Up\" queue",
         "placeholders": {
@@ -828,7 +828,7 @@
     "@addToNextUp": {
         "description": "Used for adding a track to the \"Next Up\" queue at the end, to play after all prior tracks from Next Up have played"
     },
-    "confirmAddToNextUp": "Adicionar {type, select, track{Faixa} album{álbum} artist{artista} playlist{lista de reprodução} genre{estilo} disc{disco} other{item}} para lista A Seguir",
+    "confirmAddToNextUp": "Adicionado {type, select, track{faixa} album{álbum} artist{artista} playlist{lista de reprodução} genre{estilo} disc{disco} other{item}} na lista A Seguir",
     "@confirmAddToNextUp": {
         "description": "A confirmation message that is shown after successfully adding a track to the end of the \"Next Up\" queue",
         "placeholders": {
@@ -3414,7 +3414,7 @@
             }
         }
     },
-    "homeAllPlaylistsWarning": "Tem certeza que quer todas as listas de reprodução?  Isto vai descarregar todas as listas de reprodução, não apenas as nesta secção.",
+    "homeAllPlaylistsWarning": "Tem certeza que quer descarregar todas as listas de reprodução? Isto vai descarregar todas as listas de reprodução, não apenas as nesta secção.",
     "@homeAllPlaylistsWarning": {
         "description": "Warning presented when pressing the download button on playlist home sections with a filter applied.  This is shown because the download will not apply the filter."
     },
@@ -3623,7 +3623,7 @@
             }
         }
     },
-    "featureChipDescription": "{chipName, select, additionalPeople{Pessoas não-artistas vinculadas à faixa, se disponíveis (compositores, escritores, etc.)} playbackMode{Informação de estado de fluxo e transcodificação} bitDepth{Bits por amostra de áudio.  Apenas aplicável a codecs sem perdas, geralmente 16 bits.} sampleRate{Amostras de áudio por segundo.  Geralmente 44.1 kHz.} normalizationGain{Nível de ganho de reprodução atualmente ativo} other{null}}",
+    "featureChipDescription": "{chipName, select,  explicit{Marcas e faixas que contém conteúdo explícito} additionalPeople{Pessoas não-artistas vinculadas à faixa, se disponíveis (compositores, escritores, etc.)} playbackMode{Informação de estado de fluxo e transcodificação} bitDepth{Bits por amostra de áudio.  Apenas aplicável a codecs sem perdas, geralmente 16 bits.} sampleRate{Amostras de áudio por segundo.  Geralmente 44.1 kHz.} normalizationGain{Nível de ganho de reprodução atualmente ativo}  size{O tamanho do ficheiro original da faixa} other{null}}",
     "@featureChipDescription": {
         "placeholders": {
             "chipName": {
@@ -3636,5 +3636,14 @@
     "volumeControlDisabledCastingHint": "Áudio está a ser transmitido para um dispositivo que não suporta controle do volume na aplicação.",
     "@volumeControlDisabledCastingHint": {
         "description": "Hint text displayed below the volume bar when the in-app volume slider is disabled because audio is being cast to a device that bypasses the in-app volume handling and handles its own volume, such as when using Airplay."
+    },
+    "artistFilter": "Artista: {name}",
+    "@artistFilter": {
+        "description": "Name of artistFilter",
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
     }
 }

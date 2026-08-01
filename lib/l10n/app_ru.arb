@@ -721,7 +721,7 @@
             }
         }
     },
-    "offlineTrackCount": "{count,plural,=1{{count} Композиция} few{{count} Компоозиции} other{{count} Композиций}}, {downloads} загружено",
+    "offlineTrackCount": "{count,plural,=1{{count} Композиция} few{{count} Композиции} other{{count} Композиций}}, {downloads} загружено",
     "@offlineTrackCount": {
         "placeholders": {
             "count": {
@@ -766,7 +766,7 @@
     "@shuffleToQueue": {
         "description": "Used for shuffling a list (album, playlist, etc.) to the end of the regular queue, to play after all prior tracks from the queue have played"
     },
-    "confirmPlayNext": "{type, select, track{Композиция} album{Альбом} artist{Исполнитель} playlist{Плейлист} genre{Жанр} other{Элемент}} будет играть дальше",
+    "confirmPlayNext": "{type, select, track{Композиция} album{Альбом} artist{Исполнитель} playlist{Плейлист} genre{Жанр} disc{Диск} other{Элемент}} будет играть дальше",
     "@confirmPlayNext": {
         "description": "A confirmation message that is shown after successfully adding a track to the front of the \"Next Up\" queue",
         "placeholders": {
@@ -804,7 +804,7 @@
     "@placeholderSource": {
         "description": "Placeholder text used when the source of the current track/queue is unknown"
     },
-    "yourLikes": "Ваши избранные",
+    "yourLikes": "Ваши избранные (начиная с \"{trackName}\")",
     "@yourLikes": {
         "description": "Title for the queue source when the user is playing their liked tracks"
     },
@@ -1727,7 +1727,7 @@
     "@stopAndClearQueue": {
         "description": "Label for a button that stops playback and removes all tracks from the queue."
     },
-    "autoOfflineSettingDescription": "{disabledModeName}:\nАвтономный режим не будет включаться автоматически. Может экономить заряд батареи.\n\n{localNetworkModeName}:\nАвтономный режим будет включаться когда вы не подключены к WiFi или интернету.\n\n{disconnectedModeName}:\n Автономный режим будет включаться когда вы ни к чему не подключены.\n\n{unreachableModeName}:\nАвтономный режим будет включаться если сервер не отвечает после смены сети.\n\nВы всегда можете вручную включить автономный режим. Это приостановит автоматизацию до тех пор пока вы снова не выключите его",
+    "autoOfflineSettingDescription": "{disabledModeName}:\nАвтономный режим не будет включаться автоматически. Может экономить заряд батареи.\n\n{localNetworkModeName}:\nАвтономный режим будет включаться когда вы не подключены к WiFi или интернету.\n\n{disconnectedModeName}:\n Автономный режим будет включаться когда вы ни к чему не подключены.\n\n{unreachableModeName}:\nАвтономный режим будет включаться если сервер не отвечает после смены сети.\n\nВы всегда можете вручную включить автономный режим. Это приостановит автоматизацию до тех пор пока вы снова не выключите его.",
     "@autoOfflineSettingDescription": {
         "description": "Setting description. Make sure the Mode names match the translations."
     },
@@ -2507,7 +2507,7 @@
             }
         }
     },
-    "downloadAllPlaylistsSettingWarning": "Примечание: Это скачает все элементы во всех плейлистах, независимо от того, в какой они библиотеке",
+    "downloadAllPlaylistsSettingWarning": "Примечание: Будут загружены все элементы во всех плейлистах, независимо от того, в какой они библиотеке.",
     "lyricsEmptyStateLoading": "Загрузка текста...",
     "@lyricsEmptyStateLoading": {
         "description": "Message shown while lyrics are being loaded"
@@ -2850,11 +2850,11 @@
     "@homeScreenSectionPresetPickerMenuTitle": {
         "description": "Title for the preset picker menu, which allows users to pick a preset section to add to the home screen"
     },
-    "homeScreenSectionCustomSectionTitle": "Своя секция",
+    "homeScreenSectionCustomSectionTitle": "Свой раздел",
     "@homeScreenSectionCustomSectionTitle": {
         "description": "Title for the custom section type, which can be added to the home screen"
     },
-    "homeScreenSectionCustomSectionDescription": "Настройте секцию самостоятельно",
+    "homeScreenSectionCustomSectionDescription": "Настройте раздел самостоятельно",
     "@homeScreenSectionCustomSectionDescription": {
         "description": "Description for the custom section type, which can be added to the home screen"
     },
@@ -2877,5 +2877,775 @@
     "homeScreenSectionPresetForgottenFavoriteTracksDescription": "Треки из избранных, которые вы давно не слушали",
     "@homeScreenSectionPresetForgottenFavoriteTracksDescription": {
         "description": "Description for the forgotten favorite tracks preset section, which can be added to the home screen"
+    },
+    "noExternalDirectories": "Внешние директории отсутствуют.",
+    "@noExternalDirectories": {
+        "description": "Message when the user tries to configure an Appdirectory external download directory but none are availible"
+    },
+    "nameRequired": "Название (необходимо)",
+    "@nameRequired": {
+        "description": "Descriptor for the required name field when adding download locations."
+    },
+    "exteranlStorageTip": "Если предложенный путь не содержит слово \"emulated\", значит он скорее всего ведет на внешнее хранилище (например, на карту памяти).",
+    "@exteranlStorageTip": {
+        "description": "Helper text in Appdirectory download location config form"
+    },
+    "tooltipDisabled": "{tip} (Неактивно)",
+    "@tooltipDisabled": {
+        "placeholders": {
+            "tip": {
+                "type": "String"
+            }
+        },
+        "description": "Added to tooltips on disabled buttons"
+    },
+    "noDownloadsInLocation": "В данный момент в этой локации нет загрузок.",
+    "@noDownloadsInLocation": {
+        "description": "Message when deleting a downloads location informing the user it is empty."
+    },
+    "deleteDownloadLocation": "Удалить локацию",
+    "@deleteDownloadLocation": {
+        "description": "Button for confirming deletion of deownload location"
+    },
+    "cannotDeleteLocation": "Невозможно удалить локацию",
+    "@cannotDeleteLocation": {
+        "description": "Message that a download location cannot currently be deleted."
+    },
+    "cannotDeleteLocationEplanation": "Эта локация не может быть удалена, так как в ней есть загрузки.  Сначала удалите следующие загрузки:",
+    "@cannotDeleteLocationEplanation": {
+        "description": "Explanation that the download location cannot be deleted due to not being empty."
+    },
+    "search": "Поиск",
+    "@search": {
+        "description": "Tooltip for music screen search button"
+    },
+    "globalMenu": "Меню",
+    "@globalMenu": {
+        "description": "Tooltip for menu open button on music screen"
+    },
+    "lookingForSomethingElse": "Ищете что-то другое?",
+    "@lookingForSomethingElse": {
+        "description": "Header for home screen customization button"
+    },
+    "builtWithByTheFinampContributors": "Сделано с ♥ участниками проекта Finamp.",
+    "@builtWithByTheFinampContributors": {
+        "description": "Message in home screen footer"
+    },
+    "showAll": "Показать все",
+    "@showAll": {
+        "description": "Tooltip for show all button on home screen sections"
+    },
+    "failedToLoadSection": "Неудалось загрузить раздел.",
+    "@failedToLoadSection": {
+        "description": "Message when an error is thrown while resolving home screen section"
+    },
+    "sectionContentsNotDownloaded": "Содержимое раздела не загружено.",
+    "@sectionContentsNotDownloaded": {
+        "description": "Message when a home screen section has no items while offline"
+    },
+    "failedToLoadSectionMissingItem": "Неудалось загрузить раздел из-за отсутствующего элемента.",
+    "@failedToLoadSectionMissingItem": {
+        "description": "Message when the parent item of a home screen section is missing from the server"
+    },
+    "errorLoadingItems": "Ошибка загрузки элементов.",
+    "@errorLoadingItems": {
+        "description": "Message when an error occurs while loading home screen section contents"
+    },
+    "noItemsAvailable": "Нет доступных элементов.",
+    "@noItemsAvailable": {
+        "description": "Message when a home screen section has no items while online"
+    },
+    "filters": "Фильтры",
+    "@filters": {
+        "description": "Label for filters in Sort & Filter menu"
+    },
+    "removeFilter": "Убрать фильтр",
+    "@removeFilter": {
+        "description": "Tooltip for removable filter chips in Sort & Filter row"
+    },
+    "removeFilters": "Убрать фильтры",
+    "@removeFilters": {
+        "description": "Title for remove filters only variant of sort and filter menu"
+    },
+    "sortFilter": "Сортировка и фильтры",
+    "@sortFilter": {
+        "description": "title for Sort & Filter menu"
+    },
+    "editSection": "Редактировать раздел",
+    "@editSection": {
+        "description": "Label for edit home section menu entry"
+    },
+    "connected": "Установлено подключение",
+    "@connected": {
+        "description": "Fallback for 'Connected to <server name>' message while server info is loaded"
+    },
+    "connectedTo": "Установлено подключение к",
+    "@connectedTo": {
+        "description": "Server info in music screen menu"
+    },
+    "timerMinutes": "{minutes} мин.",
+    "@timerMinutes": {
+        "placeholders": {
+            "minutes": {
+                "type": "int"
+            }
+        },
+        "description": "Label for sleep timer duration slider"
+    },
+    "timerTracks": "{tracks} треков",
+    "@timerTracks": {
+        "placeholders": {
+            "tracks": {
+                "type": "int"
+            }
+        },
+        "description": "Label for sleep timer track count slider"
+    },
+    "quickActionsSubtitle": "Выбирайте и изменяйте порядок кнопок быстрых действий на главном экране.",
+    "@quickActionsSubtitle": {
+        "description": "Subtitle for quick actions edit menu"
+    },
+    "selectAnItem": "Выберите элемент",
+    "@selectAnItem": {
+        "description": "Title for 'play specific item' quick action edit menu"
+    },
+    "selectItemTypes": "Выберите тип элементов",
+    "@selectItemTypes": {
+        "description": "Title for 'play random item' quick action edit menu"
+    },
+    "sectionsMenu": "Разделы",
+    "@sectionsMenu": {
+        "description": "Title for home screen sections edit menu"
+    },
+    "sectionMenuSubtitle": "Выбирайте и изменяйте порядок разделов на главном экране.",
+    "@sectionMenuSubtitle": {
+        "description": "Subtitle for home screen sections edit menu"
+    },
+    "sectionType": "Тип раздела",
+    "@sectionType": {
+        "description": "Title for home screen section editor section type dropdown (tab view, collection, ect...)"
+    },
+    "featuredCollection": "Избранная коллекция",
+    "@featuredCollection": {
+        "description": "Title for home screen section editor collection selector"
+    },
+    "tabType": "Тип вкладки",
+    "@tabType": {
+        "description": "Title for home screen section editor tab type dropdown (albums, artists, ect...)"
+    },
+    "library": "Библиотека",
+    "@library": {
+        "description": "Title for home screen section editor library selector dropdown, or a general view of the entire active music library (e.g. in CarPlay)"
+    },
+    "currentLibrary": "Выбранная библиотека",
+    "@currentLibrary": {
+        "description": "Title for dynamic current library option in home screen section editor library selector dropdown"
+    },
+    "loading": "Загрузка...",
+    "@loading": {
+        "description": "Message when items or libraries are loading in home screen section editor"
+    },
+    "sectionTitle": "Название раздела",
+    "@sectionTitle": {
+        "description": "Title for custom section title editor in home screen section editor"
+    },
+    "egFavoriteTracks": "Например, Любимые треки",
+    "@egFavoriteTracks": {
+        "description": "Placeholder text in custom section title editor in home screen section editor"
+    },
+    "customSectionTitleRequired": "Пожалуйста, дайте разделу название",
+    "@customSectionTitleRequired": {
+        "description": "Message when a custom section title is needed in home screen section editor"
+    },
+    "editHomeScreenSection": "Редактирование раздела домашнего экрана",
+    "@editHomeScreenSection": {
+        "description": "Title for home screen section editor menu"
+    },
+    "sectionConfigInvalid": "Текущая конфигурация недопустима.",
+    "@sectionConfigInvalid": {
+        "description": "Message in home screen section edit menu preview window when a valid preview cannot be generated"
+    },
+    "searchNotAvailibleWhileOffline": "Поиск недоступен оффлайн!",
+    "@searchNotAvailibleWhileOffline": {
+        "description": "Message in home screen section editor search widget when offline"
+    },
+    "noSearchResults": "Нет результатов.",
+    "@noSearchResults": {
+        "description": "Message in home screen section editor search widget when no results are returned"
+    },
+    "collectionDropdownHint": "Выберите коллекцию",
+    "@collectionDropdownHint": {
+        "description": "Hint for selector dropdown in home screen editor search widget"
+    },
+    "gridImageSizeTitle": "Размер элементов сетки",
+    "@gridImageSizeTitle": {
+        "description": "Title of grid tile image size setting"
+    },
+    "gridImageSizeSubtitle": "Выберите размер элементов, отображаемых в виде сетки",
+    "@gridImageSizeSubtitle": {
+        "description": "Subtitle of grid tile image size setting"
+    },
+    "gridImageSizeLabel": "{colCountExact, plural, =0{~} =1{} other{}}{colCount, plural, =1{1 колонка ({sizeDescriptor})} few{{colCount} колонки ({sizeDescriptor})} other{{colCount} колонок ({sizeDescriptor})}}",
+    "@gridImageSizeLabel": {
+        "placeholders": {
+            "sizeDescriptor": {
+                "type": "String",
+                "example": "Very Small"
+            },
+            "colCount": {
+                "type": "int"
+            },
+            "colCountExact": {
+                "type": "int",
+                "description": "0 = not exact, add e.g. tilde character (~), 1 = exact, just show the number"
+            }
+        },
+        "description": "Slider label in grid tile image size setting"
+    },
+    "homeScreenImageSizeTitle": "Размер элементов главного экрана",
+    "@homeScreenImageSizeTitle": {
+        "description": "Title of home screen tile image size setting"
+    },
+    "homeScreenImageSizeSubtitle": "Выберите размер элементов на главном экране",
+    "@homeScreenImageSizeSubtitle": {
+        "description": "Subtitle of home screen tile image size setting"
+    },
+    "noFilterActive": "Нет активных фильтров",
+    "@noFilterActive": {
+        "description": "Message in sort & filter row when no filters are active"
+    },
+    "activeFilterCount": "{filterCount, plural, =0{Нет фильтров} =1{1 Фильтр} few{{filterCount} Фильтра} other{{filterCount} Фильтров}} Active",
+    "@activeFilterCount": {
+        "placeholders": {
+            "filterCount": {
+                "type": "int"
+            }
+        },
+        "description": "Message in sort & filter row"
+    },
+    "inPlaylist": "В плейлисте",
+    "@inPlaylist": {
+        "description": "Name of 'In Playlist' content type"
+    },
+    "inCollection": "В коллекции",
+    "@inCollection": {
+        "description": "Name of jellyfin 'Collection' content type"
+    },
+    "tabView": "Элементы вкладки",
+    "@tabView": {
+        "description": "Name of home screen section type which uses the contents of a music screen tab"
+    },
+    "collection": "Коллекция",
+    "@collection": {
+        "description": "Name of home screen section type which uses the contents of a supplied playable item"
+    },
+    "queues": "Очереди",
+    "@queues": {
+        "description": "Name of home screen section type which shows the latest played queues"
+    },
+    "favoritePlaylists": "Любимые плейлисты",
+    "@favoritePlaylists": {
+        "description": "Name of a home screen section preset"
+    },
+    "favoriteGenres": "Любимые жанры",
+    "@favoriteGenres": {
+        "description": "Name of a home screen section preset"
+    },
+    "newlyAddedAlbums": "Недавно добавленные альбомы",
+    "@newlyAddedAlbums": {
+        "description": "Name of a home screen section preset"
+    },
+    "newlyAddedTracks": "Недавно добавленные треки",
+    "@newlyAddedTracks": {
+        "description": "Name of a home screen section preset"
+    },
+    "frequentlyPlayedAlbums": "Часто прослушиваемые альбомы",
+    "@frequentlyPlayedAlbums": {
+        "description": "Name of a home screen section preset"
+    },
+    "frequentlyPlayedTracks": "Часто прослушиваемые треки",
+    "@frequentlyPlayedTracks": {
+        "description": "Name of a home screen section preset"
+    },
+    "frequentlyPlayedArtists": "Часто прослушиваемые исполнители",
+    "@frequentlyPlayedArtists": {
+        "description": "Name of a home screen section preset"
+    },
+    "unplayedAlbums": "Непрослушанные альбомы",
+    "@unplayedAlbums": {
+        "description": "Name of a home screen section preset"
+    },
+    "recentQueues": "Недавние очереди",
+    "@recentQueues": {
+        "description": "Name of a home screen section preset"
+    },
+    "randomAlbums": "Случайные альбомы",
+    "@randomAlbums": {
+        "description": "Name of a home screen section preset"
+    },
+    "randomAlbumArtists": "Случайные исполнители альбомов",
+    "@randomAlbumArtists": {
+        "description": "Name of a home screen section preset"
+    },
+    "recentlyAddedPlaylists": "Недавно созданные плейлисты",
+    "@recentlyAddedPlaylists": {
+        "description": "Name of a home screen section preset"
+    },
+    "favoriteAlbumsDescription": "Альбомы из избранных в случайном порядке",
+    "@favoriteAlbumsDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "favoriteArtistsDescription": "Исполнители из избранных в случайном порядке",
+    "@favoriteArtistsDescription": {
+        "description": "Description  of a home screen section preset"
+    },
+    "favoritePlaylistsDescription": "Плейлисты из избранных в случайном порядке",
+    "@favoritePlaylistsDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "favoriteGenresDescription": "Жанры из избранных в случайном порядке",
+    "@favoriteGenresDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "recentlyAddedAlbumsDescription": "Альбомы, которые были недавно добавлены в вашу библиотеку, начиная с новейших",
+    "@recentlyAddedAlbumsDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "recentlyAddedTracksDescription": "Треки, которые были недавно добавлены в вашу библиотеку, начиная с новейших",
+    "@recentlyAddedTracksDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "frequentlyPlayedAlbumsDescription": "Альбомы, которые вы слушали больше всего, начиная с самых частых",
+    "@frequentlyPlayedAlbumsDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "frequentlyPlayedTracksDescription": "Треки, которые вы слушали больше всего, начиная с самых частых",
+    "@frequentlyPlayedTracksDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "frequentlyPlayedArtistsDescription": "Исполнители, которых вы слушали больше всего, начиная с самых частых",
+    "@frequentlyPlayedArtistsDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "neverPlayedAlbumsDescription": "Альбомы, которые вы еще не слушали, в случайном порядке",
+    "@neverPlayedAlbumsDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "recentQueuesDescription": "Очереди, которые вы недавно создавали, начиная с новейших",
+    "@recentQueuesDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "randomAlbumsDescription": "Альбомы в случайном порядке",
+    "@randomAlbumsDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "randomArtistsDescription": "Исполнители в случайном порядке",
+    "@randomArtistsDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "recentlyAddedPlaylistsDescription": "Плейлисты, отсортированные по дате создания, начиная с новейших",
+    "@recentlyAddedPlaylistsDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "shuffleTracksActionDescription": "Замешивает случайные треки из вашей библиотеки",
+    "@shuffleTracksActionDescription": {
+        "description": "Description of a home screen quick action"
+    },
+    "browseRecentQueuesActionDescription": "Выберите одну из ваших недавних очередей",
+    "@browseRecentQueuesActionDescription": {
+        "description": "Description of a home screen quick action"
+    },
+    "browsePlaybackHistoryActionDescription": "Просмотр истории прослушивания",
+    "@browsePlaybackHistoryActionDescription": {
+        "description": "Description of a home screen quick action"
+    },
+    "surpriseMeActionDescription": "Начинает \"Продолжительное\" радио со случайного трека",
+    "@surpriseMeActionDescription": {
+        "description": "Description of a home screen quick action"
+    },
+    "playRandomItemActionDescription": "Начинает воспроизведение со случайного элемента",
+    "@playRandomItemActionDescription": {
+        "description": "Description of a home screen quick action"
+    },
+    "playRandomFavoriteItemActionDescription": "Начинает воспроизведение со случайного элемента из избранных",
+    "@playRandomFavoriteItemActionDescription": {
+        "description": "Description of a home screen quick action"
+    },
+    "playPreviousQueueActionDescription": "Восстанавливает и воспроизводит последнюю недавнюю очередь",
+    "@playPreviousQueueActionDescription": {
+        "description": "Description of a home screen quick action"
+    },
+    "configureOutputActionDescription": "Открывает настройки устройств вывода",
+    "@configureOutputActionDescription": {
+        "description": "Description of a home screen quick action"
+    },
+    "playSpecificItemActionDescription": "Воспроизводит выбранный элемент",
+    "@playSpecificItemActionDescription": {
+        "description": "Description of a home screen quick action"
+    },
+    "shuffleTracksAction": "Замешать треки",
+    "@shuffleTracksAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "randomItemAction": "Случайный {itemType, select, albums{альбом} tracks{трек} playlists{плейлист} performingArtists{исполнитель} albumArtists{исполнитель альбома} none{элемент <типа>} other{элемент}}",
+    "@randomItemAction": {
+        "placeholders": {
+            "itemType": {
+                "type": "String",
+                "description": "Localized name of item type to be selected, or placeholder 'multiple'"
+            }
+        },
+        "description": "Name of a home screen quick action"
+    },
+    "randomFavoriteAction": "Случайный избранный {itemType, select, albums{альбом} tracks{трек} playlists{плейлист} performingArtists{исполнитель} albumArtists{исполнитель альбома} none{<тип>} other{}}",
+    "@randomFavoriteAction": {
+        "placeholders": {
+            "itemType": {
+                "type": "String",
+                "description": "Localized name of item type to be selected, or placeholder 'multiple'"
+            }
+        },
+        "description": "Name of a home screen quick action"
+    },
+    "previousQueueAction": "Предыдущая очередь",
+    "@previousQueueAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "configureOutputAction": "Настроить устройство вывода",
+    "@configureOutputAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "playSpecificItemAction": "Воспроизвести {itemName, select, finamp_placeholder{<элемент>} other{{itemName}}}",
+    "@playSpecificItemAction": {
+        "placeholders": {
+            "itemName": {
+                "type": "String"
+            }
+        },
+        "description": "Name of a home screen quick action"
+    },
+    "surpriseMeAction": "Удивите меня",
+    "@surpriseMeAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "randomPlaylistAction": "Случайный плейлист",
+    "@randomPlaylistAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "randomArtistAction": "Случайный исполнитель",
+    "@randomArtistAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "randomGenreAction": "Случайный жанр",
+    "@randomGenreAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "randomFavoriteAlbumAction": "Случаный избранный альбом",
+    "@randomFavoriteAlbumAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "randomFavoriteTrackAction": "Случайный избранный трек",
+    "@randomFavoriteTrackAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "randomFavoritePlaylistAction": "Случайный избранный плейлист",
+    "@randomFavoritePlaylistAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "randomFavoriteArtistAction": "Случайный избранный исполнитель",
+    "@randomFavoriteArtistAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "randomFavoriteGenreAction": "Случайный избранный жанр",
+    "@randomFavoriteGenreAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "editAction": "Редактировать действие",
+    "@editAction": {
+        "description": "Button to edit a quick action"
+    },
+    "swapAction": "Сменить действие",
+    "@swapAction": {
+        "description": "Button to swap the selected quick action"
+    },
+    "removeAction": "Удалить действие",
+    "@removeAction": {
+        "description": "Button to remove a quick action"
+    },
+    "addNewAction": "Добавить новое действие",
+    "@addNewAction": {
+        "description": "Button to add a new quick action"
+    },
+    "removeSection": "Удалить раздел",
+    "@removeSection": {
+        "description": "Button to remove a home screen section"
+    },
+    "addNewSection": "Добавить новый раздел",
+    "@addNewSection": {
+        "description": "Button to add a new home screen section"
+    },
+    "preview": "Предварительный просмотр",
+    "unnamedCollection": "Безымянная коллекция",
+    "@unnamedCollection": {
+        "description": "Placeholder for unnamed collection in home screen section editor"
+    },
+    "noTracksFound": "Не найдены треки для микса Удивите Меня.",
+    "@noTracksFound": {
+        "description": "Message if SurpriseMeMix creation fails"
+    },
+    "nothingFoundToPlay": "Ничего не найдено для воспроизведения.",
+    "@nothingFoundToPlay": {
+        "description": "Message if play random item fails"
+    },
+    "errorLoadingHomeSection": "Ошибка загрузки раздела главного экрана",
+    "@errorLoadingHomeSection": {
+        "description": "Message if a home screen section cannot be loaded due to a missing item"
+    },
+    "noPreviousQueueFoundToPlay": "Предыдущая очередь не найдена.",
+    "@noPreviousQueueFoundToPlay": {
+        "description": "Message if play previous queue quick action fails"
+    },
+    "unknownVersion": "Неизвестная версия",
+    "@unknownVersion": {
+        "description": "Reported server version if request fails"
+    },
+    "isFavoriteFilter": "Избранное",
+    "@isFavoriteFilter": {
+        "description": "Name of favorite filter"
+    },
+    "isUnplayedFilter": "Непрослушанное",
+    "@isUnplayedFilter": {
+        "description": "Name of unplayed items filter"
+    },
+    "isFullyDownloadedFilter": "Полностью загруженное",
+    "@isFullyDownloadedFilter": {
+        "description": "Name of fully downloaded items filter"
+    },
+    "genreFilter": "Жанр: {name}",
+    "@genreFilter": {
+        "description": "Name of genrefilter",
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "startsWithFilter": "Начинаяется с: {letter}",
+    "@startsWithFilter": {
+        "description": "Name of starts with letter filter",
+        "placeholders": {
+            "letter": {
+                "type": "String"
+            }
+        }
+    },
+    "searchTermFilter": "Поиск: {searchTerm}",
+    "@searchTermFilter": {
+        "description": "Name of search term filter",
+        "placeholders": {
+            "searchTerm": {
+                "type": "String"
+            }
+        }
+    },
+    "customizeHomeScreen": "Настроить главный экран",
+    "@customizeHomeScreen": {
+        "description": "Label for home screen customize button"
+    },
+    "performingArtistFilter": "Альбомы (Присутствует в)",
+    "albumArtistFilter": "Альбомы (Исполнитель альбома)",
+    "allTypes": "Все типы",
+    "itemTypeFilterHeader": "Наследственный тип",
+    "useAndroidGainEffectTitle": "Использовать эффект Gain",
+    "@useAndroidGainEffectTitle": {
+        "description": "Title for Android gain effect setting.  This setting is used to work around player errors on some devices."
+    },
+    "useAndroidGainEffectSubtitle": "Использовать нативный эффект Gain для управления громкостью.  Этот вариант более гибкий, но ломает воспроизведение на некоторых устройствах.  У вас не должно быть необходимости изменять эту настройку вручную.  Требует перезапуска приложения для применения.",
+    "@useAndroidGainEffectSubtitle": {
+        "description": "Subtitle for Android gain effect setting.  This setting is used to work around player errors on some devices."
+    },
+    "androidGainDisabled": "Переключение на резервный режим gain из-за ошибки инициализации.",
+    "@androidGainDisabled": {
+        "description": "Message presented when the android gain effect fallback is enabled after an error occurs."
+    },
+    "losslessNoBitrate": "Не применимо к транскодированию FLAC",
+    "@losslessNoBitrate": {
+        "description": "Settings text informing the user that transcoding bitrate does not apply to lossless transcodes."
+    },
+    "recentlyPlayedTracksDescription": "Треки, которые вы недавно слушали, начиная с последнего воспроизведенного",
+    "@recentlyPlayedTracksDescription": {
+        "description": "Description for a home screen section preset"
+    },
+    "homeFavoritesDownloadWarning": "Вы уверены, что хотите загрузить всё избранное?  Будут загружены избранные элементы всех типов, не только {sectionType}.",
+    "@homeFavoritesDownloadWarning": {
+        "description": "Warning presented when pressing the download button on certain home screen sections.  This is shown because home sections show a specific item type, like Albums, but the download covers all.",
+        "placeholders": {
+            "sectionType": {
+                "type": "String",
+                "example": "Albums"
+            }
+        }
+    },
+    "homeAllPlaylistsWarning": "Вы уверены, что хотите загрузить все плейлисты?  Будут загружены все доступные плейлисты, не только из те, что есть в этом разделе.",
+    "@homeAllPlaylistsWarning": {
+        "description": "Warning presented when pressing the download button on playlist home sections with a filter applied.  This is shown because the download will not apply the filter."
+    },
+    "homeRecentAlbumsDownloadWarning": "Будут загружены 5 последних альбомов, имеющихся на сервере. По мере появления новых альбомов на сервере в будущем список будет обновляться, а лишние загрузки будут удаляться.",
+    "@homeRecentAlbumsDownloadWarning": {
+        "description": "Warning presented when pressing the download button on certain home screen sections.  This is shown because the behavior of the 5 latest albums download is not a 100% match to the home sections."
+    },
+    "alreadyRandomized": "Этот раздел уже представляется в случайном порядке",
+    "@alreadyRandomized": {
+        "description": "Tooltip for shuffle button on home screen sections using a random sort order, where it is disabled due to being unneeded"
+    },
+    "libraryQualifierActive": "Выбрано",
+    "@libraryQualifierActive": {
+        "description": "Label shown next to the currently selected library in the Finamp menu/drawer"
+    },
+    "voiceSearch": "Голосовой поиск",
+    "@voiceSearch": {
+        "description": "Heading for the page that prompts the user to perform a voice search."
+    },
+    "carPlaySiriHint": "Скажите \"Привет Siri, включи [трек/исполнитель/альбом] в Finamp\"",
+    "@carPlaySiriHint": {
+        "description": "Hint text for how to use Siri to search in CarPlay."
+    },
+    "carPlayLoginPrompt": "Откройте приложение Finamp на вашем смартфоне, чтобы войти в ваш сервер Jellyfin.",
+    "@carPlayLoginPrompt": {
+        "description": "Label shown when the user is trying to use CarPlay without being logged in."
+    },
+    "offlineSortFallback": "Сортировка {onlineSort} доступна только в режиме онлайн.  Переключение на стандартный порядок сортировки",
+    "@offlineSortFallback": {
+        "description": "Warning presented in sort and filter menu when an online-only sort is chosen.",
+        "placeholders": {
+            "onlineSort": {
+                "type": "String",
+                "example": "Play Count"
+            }
+        }
+    },
+    "retry": "Повторить попытку",
+    "retryPageLoad": "Не удалось загрузить элементы с сервера.  Нажмите, чтобы повторить попытку.",
+    "itemType": "{itemType, select, album{Альбом} playlist{Плейлист} artist{Исполнитель} genre{Жанр} track{Трек} library{Библиотека} collection{Коллекция} unknown{Элемент} other{{itemType}}}",
+    "@itemType": {
+        "placeholders": {
+            "itemType": {
+                "type": "String",
+                "example": "album"
+            }
+        },
+        "description": "Item type name."
+    },
+    "connectionStateInfoString": "{state, select, syncing{Синхронизация с сервером} downloading{Загрузка элементов с сервера} deleting{Удаление старых загрузок} connectedLocal{Установлено локальное соединение} syncingLocal{Синхронизация по локальной сети} downloadingLocal{Загрузка элементов по локальной сети} other{}}",
+    "@connectionStateInfoString": {
+        "description": "String describing the current connection state to the server, shown in the music screen drawer/menu.",
+        "placeholders": {
+            "state": {
+                "type": "String",
+                "example": "syncingLocal"
+            }
+        }
+    },
+    "clientCertificate": "Клиентский сертификат mTLS (SSL)",
+    "@clientCertificate": {
+        "description": "Title for the setting that allows managing SSL client certificates used for authentication"
+    },
+    "clientCertificateUnavailable": "Нет установленных сертификатов, клиентская аутентификация выключена",
+    "@clientCertificateUnavailable": {
+        "description": "Message shown when the user has no SSL client certificate available to use."
+    },
+    "clientCertificateInstalled": "Сертификат установлен",
+    "@clientCertificateInstalled": {
+        "description": "Message shown when the user has successfully installed an SSL client certificate."
+    },
+    "clientCertificateDescription": "Клиентский TLS сертификат (.p12 или .pfx) используется для аутентификации данного устройства при подключении к вашему Jellyfin серверу. Требуется только если ваш сервер настроен на использование взаимного TLS (mTLS).",
+    "@clientCertificateDescription": {
+        "description": "Explanatory text in the client certificate settings menu describing what a client certificate is used for"
+    },
+    "importClientCertificate": "Импортировать сертификат",
+    "@importClientCertificate": {
+        "description": "Label for the button to import a new SSL client certificate."
+    },
+    "removeClientCertificate": "Удалить сертификат",
+    "@removeClientCertificate": {
+        "description": "Label for the button to remove the currently installed SSL client certificate."
+    },
+    "clientCertificatePasswordTitle": "Пароль сертификата",
+    "@clientCertificatePasswordTitle": {
+        "description": "Title of the dialog prompting the user to enter the password for the client certificate being imported."
+    },
+    "clientCertificatePasswordHint": "Пароль",
+    "@clientCertificatePasswordHint": {
+        "description": "Hint text for the password input field when importing a client certificate."
+    },
+    "clientCertificateDeleteConfirm": "Удалить установленный сертификат? Клиентская аутентификация будет отключена.",
+    "@clientCertificateDeleteConfirm": {
+        "description": "Confirmation prompt shown before removing the installed client certificate."
+    },
+    "clientCertificateImportSuccess": "Сертификат успешно импортирован",
+    "@clientCertificateImportSuccess": {
+        "description": "Message shown after successfully importing a client certificate."
+    },
+    "clientCertificateImportError": "Не удалось импортировать сертификат",
+    "@clientCertificateImportError": {
+        "description": "Error message shown when importing a client certificate fails."
+    },
+    "clientCertificateRequired": "Требуется клиентский сертификат",
+    "@clientCertificateRequired": {
+        "description": "Message shown on the server selection screen when the server requires a client certificate to be provided."
+    },
+    "cancelChanges": "Отменить изменения",
+    "@cancelChanges": {
+        "description": "Button on sort and filter menu that clears any pending changes."
+    },
+    "applyChangesOnClose": "Изменения будет пременены после закрытия меню",
+    "@applyChangesOnClose": {
+        "description": "Notification on sort and filter menu that currently pending changes will be automatically applied on close."
+    },
+    "removeFromQueue": "Удалить из очереди",
+    "featureChipName": "{chipName, select, explicit{Explicit} playCount{Количество воспроизведений} additionalPeople{Дополнительные люди} playbackMode{Режим воспроизведения} codec{Кодек} bitRate{Битрейт} bitDepth{Глубина кодирования} sampleRate{Частота дискретизации} size{Size} normalizationGain{Усиление нормализации} other{{chipName}}}",
+    "@featureChipName": {
+        "placeholders": {
+            "chipName": {
+                "type": "String",
+                "example": "playCount"
+            }
+        },
+        "description": "Titles for settings controlling which pieces of advanced track info are displayed."
+    },
+    "featureChipDescription": "{chipName, select, explicit{Помечает треки, содержащие нецензурные материалы} additionalPeople{Лица, не являющиеся исполнителями, связанные с этой композицией (если таковые имеются) (авторы музыки, авторы текстов и т. д.)} playbackMode{Информация о состоянии потоковой передачи и транскодирования} bitDepth{Количество бит на один аудио-сэмпл.  Применимо только к кодекам без потерь, как правило, 16 бит.} sampleRate{Число аудиовыборок в секунду.  Обычно 44,1 кГц.} normalizationGain{Текущее значение ReplayGain} size{Изначальный размер файла трека} other{null}}",
+    "@featureChipDescription": {
+        "placeholders": {
+            "chipName": {
+                "type": "String",
+                "example": "playCount"
+            }
+        },
+        "description": "Descriptions of different pieces of advanced track info."
+    },
+    "maximizePlayer": "Развернуть плеер",
+    "collapsePlayer": "Свернуть плеер в боковую панель",
+    "addSpecialDownloads": "Добавить специальную загрузку",
+    "@addSpecialDownloads": {
+        "description": "Button on downloads screen which allows adding special downloads, such as all playlists or all favorites."
+    },
+    "allTracks": "Все треки (начиная с \"{trackName}\")",
+    "@allTracks": {
+        "description": "Queue source when playing from tracks screen.",
+        "placeholders": {
+            "trackName": {
+                "type": "String",
+                "example": "Never Gonna Give You Up"
+            }
+        }
+    },
+    "artistFilter": "Исполнитель: {name}",
+    "@artistFilter": {
+        "description": "Name of artistFilter",
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
     }
 }
