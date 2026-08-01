@@ -189,7 +189,7 @@ jobs:
       if: *integration_if
       uses: futureware-tech/simulator-action@v5
       with:
-        model: 'iPhone 16'
+        model: 'iPhone 17'
         os_version: '>= 26.0'
         wait_for_boot: true
         erase_before_boot: true
