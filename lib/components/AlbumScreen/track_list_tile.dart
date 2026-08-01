@@ -150,14 +150,14 @@ class TrackListTile extends ConsumerWidget {
             onlyFavorites: (selectedFilter == CuratedItemSelectionType.favorites)
                 ? ref.read(finampSettingsProvider.trackOfflineFavorites)
                 : false,
-            genreFilter: genreFilter?.id,
+            genreFilter: parentItem?.id,
           );
           allTracks = fetchedItems.map((e) => e.baseItem).nonNulls.toList();
         } else {
           allTracks =
               await jellyfinApiHelper.getItems(
                 parentItem: library,
-                genreFilter: genreFilter?.id,
+                genreFilter: parentItem?.id,
                 sortBy: sortBy.jellyfinName(ContentType.tracks),
                 sortOrder: "Descending",
                 isFavorite: (selectedFilter == CuratedItemSelectionType.favorites) ? true : null,
