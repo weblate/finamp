@@ -47,6 +47,12 @@ class QuickSettingsScreen extends ConsumerWidget {
           // grid mode toggle plus size
           const ContentViewTypeDropdownListTile(),
           if (ref.watch(finampSettingsProvider.contentViewType) == ContentViewType.grid) const GridImageSizeSelector(),
+          ListTile(
+            leading: const Icon(Icons.widgets),
+            title: Text("Additional layout settings"),
+            onTap: () => Navigator.of(context).pushNamed(LayoutSettingsScreen.routeName),
+            contentPadding: EdgeInsets.only(left: 50),
+          ),
           // dark mode
           const ThemeSelector(verbose: true),
           // show fast scroller
