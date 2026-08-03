@@ -3345,7 +3345,7 @@
     "@playPreviousQueueActionDescription": {
         "description": "Description of a home screen quick action"
     },
-    "playSpecificItemActionDescription": "Lance un élément spécifique configuré",
+    "playSpecificItemActionDescription": "Lit un article spécifique que vous avez choisi",
     "@playSpecificItemActionDescription": {
         "description": "Description of a home screen quick action"
     },
