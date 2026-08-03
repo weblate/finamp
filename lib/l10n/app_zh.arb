@@ -3496,5 +3496,9 @@
     "clientCertificateRequired": "需要客户端证书",
     "@clientCertificateRequired": {
         "description": "Message shown on the server selection screen when the server requires a client certificate to be provided."
+    },
+    "activeLibraries": "使用中的音乐库",
+    "@activeLibraries": {
+        "description": "Active Libraries"
     }
 }
