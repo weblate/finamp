@@ -449,6 +449,12 @@ class FinampSettingsAdapter extends TypeAdapter<FinampSettings> {
             : (fields[150] as num).toInt(),
         useAndroidGainEffect: fields[149] == null ? true : fields[149] as bool,
         deviceId: fields[152] == null ? 'unset' : fields[152] as String,
+        clientCertificate: fields[151] == null
+            ? DefaultSettings.clientCertificate
+            : fields[151] as ClientCertificate?,
+        showQuickActionsBanner: fields[153] == null
+            ? true
+            : fields[153] as bool,
       )
       ..sortBy = fields[7] as SortBy?
       ..sortOrder = fields[8] as SortOrder?
@@ -465,14 +471,13 @@ class FinampSettingsAdapter extends TypeAdapter<FinampSettings> {
       ..radioEnabled = fields[140] == null ? false : fields[140] as bool
       ..radioMode = fields[141] == null
           ? RadioMode.similar
-          : fields[141] as RadioMode
-      ..clientCertificate = fields[151] as ClientCertificate?;
+          : fields[141] as RadioMode;
   }
 
   @override
   void write(BinaryWriter writer, FinampSettings obj) {
     writer
-      ..writeByte(146)
+      ..writeByte(147)
       ..writeByte(0)
       ..write(obj.isOffline)
       ..writeByte(1)
@@ -764,7 +769,9 @@ class FinampSettingsAdapter extends TypeAdapter<FinampSettings> {
       ..writeByte(151)
       ..write(obj.clientCertificate)
       ..writeByte(152)
-      ..write(obj.deviceId);
+      ..write(obj.deviceId)
+      ..writeByte(153)
+      ..write(obj.showQuickActionsBanner);
   }
 
   @override

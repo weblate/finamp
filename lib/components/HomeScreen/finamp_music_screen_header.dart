@@ -10,6 +10,7 @@ import 'package:finamp/menus/components/icon_button_with_semantics.dart';
 import 'package:finamp/models/finamp_models.dart';
 import 'package:finamp/models/music_models.dart';
 import 'package:finamp/screens/downloads_screen.dart';
+import 'package:finamp/screens/quick_settings_screen.dart';
 import 'package:finamp/screens/settings_screen.dart';
 import 'package:finamp/screens/tabs_settings_screen.dart';
 import 'package:finamp/services/downloads_service.dart';
@@ -66,7 +67,10 @@ class FinampMusicScreenHeader extends ConsumerWidget implements PreferredSizeWid
   Size get preferredSize => Size.fromHeight(
     _upperToolbarHeight +
         ((Platform.isLinux || Platform.isWindows || Platform.isMacOS) ? 12.0 : 0) +
-        (backButtonInsteadOfTabs ? 0 : 42),
+        (backButtonInsteadOfTabs ? 0 : 42) +
+        // We cannot make this reactive ourselves because it is the surrounding scaffold that needs to rebuild, not
+        // the appbar.  So the music screen must watch this setting itself to keep the sizing correct.
+        (FinampSettingsHelper.finampSettings.showQuickActionsBanner ? 40.0 : 0),
   ); // Standard height
 
   @override
@@ -229,6 +233,10 @@ class FinampMusicScreenHeader extends ConsumerWidget implements PreferredSizeWid
                   Expanded(
                     child: GestureDetector(
                       onTap: openMenu,
+                      // TODO for testing, remove
+                      onSecondaryTap: () {
+                        FinampSetters.setShowQuickActionsBanner(true);
+                      },
                       child: FutureBuilder(
                         future: PackageInfo.fromPlatform(),
                         builder: (context, asyncSnapshot) {
@@ -315,6 +323,41 @@ class FinampMusicScreenHeader extends ConsumerWidget implements PreferredSizeWid
             ),
           ),
         ),
+        if (ref.watch(finampSettingsProvider.showQuickActionsBanner))
+          SizedBox(
+            height: 30.0,
+            child: Material(
+              color: ColorScheme.of(context).primaryContainer,
+              child: InkWell(
+                onTap: () {
+                  Navigator.of(context).pushNamed(QuickSettingsScreen.routeName);
+                  // Permanently hide quick settings banner if it is clicked once
+                  FinampSetters.setShowQuickActionsBanner(false);
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: Text(
+                          "Check out some commonly changed settings.",
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        FinampSetters.setShowQuickActionsBanner(false);
+                      },
+                      child: Text("Close"),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
         if (!backButtonInsteadOfTabs)
           TabBar(
             controller: tabController,

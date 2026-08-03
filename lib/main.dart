@@ -30,6 +30,7 @@ import 'package:finamp/screens/playback_reporting_settings_screen.dart';
 import 'package:finamp/screens/player_settings_screen.dart';
 import 'package:finamp/screens/playlist_edit_screen.dart';
 import 'package:finamp/screens/queue_restore_screen.dart';
+import 'package:finamp/screens/quick_settings_screen.dart';
 import 'package:finamp/services/album_image_provider.dart';
 import 'package:finamp/services/android_auto_helper.dart';
 import 'package:finamp/services/audio_service_smtc.dart';
@@ -987,6 +988,7 @@ class FinampApp extends ConsumerWidget {
         AccessibilitySettingsScreen.routeName: (context) => const AccessibilitySettingsScreen(),
         PlaylistEditScreen.routeName: (context) =>
             PlaylistEditScreen(playlist: ModalRoute.settingsOf(context)!.arguments as BaseItemDto),
+        QuickSettingsScreen.routeName: (context) => const QuickSettingsScreen(),
         //ShowAllScreen.routeName: (context) => const ShowAllScreen(),
       },
       initialRoute: SplashScreen.routeName,

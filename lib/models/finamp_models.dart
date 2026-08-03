@@ -309,6 +309,7 @@ class DefaultSettings {
   static int get gridImageSize => isDesktop ? gridImageSizeDesktop : gridImageSizeMobile;
   static const useAndroidGainEffect = true;
   static const ClientCertificate? clientCertificate = null;
+  static const showQuickActionsBanner = true;
 }
 
 @HiveType(typeId: 28)
@@ -454,6 +455,8 @@ class FinampSettings {
     required this.homeScreenImageSize,
     this.useAndroidGainEffect = DefaultSettings.useAndroidGainEffect,
     required this.deviceId,
+    this.clientCertificate = DefaultSettings.clientCertificate,
+    this.showQuickActionsBanner = DefaultSettings.showQuickActionsBanner,
   });
 
   @HiveField(0, defaultValue: DefaultSettings.isOffline)
@@ -933,7 +936,7 @@ class FinampSettings {
   int homeScreenImageSize;
 
   @HiveField(151, defaultValue: DefaultSettings.clientCertificate)
-  ClientCertificate? clientCertificate = DefaultSettings.clientCertificate;
+  ClientCertificate? clientCertificate;
 
   /// Unique ID that stays the same for an install but may change across reinstalls
   /// Used to identify client activity within Jellyfin
@@ -941,6 +944,9 @@ class FinampSettings {
   /// but that's unrealistic, so a random string should be fine
   @HiveField(152, defaultValue: "unset") // pre-generation default
   String deviceId;
+
+  @HiveField(153, defaultValue: DefaultSettings.showQuickActionsBanner)
+  bool showQuickActionsBanner;
 
   static Future<FinampSettings> create() async {
     final downloadLocation = await DownloadLocation.create(
