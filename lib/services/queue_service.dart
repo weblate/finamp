@@ -1349,6 +1349,7 @@ class QueueService {
     await _audioHandler.setShuffleMode(mode);
     //await _audioHandler.playbackState.where((event) => event.shuffleMode == mode).first;
     _buildQueueFromNativePlayerQueue();
+    await _audioHandler.refreshPlaybackStateAndMediaNotification();
   }
 
   FinampPlaybackOrder get playbackOrder => _playbackOrder;
