@@ -230,7 +230,8 @@ jobs:
       id: flutter-version
       with:
         architecture: 'x64'
-        channel: 'stable'
+        # https connections currently case a crash with 3.44, so temporarily use beta instead
+        channel: 'beta'
         dry-run: true
 
     - name: Set up Flutter
