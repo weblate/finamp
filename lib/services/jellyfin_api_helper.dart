@@ -72,9 +72,11 @@ class JellyfinApiHelper {
     BackgroundIsolateBinaryMessenger.ensureInitialized(input.$2);
     ReceivePort requestPort = ReceivePort();
 
-    // Extend the default security context to trust Android user certificates.
-    // This is a workaround for <https://github.com/dart-lang/sdk/issues/50435>.
-    await FlutterUserCertificatesAndroid().trustAndroidUserCertificates(SecurityContext.defaultContext);
+    if (Platform.isAndroid) {
+      // Extend the default security context to trust Android user certificates.
+      // This is a workaround for <https://github.com/dart-lang/sdk/issues/50435>.
+      await FlutterUserCertificatesAndroid().trustAndroidUserCertificates(SecurityContext.defaultContext);
+    }
 
     // Configure SecurityContext to use client certificate, if provided.
     if (input.$3 != null) {

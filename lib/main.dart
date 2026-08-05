@@ -762,10 +762,12 @@ void _migrateDeviceId() {
 }
 
 Future<void> _trustAndroidUserCerts() async {
+  if (!Platform.isAndroid) return;
   // Extend the default security context to trust Android user certificates.
   // This is a workaround for <https://github.com/dart-lang/sdk/issues/50435>.
   WidgetsFlutterBinding.ensureInitialized();
   try {
+    // SecurityContext.defaultContext seems to cause a native crash on Linux in some environments?
     await FlutterUserCertificatesAndroid().trustAndroidUserCertificates(SecurityContext.defaultContext);
   } catch (e) {
     Logger("AndroidCertTrust").severe("Failed to trust certificates: $e", e);
