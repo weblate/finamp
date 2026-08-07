@@ -576,7 +576,11 @@ abstract class JellyfinApi extends ChopperService {
   Future<Response<dynamic>> pingServer();
 
   static JellyfinApi create({required bool inForeground}) {
-    final chopperHttpLogLevel = Level.body; //TODO allow changing the log level in settings (and a debug config file?)
+    // Body logging can be very excessive, so only perform in debug mode.
+    // Even then, if we are in the background isolate where getItems runs, do not body log.
+    final chopperHttpLogLevel = kDebugMode && inForeground
+        ? Level.body
+        : Level.headers; //TODO allow changing the log level in settings (and a debug config file?)
 
     final client = ChopperClient(
       client: http.IOClient(

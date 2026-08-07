@@ -14,17 +14,7 @@ Future<void> setupLogging() async {
 
   Logger.root.level = Level.ALL;
   Logger.root.onRecord.listen((event) {
-    // We don't want to print log messages from the Flutter logger since Flutter prints logs by itself
-    if (kDebugMode && event.loggerName != "Flutter") {
-      debugPrint("[${event.loggerName}/${event.level.name}] ${event.time}: ${event.message}");
-    }
-    if (kDebugMode && event.loggerName != "Flutter" && event.getStack != null) {
-      debugPrintStack(stackTrace: event.getStack);
-    }
-    // Make sure asserts are extra visible when debugging
-    if (kDebugMode && event.object is AssertionError) {
-      GlobalSnackbar.message((_) => event.object.toString());
-    }
+    performDebugLogPrinting(event);
     finampLogsHelper.addLog(event);
   });
 
@@ -36,4 +26,18 @@ Future<void> setupLogging() async {
         false, // we can't fetch server info yet, because the user helper isn't set up yet. it's also faster to skip this here
   );
   startupLogger.info("\n${metadata.pretty}");
+}
+
+void performDebugLogPrinting(LogRecord event) {
+  // We don't want to print log messages from the Flutter logger since Flutter prints logs by itself
+  if (kDebugMode && event.loggerName != "Flutter") {
+    debugPrint("[${event.loggerName}/${event.level.name}] ${event.time}: ${event.message}");
+  }
+  if (kDebugMode && event.loggerName != "Flutter" && event.getStack != null) {
+    debugPrintStack(stackTrace: event.getStack);
+  }
+  // Make sure asserts are extra visible when debugging
+  if (kDebugMode && event.object is AssertionError) {
+    GlobalSnackbar.message((_) => event.object.toString());
+  }
 }
