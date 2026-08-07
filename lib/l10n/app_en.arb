@@ -1331,9 +1331,9 @@
     "swipeRightToLeftActionSubtitle": "Action triggered when swiping a track in the list from right to left.",
     "startInstantMixForIndividualTracksSwitchTitle": "Start Instant Mixes for Individual Tracks",
     "@startInstantMixForIndividualTracksSwitchTitle": {
-        "description": "Title for the switch that toggles if tapping a track on the tracks tab will start an instant mix of that track instead of just playing a single track."
+        "description": "Title for the switch that toggles if tapping a track on the tracks tab will start an instant mix of that track instead of playing tracks in order."
     },
-    "startInstantMixForIndividualTracksSwitchSubtitle": "When enabled, tapping a track on the tracks tab will start an instant mix of that track instead of just playing a single track.",
+    "startInstantMixForIndividualTracksSwitchSubtitle": "When enabled, tapping a track on the tracks tab will start an instant mix of that track instead of playing tracks in order.",
     "downloadItem": "Download",
     "@downloadItem": {
         "description": "Option to download item in long-press menu."
