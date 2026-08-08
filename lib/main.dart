@@ -18,6 +18,7 @@ import 'package:finamp/models/music_models.dart';
 import 'package:finamp/screens/accessibility_settings_screen.dart';
 import 'package:finamp/screens/album_settings_screen.dart';
 import 'package:finamp/screens/artist_settings_screen.dart';
+import 'package:finamp/screens/content_view_type_settings_screen.dart';
 import 'package:finamp/screens/downloads_settings_screen.dart';
 import 'package:finamp/screens/genre_settings_screen.dart';
 import 'package:finamp/screens/home_screen_settings_screen.dart';
@@ -344,7 +345,7 @@ Future<void> _setupProviders() async {
   var container = ProviderContainer(observers: [FinampProviderObserver()]);
   GetIt.instance.registerSingleton<ProviderContainer>(container);
   // Make sure that finampSettingsProvider always has a value available
-  container.listen(finampSettingsProvider, (_, __) {});
+  container.listen(finampSettingsProvider, (_, _) {});
   await container.read(finampSettingsProvider.future);
 
   await initImageCache();
@@ -640,6 +641,14 @@ void _migrateSortOptions() {
     for (var type in ContentType.values.where((x) => x.isTab)) {
       finampSettings.tabSortOrder[type] = finampSettings.sortOrder!;
     }
+    changed = true;
+  }
+
+  if (finampSettings.contentViewType != null) {
+    for (var type in customContentViewTypes) {
+      finampSettings.perTabContentViewType[type] = finampSettings.contentViewType!;
+    }
+    finampSettings.contentViewType = null;
     changed = true;
   }
 
@@ -976,6 +985,7 @@ class FinampApp extends ConsumerWidget {
         VolumeNormalizationSettingsScreen.routeName: (context) => const VolumeNormalizationSettingsScreen(),
         InteractionSettingsScreen.routeName: (context) => const InteractionSettingsScreen(),
         TabsSettingsScreen.routeName: (context) => const TabsSettingsScreen(),
+        ContentViewTypeSettingsScreen.routeName: (context) => const ContentViewTypeSettingsScreen(),
         LayoutSettingsScreen.routeName: (context) => const LayoutSettingsScreen(),
         CustomizationSettingsScreen.routeName: (context) => const CustomizationSettingsScreen(),
         PlayerSettingsScreen.routeName: (context) => const PlayerSettingsScreen(),

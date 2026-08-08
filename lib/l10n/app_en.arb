@@ -459,6 +459,7 @@
     "viewTypeSubtitle": "Controls grid or list mode for all music screen tabs, excepting the home screen.",
     "list": "List",
     "grid": "Grid",
+    "perTabGridMode": "Choose per tab",
     "none": "None",
     "customizationSettingsTitle": "Customization",
     "@customizationSettingsTitle": {

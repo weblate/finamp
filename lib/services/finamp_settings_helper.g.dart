@@ -82,14 +82,6 @@ extension FinampSetters on FinampSettingsHelper {
     ).put("FinampSettings", finampSettingsTemp);
   }
 
-  static void setContentViewType(ContentViewType newContentViewType) {
-    FinampSettings finampSettingsTemp = FinampSettingsHelper.finampSettings;
-    finampSettingsTemp.contentViewType = newContentViewType;
-    Hive.box<FinampSettings>(
-      "FinampSettings",
-    ).put("FinampSettings", finampSettingsTemp);
-  }
-
   static void setShowTextOnGridView(bool newShowTextOnGridView) {
     FinampSettings finampSettingsTemp = FinampSettingsHelper.finampSettings;
     finampSettingsTemp.showTextOnGridView = newShowTextOnGridView;
@@ -1298,6 +1290,25 @@ extension FinampSetters on FinampSettingsHelper {
     ).put("FinampSettings", finampSettingsTemp);
   }
 
+  static void setPerTabContentViewType(
+    ContentType tabContentType,
+    ContentViewType newValue,
+  ) {
+    FinampSettings finampSettingsTemp = FinampSettingsHelper.finampSettings;
+    try {
+      finampSettingsTemp.perTabContentViewType[tabContentType] = newValue;
+    } on UnsupportedError {
+      // We were using the default const map directly.  Clone to allow modifications.
+      finampSettingsTemp.perTabContentViewType = Map.from(
+        finampSettingsTemp.perTabContentViewType,
+      );
+      finampSettingsTemp.perTabContentViewType[tabContentType] = newValue;
+    }
+    Hive.box<FinampSettings>(
+      "FinampSettings",
+    ).put("FinampSettings", finampSettingsTemp);
+  }
+
   static void setBufferDuration(Duration newBufferDuration) {
     FinampSettings finampSettingsTemp = FinampSettingsHelper.finampSettings;
     finampSettingsTemp.bufferDuration = newBufferDuration;
@@ -1329,10 +1340,6 @@ extension FinampSettingsProviderSelectors on StreamProvider<FinampSettings> {
       .select((value) => value.requireValue.onlyShowFavorites);
   ProviderListenable<int> get trackShuffleItemCount => finampSettingsProvider
       .select((value) => value.requireValue.trackShuffleItemCount);
-  ProviderListenable<ContentViewType> get contentViewType =>
-      finampSettingsProvider.select(
-        (value) => value.requireValue.contentViewType,
-      );
   ProviderListenable<bool> get showTextOnGridView => finampSettingsProvider
       .select((value) => value.requireValue.showTextOnGridView);
   ProviderListenable<bool> get useCoverAsBackground => finampSettingsProvider
@@ -1740,6 +1747,11 @@ extension FinampSettingsProviderSelectors on StreamProvider<FinampSettings> {
       finampSettingsProvider.select((value) => value.requireValue.deviceId);
   ProviderListenable<bool> get showQuickActionsBanner => finampSettingsProvider
       .select((value) => value.requireValue.showQuickActionsBanner);
+  ProviderListenable<ContentViewType?> perTabContentViewType(
+    ContentType tabContentType,
+  ) => finampSettingsProvider.select(
+    (value) => value.requireValue.perTabContentViewType[tabContentType],
+  );
   ProviderListenable<DownloadProfile> get downloadTranscodingProfile =>
       finampSettingsProvider.select(
         (value) => value.requireValue.downloadTranscodingProfile,

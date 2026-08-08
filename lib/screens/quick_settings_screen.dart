@@ -3,19 +3,20 @@ import 'package:finamp/screens/tabs_settings_screen.dart';
 import 'package:finamp/screens/transcoding_settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get_it/get_it.dart';
 
 import '../components/AlbumScreen/download_button.dart';
 import '../components/InteractionSettingsScreen/FastScrollSelector.dart';
-import '../components/LayoutSettingsScreen/content_view_type_dropdown_list_tile.dart';
+import '../components/LayoutSettingsScreen/show_text_on_grid_view_selector.dart';
 import '../components/LayoutSettingsScreen/theme_selector.dart';
 import '../components/NetworkSettingsScreen/auto_offline_selector.dart';
 import '../components/TranscodingSettingsScreen/transcode_switch.dart';
 import '../components/finamp_app_bar_back_button.dart';
 import '../l10n/app_localizations.dart';
 import '../models/finamp_models.dart';
-import '../services/finamp_settings_helper.dart';
 import '../services/finamp_user_helper.dart';
+import 'content_view_type_settings_screen.dart';
 import 'layout_settings_screen.dart';
 
 class QuickSettingsScreen extends ConsumerWidget {
@@ -46,7 +47,15 @@ class QuickSettingsScreen extends ConsumerWidget {
           Divider(),
           // grid mode toggle plus size
           const ContentViewTypeDropdownListTile(),
-          if (ref.watch(finampSettingsProvider.contentViewType) == ContentViewType.grid) const GridImageSizeSelector(),
+          if (watchDropdownContentViewType(ref) == DropdownContentViewType.custom)
+            ListTile(
+              leading: const Icon(TablerIcons.layout),
+              title: Text("Set per-tab view types"),
+              onTap: () => Navigator.of(context).pushNamed(ContentViewTypeSettingsScreen.routeName),
+              contentPadding: EdgeInsets.only(left: 50),
+            ),
+          if (watchDropdownContentViewType(ref) != DropdownContentViewType.list) const ShowTextOnGridViewSelector(),
+          if (watchDropdownContentViewType(ref) != DropdownContentViewType.list) const GridImageSizeSelector(),
           ListTile(
             leading: const Icon(Icons.widgets),
             title: Text("Additional layout settings"),

@@ -127,7 +127,14 @@ class DefaultSettings {
   // Ideally the maximum gain in each library should be fetched from the server, and this volume should be adjusted accordingly to be the exact inverse, so that the quietest track in the library plays at 100% volume, and only louder tracks get their volume reduced
   static const volumeNormalizationIOSBaseGain = 6.0;
   static const volumeNormalizationMode = VolumeNormalizationMode.hybrid;
-  static const contentViewType = ContentViewType.list;
+  static const perTabContentViewType = {
+    ContentType.albums: ContentViewType.list,
+    ContentType.genericArtists: ContentViewType.list,
+    ContentType.albumArtists: ContentViewType.list,
+    ContentType.performingArtists: ContentViewType.list,
+    ContentType.playlists: ContentViewType.list,
+    ContentType.genres: ContentViewType.list,
+  };
   static const playbackSpeedVisibility = PlaybackSpeedVisibility.automatic;
   static const showTextOnGridView = true;
   static const sleepTimerDurationSeconds = 60 * 30;
@@ -329,7 +336,6 @@ class FinampSettings {
     this.volumeNormalizationActive = DefaultSettings.volumeNormalizationActive,
     this.volumeNormalizationIOSBaseGain = DefaultSettings.volumeNormalizationIOSBaseGain,
     this.volumeNormalizationMode = DefaultSettings.volumeNormalizationMode,
-    this.contentViewType = DefaultSettings.contentViewType,
     this.playbackSpeedVisibility = DefaultSettings.playbackSpeedVisibility,
     this.contentGridViewCrossAxisCountPortrait,
     this.contentGridViewCrossAxisCountLandscape,
@@ -457,6 +463,7 @@ class FinampSettings {
     required this.deviceId,
     this.clientCertificate = DefaultSettings.clientCertificate,
     this.showQuickActionsBanner = DefaultSettings.showQuickActionsBanner,
+    this.perTabContentViewType = DefaultSettings.perTabContentViewType,
   });
 
   @HiveField(0, defaultValue: DefaultSettings.isOffline)
@@ -497,8 +504,9 @@ class FinampSettings {
   int trackShuffleItemCount;
 
   /// The content view type used by the music screen.
-  @HiveField(10, defaultValue: DefaultSettings.contentViewType)
-  ContentViewType contentViewType;
+  @HiveField(10)
+  @Deprecated("Use perTabContentViewType")
+  ContentViewType? contentViewType;
 
   /// Amount of grid tiles to use per-row when portrait.
   @HiveField(11)
@@ -947,6 +955,10 @@ class FinampSettings {
 
   @HiveField(153, defaultValue: DefaultSettings.showQuickActionsBanner)
   bool showQuickActionsBanner;
+
+  @HiveField(154, defaultValue: DefaultSettings.perTabContentViewType)
+  @SettingsHelperMap("tabContentType")
+  Map<ContentType, ContentViewType> perTabContentViewType;
 
   static Future<FinampSettings> create() async {
     final downloadLocation = await DownloadLocation.create(
