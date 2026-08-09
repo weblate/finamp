@@ -280,6 +280,7 @@ class DefaultSettings {
   static const radioEnabled = false;
   static const duckOnAudioInterruption = true;
   static const forceAudioOffloadingOnAndroid = false;
+  static const verboseLogging = false;
   static const previousTracksPersistenceMode = PreviousTracksPersistenceMode.persistent;
   static final homeScreenConfiguration = FinampHomeScreenConfiguration(
     actions: [
@@ -455,6 +456,7 @@ class FinampSettings {
     this.useMonochromeIcon = DefaultSettings.useMonochromeIcon,
     this.duckOnAudioInterruption = DefaultSettings.duckOnAudioInterruption,
     this.forceAudioOffloadingOnAndroid = DefaultSettings.forceAudioOffloadingOnAndroid,
+    this.verboseLogging = DefaultSettings.verboseLogging,
     this.previousTracksPersistenceMode = DefaultSettings.previousTracksPersistenceMode,
     required this.homeScreenConfiguration,
     required this.gridImageSize,
@@ -953,10 +955,15 @@ class FinampSettings {
   @HiveField(152, defaultValue: "unset") // pre-generation default
   String deviceId;
 
-  @HiveField(153, defaultValue: DefaultSettings.showQuickActionsBanner)
+  /// Keeps verbose FINE/FINER/FINEST records for bug reports. Off by default;
+  /// release builds otherwise cap at INFO.
+  @HiveField(153, defaultValue: DefaultSettings.verboseLogging)
+  bool verboseLogging = DefaultSettings.verboseLogging;
+
+  @HiveField(154, defaultValue: DefaultSettings.showQuickActionsBanner)
   bool showQuickActionsBanner;
 
-  @HiveField(154, defaultValue: DefaultSettings.perTabContentViewType)
+  @HiveField(155, defaultValue: DefaultSettings.perTabContentViewType)
   @SettingsHelperMap("tabContentType")
   Map<ContentType, ContentViewType> perTabContentViewType;
 

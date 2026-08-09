@@ -169,6 +169,14 @@
         "description": "Label for the login button."
     },
     "logs": "Logs",
+    "verboseLogging": "Verbose Logging",
+    "@verboseLogging": {
+        "description": "Title for the toggle that enables detailed logging on the logs screen"
+    },
+    "verboseLoggingSubtitle": "Keep detailed logs for bug reports. Leave this off for better playback performance.",
+    "@verboseLoggingSubtitle": {
+        "description": "Subtitle explaining the verbose logging toggle"
+    },
     "next": "Next",
     "selectMusicLibraries": "Select Music Libraries",
     "@selectMusicLibraries": {

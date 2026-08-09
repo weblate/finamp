@@ -138,6 +138,8 @@ Future<void> main(List<String> args, {bool integrationTesting = false, bool logi
     _mainLog.info("Setup edge-to-edge overlay");
     await setupHive();
     _mainLog.info("Setup hive and isar");
+    // Apply the persisted verbose logging preference now that settings exist.
+    applyLogLevel();
     _migrateDownloadLocations();
     _migrateSortOptions();
     _migrateGridSize();
@@ -147,7 +149,6 @@ Future<void> main(List<String> args, {bool integrationTesting = false, bool logi
     await _migrateThemeModeLocale();
     _mainLog.info("Completed applicable migrations");
     await _trustAndroidUserCerts();
-    _mainLog.info("Trusted Android user certs");
     await ClientCertificateInstaller().installClientCertificate();
     _mainLog.info("Installed client certificate");
     await _setupFinampUserHelper();
@@ -772,11 +773,14 @@ void _migrateDeviceId() {
 }
 
 Future<void> _trustAndroidUserCerts() async {
+  if (!Platform.isAndroid) return;
   // Extend the default security context to trust Android user certificates.
   // This is a workaround for <https://github.com/dart-lang/sdk/issues/50435>.
   WidgetsFlutterBinding.ensureInitialized();
   try {
+    // SecurityContext.defaultContext seems to cause a native crash on Linux in some environments?
     await FlutterUserCertificatesAndroid().trustAndroidUserCertificates(SecurityContext.defaultContext);
+    _mainLog.info("Trusted Android user certs");
   } catch (e) {
     Logger("AndroidCertTrust").severe("Failed to trust certificates: $e", e);
     GlobalSnackbar.error("Failed to trust user certificates: $e");
