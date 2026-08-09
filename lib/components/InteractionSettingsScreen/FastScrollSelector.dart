@@ -11,7 +11,7 @@ class FastScrollSelector extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return SwitchListTile.adaptive(
       title: Text(AppLocalizations.of(context)!.showFastScroller),
-      subtitle: Text("Show or hide the alphabet list on the right of music tabs which allows jumping to letters."),
+      subtitle: Text(AppLocalizations.of(context)!.showFastScrollerSubtitle),
       value: ref.watch(finampSettingsProvider.showFastScroller),
       onChanged: (value) => FinampSetters.setShowFastScroller(value),
     );

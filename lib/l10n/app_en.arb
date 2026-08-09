@@ -535,6 +535,7 @@
     "disableGesture": "Disable gestures",
     "disableGestureSubtitle": "Whether to disables gestures.",
     "showFastScroller": "Show fast scroller",
+    "showFastScrollerSubtitle": "Show or hide the alphabet list on the right of music tabs which allows jumping to letters.",
     "theme": "Theme",
     "system": "System",
     "light": "Light",
@@ -3709,5 +3710,20 @@
                 "example": "Never Gonna Give You Up"
             }
         }
-    }
+    },
+    "quickActionBanner": "Check out some commonly changed settings.",
+    "@quickActionBanner": {
+        "description": "Banner directing new users to the quick settings, where they can adjust the most commonly used settings"
+    },
+    "themeSettingTitle": "Override system dark mode setting",
+    "@themeSettingTitle": {
+        "description": "Title for the setting that allows you to override the system theme and force dark or light mode"
+    },
+    "perTabGridModeScreen": "Set per-tab view types",
+    "quickSettingsScreen": "Quick Settings",
+    "quickSettingsScreenDescription": "These are some of the most commonly tweaked settings, collected here for easy access.  Check out the full settings screen for more advanced options.  This menu can always be accessed from the settings screen.",
+    "quickSettingsTabsLink": "Remove or rearrange music tabs (e.g. Albums, tracks)",
+    "quickSettingsTranscodeLink": "Additional transcoding settings",
+    "quickSettingsLayoutLink": "Additional layout settings",
+    "quickSettingsAllSettingsLink": "All Settings"
 }

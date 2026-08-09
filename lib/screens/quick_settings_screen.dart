@@ -13,6 +13,7 @@ import '../components/LayoutSettingsScreen/theme_selector.dart';
 import '../components/NetworkSettingsScreen/auto_offline_selector.dart';
 import '../components/TranscodingSettingsScreen/transcode_switch.dart';
 import '../components/finamp_app_bar_back_button.dart';
+import '../extensions/localizations.dart';
 import '../l10n/app_localizations.dart';
 import '../models/finamp_models.dart';
 import '../services/finamp_user_helper.dart';
@@ -27,21 +28,17 @@ class QuickSettingsScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: AppBar(title: Text("Quick Settings"), leading: FinampAppBarBackButton()),
+      appBar: AppBar(title: Text(context.l10n.quickSettingsScreen), leading: FinampAppBarBackButton()),
       body: ListView(
         padding: const EdgeInsets.only(bottom: 200.0),
         children: [
           Padding(
             padding: const EdgeInsets.all(20.0),
-            child: Text(
-              style: TextTheme.of(context).bodyLarge,
-              "These are some of the most commonly tweaked settings, collected here for easy access.  Check out the"
-              "full settings screen for more advanced options.  This menu can always be accessed from the settings screen.",
-            ),
+            child: Text(style: TextTheme.of(context).bodyLarge, context.l10n.quickSettingsScreenDescription),
           ),
           ListTile(
             leading: const Icon(Icons.settings),
-            title: Text("All Settings"),
+            title: Text(context.l10n.quickSettingsAllSettingsLink),
             onTap: () => Navigator.of(context).pushNamed(SettingsScreen.routeName),
           ),
           Divider(),
@@ -50,7 +47,7 @@ class QuickSettingsScreen extends ConsumerWidget {
           if (watchDropdownContentViewType(ref) == DropdownContentViewType.custom)
             ListTile(
               leading: const Icon(TablerIcons.layout),
-              title: Text("Set per-tab view types"),
+              title: Text(context.l10n.perTabGridModeScreen),
               onTap: () => Navigator.of(context).pushNamed(ContentViewTypeSettingsScreen.routeName),
               contentPadding: EdgeInsets.only(left: 50),
             ),
@@ -58,7 +55,7 @@ class QuickSettingsScreen extends ConsumerWidget {
           if (watchDropdownContentViewType(ref) != DropdownContentViewType.list) const GridImageSizeSelector(),
           ListTile(
             leading: const Icon(Icons.widgets),
-            title: Text("Additional layout settings"),
+            title: Text(context.l10n.quickSettingsLayoutLink),
             onTap: () => Navigator.of(context).pushNamed(LayoutSettingsScreen.routeName),
             contentPadding: EdgeInsets.only(left: 50),
           ),
@@ -73,14 +70,14 @@ class QuickSettingsScreen extends ConsumerWidget {
           const TranscodeSwitch(),
           ListTile(
             leading: const Icon(Icons.compress),
-            title: Text("Additional transcoding settings"),
+            title: Text(context.l10n.quickSettingsTranscodeLink),
             onTap: () => Navigator.of(context).pushNamed(TranscodingSettingsScreen.routeName),
             contentPadding: EdgeInsets.only(left: 50),
           ),
           // music screen tabs
           ListTile(
             leading: const Icon(Icons.tab),
-            title: Text("Remove or rearrange music tabs (e.g. Albums, tracks)"),
+            title: Text(context.l10n.quickSettingsTabsLink),
             onTap: () => Navigator.of(context).pushNamed(TabsSettingsScreen.routeName),
           ),
           // album image cache?

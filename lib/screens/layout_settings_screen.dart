@@ -95,7 +95,7 @@ class _LayoutSettingsScreenState extends ConsumerState<LayoutSettingsScreen> {
           if (watchDropdownContentViewType(ref) == DropdownContentViewType.custom)
             ListTile(
               leading: const Icon(TablerIcons.layout),
-              title: Text("Set per-tab view types"),
+              title: Text(AppLocalizations.of(context)!.perTabGridModeScreen),
               onTap: () => Navigator.of(context).pushNamed(ContentViewTypeSettingsScreen.routeName),
               contentPadding: EdgeInsets.only(left: 50),
             ),

@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 
+import '../../extensions/localizations.dart';
+
 extension LocalisedName on ThemeMode {
   String toLocalisedString(BuildContext context) => _humanReadableLocalisedName(this, context);
 
@@ -29,7 +31,7 @@ class ThemeSelector extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final themeMode = ref.watch(finampSettingsProvider.themeMode);
     return ListTile(
-      title: Text(verbose ? "Override system dark mode setting" : AppLocalizations.of(context)!.theme),
+      title: Text(verbose ? context.l10n.themeSettingTitle : context.l10n.theme),
       subtitle: FinampSettingsDropdown<ThemeMode>(
         dropdownItems: ThemeMode.values
             .map(

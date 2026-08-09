@@ -351,7 +351,7 @@ class FinampMusicScreenHeader extends ConsumerWidget implements PreferredSizeWid
                       onPressed: () {
                         FinampSetters.setShowQuickActionsBanner(false);
                       },
-                      child: Text("Close"),
+                      child: Text(context.l10n.close),
                     ),
                   ],
                 ),
