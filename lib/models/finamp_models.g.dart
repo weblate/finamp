@@ -437,6 +437,7 @@ class FinampSettingsAdapter extends TypeAdapter<FinampSettings> {
         forceAudioOffloadingOnAndroid: fields[143] == null
             ? false
             : fields[143] as bool,
+        verboseLogging: fields[153] == null ? false : fields[153] as bool,
         previousTracksPersistenceMode: fields[145] == null
             ? PreviousTracksPersistenceMode.persistent
             : fields[145] as PreviousTracksPersistenceMode,
@@ -472,7 +473,7 @@ class FinampSettingsAdapter extends TypeAdapter<FinampSettings> {
   @override
   void write(BinaryWriter writer, FinampSettings obj) {
     writer
-      ..writeByte(146)
+      ..writeByte(147)
       ..writeByte(0)
       ..write(obj.isOffline)
       ..writeByte(1)
@@ -764,7 +765,9 @@ class FinampSettingsAdapter extends TypeAdapter<FinampSettings> {
       ..writeByte(151)
       ..write(obj.clientCertificate)
       ..writeByte(152)
-      ..write(obj.deviceId);
+      ..write(obj.deviceId)
+      ..writeByte(153)
+      ..write(obj.verboseLogging);
   }
 
   @override

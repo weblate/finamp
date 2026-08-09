@@ -136,6 +136,8 @@ Future<void> main(List<String> args, {bool integrationTesting = false, bool logi
     _mainLog.info("Setup edge-to-edge overlay");
     await setupHive();
     _mainLog.info("Setup hive and isar");
+    // Apply the persisted verbose logging preference now that settings exist.
+    applyLogLevel();
     _migrateDownloadLocations();
     _migrateSortOptions();
     _migrateGridSize();
@@ -145,7 +147,6 @@ Future<void> main(List<String> args, {bool integrationTesting = false, bool logi
     await _migrateThemeModeLocale();
     _mainLog.info("Completed applicable migrations");
     await _trustAndroidUserCerts();
-    _mainLog.info("Trusted Android user certs");
     await ClientCertificateInstaller().installClientCertificate();
     _mainLog.info("Installed client certificate");
     await _setupFinampUserHelper();
@@ -769,6 +770,7 @@ Future<void> _trustAndroidUserCerts() async {
   try {
     // SecurityContext.defaultContext seems to cause a native crash on Linux in some environments?
     await FlutterUserCertificatesAndroid().trustAndroidUserCertificates(SecurityContext.defaultContext);
+    _mainLog.info("Trusted Android user certs");
   } catch (e) {
     Logger("AndroidCertTrust").severe("Failed to trust certificates: $e", e);
     GlobalSnackbar.error("Failed to trust user certificates: $e");
