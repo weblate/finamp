@@ -273,6 +273,7 @@ class DefaultSettings {
   static const radioEnabled = false;
   static const duckOnAudioInterruption = true;
   static const forceAudioOffloadingOnAndroid = false;
+  static const verboseLogging = false;
   static const previousTracksPersistenceMode = PreviousTracksPersistenceMode.persistent;
   static final homeScreenConfiguration = FinampHomeScreenConfiguration(
     actions: [
@@ -448,6 +449,7 @@ class FinampSettings {
     this.useMonochromeIcon = DefaultSettings.useMonochromeIcon,
     this.duckOnAudioInterruption = DefaultSettings.duckOnAudioInterruption,
     this.forceAudioOffloadingOnAndroid = DefaultSettings.forceAudioOffloadingOnAndroid,
+    this.verboseLogging = DefaultSettings.verboseLogging,
     this.previousTracksPersistenceMode = DefaultSettings.previousTracksPersistenceMode,
     required this.homeScreenConfiguration,
     required this.gridImageSize,
@@ -941,6 +943,11 @@ class FinampSettings {
   /// but that's unrealistic, so a random string should be fine
   @HiveField(152, defaultValue: "unset") // pre-generation default
   String deviceId;
+
+  /// Keeps verbose FINE/FINER/FINEST records for bug reports. Off by default;
+  /// release builds otherwise cap at INFO.
+  @HiveField(153, defaultValue: DefaultSettings.verboseLogging)
+  bool verboseLogging = DefaultSettings.verboseLogging;
 
   static Future<FinampSettings> create() async {
     final downloadLocation = await DownloadLocation.create(
