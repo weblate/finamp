@@ -30,7 +30,10 @@ import 'finamp_user_helper.dart';
 import 'jellyfin_api.dart' as jellyfin_api;
 
 class JellyfinApiHelper {
-  final jellyfinApi = jellyfin_api.JellyfinApi.create(inForeground: true);
+  final jellyfinApi = jellyfin_api.JellyfinApi.create(
+    inForeground: true,
+    verboseLogging: FinampSettingsHelper.finampSettings.verboseLogging,
+  );
   static final _jellyfinApiHelperLogger = Logger("JellyfinApiHelper");
 
   // Stores the ids of the artists that the user selected to mix
@@ -70,6 +73,7 @@ class JellyfinApiHelper {
       clientCertificate,
       FinampSettingsHelper.finampSettings.deviceId,
       loggingPort.sendPort,
+      FinampSettingsHelper.finampSettings.verboseLogging,
     ));
     Future.sync(() async {
       _workerIsolatePort = await startupPort.first as SendPort?;
@@ -81,7 +85,7 @@ class JellyfinApiHelper {
   /// This should only be run in a worker isolate
   /// Sets up singletons and listens for work.
   static Future<void> _processRequestsBackground(
-    (SendPort, RootIsolateToken, ClientCertificate?, String, SendPort) input,
+    (SendPort, RootIsolateToken, ClientCertificate?, String, SendPort, bool) input,
   ) async {
     BackgroundIsolateBinaryMessenger.ensureInitialized(input.$2);
     ReceivePort requestPort = ReceivePort();
@@ -123,7 +127,10 @@ class JellyfinApiHelper {
     GetIt.instance.registerSingleton(isar);
     GetIt.instance.registerSingleton(FinampUserHelper(deviceId: input.$4));
     await GetIt.instance<FinampUserHelper>().setAuthHeader();
-    jellyfin_api.JellyfinApi backgroundApi = jellyfin_api.JellyfinApi.create(inForeground: false);
+    jellyfin_api.JellyfinApi backgroundApi = jellyfin_api.JellyfinApi.create(
+      inForeground: false,
+      verboseLogging: input.$6,
+    );
     await for (var request in requestPort) {
       var (func, outputPort) = request as (Future<dynamic> Function(jellyfin_api.JellyfinApi), SendPort);
       try {

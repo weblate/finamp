@@ -109,9 +109,6 @@ class FinampSettingsAdapter extends TypeAdapter<FinampSettings> {
         volumeNormalizationMode: fields[33] == null
             ? VolumeNormalizationMode.hybrid
             : fields[33] as VolumeNormalizationMode,
-        contentViewType: fields[10] == null
-            ? ContentViewType.list
-            : fields[10] as ContentViewType,
         playbackSpeedVisibility: fields[57] == null
             ? PlaybackSpeedVisibility.automatic
             : fields[57] as PlaybackSpeedVisibility,
@@ -450,9 +447,26 @@ class FinampSettingsAdapter extends TypeAdapter<FinampSettings> {
             : (fields[150] as num).toInt(),
         useAndroidGainEffect: fields[149] == null ? true : fields[149] as bool,
         deviceId: fields[152] == null ? 'unset' : fields[152] as String,
+        clientCertificate: fields[151] == null
+            ? DefaultSettings.clientCertificate
+            : fields[151] as ClientCertificate?,
+        showQuickActionsBanner: fields[154] == null
+            ? true
+            : fields[154] as bool,
+        perTabContentViewType: fields[155] == null
+            ? {
+                ContentType.albums: ContentViewType.list,
+                ContentType.genericArtists: ContentViewType.list,
+                ContentType.albumArtists: ContentViewType.list,
+                ContentType.performingArtists: ContentViewType.list,
+                ContentType.playlists: ContentViewType.list,
+                ContentType.genres: ContentViewType.list,
+              }
+            : (fields[155] as Map).cast<ContentType, ContentViewType>(),
       )
       ..sortBy = fields[7] as SortBy?
       ..sortOrder = fields[8] as SortOrder?
+      ..contentViewType = fields[10] as ContentViewType?
       ..disableGesture = fields[19] == null ? false : fields[19] as bool
       ..showFastScroller = fields[25] == null ? true : fields[25] as bool
       ..defaultDownloadLocation = fields[58] as String?
@@ -466,14 +480,13 @@ class FinampSettingsAdapter extends TypeAdapter<FinampSettings> {
       ..radioEnabled = fields[140] == null ? false : fields[140] as bool
       ..radioMode = fields[141] == null
           ? RadioMode.similar
-          : fields[141] as RadioMode
-      ..clientCertificate = fields[151] as ClientCertificate?;
+          : fields[141] as RadioMode;
   }
 
   @override
   void write(BinaryWriter writer, FinampSettings obj) {
     writer
-      ..writeByte(147)
+      ..writeByte(149)
       ..writeByte(0)
       ..write(obj.isOffline)
       ..writeByte(1)
@@ -767,7 +780,11 @@ class FinampSettingsAdapter extends TypeAdapter<FinampSettings> {
       ..writeByte(152)
       ..write(obj.deviceId)
       ..writeByte(153)
-      ..write(obj.verboseLogging);
+      ..write(obj.verboseLogging)
+      ..writeByte(154)
+      ..write(obj.showQuickActionsBanner)
+      ..writeByte(155)
+      ..write(obj.perTabContentViewType);
   }
 
   @override

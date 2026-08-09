@@ -51,6 +51,8 @@ void performDebugLogPrinting(LogRecord event) {
 /// Debug builds keep everything. Release builds cap at INFO unless verbose
 /// logging is enabled, so the FINE/FINER/FINEST trace doesn't run censoring and
 /// a synchronous file write on the main isolate for every line in production.
+///
+/// This does not apply changes to chopper log level - the app must be restarted for those to apply.
 void applyLogLevel() {
   final verbose = FinampSettingsHelper.finampSettings.verboseLogging;
   Logger.root.level = (kDebugMode || verbose) ? Level.ALL : Level.INFO;
