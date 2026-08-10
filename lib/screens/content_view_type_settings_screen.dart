@@ -123,7 +123,8 @@ class _ContentViewTypeDropdownListTileState extends ConsumerState<ContentViewTyp
                     leadingIcon: switch (e) {
                       DropdownContentViewType.list => const Icon(TablerIcons.layout_list),
                       DropdownContentViewType.grid => const Icon(TablerIcons.layout_grid),
-                      DropdownContentViewType.custom => const Icon(TablerIcons.layout),
+                      DropdownContentViewType.custom => Icon(null),
+                      DropdownContentViewType.albumGrid => Icon(null),
                     },
                   ),
                 )
@@ -146,6 +147,14 @@ class _ContentViewTypeDropdownListTileState extends ConsumerState<ContentViewTyp
                   for (var type in customContentViewTypes) {
                     FinampSetters.setPerTabContentViewType(type, ContentViewType.grid);
                   }
+                case DropdownContentViewType.albumGrid:
+                  for (var type in customContentViewTypes) {
+                    if (type == ContentType.albums) {
+                      FinampSetters.setPerTabContentViewType(type, ContentViewType.grid);
+                    } else {
+                      FinampSetters.setPerTabContentViewType(type, ContentViewType.list);
+                    }
+                  }
               }
             },
           ),
@@ -158,12 +167,14 @@ class _ContentViewTypeDropdownListTileState extends ConsumerState<ContentViewTyp
 enum DropdownContentViewType {
   list,
   grid,
+  albumGrid,
   custom;
 
   String toLocalizedString(AppLocalizations l10n) => switch (this) {
     DropdownContentViewType.list => l10n.list,
     DropdownContentViewType.grid => l10n.grid,
     DropdownContentViewType.custom => l10n.perTabGridMode,
+    DropdownContentViewType.albumGrid => l10n.perTabAlbumGrid,
   };
 }
 
@@ -172,18 +183,27 @@ Iterable<ContentType> get customContentViewTypes =>
 
 DropdownContentViewType watchDropdownContentViewType(WidgetRef ref) {
   ContentViewType? prev;
+  ContentViewType? albums;
   for (var type in customContentViewTypes) {
     final view = ref.watch(finampSettingsProvider.perTabContentViewType(type));
-    if (prev == null) {
-      prev = view;
-    } else if (prev != view) {
-      return DropdownContentViewType.custom;
+    if (type == ContentType.albums) {
+      albums = view;
+    } else {
+      if (prev == null) {
+        prev = view;
+      } else if (prev != view) {
+        return DropdownContentViewType.custom;
+      }
     }
   }
+  // We do not actually expect either variable to be null at this point.
   return switch (prev) {
-    // This shouldn't be reachable with null
     null => DropdownContentViewType.custom,
-    ContentViewType.list => DropdownContentViewType.list,
+    ContentViewType.list => switch (albums) {
+      null => DropdownContentViewType.list,
+      ContentViewType.list => DropdownContentViewType.list,
+      ContentViewType.grid => DropdownContentViewType.albumGrid,
+    },
     ContentViewType.grid => DropdownContentViewType.grid,
   };
 }

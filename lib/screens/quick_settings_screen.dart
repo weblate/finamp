@@ -42,6 +42,12 @@ class QuickSettingsScreen extends ConsumerWidget {
             onTap: () => Navigator.of(context).pushNamed(SettingsScreen.routeName),
           ),
           Divider(),
+          // music screen tabs
+          ListTile(
+            leading: const Icon(Icons.tab),
+            title: Text(context.l10n.quickSettingsTabsLink),
+            onTap: () => Navigator.of(context).pushNamed(TabsSettingsScreen.routeName),
+          ),
           // grid mode toggle plus size
           const ContentViewTypeDropdownListTile(),
           if (watchDropdownContentViewType(ref) == DropdownContentViewType.custom)
@@ -73,12 +79,6 @@ class QuickSettingsScreen extends ConsumerWidget {
             title: Text(context.l10n.quickSettingsTranscodeLink),
             onTap: () => Navigator.of(context).pushNamed(TranscodingSettingsScreen.routeName),
             contentPadding: EdgeInsets.only(left: 50),
-          ),
-          // music screen tabs
-          ListTile(
-            leading: const Icon(Icons.tab),
-            title: Text(context.l10n.quickSettingsTabsLink),
-            onTap: () => Navigator.of(context).pushNamed(TabsSettingsScreen.routeName),
           ),
           // album image cache?
           ListTile(

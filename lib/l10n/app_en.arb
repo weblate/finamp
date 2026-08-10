@@ -3728,9 +3728,10 @@
         "description": "Title for the setting that allows you to override the system theme and force dark or light mode"
     },
     "perTabGridModeScreen": "Set per-tab view types",
+    "perTabAlbumGrid": "Albums only in grid",
     "quickSettingsScreen": "Quick Settings",
     "quickSettingsScreenDescription": "These are some of the most commonly tweaked settings, collected here for easy access.  Check out the full settings screen for more advanced options.  This menu can always be accessed from the settings screen.",
-    "quickSettingsTabsLink": "Remove or rearrange music tabs (e.g. Albums, tracks)",
+    "quickSettingsTabsLink": "Remove or rearrange music tabs (e.g. Albums, Tracks)",
     "quickSettingsTranscodeLink": "Additional transcoding settings",
     "quickSettingsLayoutLink": "Additional layout settings",
     "quickSettingsAllSettingsLink": "All Settings"
