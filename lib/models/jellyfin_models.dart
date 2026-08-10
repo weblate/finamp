@@ -2212,6 +2212,7 @@ class BaseItemDto with RunTimeTickDuration {
         other.blurHash == blurHash &&
         other.mediaSources?.length == mediaSources?.length &&
         other.mediaStreams?.length == mediaStreams?.length &&
+        other.people?.length == people?.length &&
         other.normalizationGain == normalizationGain &&
         other.albumNormalizationGain == albumNormalizationGain &&
         other.playlistItemId == playlistItemId;

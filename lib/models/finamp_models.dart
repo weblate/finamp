@@ -1723,6 +1723,7 @@ class DownloadItem extends DownloadStub {
         // Not all BaseItemDto are requested with mediaSources, mediaStreams or childCount.  Do not
         // overwrite with null if the new item does not have them.
         item.mediaSources ??= baseItem?.mediaSources;
+        item.people ??= baseItem?.people;
         item.sortName ??= baseItem?.sortName;
       }
       assert(
@@ -1735,7 +1736,7 @@ class DownloadItem extends DownloadStub {
         if (viewId == null || viewId == this.viewId) {
           if (item == null || baseItem!.mostlyEqual(item)) {
             var equal = const DeepCollectionEquality().equals;
-            if (equal(newOrderedChildren, orderedChildren)) {
+            if (newOrderedChildren == null || equal(newOrderedChildren, orderedChildren)) {
               return null;
             }
           }
