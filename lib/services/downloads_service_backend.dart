@@ -643,7 +643,7 @@ class DownloadsDeleteService {
         await item.file!.delete();
         _deleteLogger.finer("Deleted file for ${item.name}");
       } on PathNotFoundException {
-        _deleteLogger.finer("File ${item.file!.path} for ${item.name} missing during delete.");
+        _deleteLogger.info("File ${item.file!.path} for ${item.name} missing during delete.");
       }
     }
 
@@ -655,7 +655,7 @@ class DownloadsDeleteService {
           await trackDirectory.delete();
         }
       } on PathNotFoundException {
-        _deleteLogger.finer("Directory ${trackDirectory.path} missing during delete.");
+        _deleteLogger.info("Directory ${trackDirectory.path} missing during delete.");
       }
     }
 
@@ -805,7 +805,7 @@ class DownloadsSyncService {
                     rethrow;
                   }
                 } else {
-                  _syncLogger.finest("Sync of ${item.name} failed with error $e, retrying", e);
+                  _syncLogger.fine("Sync of ${item.name} failed with error $e, retrying", e);
                   _requireCompleted.remove(sync.stubIsarId);
                   _infoCompleted.remove(sync.stubIsarId);
                   if (e is SocketException) {
