@@ -3632,5 +3632,13 @@
                 "type": "String"
             }
         }
+    },
+    "verboseLogging": "Podrobné protokolování",
+    "@verboseLogging": {
+        "description": "Title for the toggle that enables detailed logging on the logs screen"
+    },
+    "verboseLoggingSubtitle": "Ponechávat podrobné protokoly pro nahlašování chyb. Ponechte vypnuté pro lepší výkon při přehrávání.",
+    "@verboseLoggingSubtitle": {
+        "description": "Subtitle explaining the verbose logging toggle"
     }
 }
