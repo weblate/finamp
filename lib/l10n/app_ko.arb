@@ -31,7 +31,7 @@
     "clear": "삭제(비우기)",
     "shuffleAll": "임의 재생(모두)",
     "finamp": "핀앰프(Finamp)",
-    "sortOrder": "정렬 순서",
+    "sortOrder": "순서",
     "sortBy": "정렬 기준",
     "budget": "예산",
     "communityRating": "커뮤니티 평점",
@@ -217,7 +217,7 @@
     "pathReturnSlashErrorMessage": "\"/\"로 끝나는 경로는 사용할 수 없습니다",
     "customLocationsBuggy": "사용자 지정 위치는 대부분의 상황에서 권장하지 않습니다(버그가 매우 많이 발생할 수 있습니다). 운영체제 '음악'폴더 위치의 경우 시스템 제한 때문에 앨범 커버를 저장할 수 없습니다.",
     "enterLowPriorityStateOnPause": "일시 중지시 낮은 우선순위 상태로 전환합니다",
-    "enterLowPriorityStateOnPauseSubtitle": "일시 중지시 알림창을 밀어서 사라지게 합니다. 안드로이드(OS)에서는 일시 중지시 서비스를 강제 종료할 수 있게 합니다.",
+    "enterLowPriorityStateOnPauseSubtitle": "일시 중지시 알림창을 밀어서 사라지게 합니다. 안드로이드에서는 일시 중지시 서비스를 강제 종료할 수 있게 합니다.",
     "viewType": "보기 유형",
     "dark": "어두운 테마",
     "sleepTimerTooltip": "취침 타이머",
@@ -718,7 +718,7 @@
     "@shuffleToNextUp": {
         "description": "Used for shuffling a list (album, playlist, etc.) to the end of the \"Next Up\" queue, to play after all prior tracks from Next Up have played"
     },
-    "confirmAddToNextUp": "넥스트 업에 추가됨 : {type, select, track{곡} album{앨범} artist{아티스트} playlist{플레이리스트} genre{장르} disc{디스크} other{아이템}}",
+    "confirmAddToNextUp": "넥스트 업에 {type, select, track{곡} album{앨범} artist{아티스트} playlist{플레이리스트} genre{장르} disc{디스크} other{아이템}} 추가됨",
     "@confirmAddToNextUp": {
         "description": "A confirmation message that is shown after successfully adding a track to the end of the \"Next Up\" queue",
         "placeholders": {
@@ -727,7 +727,7 @@
             }
         }
     },
-    "confirmPlayNext": "다음 재생 : {type, select, track{곡} album{앨범} artist{아티스트} playlist{플레이리스트} genre{장르} other{아이템}}",
+    "confirmPlayNext": "다음 재생 : {type, select, track{곡} album{앨범} artist{아티스트} playlist{플레이리스트} genre{장르} disc{디스크} other{아이템}}",
     "@confirmPlayNext": {
         "description": "A confirmation message that is shown after successfully adding a track to the front of the \"Next Up\" queue",
         "placeholders": {
@@ -764,7 +764,7 @@
     "@playbackHistory": {
         "description": "Title for the playback history screen, where the user can see a list of recently played tracks, sorted by "
     },
-    "yourLikes": "내가 좋아하는 노래들",
+    "yourLikes": "내가 좋아하는 노래들 (\"{trackName}\"에서)",
     "@yourLikes": {
         "description": "Title for the queue source when the user is playing their liked tracks"
     },
