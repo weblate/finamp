@@ -3693,5 +3693,13 @@
                 "example": "Never Gonna Give You Up"
             }
         }
+    },
+    "verboseLogging": "Pencatatan Log Terperinci",
+    "@verboseLogging": {
+        "description": "Title for the toggle that enables detailed logging on the logs screen"
+    },
+    "verboseLoggingSubtitle": "Simpan log mendetail untuk laporan bug. Biarkan nonaktif untuk performa pemutaran yang lebih baik.",
+    "@verboseLoggingSubtitle": {
+        "description": "Subtitle explaining the verbose logging toggle"
     }
 }
