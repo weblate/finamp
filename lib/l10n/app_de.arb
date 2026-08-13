@@ -1142,7 +1142,7 @@
             }
         }
     },
-    "confirmPlayNext": "{type, select, track{Track} album{Album} artist{Künstler} playlist{Playlist} genre{Genre} other{Element}} wird als nächstes abgespielt",
+    "confirmPlayNext": "{type, select, track{Track} album{Album} artist{Künstler} playlist{Playlist} genre{Genre},disc{CD} other{Element}} wird als nächstes abgespielt",
     "@confirmPlayNext": {
         "description": "A confirmation message that is shown after successfully adding a track to the front of the \"Next Up\" queue",
         "placeholders": {
@@ -3379,7 +3379,7 @@
             }
         }
     },
-    "homeAllPlaylistsWarning": "Möchtest du wirklich alle Wiedergabelisten herunterladen? Dadurch werden alle Wiedergabelisten heruntergeladen, nicht nur die in diesem Abschnitt.",
+    "homeAllPlaylistsWarning": "Möchtest du wirklich alle Playlists herunterladen? Dadurch werden alle Playlists heruntergeladen, nicht nur die in diesem Abschnitt.",
     "@homeAllPlaylistsWarning": {
         "description": "Warning presented when pressing the download button on playlist home sections with a filter applied.  This is shown because the download will not apply the filter."
     },
@@ -3486,5 +3486,75 @@
     "removeClientCertificate": "Zertifikat entfernen",
     "@removeClientCertificate": {
         "description": "Label for the button to remove the currently installed SSL client certificate."
-    }
+    },
+    "verboseLoggingSubtitle": "Behält Detailierte Logs für Fehlerberichte. Ausgeschaltet lassen für bessere Wiedergabeleistung",
+    "@verboseLoggingSubtitle": {
+        "description": "Subtitle explaining the verbose logging toggle"
+    },
+    "activeLibraries": "Aktive Bibliotheken",
+    "@activeLibraries": {
+        "description": "Active Libraries"
+    },
+    "volumeControlDisabledCastingHint": "Ton wird auf einem Gerät ohne in-App Lautstärkesteuerung wiedergegeben.",
+    "@volumeControlDisabledCastingHint": {
+        "description": "Hint text displayed below the volume bar when the in-app volume slider is disabled because audio is being cast to a device that bypasses the in-app volume handling and handles its own volume, such as when using Airplay."
+    },
+    "randomAlbums": "Zufällige Alben",
+    "@randomAlbums": {
+        "description": "Name of a home screen section preset"
+    },
+    "recentlyAddedPlaylists": "Zuletzt erstellte Playlists",
+    "@recentlyAddedPlaylists": {
+        "description": "Name of a home screen section preset"
+    },
+    "randomAlbumsDescription": "Alben in zufälliger Reihenfolge",
+    "@randomAlbumsDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "randomArtistsDescription": "Künstler in Zufälliger Reihenfolge",
+    "@randomArtistsDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "randomPlaylistAction": "Zufällige Playlist",
+    "@randomPlaylistAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "randomArtistAction": "Zufälliger Künstler",
+    "@randomArtistAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "randomGenreAction": "Zufälliges Genre",
+    "@randomGenreAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "randomFavoriteAlbumAction": "Zufälliges Lieblingsalbum",
+    "@randomFavoriteAlbumAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "randomFavoriteTrackAction": "Zufälliges Lieblingslied",
+    "@randomFavoriteTrackAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "randomFavoritePlaylistAction": "Zufällige Lieblingsplaylist",
+    "@randomFavoritePlaylistAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "randomFavoriteArtistAction": "Zufälliger Lieblingskünstler",
+    "@randomFavoriteArtistAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "randomFavoriteGenreAction": "Zufälliges Lieblingsgenre",
+    "@randomFavoriteGenreAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "artistFilter": "Musiker: {name}",
+    "@artistFilter": {
+        "description": "Name of artistFilter",
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "removeFromQueue": "Von der Wiedergabeliste entfernen"
 }
