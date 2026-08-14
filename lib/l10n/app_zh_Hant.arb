@@ -3635,5 +3635,13 @@
                 "example": "Never Gonna Give You Up"
             }
         }
+    },
+    "verboseLogging": "詳細記錄",
+    "@verboseLogging": {
+        "description": "Title for the toggle that enables detailed logging on the logs screen"
+    },
+    "verboseLoggingSubtitle": "保留詳細日誌以供錯誤回報使用。若要獲得較佳的播放效能，請關閉此功能。",
+    "@verboseLoggingSubtitle": {
+        "description": "Subtitle explaining the verbose logging toggle"
     }
 }
