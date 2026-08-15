@@ -3486,7 +3486,7 @@
             }
         }
     },
-    "homeAllPlaylistsWarning": "Вы уверены, что хотите загрузить все плейлисты?  Будут загружены все доступные плейлисты, не только из те, что есть в этом разделе.",
+    "homeAllPlaylistsWarning": "Вы уверены, что хотите загрузить все плейлисты?  Будут загружены все доступные плейлисты, не только те, что есть в этом разделе.",
     "@homeAllPlaylistsWarning": {
         "description": "Warning presented when pressing the download button on playlist home sections with a filter applied.  This is shown because the download will not apply the filter."
     },

@@ -3645,5 +3645,13 @@
                 "type": "String"
             }
         }
+    },
+    "verboseLogging": "Relatórios Detalhados",
+    "@verboseLogging": {
+        "description": "Title for the toggle that enables detailed logging on the logs screen"
+    },
+    "verboseLoggingSubtitle": "Mantém relatórios detalhados para relatórios de bug. Deixe isto desligado para melhor desempenho na reprodução.",
+    "@verboseLoggingSubtitle": {
+        "description": "Subtitle explaining the verbose logging toggle"
     }
 }

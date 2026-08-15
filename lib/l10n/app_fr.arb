@@ -3345,7 +3345,7 @@
     "@playPreviousQueueActionDescription": {
         "description": "Description of a home screen quick action"
     },
-    "playSpecificItemActionDescription": "Lance un élément spécifique configuré",
+    "playSpecificItemActionDescription": "Lit un article spécifique que vous avez choisi",
     "@playSpecificItemActionDescription": {
         "description": "Description of a home screen quick action"
     },
@@ -3646,5 +3646,13 @@
                 "type": "String"
             }
         }
+    },
+    "verboseLogging": "Journalisation détaillée",
+    "@verboseLogging": {
+        "description": "Title for the toggle that enables detailed logging on the logs screen"
+    },
+    "verboseLoggingSubtitle": "Conservez des journaux détaillés pour les rapports de bogues. Désactivez cette option pour améliorer les performances de lecture.",
+    "@verboseLoggingSubtitle": {
+        "description": "Subtitle explaining the verbose logging toggle"
     }
 }

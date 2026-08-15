@@ -7,7 +7,7 @@
     "@startupErrorTitle": {
         "description": "The title for the error screen that shows when startup fails."
     },
-    "startupErrorCallToAction": "Silakan buat issue di \\\"github.com/jmshrv/finamp\\\" dengan log (gunakan tombol di bawah) dan tangkapan layar halaman ini, agar kami dapat memperbaikinya secepat mungkin.",
+    "startupErrorCallToAction": "Silakan buat issue di \"github.com/jmshrv/finamp\" dengan log (gunakan tombol di bawah) dan tangkapan layar halaman ini, agar kami dapat memperbaikinya secepat mungkin.",
     "@startupErrorCallToAction": {
         "description": "The subtitle / call to action for what to do after encountering a startup error"
     },
@@ -19,7 +19,7 @@
     "@about": {
         "description": "Label for the about/info button on the settings screen"
     },
-    "aboutContributionPrompt": "Dibuat oleh orang-orang hebat di waktu luang mereka.\\\nAnda juga bisa menjadi salah satunya!",
+    "aboutContributionPrompt": "Dibuat oleh orang-orang hebat di waktu luang mereka.\nAnda juga bisa menjadi salah satunya!",
     "@aboutContributionPrompt": {
         "description": "Text shown in the about screen, explaining that the app is made by volunteers and that the user could be one of them."
     },
@@ -74,7 +74,7 @@
         "description": "Label for the back button."
     },
     "serverUrl": "URL Server",
-    "internalExternalIpExplanation": "Jika Anda ingin dapat mengakses server Jellyfin Anda dari jarak jauh, Anda perlu menggunakan IP eksternal Anda.\\\n\\\nJika server Anda berada pada port default HTTP (80 atau 443) atau port default Jellyfin (8096), Anda tidak perlu mencantumkan port.\\\n\\\nJika URL benar, Anda akan melihat beberapa informasi tentang server Anda muncul di bawah kolom input.",
+    "internalExternalIpExplanation": "Jika Anda ingin dapat mengakses server Jellyfin Anda dari jarak jauh, Anda perlu menggunakan IP eksternal Anda.\n\nJika server Anda berada pada port default HTTP (80 atau 443) atau port default Jellyfin (8096), Anda tidak perlu mencantumkan port.\n\nJika URL benar, Anda akan melihat beberapa informasi tentang server Anda muncul di bawah kolom input.",
     "@internalExternalIpExplanation": {
         "description": "Extra info for which IP to use for remote access, and info on whether or not the user needs to specify a port."
     },
@@ -446,7 +446,7 @@
     "addDownloadLocation": "Tambahkan lokasi unduhan",
     "selectDirectory": "Pilih direktori",
     "unknownError": "Kesalahan tidak dikenal",
-    "pathReturnSlashErrorMessage": "Path yang mengembalikan \\\"/\\\" tidak dapat digunakan",
+    "pathReturnSlashErrorMessage": "Path yang mengembalikan \"/\" tidak dapat digunakan",
     "customLocationsBuggy": "Lokasi kustom bisa sangat penuh bug dan tidak direkomendasikan dalam kebanyakan kasus. Lokasi di bawah folder sistem 'Music' mencegah penyimpanan sampul album karena keterbatasan OS.",
     "enterLowPriorityStateOnPause": "Masuk ke status prioritas rendah saat dijeda",
     "enterLowPriorityStateOnPauseSubtitle": "Memungkinkan notifikasi diswipe saat dijeda. Juga memungkinkan Android mematikan layanan saat dijeda.",
@@ -1244,7 +1244,7 @@
     "@noMusicLibrariesTitle": {
         "description": "Title for message that shows on the views screen when no music libraries could be found."
     },
-    "noMusicLibrariesBody": "Finamp tidak dapat menemukan pustaka musik apa pun. Pastikan server Jellyfin Anda berisi setidaknya satu pustaka dengan jenis konten diatur ke \\\"Music\\\".",
+    "noMusicLibrariesBody": "Finamp tidak dapat menemukan pustaka musik apa pun. Pastikan server Jellyfin Anda berisi setidaknya satu pustaka dengan jenis konten diatur ke \"Musik\".",
     "refresh": "Segarkan",
     "moreInfo": "Info lebih lanjut",
     "volumeNormalizationSettingsTitle": "Normalisasi volume",
@@ -1259,7 +1259,7 @@
     "@volumeNormalizationSwitchTitle": {
         "description": "Title for the switch that toggles replay gain"
     },
-    "volumeNormalizationSwitchSubtitle": "Gunakan informasi gain untuk menormalisasi tingkat kerasnya trek (\\\"Replay Gain\\\")",
+    "volumeNormalizationSwitchSubtitle": "Gunakan informasi gain untuk menormalisasi tingkat kerasnya trek (\"Replay Gain\")",
     "@volumeNormalizationSwitchSubtitle": {
         "description": "Subtitle for the switch that toggles replay gain"
     },
@@ -1271,7 +1271,7 @@
     "@volumeNormalizationModeSelectorSubtitle": {
         "description": "Subtitle for the dropdown that selects the replay gain mode"
     },
-    "volumeNormalizationModeSelectorDescription": "Dinamis:\\\nSaat memutar beberapa trek dari album yang sama secara berurutan, penguat album digunakan (contoh: saat memutar sebuah album, atau trek dari album yang sama dalam sebuah daftar putar). Jika tidak, penguat trek digunakan.\\\n\\\nBerbasis trek:\\\nPenguat trek selalu digunakan, terlepas dari apakah album sedang diputar atau tidak.\\\n\\\nBerbasis album:\\\nPenguat album selalu digunakan, tetapi jika tidak tersedia (contoh: untuk tunggal), penguat trek akan digunakan sebagai gantinya.\\\n\\\nHanya Album:\\\nNormalisasi volume hanya diterapkan saat memutar album (menggunakan penguat album), tetapi tidak untuk trek tunggal.",
+    "volumeNormalizationModeSelectorDescription": "Dinamis:\nSaat memutar beberapa trek dari album yang sama secara berurutan, penguat album digunakan (contoh: saat memutar sebuah album, atau trek dari album yang sama dalam sebuah daftar putar). Jika tidak, penguat trek digunakan.\n\nBerbasis trek:\nPenguat trek selalu digunakan, terlepas dari apakah album sedang diputar atau tidak.\n\nBerbasis album:\nPenguat album selalu digunakan, tetapi jika tidak tersedia (contoh: untuk tunggal), penguat trek akan digunakan sebagai gantinya.\n\nHanya Album:\nNormalisasi volume hanya diterapkan saat memutar album (menggunakan penguat album), tetapi tidak untuk trek tunggal.",
     "@volumeNormalizationModeSelectorDescription": {
         "description": "Description for the dropdown that selects the replay gain mode, shown in a dialog that opens when the user presses the info icon next to the dropdown"
     },
@@ -1299,7 +1299,7 @@
     "@volumeNormalizationIOSBaseGainEditorSubtitle": {
         "description": "Subtitle for the input that sets the replay gain base gain on iOS and other non-Android platforms"
     },
-    "volumeNormalizationIOSBaseGainEditorDescription": "Saat ini, Normalisasi Volume pada platform selain Android memerlukan perubahan volume pemutaran untuk meniru perubahan penguat. Karena kami tidak dapat menaikkan volume di atas 100%, kami perlu menurunkan volume secara default agar kami dapat meningkatkan volume trek yang pelan.\n\nNilainya dalam desibel (dB), dengan -10 dB ~30% volume, -4.5 dB ~60% volume, dan -2 dB \\(\\sim\\)80% volume.\nNilai positif berarti tidak ada penurunan volume yang diterapkan hingga ambang batas (misal: gain -6.4 dB (dan yang lebih positif) untuk offset +6.4 dB), tetapi mencegah trek yang lebih pelan untuk ditingkatkan.\n\nAnda sebaiknya mengatur ini ke kebalikan dari gain tertinggi (paling positif) di pustaka Anda, misal: atur ke +3 dB jika gain tertinggi di pustaka Anda adalah -3 dB (dan semua trek lain memiliki gain seperti -5 dB, -8 dB, -10 dB, dll.).",
+    "volumeNormalizationIOSBaseGainEditorDescription": "Saat ini, Normalisasi Volume pada platform selain Android memerlukan perubahan volume pemutaran untuk meniru perubahan penguat. Karena kami tidak dapat menaikkan volume di atas 100%, kami perlu menurunkan volume secara default agar kami dapat meningkatkan volume trek yang pelan.\n\nNilainya dalam desibel (dB), dengan -10 dB ~30% volume, -4.5 dB ~60% volume, dan -2 dB ~80% volume.\nNilai positif berarti tidak ada penurunan volume yang diterapkan hingga ambang batas (misal: gain -6.4 dB (dan yang lebih positif) untuk offset +6.4 dB), tetapi mencegah trek yang lebih pelan untuk ditingkatkan.\n\nAnda sebaiknya mengatur ini ke kebalikan dari gain tertinggi (paling positif) di pustaka Anda, misal: atur ke +3 dB jika gain tertinggi di pustaka Anda adalah -3 dB (dan semua trek lain memiliki gain seperti -5 dB, -8 dB, -10 dB, dll.).",
     "@volumeNormalizationIOSBaseGainEditorDescription": {
         "description": "Description for the input that sets the replay gain base gain on iOS and other non-Android platforms"
     },
@@ -1709,7 +1709,7 @@
             }
         }
     },
-    "sleepTimerProjectedDuration": "Pemutaran akan dijeda dalam \\(\\sim\\){duration}",
+    "sleepTimerProjectedDuration": "Pemutaran akan dijeda dalam ~{duration}",
     "@sleepTimerProjectedDuration": {
         "description": "Displays duration until playback is expected to be ended by the sleep timer (unless the queue is modified before). {duration} is a pre-formatted string.",
         "placeholders": {
@@ -2130,7 +2130,7 @@
     "@additionalBaseItemInfoTitle": {
         "description": "Title for the setting that controls the displayed additional item info."
     },
-    "additionalBaseItemInfoSubtitle": "Mengontrol jenis info tambahan yang ditampilkan dalam daftar item untuk setiap jenis item. Jika diatur ke \\\"Adaptif\\\", info dipilih secara otomatis berdasarkan pengurutan atau konteks saat ini.",
+    "additionalBaseItemInfoSubtitle": "Mengontrol jenis info tambahan yang ditampilkan dalam daftar item untuk setiap jenis item. Jika diatur ke \"Adaptif\", info dipilih secara otomatis berdasarkan urutan atau konteks saat ini.",
     "@additionalBaseItemInfoSubtitle": {
         "description": "Subtitle for the setting that controls the displayed additional item info."
     },
@@ -2170,7 +2170,7 @@
     "@autoOfflineSettingSubtitle": {
         "description": "Subtitle for the automated offline mode setting."
     },
-    "autoOfflineSettingDescription": "{disabledModeName}:\\\nTidak akan mengaktifkan Mode Offline secara otomatis. Dapat menghemat baterai.\\\n\\\n{localNetworkModeName}:\\\nAktifkan Mode Offline ketika tidak terhubung ke WiFi atau ethernet.\\\n\\\n{disconnectedModeName}:\\\nAktifkan Mode Offline ketika tidak terhubung ke apa pun.\\\n\\\n{unreachableModeName}:\\\nAktifkan Mode Offline ketika server tidak dapat diping setelah berpindah jaringan.\\\n\\\nAnda selalu dapat mengalihkan mode offline secara manual, yang akan menjeda otomatisasi sampai Anda mengaktifkannya kembali.",
+    "autoOfflineSettingDescription": "{disabledModeName}:\nTidak akan mengaktifkan Mode Offline secara otomatis. Dapat menghemat baterai.\n\n{localNetworkModeName}:\nAktifkan Mode Offline ketika tidak terhubung ke WiFi atau ethernet.\n\n{disconnectedModeName}:\nAktifkan Mode Offline ketika tidak terhubung ke apa pun.\n\n{unreachableModeName}:\nAktifkan Mode Offline ketika server tidak dapat diping setelah berpindah jaringan.\n\nAnda selalu dapat mengalihkan mode offline secara manual, ini akan menjeda otomatisasi sampai anda mengaktifkannya kembali.",
     "@autoOfflineSettingDescription": {
         "description": "Setting description. Make sure the Mode names match the translations.",
         "placeholders": {
@@ -2563,7 +2563,7 @@
     "@serverSharingMenuDescription": {
         "description": "Description text shown in the server sharing menu, right below the controls"
     },
-    "serverSharingMenuDetails": "Ini bekerja dengan mendengarkan permintaan penemuan server dari klien lain di jaringan lokal, lalu membalas permintaan tersebut dengan alamat server Jellyfin Anda yang telah dikonfigurasi.\\\nJika Anda mengonfigurasi alamat lokal dan publik, Finamp akan memberikan keduanya kepada klien yang meminta.",
+    "serverSharingMenuDetails": "Ini bekerja dengan mendengarkan permintaan penemuan server dari klien lain di jaringan lokal, lalu membalas permintaan tersebut dengan alamat server Jellyfin Anda yang telah dikonfigurasi.\nJika Anda mengonfigurasi alamat lokal dan publik, Finamp akan memberikan keduanya kepada klien yang meminta.",
     "@serverSharingMenuDetails": {
         "description": "Description text shown in the server sharing menu, below the description"
     },
@@ -3693,5 +3693,13 @@
                 "example": "Never Gonna Give You Up"
             }
         }
+    },
+    "verboseLogging": "Pencatatan Log Terperinci",
+    "@verboseLogging": {
+        "description": "Title for the toggle that enables detailed logging on the logs screen"
+    },
+    "verboseLoggingSubtitle": "Simpan log mendetail untuk laporan bug. Biarkan nonaktif untuk performa pemutaran yang lebih baik.",
+    "@verboseLoggingSubtitle": {
+        "description": "Subtitle explaining the verbose logging toggle"
     }
 }

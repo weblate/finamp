@@ -1221,7 +1221,7 @@
     "@deleteFromTargetDialogText": {
         "description": "(Important: Note the space in front of some cases) A Confirm Prompt used whenever an item is about to be deleted from the device or server. The Server case should explain that this cannot be reverted, this information is not needed for the device since the user can just download the track again. The delete Type adapts the server text even more in can the user can or cant delete the item."
     },
-    "confirmPlayNext": "{type, select, track{Kappale} album{Albumi} artist{Artisti} playlist{Soittolista} genre{Tyylilaji} other{Kohde}} seuraavaksi",
+    "confirmPlayNext": "{type, select, track{Kappale} album{Albumi} artist{Artisti} playlist{Soittolista} genre{Tyylilaji} disc{Levy} other{Kohde}} seuraavaksi",
     "@confirmPlayNext": {
         "description": "A confirmation message that is shown after successfully adding a track to the front of the \"Next Up\" queue",
         "placeholders": {
@@ -3549,35 +3549,35 @@
         },
         "description": "Name of a home screen quick action"
     },
-    "randomPlaylistAction": "Random soittolista",
+    "randomPlaylistAction": "Satunnainen soittolista",
     "@randomPlaylistAction": {
         "description": "Name of a home screen quick action"
     },
-    "randomArtistAction": "Random artisti",
+    "randomArtistAction": "Satunnainen artisti",
     "@randomArtistAction": {
         "description": "Name of a home screen quick action"
     },
-    "randomGenreAction": "Random tyylilaji",
+    "randomGenreAction": "Satunnainen tyylilaji",
     "@randomGenreAction": {
         "description": "Name of a home screen quick action"
     },
-    "randomFavoriteAlbumAction": "Random suosikkialbumi",
+    "randomFavoriteAlbumAction": "Satunnainen suosikkialbumi",
     "@randomFavoriteAlbumAction": {
         "description": "Name of a home screen quick action"
     },
-    "randomFavoriteTrackAction": "Random suosikkikappale",
+    "randomFavoriteTrackAction": "Satunnainen suosikkikappale",
     "@randomFavoriteTrackAction": {
         "description": "Name of a home screen quick action"
     },
-    "randomFavoritePlaylistAction": "Random suosikkisoittolista",
+    "randomFavoritePlaylistAction": "Satunnainen suosikkisoittolista",
     "@randomFavoritePlaylistAction": {
         "description": "Name of a home screen quick action"
     },
-    "randomFavoriteArtistAction": "Random suosikkiartisti",
+    "randomFavoriteArtistAction": "Satunnainen suosikkiartisti",
     "@randomFavoriteArtistAction": {
         "description": "Name of a home screen quick action"
     },
-    "randomFavoriteGenreAction": "Random suosikkityylilaji",
+    "randomFavoriteGenreAction": "Satunnainen suosikkityylilaji",
     "@randomFavoriteGenreAction": {
         "description": "Name of a home screen quick action"
     },
@@ -3629,5 +3629,14 @@
     "volumeControlDisabledCastingHint": "Ääntä suoratoistetaan laitteessa, joka ei tue sovelluksen sisäistä äänenvoimakkuuden säätöä.",
     "@volumeControlDisabledCastingHint": {
         "description": "Hint text displayed below the volume bar when the in-app volume slider is disabled because audio is being cast to a device that bypasses the in-app volume handling and handles its own volume, such as when using Airplay."
+    },
+    "artistFilter": "Artisti: {name}",
+    "@artistFilter": {
+        "description": "Name of artistFilter",
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
     }
 }

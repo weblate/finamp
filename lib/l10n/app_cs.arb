@@ -402,7 +402,7 @@
             }
         }
     },
-    "confirmPlayNext": "{type, select, track{Skladba bude přehrána} album{Album bude přehráno} artist{Umělec bude přehrán} playlist{Seznam skladeb bude přehrán} genre{Žánr bude přehrán} other{Item}} jako další",
+    "confirmPlayNext": "{type, select, track{Skladba bude přehrána} album{Album bude přehráno} artist{Umělec bude přehrán} playlist{Seznam skladeb bude přehrán} genre{Žánr bude přehrán} disc{Disk bude přehrán} other{Položka bude přehrána}} jako další",
     "@confirmPlayNext": {
         "description": "A confirmation message that is shown after successfully adding a track to the front of the \"Next Up\" queue",
         "placeholders": {
@@ -3401,7 +3401,7 @@
             }
         }
     },
-    "homeAllPlaylistsWarning": "Opravdu chcete stáhnout všechny seznamy skladeb?  Toto stáhne každý seznam skladeb, ne jen ty v této sekci.",
+    "homeAllPlaylistsWarning": "Opravdu chcete stáhnout všechny seznamy skladeb? Toto stáhne každý seznam skladeb, ne jen ty v této sekci.",
     "@homeAllPlaylistsWarning": {
         "description": "Warning presented when pressing the download button on playlist home sections with a filter applied.  This is shown because the download will not apply the filter."
     },
@@ -3623,5 +3623,22 @@
                 "example": "Never Gonna Give You Up"
             }
         }
+    },
+    "artistFilter": "Umělec: {name}",
+    "@artistFilter": {
+        "description": "Name of artistFilter",
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "verboseLogging": "Podrobné protokolování",
+    "@verboseLogging": {
+        "description": "Title for the toggle that enables detailed logging on the logs screen"
+    },
+    "verboseLoggingSubtitle": "Ponechávat podrobné protokoly pro nahlašování chyb. Ponechte vypnuté pro lepší výkon při přehrávání.",
+    "@verboseLoggingSubtitle": {
+        "description": "Subtitle explaining the verbose logging toggle"
     }
 }
