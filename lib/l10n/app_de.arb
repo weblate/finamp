@@ -1142,7 +1142,7 @@
             }
         }
     },
-    "confirmPlayNext": "{type, select, track{Track} album{Album} artist{Künstler} playlist{Playlist} genre{Genre},disc{CD} other{Element}} wird als nächstes abgespielt",
+    "confirmPlayNext": "{type, select, track{Track} album{Album} artist{Künstler} playlist{Playlist} genre{Genre} disc{CD} other{Element}} wird als nächstes abgespielt",
     "@confirmPlayNext": {
         "description": "A confirmation message that is shown after successfully adding a track to the front of the \"Next Up\" queue",
         "placeholders": {
