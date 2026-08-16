@@ -144,8 +144,11 @@ class PlaybackHistoryService {
             (currentState.position.inMilliseconds - prevState.position.inMilliseconds).abs() > 1500) {
           bool isSeekEvent = true;
 
+          const nearTrackStart = Duration(seconds: 10);
+          const nearTrackEnd = Duration(seconds: 10);
+
           // detect rewinding & looping a single track
-          if (currentState.position.inMilliseconds <= 1000 * 10) {
+          if (currentState.position.inMilliseconds <= nearTrackStart.inMilliseconds) {
             final duration = currentItem.item.duration;
             // a track cannot have looped before it has played through
             // elapsed time is required as well as position, which is unreliable across a track change
@@ -155,8 +158,8 @@ class PlaybackHistoryService {
                 : DateTime.now().difference(_currentTrack!.startTime) * currentState.speed;
             if (duration != null &&
                 playedFor != null &&
-                playedFor >= duration - const Duration(seconds: 10) &&
-                prevState.position >= duration - const Duration(seconds: 10)) {
+                playedFor >= duration - _playedThroughSlack(duration) &&
+                prevState.position >= duration - nearTrackEnd) {
               // looping a single track
               updateCurrentTrack(currentItem, forceNewTrack: true); // add to playback history
               //TODO handle reporting track changes based on history changes, as that is more reliable
@@ -309,6 +312,13 @@ class PlaybackHistoryService {
     groupedHistory.sort((a, b) => b.key.compareTo(a.key));
 
     return groupedHistory;
+  }
+
+  /// How far short of the end a track can stop and still count as having played through.
+  static Duration _playedThroughSlack(Duration duration) {
+    const minimumSlack = Duration(seconds: 30);
+    final proportionalSlack = duration * 0.1;
+    return proportionalSlack > minimumSlack ? proportionalSlack : minimumSlack;
   }
 
   void updateCurrentTrack(FinampQueueItem? currentTrack, {bool forceNewTrack = false}) {
