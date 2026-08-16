@@ -234,13 +234,6 @@ class FinampMusicScreenHeader extends ConsumerWidget implements PreferredSizeWid
                   Expanded(
                     child: GestureDetector(
                       onTap: openMenu,
-                      // TODO for testing, remove
-                      onLongPress: () {
-                        FinampSetters.setShowQuickActionsBanner(true);
-                      },
-                      onSecondaryTap: () {
-                        FinampSetters.setShowQuickActionsBanner(true);
-                      },
                       child: FutureBuilder(
                         future: PackageInfo.fromPlatform(),
                         builder: (context, asyncSnapshot) {
