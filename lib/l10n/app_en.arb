@@ -3733,6 +3733,7 @@
     "quickSettingsScreenDescription": "These are some of the most commonly tweaked settings, collected here for easy access.  Check out the full settings screen for more advanced options.  This menu can always be accessed from the settings screen.",
     "quickSettingsTabsLink": "Remove or rearrange music tabs (e.g. Albums, Tracks)",
     "quickSettingsTranscodeLink": "Additional transcoding settings",
-    "quickSettingsLayoutLink": "Additional layout settings",
-    "quickSettingsAllSettingsLink": "All Settings"
+    "quickSettingsLayoutLink": "Additional layout and theme settings",
+    "quickSettingsAllSettingsLink": "All Settings",
+    "quickSettingsNetworkLink": "Configure a separate local network server URL"
 }

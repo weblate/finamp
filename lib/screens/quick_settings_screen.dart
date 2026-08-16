@@ -1,22 +1,26 @@
+import 'package:finamp/screens/network_settings_screen.dart';
 import 'package:finamp/screens/settings_screen.dart';
 import 'package:finamp/screens/tabs_settings_screen.dart';
 import 'package:finamp/screens/transcoding_settings_screen.dart';
+import 'package:finamp/services/finamp_settings_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get_it/get_it.dart';
 
 import '../components/AlbumScreen/download_button.dart';
-import '../components/InteractionSettingsScreen/FastScrollSelector.dart';
+import '../components/LayoutSettingsScreen/automatic_accent_color_selector.dart';
 import '../components/LayoutSettingsScreen/show_text_on_grid_view_selector.dart';
 import '../components/LayoutSettingsScreen/theme_selector.dart';
 import '../components/NetworkSettingsScreen/auto_offline_selector.dart';
+import '../components/TranscodingSettingsScreen/bitrate_selector.dart';
 import '../components/TranscodingSettingsScreen/transcode_switch.dart';
 import '../components/finamp_app_bar_back_button.dart';
 import '../extensions/localizations.dart';
 import '../l10n/app_localizations.dart';
 import '../models/finamp_models.dart';
 import '../services/finamp_user_helper.dart';
+import 'accessibility_settings_screen.dart';
 import 'content_view_type_settings_screen.dart';
 import 'layout_settings_screen.dart';
 
@@ -40,6 +44,11 @@ class QuickSettingsScreen extends ConsumerWidget {
             leading: const Icon(Icons.settings),
             title: Text(context.l10n.quickSettingsAllSettingsLink),
             onTap: () => Navigator.of(context).pushNamed(SettingsScreen.routeName),
+          ),
+          ListTile(
+            leading: const Icon(TablerIcons.accessible),
+            title: Text(AppLocalizations.of(context)!.accessibility),
+            onTap: () => Navigator.of(context).pushNamed(AccessibilitySettingsScreen.routeName),
           ),
           Divider(),
           // music screen tabs
@@ -67,13 +76,18 @@ class QuickSettingsScreen extends ConsumerWidget {
           ),
           // dark mode
           const ThemeSelector(verbose: true),
-          // show fast scroller
-          FastScrollSelector(),
+          const AutomaticAccentColorSelector(),
           Divider(),
           // auto-offline mode?
           AutoOfflineSelector(),
+          ListTile(
+            leading: const Icon(TablerIcons.wifi),
+            title: Text(context.l10n.quickSettingsNetworkLink),
+            onTap: () => Navigator.of(context).pushNamed(NetworkSettingsScreen.routeName),
+          ),
           // transcode + deeper link
           const TranscodeSwitch(),
+          if (ref.watch(finampSettingsProvider.shouldTranscode)) const BitrateSelector(),
           ListTile(
             leading: const Icon(Icons.compress),
             title: Text(context.l10n.quickSettingsTranscodeLink),
