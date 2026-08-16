@@ -545,7 +545,7 @@
     "showFastScroller": "Show fast scroller",
     "showFastScrollerSubtitle": "Show or hide the alphabet list on the right of music tabs which allows jumping to letters.",
     "theme": "Theme",
-    "system": "System",
+    "system": "Follow system",
     "light": "Light",
     "dark": "Dark",
     "accentColor": "Accent Color",
@@ -556,7 +556,7 @@
     "@accentColorTitle": {
         "description": "Title for the accent color picker sheet"
     },
-    "systemAccentColor": "Use System Accent",
+    "systemAccentColor": "Use System Accent Color",
     "@systemAccentColor": {
         "description": "Title of the System Accent Color setting."
     },
@@ -3719,21 +3719,21 @@
             }
         }
     },
-    "quickActionBanner": "Check out some commonly changed settings.",
+    "quickActionBanner": "Check out some commonly changed settings!",
     "@quickActionBanner": {
         "description": "Banner directing new users to the quick settings, where they can adjust the most commonly used settings"
     },
-    "themeSettingTitle": "Override system dark mode setting",
+    "themeSettingTitle": "App color theme (dark/light)",
     "@themeSettingTitle": {
         "description": "Title for the setting that allows you to override the system theme and force dark or light mode"
     },
     "perTabGridModeScreen": "Set per-tab view types",
     "perTabAlbumGrid": "Albums only in grid",
     "quickSettingsScreen": "Quick Settings",
-    "quickSettingsScreenDescription": "These are some of the most commonly tweaked settings, collected here for easy access.  Check out the full settings screen for more advanced options.  This menu can always be accessed from the settings screen.",
-    "quickSettingsTabsLink": "Remove or rearrange music tabs (e.g. Albums, Tracks)",
-    "quickSettingsTranscodeLink": "Additional transcoding settings",
-    "quickSettingsLayoutLink": "Additional layout and theme settings",
+    "quickSettingsScreenDescription": "Customize Finamp to your preferences with these core settings. Come back here any time via Settings.",
+    "quickSettingsTabsLink": "Rearrange and hide tabs",
+    "quickSettingsTranscodeLink": "All transcoding settings",
+    "quickSettingsLayoutLink": "All layout & theme settings",
     "quickSettingsAllSettingsLink": "All Settings",
-    "quickSettingsNetworkLink": "Configure a separate local network server URL"
+    "quickSettingsNetworkLink": "Configure the local address for your server"
 }

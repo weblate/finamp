@@ -57,6 +57,12 @@ class QuickSettingsScreen extends ConsumerWidget {
             title: Text(context.l10n.quickSettingsTabsLink),
             onTap: () => Navigator.of(context).pushNamed(TabsSettingsScreen.routeName),
           ),
+          const SizedBox(height: 8.0),
+          // dark mode
+          const ThemeSelector(verbose: true),
+          const SizedBox(height: 8.0),
+          const AutomaticAccentColorSelector(),
+          const SizedBox(height: 8.0),
           // grid mode toggle plus size
           const ContentViewTypeDropdownListTile(),
           if (watchDropdownContentViewType(ref) == DropdownContentViewType.custom)
@@ -72,11 +78,8 @@ class QuickSettingsScreen extends ConsumerWidget {
             leading: const Icon(Icons.widgets),
             title: Text(context.l10n.quickSettingsLayoutLink),
             onTap: () => Navigator.of(context).pushNamed(LayoutSettingsScreen.routeName),
-            contentPadding: EdgeInsets.only(left: 50),
+            trailing: const Icon(TablerIcons.chevron_right),
           ),
-          // dark mode
-          const ThemeSelector(verbose: true),
-          const AutomaticAccentColorSelector(),
           Divider(),
           // auto-offline mode?
           AutoOfflineSelector(),
@@ -84,7 +87,9 @@ class QuickSettingsScreen extends ConsumerWidget {
             leading: const Icon(TablerIcons.wifi),
             title: Text(context.l10n.quickSettingsNetworkLink),
             onTap: () => Navigator.of(context).pushNamed(NetworkSettingsScreen.routeName),
+            trailing: const Icon(TablerIcons.chevron_right),
           ),
+          Divider(),
           // transcode + deeper link
           const TranscodeSwitch(),
           if (ref.watch(finampSettingsProvider.shouldTranscode)) const BitrateSelector(),
@@ -92,8 +97,9 @@ class QuickSettingsScreen extends ConsumerWidget {
             leading: const Icon(Icons.compress),
             title: Text(context.l10n.quickSettingsTranscodeLink),
             onTap: () => Navigator.of(context).pushNamed(TranscodingSettingsScreen.routeName),
-            contentPadding: EdgeInsets.only(left: 50),
+            trailing: const Icon(TablerIcons.chevron_right),
           ),
+          Divider(),
           // album image cache?
           ListTile(
             title: Text(AppLocalizations.of(context)!.cacheLibraryImagesSettings),

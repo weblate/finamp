@@ -20,6 +20,7 @@ import 'package:finamp/services/finamp_user_helper.dart';
 import 'package:finamp/services/item_by_id_provider.dart';
 import 'package:finamp/services/jellyfin_api_helper.dart';
 import 'package:finamp/services/music_providers.dart';
+import 'package:finamp/utils/platform_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
@@ -70,7 +71,7 @@ class FinampMusicScreenHeader extends ConsumerWidget implements PreferredSizeWid
         (backButtonInsteadOfTabs ? 0 : 42) +
         // We cannot make this reactive ourselves because it is the surrounding scaffold that needs to rebuild, not
         // the appbar.  So the music screen must watch this setting itself to keep the sizing correct.
-        (FinampSettingsHelper.finampSettings.showQuickActionsBanner ? 40.0 : 0),
+        (FinampSettingsHelper.finampSettings.showQuickActionsBanner ? (isDesktop ? 44.0 : 50.0) : 0),
   ); // Standard height
 
   @override
@@ -234,6 +235,9 @@ class FinampMusicScreenHeader extends ConsumerWidget implements PreferredSizeWid
                     child: GestureDetector(
                       onTap: openMenu,
                       // TODO for testing, remove
+                      onLongPress: () {
+                        FinampSetters.setShowQuickActionsBanner(true);
+                      },
                       onSecondaryTap: () {
                         FinampSetters.setShowQuickActionsBanner(true);
                       },
@@ -325,7 +329,7 @@ class FinampMusicScreenHeader extends ConsumerWidget implements PreferredSizeWid
         ),
         if (ref.watch(finampSettingsProvider.showQuickActionsBanner))
           SizedBox(
-            height: 30.0,
+            height: isDesktop ? 34.0 : 40.0,
             child: Material(
               color: ColorScheme.of(context).primaryContainer,
               child: InkWell(
@@ -334,26 +338,25 @@ class FinampMusicScreenHeader extends ConsumerWidget implements PreferredSizeWid
                   // Permanently hide quick settings banner if it is clicked once
                   FinampSetters.setShowQuickActionsBanner(false);
                 },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: Text(
-                          "Check out some commonly changed settings.",
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    spacing: 8.0,
+                    children: [
+                      Icon(TablerIcons.bulb, size: 22.0, color: ColorScheme.of(context).onPrimaryContainer),
+                      Expanded(
+                        child: Text(context.l10n.quickActionBanner, maxLines: 1, overflow: TextOverflow.ellipsis),
                       ),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        FinampSetters.setShowQuickActionsBanner(false);
-                      },
-                      child: Text(context.l10n.close),
-                    ),
-                  ],
+                      IconButton(
+                        icon: Icon(TablerIcons.x, size: 22.0, color: ColorScheme.of(context).onPrimaryContainer),
+                        onPressed: () {
+                          FinampSetters.setShowQuickActionsBanner(false);
+                        },
+                        visualDensity: VisualDensity(horizontal: 0, vertical: -4),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
