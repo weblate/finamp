@@ -29,6 +29,8 @@ class QuickSettingsScreen extends ConsumerWidget {
 
   static const routeName = "/quick-settings";
 
+  static const fromSettingsScreen = Object();
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
@@ -40,11 +42,12 @@ class QuickSettingsScreen extends ConsumerWidget {
             padding: const EdgeInsets.all(20.0),
             child: Text(style: TextTheme.of(context).bodyLarge, context.l10n.quickSettingsScreenDescription),
           ),
-          ListTile(
-            leading: const Icon(Icons.settings),
-            title: Text(context.l10n.quickSettingsAllSettingsLink),
-            onTap: () => Navigator.of(context).pushNamed(SettingsScreen.routeName),
-          ),
+          if (ModalRoute.settingsOf(context)!.arguments != fromSettingsScreen)
+            ListTile(
+              leading: const Icon(Icons.settings),
+              title: Text(context.l10n.quickSettingsAllSettingsLink),
+              onTap: () => Navigator.of(context).pushNamed(SettingsScreen.routeName),
+            ),
           ListTile(
             leading: const Icon(TablerIcons.accessible),
             title: Text(AppLocalizations.of(context)!.accessibility),
