@@ -223,6 +223,9 @@ class _MusicScreenState extends ConsumerState<MusicScreen> with TickerProviderSt
 
     refreshMap[sortedTabs.elementAt(_tabController!.index)] = MusicRefreshCallback();
 
+    // If this setting changes, the appbar will change its preferred height, so we need to rebuild the scaffold.
+    ref.watch(finampSettingsProvider.showQuickActionsBanner);
+
     return PopScope(
       canPop: !isSearching,
       onPopInvokedWithResult: (popped, result) {

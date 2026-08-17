@@ -172,7 +172,7 @@ class GlobalSnackbar {
     }
 
     if (suppressError) {
-      _logger.fine("Suppressed error: $event", event);
+      _logger.info("Suppressed error: $event", event);
       return;
     }
 

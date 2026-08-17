@@ -210,8 +210,6 @@ class FeatureChips extends ConsumerWidget {
 
     final metadata = ref.watch(currentTrackMetadataProvider).unwrapPrevious();
 
-    // TODO refactor this to not rebuild on every settings change
-    final settings = ref.watch(finampSettingsProvider).requireValue;
     return StreamBuilder<FinampQueueItem?>(
       stream: queueService.getCurrentTrackStream(),
       builder: (context, snapshot) {
