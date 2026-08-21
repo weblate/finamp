@@ -51,7 +51,7 @@
     "dateAdded": "Date d'ajout",
     "datePlayed": "Date de la dernière lecture",
     "playCount": "Nombre de lectures",
-    "premiereDate": "Date de lancement",
+    "premiereDate": "Date de sortie",
     "productionYear": "Date de production",
     "name": "Nom",
     "random": "Aléatoire",
@@ -148,8 +148,8 @@
     "enterLowPriorityStateOnPauseSubtitle": "Permet de supprimer la notification lorsque la lecture est en pause. Permet également à Android de fermer le service lorsqu'il est en pause.",
     "shuffleAllTrackCount": "Nombre de pistes aléatoires",
     "shuffleAllTrackCountSubtitle": "Nombre de titres à charger lorsque vous utilisez le bouton « Lecture aléatoire » dans l'onglet Titres ou l'écran Genre.",
-    "viewType": "Disposition de l'affichage",
-    "viewTypeSubtitle": "Type d'affichage pour l'écran Musique",
+    "viewType": "Type d'affichage de l'écran musical",
+    "viewTypeSubtitle": "Permet de choisir entre le mode grille et le mode liste pour tous les onglets de l'écran Musique, à l'exception de l'écran d'accueil.",
     "list": "Liste",
     "landscape": "Paysage",
     "showTextOnGridView": "Afficher le texte dans la vue mosaïque",
@@ -160,7 +160,7 @@
     "disableGestureSubtitle": "Désactiver ou non les gestes.",
     "showFastScroller": "Afficher le défileur rapide",
     "theme": "Thème",
-    "system": "Système",
+    "system": "Suivre le système",
     "light": "Clair",
     "dark": "Sombre",
     "tabs": "Onglets",
@@ -1042,7 +1042,7 @@
     "@reportQueueToServer": {
         "description": "Label for the setting that toggles reporting of the current queue to the Jellyfin server"
     },
-    "startInstantMixForIndividualTracksSwitchSubtitle": "Lorsque cette option est activée, le fait d'appuyer sur un morceau dans l'onglet « Titres » lance un mix instantané de ce morceau au lieu d'une simple lecture.",
+    "startInstantMixForIndividualTracksSwitchSubtitle": "Lorsque cette option est activée, le fait d'appuyer sur un titre dans l'onglet « Titres » lance un mix instantané de ce morceau au lieu de lire les morceaux dans l'ordre.",
     "repairDownloads": "Réparation des problèmes avec les fichiers téléchargés ou leurs métadonnées.",
     "@repairDownloads": {
         "description": "Tooltip for downloads repair button."
@@ -2503,7 +2503,7 @@
     "@snackbarOptionsMenuViewLogsButton": {
         "description": "Button title for opening the logs screen from the snackbar options menu"
     },
-    "systemAccentColor": "Utiliser l'accentuation système",
+    "systemAccentColor": "Utiliser la couleur d'accentuation du système",
     "@systemAccentColor": {
         "description": "Title of the System Accent Color setting."
     },
@@ -3297,11 +3297,11 @@
     "@playRandomFavoriteItemActionDescription": {
         "description": "Description of a home screen quick action"
     },
-    "removeAction": "Retirer l’Action",
+    "removeAction": "Retirer l’action",
     "@removeAction": {
         "description": "Button to remove a quick action"
     },
-    "addNewAction": "Ajouter Nouvelle Action",
+    "addNewAction": "Ajouter une nouvelle action",
     "@addNewAction": {
         "description": "Button to add a new quick action"
     },
@@ -3345,7 +3345,7 @@
     "@playPreviousQueueActionDescription": {
         "description": "Description of a home screen quick action"
     },
-    "playSpecificItemActionDescription": "Lance un élément spécifique configuré",
+    "playSpecificItemActionDescription": "Lit un article spécifique que vous avez choisi",
     "@playSpecificItemActionDescription": {
         "description": "Description of a home screen quick action"
     },
@@ -3646,5 +3646,32 @@
                 "type": "String"
             }
         }
-    }
+    },
+    "verboseLogging": "Journalisation détaillée",
+    "@verboseLogging": {
+        "description": "Title for the toggle that enables detailed logging on the logs screen"
+    },
+    "verboseLoggingSubtitle": "Conservez des journaux détaillés pour les rapports de bogues. Désactivez cette option pour améliorer les performances de lecture.",
+    "@verboseLoggingSubtitle": {
+        "description": "Subtitle explaining the verbose logging toggle"
+    },
+    "perTabGridMode": "Choisissez par onglet",
+    "showFastScrollerSubtitle": "Afficher ou masquer la liste alphabétique située à droite des tablatures, qui permet d'accéder directement à une lettre.",
+    "quickActionBanner": "Découvrez quelques paramètres que l'on modifie souvent !",
+    "@quickActionBanner": {
+        "description": "Banner directing new users to the quick settings, where they can adjust the most commonly used settings"
+    },
+    "themeSettingTitle": "Thème de couleur de l'application (foncé/clair)",
+    "@themeSettingTitle": {
+        "description": "Title for the setting that allows you to override the system theme and force dark or light mode"
+    },
+    "perTabGridModeScreen": "Définir les types d'affichage par onglet",
+    "perTabAlbumGrid": "Albums affichés uniquement sous forme de grille",
+    "quickSettingsScreen": "Réglages rapides",
+    "quickSettingsScreenDescription": "Personnalisez Finamp selon vos préférences grâce à ces options principales. Vous pouvez revenir ici à tout moment via le menu « Paramètres ».",
+    "quickSettingsTabsLink": "Réorganiser et masquer les onglets",
+    "quickSettingsTranscodeLink": "Tous les paramètres de transcodage",
+    "quickSettingsLayoutLink": "Tous les paramètres de mise en page et de thème",
+    "quickSettingsAllSettingsLink": "Tous les paramètres",
+    "quickSettingsNetworkLink": "Configurez l'adresse locale de votre serveur"
 }

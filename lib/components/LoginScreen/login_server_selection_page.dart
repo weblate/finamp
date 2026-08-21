@@ -50,7 +50,7 @@ class _LoginServerSelectionPageState extends ConsumerState<LoginServerSelectionP
 
   void _startDiscovery() {
     widget.serverState.clientDiscoveryHandler.discoverServers((ClientDiscoveryResponse response) async {
-      _loginServerSelectionPageLogger.fine("Found server '${response.name}' at ${response.address}");
+      _loginServerSelectionPageLogger.info("Found server '${response.name}' at ${response.address}");
 
       final serverUrl = Uri.parse(response.address!);
       final PublicSystemInfoResult? serverInfo;

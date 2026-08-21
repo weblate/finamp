@@ -299,7 +299,7 @@ Future<List<BaseItemDto>> generateRadioTracks(
   final actualSeed =
       overrideSeedItem ?? providers.read(getActiveRadioSeedProvider(FinampSettingsHelper.finampSettings.radioMode));
 
-  _radioLogger.finer(
+  _radioLogger.info(
     "Generating $minNumTracks radio tracks from ${overrideSeedItem == null ? "queue" : "override"} item '${actualSeed?.name}' using '${FinampSettingsHelper.finampSettings.radioMode.name}' mode.",
   );
 
@@ -771,7 +771,7 @@ Future<List<BaseItemDto>> generateRadioTracks(
   } catch (e) {
     _radioLogger.warning(e);
   }
-  _radioLogger.finer(
+  _radioLogger.info(
     "Selected ${tracksOut.length} tracks for '${FinampSettingsHelper.finampSettings.radioMode.name}' mode: ${tracksOut.map((e) => "'${e.artists?.firstOrNull} - ${e.name}'").join(", ")}",
   );
   return tracksOut;

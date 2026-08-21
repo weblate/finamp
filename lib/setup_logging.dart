@@ -17,17 +17,7 @@ Future<void> setupLogging() async {
   // persisted verboseLogging toggle once settings are available.
   Logger.root.level = Level.ALL;
   Logger.root.onRecord.listen((event) {
-    // We don't want to print log messages from the Flutter logger since Flutter prints logs by itself
-    if (kDebugMode && event.loggerName != "Flutter") {
-      debugPrint("[${event.loggerName}/${event.level.name}] ${event.time}: ${event.message}");
-    }
-    if (kDebugMode && event.loggerName != "Flutter" && event.getStack != null) {
-      debugPrintStack(stackTrace: event.getStack);
-    }
-    // Make sure asserts are extra visible when debugging
-    if (kDebugMode && event.object is AssertionError) {
-      GlobalSnackbar.message((_) => event.object.toString());
-    }
+    performDebugLogPrinting(event);
     finampLogsHelper.addLog(event);
   });
 
@@ -41,12 +31,28 @@ Future<void> setupLogging() async {
   startupLogger.info("\n${metadata.pretty}");
 }
 
+void performDebugLogPrinting(LogRecord event) {
+  // We don't want to print log messages from the Flutter logger since Flutter prints logs by itself
+  if (kDebugMode && event.loggerName != "Flutter") {
+    debugPrint("[${event.loggerName}/${event.level.name}] ${event.time}: ${event.message}");
+  }
+  if (kDebugMode && event.loggerName != "Flutter" && event.getStack != null) {
+    debugPrintStack(stackTrace: event.getStack);
+  }
+  // Make sure asserts are extra visible when debugging
+  if (kDebugMode && event.object is AssertionError) {
+    GlobalSnackbar.message((_) => event.object.toString());
+  }
+}
+
 /// Applies the persisted verboseLogging preference. Call once settings are
 /// available, since [setupLogging] runs before the Hive box is open.
 ///
 /// Debug builds keep everything. Release builds cap at INFO unless verbose
 /// logging is enabled, so the FINE/FINER/FINEST trace doesn't run censoring and
 /// a synchronous file write on the main isolate for every line in production.
+///
+/// This does not apply changes to chopper log level - the app must be restarted for those to apply.
 void applyLogLevel() {
   final verbose = FinampSettingsHelper.finampSettings.verboseLogging;
   Logger.root.level = (kDebugMode || verbose) ? Level.ALL : Level.INFO;

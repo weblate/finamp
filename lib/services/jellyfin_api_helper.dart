@@ -3,10 +3,11 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:isolate';
 
-import 'package:chopper/chopper.dart';
+import 'package:chopper/chopper.dart' hide Level;
 import 'package:collection/collection.dart';
 import 'package:finamp/components/global_snackbar.dart';
 import 'package:finamp/services/client_certificate_installer.dart';
+import 'package:finamp/services/finamp_logs_helper.dart';
 import 'package:finamp/services/http_aggregate_logging_interceptor.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -18,9 +19,10 @@ import 'package:isar/isar.dart';
 import 'package:logging/logging.dart';
 import 'package:path_provider/path_provider.dart';
 
-import '../models/finamp_models.dart' hide ContentType;
 import '../models/finamp_models.dart' as finamp_models;
+import '../models/finamp_models.dart' hide ContentType;
 import '../models/jellyfin_models.dart';
+import '../setup_logging.dart';
 import 'downloads_service.dart';
 import 'downloads_service_backend.dart';
 import 'finamp_settings_helper.dart';
@@ -28,8 +30,11 @@ import 'finamp_user_helper.dart';
 import 'jellyfin_api.dart' as jellyfin_api;
 
 class JellyfinApiHelper {
-  final jellyfinApi = jellyfin_api.JellyfinApi.create(inForeground: true);
-  final _jellyfinApiHelperLogger = Logger("JellyfinApiHelper");
+  final jellyfinApi = jellyfin_api.JellyfinApi.create(
+    inForeground: true,
+    verboseLogging: FinampSettingsHelper.finampSettings.verboseLogging,
+  );
+  static final _jellyfinApiHelperLogger = Logger("JellyfinApiHelper");
 
   // Stores the ids of the artists that the user selected to mix
   List<BaseItemDto> selectedMixArtists = [];
@@ -48,6 +53,15 @@ class JellyfinApiHelper {
 
   JellyfinApiHelper() {
     ReceivePort startupPort = ReceivePort();
+    ReceivePort loggingPort = ReceivePort();
+    final logsHelper = GetIt.instance<FinampLogsHelper>();
+
+    loggingPort.listen((record) {
+      final event = record as LogRecord;
+      performDebugLogPrinting(event);
+      logsHelper.addLog(event);
+    });
+
     var rootToken = RootIsolateToken.instance!;
     // Pass client certificate to background isolates, since Hive isn't accessible from them.
     var clientCertificate = ClientCertificateInstaller.isSupported
@@ -58,6 +72,8 @@ class JellyfinApiHelper {
       rootToken,
       clientCertificate,
       FinampSettingsHelper.finampSettings.deviceId,
+      loggingPort.sendPort,
+      FinampSettingsHelper.finampSettings.verboseLogging,
     ));
     Future.sync(() async {
       _workerIsolatePort = await startupPort.first as SendPort?;
@@ -68,9 +84,23 @@ class JellyfinApiHelper {
 
   /// This should only be run in a worker isolate
   /// Sets up singletons and listens for work.
-  static Future<void> _processRequestsBackground((SendPort, RootIsolateToken, ClientCertificate?, String) input) async {
+  static Future<void> _processRequestsBackground(
+    (SendPort, RootIsolateToken, ClientCertificate?, String, SendPort, bool) input,
+  ) async {
     BackgroundIsolateBinaryMessenger.ensureInitialized(input.$2);
     ReceivePort requestPort = ReceivePort();
+
+    Logger.root.level = Level.ALL;
+    Logger.root.onRecord.listen((event) {
+      try {
+        input.$5.send(event);
+      } catch (_) {
+        // If send fails, the record may have an unsendable object or error attached.  Remove and retry.
+        _jellyfinApiHelperLogger.warning("Failed to send message with object ${event.object} error ${event.error}");
+        final simplifiedRecord = LogRecord(event.level, event.message, event.loggerName, event.stackTrace);
+        input.$5.send(simplifiedRecord);
+      }
+    });
 
     if (Platform.isAndroid) {
       // Extend the default security context to trust Android user certificates.
@@ -96,15 +126,18 @@ class JellyfinApiHelper {
     );
     GetIt.instance.registerSingleton(isar);
     GetIt.instance.registerSingleton(FinampUserHelper(deviceId: input.$4));
-    // TODO get logging working in background isolate
     await GetIt.instance<FinampUserHelper>().setAuthHeader();
-    jellyfin_api.JellyfinApi backgroundApi = jellyfin_api.JellyfinApi.create(inForeground: false);
+    jellyfin_api.JellyfinApi backgroundApi = jellyfin_api.JellyfinApi.create(
+      inForeground: false,
+      verboseLogging: input.$6,
+    );
     await for (var request in requestPort) {
       var (func, outputPort) = request as (Future<dynamic> Function(jellyfin_api.JellyfinApi), SendPort);
       try {
         var output = await func(backgroundApi);
         outputPort.send(output);
-      } catch (e) {
+      } catch (e, stack) {
+        _jellyfinApiHelperLogger.severe("Error processing background request - $e", e, stack);
         outputPort.send(e);
       }
     }
@@ -125,7 +158,6 @@ class JellyfinApiHelper {
     if (output is T) {
       return output;
     }
-    _jellyfinApiHelperLogger.severe("Error in background isolate: $output", output);
     throw output as Object;
   }
 

@@ -463,10 +463,11 @@
     "enterLowPriorityStateOnPauseSubtitle": "Lets the notification be swiped away when paused. Also allows Android to kill the service when paused.",
     "shuffleAllTrackCount": "Shuffle All Track Count",
     "shuffleAllTrackCountSubtitle": "Amount of tracks to load when using the shuffle all button on the tracks tab or genre screen.",
-    "viewType": "View Type",
-    "viewTypeSubtitle": "View type for the music screen",
+    "viewType": "Music Screen Display Type",
+    "viewTypeSubtitle": "Controls grid or list mode for all music screen tabs, excepting the home screen.",
     "list": "List",
     "grid": "Grid",
+    "perTabGridMode": "Choose per tab",
     "none": "None",
     "customizationSettingsTitle": "Customization",
     "@customizationSettingsTitle": {
@@ -542,8 +543,9 @@
     "disableGesture": "Disable gestures",
     "disableGestureSubtitle": "Whether to disables gestures.",
     "showFastScroller": "Show fast scroller",
+    "showFastScrollerSubtitle": "Show or hide the alphabet list on the right of music tabs which allows jumping to letters.",
     "theme": "Theme",
-    "system": "System",
+    "system": "Follow system",
     "light": "Light",
     "dark": "Dark",
     "accentColor": "Accent Color",
@@ -554,7 +556,7 @@
     "@accentColorTitle": {
         "description": "Title for the accent color picker sheet"
     },
-    "systemAccentColor": "Use System Accent",
+    "systemAccentColor": "Use System Accent Color",
     "@systemAccentColor": {
         "description": "Title of the System Accent Color setting."
     },
@@ -1248,7 +1250,7 @@
             }
         }
     },
-    "couldNotLoad": "Couldn''t load {source, select, album{album} playlist{playlist} trackMix{track mix} artistMix{artist mix} albumMix{album mix} genreMix{genre mix} favorites{favorites} allTracks{all tracks} filteredList{tracks} genre{genre} artist{artist} track{track} nextUpAlbum{album in next up} nextUpPlaylist{playlist in next up} nextUpArtist{artist in next up} nextUpGenre{genre in next up} other{}}",
+    "couldNotLoad": "Couldn't load {source, select, album{album} playlist{playlist} trackMix{track mix} artistMix{artist mix} albumMix{album mix} genreMix{genre mix} favorites{favorites} allTracks{all tracks} filteredList{tracks} genre{genre} artist{artist} track{track} nextUpAlbum{album in next up} nextUpPlaylist{playlist in next up} nextUpArtist{artist in next up} nextUpGenre{genre in next up} other{}}",
     "@couldNotLoad": {
         "placeholders": {
             "source": {
@@ -1339,9 +1341,9 @@
     "swipeRightToLeftActionSubtitle": "Action triggered when swiping a track in the list from right to left.",
     "startInstantMixForIndividualTracksSwitchTitle": "Start Instant Mixes for Individual Tracks",
     "@startInstantMixForIndividualTracksSwitchTitle": {
-        "description": "Title for the switch that toggles if tapping a track on the tracks tab will start an instant mix of that track instead of just playing a single track."
+        "description": "Title for the switch that toggles if tapping a track on the tracks tab will start an instant mix of that track instead of playing tracks in order."
     },
-    "startInstantMixForIndividualTracksSwitchSubtitle": "When enabled, tapping a track on the tracks tab will start an instant mix of that track instead of just playing a single track.",
+    "startInstantMixForIndividualTracksSwitchSubtitle": "When enabled, tapping a track on the tracks tab will start an instant mix of that track instead of playing tracks in order.",
     "downloadItem": "Download",
     "@downloadItem": {
         "description": "Option to download item in long-press menu."
@@ -3716,5 +3718,22 @@
                 "example": "Never Gonna Give You Up"
             }
         }
-    }
+    },
+    "quickActionBanner": "Check out some commonly changed settings!",
+    "@quickActionBanner": {
+        "description": "Banner directing new users to the quick settings, where they can adjust the most commonly used settings"
+    },
+    "themeSettingTitle": "App color theme (dark/light)",
+    "@themeSettingTitle": {
+        "description": "Title for the setting that allows you to override the system theme and force dark or light mode"
+    },
+    "perTabGridModeScreen": "Set per-tab view types",
+    "perTabAlbumGrid": "Albums only in grid",
+    "quickSettingsScreen": "Quick Settings",
+    "quickSettingsScreenDescription": "Customize Finamp to your preferences with these core options. Come back here any time via Settings.",
+    "quickSettingsTabsLink": "Rearrange and hide tabs",
+    "quickSettingsTranscodeLink": "All transcoding settings",
+    "quickSettingsLayoutLink": "All layout & theme settings",
+    "quickSettingsAllSettingsLink": "All Settings",
+    "quickSettingsNetworkLink": "Configure the local address for your server"
 }

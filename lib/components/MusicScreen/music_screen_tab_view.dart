@@ -291,10 +291,10 @@ class _MusicScreenTabViewState extends ConsumerState<MusicScreenTabView>
       );
     }
     final itemPadding = calculateItemCollectionCardWidth(ref).$2;
-    var tabContent =
-        ref.watch(finampSettingsProvider.contentViewType) == ContentViewType.list ||
-            widget.contentType == ContentType.tracks ||
-            widget.contentType == null
+    final useListMode = widget.contentType == null || widget.contentType == ContentType.tracks
+        ? true
+        : ref.watch(finampSettingsProvider.perTabContentViewType(widget.contentType!)) != ContentViewType.grid;
+    var tabContent = useListMode
         ? SafeArea(
             top: false,
             bottom: false,
@@ -442,6 +442,7 @@ class _MusicScreenTabViewState extends ConsumerState<MusicScreenTabView>
               callback: scrollToLetter,
               scrollController: controller,
               sortOrder: widget.sortConfig.sortOrder,
+              inGridMode: !useListMode,
               child: tabContent,
             )
           : tabContent,

@@ -15,7 +15,7 @@
     "areYouSure": "Tem a certeza?",
     "bitrateSubtitle": "Uma taxa de bits mais alta oferece áudio de melhor qualidade à custa de maior largura de banda. Isto não se aplica a codecs de baixa perda, ex. FLAC",
     "enterLowPriorityStateOnPause": "Entrar em Estado de Baixa-Prioridade durante Pausa",
-    "viewTypeSubtitle": "Tipo de visualização para o ecrã de música",
+    "viewTypeSubtitle": "Controla o modo de grelha ou lista para todos os separadores de ecrã de música, excepto o ecrã inicial.",
     "list": "Lista",
     "goToAlbum": "Ir para Álbum",
     "startingInstantMix": "Iniciando mistura instantânea.",
@@ -138,13 +138,13 @@
     "customLocationsBuggy": "Localizações personalizadas podem ser extremamente problemáticas e não recomendadas na maioria dos casos. Localizações sob a pasta 'Music' do sistema previnem a gravação de capas e álbuns devido a limitações do Sistema Operativo.",
     "shuffleAllTrackCount": "Contagem de Faixas em Misturar Todas",
     "shuffleAllTrackCountSubtitle": "Quantidade de faixas a carregar quando se usa o botão baralhar todas no separador de pistas ou ecrã de estilo.",
-    "viewType": "Tipo de Visualização",
+    "viewType": "Tipo de Mostrador de Ecrã de Música",
     "grid": "Grade",
     "landscape": "Paisagem",
     "showTextOnGridViewSubtitle": "Mostrar ou não o texto (título, artista, etc) no ecrã de grelha de música. O texto é sempre mostrado no ecrã inicial, ignorando esta definição.",
     "useCoverAsBackgroundSubtitle": "Usar ou não capas de álbum desfocadas como fundo do ecrã em várias partes da aplicação.",
     "theme": "Tema",
-    "system": "Sistema",
+    "system": "Seguir sistema",
     "light": "Claro",
     "dark": "Escuro",
     "tabs": "Abas",
@@ -972,7 +972,7 @@
     "@startInstantMixForIndividualTracksSwitchTitle": {
         "description": "Title for the switch that toggles if tapping a track on the tracks tab will start an instant mix of that track instead of just playing a single track."
     },
-    "startInstantMixForIndividualTracksSwitchSubtitle": "Quando ativado, tocar numa faixa na aba de faixas irá começar uma mistura instantânea dessa faixa, em vez de apenas tocar uma única faixa.",
+    "startInstantMixForIndividualTracksSwitchSubtitle": "Quando ativado, tocar numa faixa na aba de faixas irá começar uma mistura instantânea dessa faixa, em vez de tocar faixas em ordem.",
     "repairComplete": "Reparação das Descargas completa.",
     "@repairComplete": {
         "description": "Message displayed after download repair completes."
@@ -2502,7 +2502,7 @@
         "description": "Button title for opening the logs screen from the snackbar options menu"
     },
     "downloadAllPlaylistsSettingWarning": "Nota: Isso irá descarregar todos os itens em todas as listas de reprodução, independente de qual biblioteca eles vêem.",
-    "systemAccentColor": "Usar Acentuação do Sistema",
+    "systemAccentColor": "Usar Cor de Acentuação do Sistema",
     "@systemAccentColor": {
         "description": "Title of the System Accent Color setting."
     },
@@ -3645,5 +3645,32 @@
                 "type": "String"
             }
         }
-    }
+    },
+    "verboseLogging": "Relatórios Detalhados",
+    "@verboseLogging": {
+        "description": "Title for the toggle that enables detailed logging on the logs screen"
+    },
+    "verboseLoggingSubtitle": "Mantém relatórios detalhados para relatórios de bug. Deixe isto desligado para melhor desempenho na reprodução.",
+    "@verboseLoggingSubtitle": {
+        "description": "Subtitle explaining the verbose logging toggle"
+    },
+    "perTabGridMode": "Escolha por separador",
+    "showFastScrollerSubtitle": "Mostrar ou esconder a lista de alfabeto à direita dos separadores de música que permite saltar por letras.",
+    "quickActionBanner": "Verificar algumas definições comuns mudadas!",
+    "@quickActionBanner": {
+        "description": "Banner directing new users to the quick settings, where they can adjust the most commonly used settings"
+    },
+    "themeSettingTitle": "Tema de cor da aplicação (escuro/claro)",
+    "@themeSettingTitle": {
+        "description": "Title for the setting that allows you to override the system theme and force dark or light mode"
+    },
+    "perTabGridModeScreen": "Definir tipos de visualização por separador",
+    "perTabAlbumGrid": "Álbuns apenas em grelha",
+    "quickSettingsScreen": "Definições Rápidas",
+    "quickSettingsScreenDescription": "Personalize o Finamp às suas preferências com estas opções de núcleo. Volte aqui a qualquer altura via Definições.",
+    "quickSettingsTabsLink": "Reorganizar e esconder separadores",
+    "quickSettingsTranscodeLink": "Todas as definições de transcodificação",
+    "quickSettingsLayoutLink": "Todas as definições de disposição e tema",
+    "quickSettingsAllSettingsLink": "Todas as Definições",
+    "quickSettingsNetworkLink": "Configurar o endereço local para o seu servidor"
 }

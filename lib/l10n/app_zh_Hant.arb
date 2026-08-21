@@ -705,7 +705,7 @@
     "@playbackHistory": {
         "description": "Title for the playback history screen, where the user can see a list of recently played tracks, sorted by "
     },
-    "yourLikes": "你的收藏（從「{trackName}」開始）",
+    "yourLikes": "我的收藏 (從\"{trackName}\"開始)",
     "@yourLikes": {
         "description": "Title for the queue source when the user is playing their liked tracks"
     },
@@ -3177,7 +3177,7 @@
     "@playRandomFavoriteItemActionDescription": {
         "description": "Description of a home screen quick action"
     },
-    "randomFavoriteAction": "隨機播放{itemType, select, albums{專輯} tracks{歌曲} playlists{播放清單} performingArtists{演出藝人} albumArtists{專輯藝人} none{<Type> 類型} other{內容}}",
+    "randomFavoriteAction": "隨機播放收藏的{itemType, select, albums{專輯} tracks{歌曲} playlists{清單內容} performingArtists{演出藝人} albumArtists{專輯藝人} none{<自訂>類型} other{內容}}",
     "@randomFavoriteAction": {
         "description": "Name of a home screen quick action"
     },
@@ -3540,7 +3540,7 @@
     "@playRandomItemActionDescription": {
         "description": "Description of a home screen quick action"
     },
-    "randomItemAction": "隨機播放{itemType, select, albums{專輯} tracks{曲目} playlists{播放清單} performingArtists{演出藝人} albumArtists{專輯藝人} none{<Type> 類型的項目} other{內容}}",
+    "randomItemAction": "隨機播放{itemType, select, albums{專輯} tracks{歌曲} playlists{清單內容} performingArtists{演出藝人} albumArtists{專輯藝人} none{<自訂>類型} other{內容}}",
     "@randomItemAction": {
         "placeholders": {
             "itemType": {
@@ -3600,7 +3600,7 @@
         "description": "Notification on sort and filter menu that currently pending changes will be automatically applied on close."
     },
     "removeFromQueue": "從播放佇列中移除",
-    "featureChipName": "{chipName, select, explicit{限制級內容} playCount{播放次數} additionalPeople{其他參與人員} playbackMode{播放模式} codec{編碼格式} bitRate{位元率} bitDepth{位元深度} sampleRate{取樣率} size{大小} normalizationGain{音量標準化} other{{chipName}}}",
+    "featureChipName": "{chipName, select, explicit{限制級內容} playCount{播放次數} additionalPeople{其他參與人員} playbackMode{播放模式} codec{編碼格式} bitRate{位元率} bitDepth{位元深度} sampleRate{取樣率} size{檔案大小} normalizationGain{音量標準化} other{{chipName}}}",
     "@featureChipName": {
         "placeholders": {
             "chipName": {
@@ -3610,7 +3610,7 @@
         },
         "description": "Titles for settings controlling which pieces of advanced track info are displayed."
     },
-    "featureChipDescription": "{chipName, select, explicit{標示含有兒童不宜內容的歌曲} additionalPeople{與歌曲相關的其他人員（如作曲者、作詞者等）} playbackMode{串流與轉碼狀態資訊} bitDepth{每個音訊取樣的位元數。僅適用於無損編碼格式，通常為 16 位元。} sampleRate{每秒的音訊取樣次數，通常為 44.1 kHz。} normalizationGain{目前套用的音量增益值} size{歌曲原始檔案的大小} other{null}}",
+    "featureChipDescription": "{chipName, select, explicit{標示含有兒童不宜內容的歌曲} additionalPeople{與歌曲相關的其他人員（如作曲者、作詞者等）} playbackMode{串流與轉碼狀態資訊} bitDepth{每個音訊取樣的位元數。僅適用於無損編碼格式，通常為 16 位元。} sampleRate{每秒的音訊取樣次數，通常為 44.1 kHz。} normalizationGain{目前套用的重播增益值} size{歌曲原始檔案的大小} other{null}}",
     "@featureChipDescription": {
         "placeholders": {
             "chipName": {
@@ -3626,7 +3626,7 @@
     "@addSpecialDownloads": {
         "description": "Button on downloads screen which allows adding special downloads, such as all playlists or all favorites."
     },
-    "allTracks": "所有歌曲（從「{trackName}」開始）",
+    "allTracks": "所有歌曲 (從\"{trackName}\"開始)",
     "@allTracks": {
         "description": "Queue source when playing from tracks screen.",
         "placeholders": {
@@ -3635,5 +3635,13 @@
                 "example": "Never Gonna Give You Up"
             }
         }
+    },
+    "verboseLogging": "詳細記錄",
+    "@verboseLogging": {
+        "description": "Title for the toggle that enables detailed logging on the logs screen"
+    },
+    "verboseLoggingSubtitle": "保留詳細日誌以供錯誤回報使用。若要獲得較佳的播放效能，請關閉此功能。",
+    "@verboseLoggingSubtitle": {
+        "description": "Subtitle explaining the verbose logging toggle"
     }
 }

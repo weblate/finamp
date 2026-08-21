@@ -1376,7 +1376,7 @@
             }
         }
     },
-    "confirmPlayNext": "{type, select, track{歌曲} album{专辑} artist{艺术家} playlist{播放列表} genre{流派} other{项目}}已添加到接下来播放队列首位",
+    "confirmPlayNext": "{type, select, track{歌曲} album{专辑} artist{艺术家} playlist{播放列表} genre{流派} disc{唱片} other{项目}}已添加到接下来播放队列首位",
     "@confirmPlayNext": {
         "description": "A confirmation message that is shown after successfully adding a track to the front of the \"Next Up\" queue",
         "placeholders": {
@@ -3496,5 +3496,22 @@
     "clientCertificateRequired": "需要客户端证书",
     "@clientCertificateRequired": {
         "description": "Message shown on the server selection screen when the server requires a client certificate to be provided."
-    }
+    },
+    "activeLibraries": "使用中的音乐库",
+    "@activeLibraries": {
+        "description": "Active Libraries"
+    },
+    "randomGenreAction": "随机流派",
+    "@randomGenreAction": {
+        "description": "Name of a home screen quick action"
+    },
+    "cancelChanges": "取消更改",
+    "@cancelChanges": {
+        "description": "Button on sort and filter menu that clears any pending changes."
+    },
+    "applyChangesOnClose": "更改会在菜单关闭时应用",
+    "@applyChangesOnClose": {
+        "description": "Notification on sort and filter menu that currently pending changes will be automatically applied on close."
+    },
+    "removeFromQueue": "从队列中移除"
 }
