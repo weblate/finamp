@@ -127,11 +127,11 @@
     "enterLowPriorityStateOnPause": "Po pozastavení vstoupit do stavu nízké priority",
     "shuffleAllTrackCount": "Počet skladeb pro náhodné přehrávání všeho",
     "viewType": "Typ zobrazení hudební obrazovky",
-    "viewTypeSubtitle": "Typ zobrazení pro hudební obrazovku",
+    "viewTypeSubtitle": "Ovládá režim mřížky nebo seznamu pro všechny karty obrazovky s hudbou, kromě domovské obrazovky.",
     "list": "Seznam",
     "useCoverAsBackground": "Zobrazit rozmazaný obal jako pozadí přehrávače",
     "useCoverAsBackgroundSubtitle": "Zda použít rozmazaný obal alba jako pozadí na obrazovce přehrávače.",
-    "system": "Systémový",
+    "system": "Podle systému",
     "light": "Světlý",
     "theme": "Motiv",
     "dark": "Tmavý",
@@ -1192,7 +1192,7 @@
     "@volumeNormalizationSwitchSubtitle": {
         "description": "Subtitle for the switch that toggles replay gain"
     },
-    "startInstantMixForIndividualTracksSwitchSubtitle": "Pokud je povoleno, klepnutím na skladbu na kartě skladeb spustíte okamžitý mix této skladby, namísto přehrání pouze té, na kterou jste klepli.",
+    "startInstantMixForIndividualTracksSwitchSubtitle": "Pokud je povoleno, klepnutím na skladbu na kartě skladeb spustíte okamžitý mix této skladby, namísto přehrávání skladeb v pořadí.",
     "syncComplete": "Všechny stažené byly znovu synchronizovány.",
     "@syncComplete": {
         "description": "Message displayed after download sync completes."
@@ -3640,5 +3640,24 @@
     "verboseLoggingSubtitle": "Ponechávat podrobné protokoly pro nahlašování chyb. Ponechte vypnuté pro lepší výkon při přehrávání.",
     "@verboseLoggingSubtitle": {
         "description": "Subtitle explaining the verbose logging toggle"
-    }
+    },
+    "perTabGridMode": "Vybrat dle karty",
+    "showFastScrollerSubtitle": "Zobrazit nebo skrýt abecední seznam v pravé části karet s hudbou, který umožňuje rychle přejít na písmena.",
+    "quickActionBanner": "Podívejte se na některá z často měněných nastavení!",
+    "@quickActionBanner": {
+        "description": "Banner directing new users to the quick settings, where they can adjust the most commonly used settings"
+    },
+    "themeSettingTitle": "Barevný motiv aplikace (tmavý/světlý)",
+    "@themeSettingTitle": {
+        "description": "Title for the setting that allows you to override the system theme and force dark or light mode"
+    },
+    "perTabGridModeScreen": "Nastavit typy zobrazení dle karty",
+    "perTabAlbumGrid": "Alba pouze v mřížce",
+    "quickSettingsScreen": "Rychlá nastavení",
+    "quickSettingsScreenDescription": "Přizpůsobte si Finamp pomocí těchto základních možností. Kdykoli se sem můžete vrátit skrze nastavení.",
+    "quickSettingsTabsLink": "Přesunout a skrýt karty",
+    "quickSettingsTranscodeLink": "Všechna nastavení překódování",
+    "quickSettingsLayoutLink": "Všechna nastavení rozložení a motivu",
+    "quickSettingsAllSettingsLink": "Všechna nastavení",
+    "quickSettingsNetworkLink": "Nastavte si lokální adresu vašeho serveru"
 }
