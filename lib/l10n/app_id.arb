@@ -74,7 +74,7 @@
         "description": "Label for the back button."
     },
     "serverUrl": "URL Server",
-    "internalExternalIpExplanation": "Jika Anda ingin dapat mengakses server Jellyfin Anda dari jarak jauh, Anda perlu menggunakan IP eksternal Anda.\n\nJika server Anda berada pada port default HTTP (80 atau 443) atau port default Jellyfin (8096), Anda tidak perlu mencantumkan port.\n\nJika URL benar, Anda akan melihat beberapa informasi tentang server Anda muncul di bawah kolom input.",
+    "internalExternalIpExplanation": "Jika Anda ingin dapat mengakses server Jellyfin Anda dari jarak jauh, Anda perlu menggunakan IP eksternal anda.\n\nJika server Anda berada pada port default HTTP (80 atau 443) atau port default Jellyfin (8096), Anda tidak perlu mencantumkan port.\n\nJika URL sesuai, Anda akan melihat beberapa informasi tentang server Anda muncul di bawah kolom input.",
     "@internalExternalIpExplanation": {
         "description": "Extra info for which IP to use for remote access, and info on whether or not the user needs to specify a port."
     },
@@ -98,7 +98,7 @@
     "@loginFlowLocalNetworkServers": {
         "description": "Heading for the list of servers on the local network, shown during the login flow. Should ideally have a colon at the end."
     },
-    "loginFlowLocalNetworkServersScanningForServers": "Memindai server…",
+    "loginFlowLocalNetworkServersScanningForServers": "Mencari server…",
     "@loginFlowLocalNetworkServersScanningForServers": {
         "description": "Text shown while servers are being discovered via UDP broadcasts"
     },
@@ -452,8 +452,8 @@
     "enterLowPriorityStateOnPauseSubtitle": "Memungkinkan notifikasi diswipe saat dijeda. Juga memungkinkan Android mematikan layanan saat dijeda.",
     "shuffleAllTrackCount": "Jumlah trek untuk Acak Semua",
     "shuffleAllTrackCountSubtitle": "Jumlah trek yang dimuat saat menggunakan tombol acak semua pada tab trek atau layar genre.",
-    "viewType": "Jenis tampilan",
-    "viewTypeSubtitle": "Jenis tampilan untuk layar musik",
+    "viewType": "Tipe Tampilan Layar Musik",
+    "viewTypeSubtitle": "Atur mode kisi atau mode daftar untuk semua tab layar musik, mengecualikan halaman beranda.",
     "list": "Daftar",
     "grid": "Kisi",
     "none": "Tidak ada",
@@ -532,7 +532,7 @@
     "disableGestureSubtitle": "Apakah menonaktifkan gestur.",
     "showFastScroller": "Tampilkan penggulung cepat",
     "theme": "Tema",
-    "system": "Sistem",
+    "system": "Mengikuti Sistem",
     "light": "Terang",
     "dark": "Gelap",
     "accentColor": "Warna aksen",
@@ -543,7 +543,7 @@
     "@accentColorTitle": {
         "description": "Title for the accent color picker sheet"
     },
-    "systemAccentColor": "Gunakan aksen sistem",
+    "systemAccentColor": "Menggunakan Warna Aksen Sistem",
     "@systemAccentColor": {
         "description": "Title of the System Accent Color setting."
     },
@@ -1321,7 +1321,7 @@
     "@startInstantMixForIndividualTracksSwitchTitle": {
         "description": "Title for the switch that toggles if tapping a track on the tracks tab will start an instant mix of that track instead of just playing a single track."
     },
-    "startInstantMixForIndividualTracksSwitchSubtitle": "Jika diaktifkan, mengetuk sebuah trek pada tab trek akan memulai mix instan dari trek tersebut, alih-alih hanya memutar satu trek.",
+    "startInstantMixForIndividualTracksSwitchSubtitle": "Jika diaktifkan, mengetuk sebuah trek pada tab trek akan memulai mix instan dari trek tersebut, bukan hanya memutar trek dalam urutan.",
     "downloadItem": "Unduh",
     "@downloadItem": {
         "description": "Option to download item in long-press menu."
@@ -3701,5 +3701,24 @@
     "verboseLoggingSubtitle": "Simpan log mendetail untuk laporan bug. Biarkan nonaktif untuk performa pemutaran yang lebih baik.",
     "@verboseLoggingSubtitle": {
         "description": "Subtitle explaining the verbose logging toggle"
-    }
+    },
+    "perTabGridMode": "Pilih per tab",
+    "showFastScrollerSubtitle": "Tampilkan atau sembunyikan daftar abjad di sebelah kanan tab musik untuk melompat ke huruf tertentu.",
+    "quickActionBanner": "Lihat beberapa pengaturan yang sering diubah!",
+    "@quickActionBanner": {
+        "description": "Banner directing new users to the quick settings, where they can adjust the most commonly used settings"
+    },
+    "themeSettingTitle": "Tema warna aplikasi (gelap/terang)",
+    "@themeSettingTitle": {
+        "description": "Title for the setting that allows you to override the system theme and force dark or light mode"
+    },
+    "perTabGridModeScreen": "Atur tipe tampilan per-tab",
+    "perTabAlbumGrid": "Album hanya dalam bentuk kisi",
+    "quickSettingsScreen": "Pengaturan Cepat",
+    "quickSettingsScreenDescription": "Atur Finamp sesuai keinginan anda dengan pilihan utama berikut. Kembali ke sini kapan saja via Pengaturan.",
+    "quickSettingsTabsLink": "Atur ulang dan sembunyikan tab",
+    "quickSettingsTranscodeLink": "Semua pengaturan transcoding",
+    "quickSettingsLayoutLink": "Semua pengaturan tata letak dan tema",
+    "quickSettingsAllSettingsLink": "Semua Pengaturan",
+    "quickSettingsNetworkLink": "Atur alamat lokal untuk server anda"
 }

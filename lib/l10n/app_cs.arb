@@ -126,7 +126,7 @@
     "customLocationsBuggy": "Vlastní umístění mohou být extrémně chybové a ve většině případů nejsou doporučeny. Umístění v systémové složce „Music“ zabraňují ukládání obalů alb z důvodu omezení systému.",
     "enterLowPriorityStateOnPause": "Po pozastavení vstoupit do stavu nízké priority",
     "shuffleAllTrackCount": "Počet skladeb pro náhodné přehrávání všeho",
-    "viewType": "Typ zobrazení",
+    "viewType": "Typ zobrazení hudební obrazovky",
     "viewTypeSubtitle": "Typ zobrazení pro hudební obrazovku",
     "list": "Seznam",
     "useCoverAsBackground": "Zobrazit rozmazaný obal jako pozadí přehrávače",
