@@ -1,9 +1,8 @@
-import 'package:finamp/components/Buttons/cta_medium.dart';
 import 'package:finamp/components/Buttons/simple_button.dart';
 import 'package:finamp/components/finamp_icon.dart';
 import 'package:finamp/l10n/app_localizations.dart';
-import 'package:finamp/menus/client_certificate_authentication_menu.dart';
 import 'package:finamp/models/jellyfin_models.dart';
+import 'package:finamp/screens/advanced_login_options_screen.dart';
 import 'package:finamp/services/client_certificate_installer.dart';
 import 'package:finamp/services/finamp_settings_helper.dart';
 import 'package:finamp/services/jellyfin_api_helper.dart';
@@ -111,6 +110,14 @@ class _LoginServerSelectionPageState extends ConsumerState<LoginServerSelectionP
     final clientCertificate = ref.watch(finampSettingsProvider.clientCertificate);
     final isClientCertificateInstalled = clientCertificate != null;
 
+    ref.listen(finampSettingsProvider.clientCertificate, (previous, next) {
+      _restartDiscovery();
+      final baseUrl = widget.serverState.baseUrl;
+      if (baseUrl != null) {
+        widget.serverState.onBaseUrlChanged(baseUrl);
+      }
+    });
+
     return SingleChildScrollView(
       padding: const EdgeInsets.symmetric(horizontal: 32.0),
       child: Center(
@@ -154,49 +161,20 @@ class _LoginServerSelectionPageState extends ConsumerState<LoginServerSelectionP
                         },
                       ),
                     ),
-                  if (isClientCertificateInstalled)
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 12.0),
-                      child: CTAMedium(
-                        text: AppLocalizations.of(context)!.clientCertificateInstalled,
-                        icon: TablerIcons.certificate,
-                        onPressed: () => showClientCertificateMenu(context: context),
-                        minWidth: 0,
+                  if (widget.serverState.clientCertificateRequired && !isClientCertificateInstalled)
+                    Align(
+                      alignment: Alignment.center,
+                      child: IntrinsicWidth(
+                        child: ListTile(
+                          leading: const Icon(TablerIcons.alert_triangle),
+                          title: Text(AppLocalizations.of(context)!.clientCertificateRequired),
+                          onTap: () => Navigator.of(
+                            context,
+                            rootNavigator: true,
+                          ).pushNamed(AdvancedLoginOptionsScreen.routeName),
+                          shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(12.0))),
+                        ),
                       ),
-                    )
-                  else if (widget.serverState.clientCertificateRequired)
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
-                          child: Text(
-                            AppLocalizations.of(context)!.clientCertificateRequired,
-                            style: Theme.of(context).textTheme.bodyLarge,
-                          ),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            CTAMedium(
-                              text: AppLocalizations.of(context)!.importClientCertificate,
-                              icon: TablerIcons.certificate,
-                              onPressed: () => showClientCertificateMenu(
-                                context: context,
-                                onImported: () {
-                                  _restartDiscovery();
-                                  final baseUrl = widget.serverState.baseUrl;
-                                  if (baseUrl != null) {
-                                    widget.serverState.onBaseUrlChanged(baseUrl);
-                                  }
-                                },
-                              ),
-                              minWidth: 0,
-                            ),
-                          ],
-                        ),
-                      ],
                     ),
                   if (widget.serverState.baseUrlToTest != null && widget.serverState.manualServer == null)
                     Padding(

@@ -3616,6 +3616,10 @@
             }
         }
     },
+    "advanced": "Advanced",
+    "@advanced": {
+        "description": "Label for the button on the login screen that opens the advanced options screen, and the title of that screen."
+    },
     "clientCertificate": "mTLS (SSL) Client Certificate",
     "@clientCertificate": {
         "description": "Title for the setting that allows managing SSL client certificates used for authentication"
