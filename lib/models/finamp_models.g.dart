@@ -9795,6 +9795,7 @@ const _$SortByEnumMap = {
   SortBy.revenue: 'revenue',
   SortBy.runtime: 'runtime',
   SortBy.defaultOrder: 'defaultOrder',
+  SortBy.inAlbumOrPlaylist: 'inAlbumOrPlaylist',
 };
 
 const _$SortOrderEnumMap = {

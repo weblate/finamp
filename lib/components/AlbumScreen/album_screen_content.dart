@@ -10,6 +10,7 @@ import 'package:finamp/components/favorite_button.dart';
 import 'package:finamp/components/finamp_app_bar_back_button.dart';
 import 'package:finamp/components/finamp_section_header.dart';
 import 'package:finamp/components/padded_custom_scrollview.dart';
+import 'package:finamp/extensions/localizations.dart';
 import 'package:finamp/l10n/app_localizations.dart';
 import 'package:finamp/menus/album_menu.dart';
 import 'package:finamp/menus/components/icon_button_with_semantics.dart';
@@ -95,12 +96,19 @@ class _AlbumScreenContentState extends ConsumerState<AlbumScreenContent> {
 
     List<List<BaseItemDto>> childrenPerDisc = [];
     // if not in playlist, try splitting up tracks by disc numbers
-    // if first track has a disc number, let's assume the rest has it too
-    if (!parentIsPlaylist && displayChildren.isNotEmpty && displayChildren[0].parentIndexNumber != null) {
+    // any track has a disc number, split by disc
+    if (!parentIsPlaylist &&
+        displayChildren.isNotEmpty &&
+        displayChildren.any((track) => track.parentIndexNumber != null)) {
+      // displayChildren[0].parentIndexNumber != null) {
       int? lastDiscNumber;
+      // we consider "null" a disc number (no disc configured, but grouped in Jellyfin)
       for (var child in displayChildren) {
-        if (child.parentIndexNumber != null && child.parentIndexNumber != lastDiscNumber) {
+        if (child.parentIndexNumber != lastDiscNumber) {
           lastDiscNumber = child.parentIndexNumber;
+          childrenPerDisc.add([]);
+        }
+        if (childrenPerDisc.isEmpty) {
           childrenPerDisc.add([]);
         }
         childrenPerDisc.last.add(child);
@@ -124,9 +132,7 @@ class _AlbumScreenContentState extends ConsumerState<AlbumScreenContent> {
                   item: downloadStub,
                   children: displayChildren,
                   downloadDisabled: disableDownloads,
-                  customTooltip: disableDownloads
-                      ? AppLocalizations.of(context)!.downloadButtonDisabledGenreFilterTooltip
-                      : null,
+                  customTooltip: disableDownloads ? context.l10n.downloadButtonDisabledGenreFilterTooltip : null,
                 ),
               IconButton(
                 icon: const Icon(Icons.more_vert),
@@ -137,7 +143,7 @@ class _AlbumScreenContentState extends ConsumerState<AlbumScreenContent> {
             ];
 
             return SliverAppBar(
-              title: (!parentIsPlaylist) ? Text(widget.parent.name ?? AppLocalizations.of(context)!.unknownName) : null,
+              title: (!parentIsPlaylist) ? Text(widget.parent.name ?? context.l10n.unknownName) : null,
               expandedHeight: kToolbarHeight + 125 + 18 + 100 + (parentIsPlaylist ? SortAndFilterRow.height + 10 : 0),
               // collapsedHeight: kToolbarHeight + 125 + 80,
               leading: FinampAppBarBackButton(),
@@ -159,7 +165,9 @@ class _AlbumScreenContentState extends ConsumerState<AlbumScreenContent> {
           for (var childrenOfThisDisc in childrenPerDisc) ...[
             FinampSectionHeader(
               key: Key("${childrenOfThisDisc[0].id}-${childrenOfThisDisc[0].parentIndexNumber}"),
-              title: AppLocalizations.of(context)!.discNumber(childrenOfThisDisc[0].parentIndexNumber!),
+              title: childrenOfThisDisc[0].parentIndexNumber != null
+                  ? context.l10n.discNumber(childrenOfThisDisc[0].parentIndexNumber!)
+                  : context.l10n.discUnknown,
               actions: [
                 IconButtonWithSemantics(
                   onPressed: () async => await GetIt.instance<QueueService>().startPlayback(
@@ -167,7 +175,7 @@ class _AlbumScreenContentState extends ConsumerState<AlbumScreenContent> {
                     source: QueueItemSource.fromBaseItem(widget.parent),
                     order: FinampPlaybackOrder.linear,
                   ),
-                  label: AppLocalizations.of(context)!.playButtonLabel,
+                  label: context.l10n.playButtonLabel,
                   icon: TablerIcons.player_play,
                 ),
                 IconButtonWithSemantics(
@@ -176,7 +184,7 @@ class _AlbumScreenContentState extends ConsumerState<AlbumScreenContent> {
                     source: QueueItemSource.fromBaseItem(widget.parent),
                     order: FinampPlaybackOrder.shuffled,
                   ),
-                  label: AppLocalizations.of(context)!.shuffleButtonLabel,
+                  label: context.l10n.shuffleButtonLabel,
                   icon: TablerIcons.arrows_shuffle,
                 ),
                 OverflowMenuButton(
@@ -184,7 +192,7 @@ class _AlbumScreenContentState extends ConsumerState<AlbumScreenContent> {
                     context: context,
                     album: AlbumDisc(widget.parent, tracks: childrenOfThisDisc),
                   ),
-                  label: AppLocalizations.of(context)!.moreActionsOnAlbumDisc,
+                  label: context.l10n.moreActionsOnAlbumDisc,
                 ),
               ],
               onTap: () => showModalAlbumMenu(
@@ -265,7 +273,7 @@ class _TracksSliverListState extends ConsumerState<TracksSliverList> {
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 32.0),
             child: Text(
-              AppLocalizations.of(context)!.emptyAlbum,
+              context.l10n.emptyAlbum,
               style: Theme.of(context).textTheme.bodyLarge,
               textAlign: TextAlign.center,
             ),

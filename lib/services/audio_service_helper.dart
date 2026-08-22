@@ -309,7 +309,10 @@ class AudioServiceHelper {
           await _jellyfinApiHelper.getItems(
             parentItem: randomItem,
             includeItemTypes: [BaseItemDtoType.track].map((e) => e.jellyfinName).join(","),
-            sortBy: SortBy.defaultOrder.jellyfinName(ContentType.tracks),
+            sortBy: switch (ContentType.fromItemType(randomItem.type)) {
+              ContentType.albums || ContentType.playlists => SortBy.inAlbumOrPlaylist.jellyfinName(ContentType.tracks),
+              _ => SortBy.defaultOrder.jellyfinName(ContentType.tracks),
+            },
             sortOrder: SortOrder.ascending.name,
             limit: FinampSettingsHelper.finampSettings.trackShuffleItemCount,
           ) ??

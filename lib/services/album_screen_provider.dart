@@ -30,7 +30,7 @@ Future<(List<BaseItemDto>, List<BaseItemDto>)> getAlbumOrPlaylistTracks(Ref ref,
     allTracks =
         await jellyfinApiHelper.getItems(
           parentItem: parent,
-          sortBy: "ParentIndexNumber,IndexNumber,SortName",
+          sortBy: SortBy.inAlbumOrPlaylist.jellyfinName(ContentType.tracks),
           includeItemTypes: "Audio",
         ) ??
         [];
