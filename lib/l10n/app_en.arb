@@ -3620,11 +3620,11 @@
     "@advanced": {
         "description": "Label for the button on the login screen that opens the advanced options screen, and the title of that screen."
     },
-    "clientCertificate": "mTLS (SSL) Client Certificate",
+    "clientCertificate": "Client Certificate (mTLS)",
     "@clientCertificate": {
         "description": "Title for the setting that allows managing SSL client certificates used for authentication"
     },
-    "clientCertificateUnavailable": "No certificate set up, client authentication disabled",
+    "clientCertificateUnavailable": "No certificate set up, additional client authentication disabled",
     "@clientCertificateUnavailable": {
         "description": "Message shown when the user has no SSL client certificate available to use."
     },
@@ -3632,7 +3632,7 @@
     "@clientCertificateInstalled": {
         "description": "Message shown when the user has successfully installed an SSL client certificate."
     },
-    "clientCertificateDescription": "A TLS client certificate (.p12 or .pfx) is used to authenticate this device with your Jellyfin server. Only required if your server is configured for mutual TLS.",
+    "clientCertificateDescription": "A TLS client certificate (.p12 or .pfx) is used to additionally authenticate this device with your Jellyfin server. Only required if your server is configured for mutual TLS.",
     "@clientCertificateDescription": {
         "description": "Explanatory text in the client certificate settings menu describing what a client certificate is used for"
     },
