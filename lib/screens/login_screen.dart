@@ -23,14 +23,14 @@ class LoginScreen extends StatelessWidget {
       child: const Scaffold(
         resizeToAvoidBottomInset: true,
         body: SafeArea(child: LoginFlow()),
-        bottomNavigationBar: _LoginAuxillaryOptions(),
+        bottomNavigationBar: _LoginAuxiliaryOptions(),
       ),
     );
   }
 }
 
-class _LoginAuxillaryOptions extends StatelessWidget {
-  const _LoginAuxillaryOptions();
+class _LoginAuxiliaryOptions extends StatelessWidget {
+  const _LoginAuxiliaryOptions();
 
   @override
   Widget build(BuildContext context) {
