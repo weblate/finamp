@@ -992,7 +992,7 @@
     "@loopModeAllButtonLabel": {
         "description": "Label for the button that toggles the loop mode between off, loop one, and loop all, while the queue is in loop all mode"
     },
-    "queuesScreen": "Restore Now Playing",
+    "queuesScreen": "Past Queues",
     "@queuesScreen": {
         "description": "Title for the screen where older now playing queues can be restored"
     },
