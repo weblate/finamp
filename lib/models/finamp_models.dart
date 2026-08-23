@@ -1158,7 +1158,7 @@ enum ContentType {
   @HiveField(7)
   albumArtists(BaseItemDtoType.artist),
   @HiveField(8)
-  inPlaylist(BaseItemDtoType.track),
+  inPlaylistOrAlbum(BaseItemDtoType.track),
   @HiveField(9)
   mixed(null),
   @HiveField(10)
@@ -1195,7 +1195,7 @@ enum ContentType {
         return l10n.performingArtists;
       case ContentType.albumArtists:
         return l10n.albumArtists;
-      case ContentType.inPlaylist:
+      case ContentType.inPlaylistOrAlbum:
         return l10n.inPlaylist;
       case ContentType.mixed:
         return l10n.inCollection;
@@ -1237,7 +1237,7 @@ enum ContentType {
     ContentType.home => true,
     ContentType.performingArtists => true,
     ContentType.albumArtists => true,
-    ContentType.inPlaylist => false,
+    ContentType.inPlaylistOrAlbum => false,
     ContentType.mixed => false,
     ContentType.inPerformingArtistAlbums => false,
     ContentType.inAlbumArtistAlbums => false,
@@ -1252,7 +1252,7 @@ enum ContentType {
     ContentType.home => false,
     ContentType.performingArtists => true,
     ContentType.albumArtists => true,
-    ContentType.inPlaylist => false,
+    ContentType.inPlaylistOrAlbum => false,
     ContentType.mixed => false,
     ContentType.inPerformingArtistAlbums => false,
     ContentType.inAlbumArtistAlbums => false,
@@ -1268,7 +1268,7 @@ enum ContentType {
     ContentType.home => false,
     ContentType.performingArtists => true,
     ContentType.albumArtists => true,
-    ContentType.inPlaylist => false,
+    ContentType.inPlaylistOrAlbum => false,
     ContentType.mixed => false,
     ContentType.inPerformingArtistAlbums => false,
     ContentType.inAlbumArtistAlbums => false,

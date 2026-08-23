@@ -1925,7 +1925,7 @@ class ContentTypeAdapter extends TypeAdapter<ContentType> {
       case 7:
         return ContentType.albumArtists;
       case 8:
-        return ContentType.inPlaylist;
+        return ContentType.inPlaylistOrAlbum;
       case 9:
         return ContentType.mixed;
       case 10:
@@ -1956,7 +1956,7 @@ class ContentTypeAdapter extends TypeAdapter<ContentType> {
         writer.writeByte(6);
       case ContentType.albumArtists:
         writer.writeByte(7);
-      case ContentType.inPlaylist:
+      case ContentType.inPlaylistOrAlbum:
         writer.writeByte(8);
       case ContentType.mixed:
         writer.writeByte(9);
@@ -9571,7 +9571,7 @@ const _$ContentTypeEnumMap = {
   ContentType.home: 'home',
   ContentType.performingArtists: 'performingArtists',
   ContentType.albumArtists: 'albumArtists',
-  ContentType.inPlaylist: 'inPlaylist',
+  ContentType.inPlaylistOrAlbum: 'inPlaylistOrAlbum',
   ContentType.mixed: 'mixed',
   ContentType.inPerformingArtistAlbums: 'inPerformingArtistAlbums',
   ContentType.inAlbumArtistAlbums: 'inAlbumArtistAlbums',

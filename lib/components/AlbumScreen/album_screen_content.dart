@@ -42,7 +42,9 @@ class AlbumScreenContent extends ConsumerStatefulWidget {
 }
 
 class _AlbumScreenContentState extends ConsumerState<AlbumScreenContent> {
-  SortAndFilterController sortAndFilterController = SortAndFilterController.trackSettings(ContentType.inPlaylist);
+  SortAndFilterController sortAndFilterController = SortAndFilterController.trackSettings(
+    ContentType.inPlaylistOrAlbum,
+  );
 
   //bool get disableDownloads => sortAndFilterController.value.filters.isNotEmpty;
 

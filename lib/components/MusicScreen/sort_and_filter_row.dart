@@ -62,8 +62,8 @@ abstract class SortAndFilterController {
   static ResolvedSortConfig resolveOffline(Ref ref, ContentType type, SortAndFilterConfiguration config) {
     final output = resolveOfflineWithoutFallback(ref, type, config);
     if (output != null) return output;
-    if (type == ContentType.inPlaylist) {
-      return ResolvedSortConfig._(config.copyWith(sortBy: SortBy.defaultOrder));
+    if (type == ContentType.inPlaylistOrAlbum) {
+      return ResolvedSortConfig._(config.copyWith(sortBy: SortBy.defaultOrder, filters: {}));
     } else {
       return ResolvedSortConfig._(config.copyWith(sortBy: SortBy.sortName));
     }
@@ -136,10 +136,12 @@ class StaticSortAndFilterController extends SortAndFilterController {
 }
 
 class TrackingSortAndFilterController extends SortAndFilterController {
+  ContentType contentType;
   TrackingSortAndFilterController({required super.contentType})
-    : super._(
+    : contentType = contentType,
+      super._(
         startingConfig: switch (contentType) {
-          ContentType.inPlaylist => ResolvedSortConfig.defaultInAlbumSort,
+          ContentType.inPlaylistOrAlbum => ResolvedSortConfig.defaultInAlbumSort,
           ContentType.inPerformingArtistAlbums => ResolvedSortConfig.defaultArtistAlbumSort,
           ContentType.inAlbumArtistAlbums => ResolvedSortConfig.defaultArtistAlbumSort,
           _ => ResolvedSortConfig.defaultSort,
@@ -156,16 +158,19 @@ class TrackingSortAndFilterController extends SortAndFilterController {
       FinampSetters.setTabSortOrder(_type, newConfig.sortOrder);
     }
 
-    if (newConfig.filters.contains(ItemFilter(type: ItemFilterType.isFavorite)) !=
-        FinampSettingsHelper.finampSettings.onlyShowFavorites) {
-      FinampSetters.setOnlyShowFavorites(newConfig.filters.contains(ItemFilter(type: ItemFilterType.isFavorite)));
-    }
+    // disallow filtering track lists in albums or playlists until we are able to store the filter per tab/context
+    if (contentType != ContentType.inPlaylistOrAlbum) {
+      if (newConfig.filters.contains(ItemFilter(type: ItemFilterType.isFavorite)) !=
+          FinampSettingsHelper.finampSettings.onlyShowFavorites) {
+        FinampSetters.setOnlyShowFavorites(newConfig.filters.contains(ItemFilter(type: ItemFilterType.isFavorite)));
+      }
 
-    if (newConfig.filters.contains(ItemFilter(type: ItemFilterType.isFullyDownloaded)) !=
-        FinampSettingsHelper.finampSettings.onlyShowFullyDownloaded) {
-      FinampSetters.setOnlyShowFullyDownloaded(
-        newConfig.filters.contains(ItemFilter(type: ItemFilterType.isFullyDownloaded)),
-      );
+      if (newConfig.filters.contains(ItemFilter(type: ItemFilterType.isFullyDownloaded)) !=
+          FinampSettingsHelper.finampSettings.onlyShowFullyDownloaded) {
+        FinampSetters.setOnlyShowFullyDownloaded(
+          newConfig.filters.contains(ItemFilter(type: ItemFilterType.isFullyDownloaded)),
+        );
+      }
     }
   }
 
@@ -176,8 +181,13 @@ class TrackingSortAndFilterController extends SortAndFilterController {
     return _config.copyWith(
       sortBy: ref.watch(finampSettingsProvider.tabSortBy(_type)),
       sortOrder: ref.watch(finampSettingsProvider.tabSortOrder(_type)),
-      favoriteFilter: ref.watch(finampSettingsProvider.onlyShowFavorites),
-      onlyShowFullyDownloadedFilter: ref.watch(finampSettingsProvider.onlyShowFullyDownloaded),
+      favoriteFilter: contentType == ContentType.inPlaylistOrAlbum
+          ? false
+          : ref.watch(finampSettingsProvider.onlyShowFavorites),
+      onlyShowFullyDownloadedFilter: contentType == ContentType.inPlaylistOrAlbum
+          ? false
+          : ref.watch(finampSettingsProvider.onlyShowFullyDownloaded),
+      filters: contentType == ContentType.inPlaylistOrAlbum ? {} : null,
     );
   }
 }
@@ -194,7 +204,7 @@ final _unresolvedSortProvider = Provider.family((Ref ref, SortAndFilterControlle
 });
 
 class SortAndFilterRow extends ConsumerWidget {
-  final ContentType tabType;
+  final ContentType contentType;
   final SortAndFilterController controller;
 
   final bool removeOnly;
@@ -205,7 +215,7 @@ class SortAndFilterRow extends ConsumerWidget {
 
   const SortAndFilterRow({
     super.key,
-    required this.tabType,
+    required this.contentType,
     required this.controller,
     this.hideLeadingIcon = false,
     this.allowFilters,
@@ -216,7 +226,7 @@ class SortAndFilterRow extends ConsumerWidget {
     required this.controller,
     this.hideLeadingIcon = false,
     this.allowFilters,
-  }) : tabType = ContentType.tracks,
+  }) : contentType = ContentType.tracks,
        removeOnly = true;
 
   @override
@@ -230,7 +240,7 @@ class SortAndFilterRow extends ConsumerWidget {
 
     Future<void> showMenu() => showSortAndFilterMenu(
       context,
-      tabType: tabType,
+      tabType: contentType,
       controller: controller,
       removeOnly: removeOnly,
       allowFilters: allowFilters,
@@ -441,7 +451,7 @@ mixin _SortAndFilterMenuEntriesMixin<T extends ConsumerStatefulWidget> on Consum
   List<Widget> _getMenuEntries(BuildContext context) {
     final rawSortOptions = SortBy.defaultsFor(
       type: tabType.itemType,
-      includeDefaultOrder: tabType == ContentType.inPlaylist,
+      includeDefaultOrder: tabType == ContentType.inPlaylistOrAlbum,
     );
     final sortOptions = ref.watch(finampSettingsProvider.isOffline)
         ? [...rawSortOptions.whereNot((s) => s.onlineOnly), ...rawSortOptions.where((s) => s.onlineOnly)]
@@ -524,7 +534,7 @@ mixin _SortAndFilterMenuEntriesMixin<T extends ConsumerStatefulWidget> on Consum
           ),
           ...ItemFilterType.values
               .where((x) => toggalableFilterTypes.contains(x))
-              .map((option) => _makeFilterTile(option)),
+              .map((option) => _makeFilterTile(option, tabType)),
           ...excessFilters.map((filter) => _makeExcessFilterTile(filter)),
         ],
       ),
@@ -549,10 +559,11 @@ mixin _SortAndFilterMenuEntriesMixin<T extends ConsumerStatefulWidget> on Consum
     ];
   }
 
-  Widget _makeFilterTile(ItemFilterType option) {
+  Widget _makeFilterTile(ItemFilterType option, ContentType contentType) {
     return ToggleableListTile(
       title: ItemFilter(type: option).getName(context.l10n),
       leading: Padding(padding: const EdgeInsets.only(left: 16.0), child: Icon(option.icon)),
+      enabled: contentType != ContentType.inPlaylistOrAlbum,
       trailing: SizedBox.shrink(),
       state: switch (option) {
         ItemFilterType.isFavorite => currentConfig.filters.contains(ItemFilter(type: ItemFilterType.isFavorite)),
