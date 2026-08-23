@@ -455,7 +455,7 @@ class FinampSettingsAdapter extends TypeAdapter<FinampSettings> {
             : fields[154] as bool,
         perTabContentViewType: fields[155] == null
             ? {
-                ContentType.albums: ContentViewType.list,
+                ContentType.albums: ContentViewType.grid,
                 ContentType.genericArtists: ContentViewType.list,
                 ContentType.albumArtists: ContentViewType.list,
                 ContentType.performingArtists: ContentViewType.list,

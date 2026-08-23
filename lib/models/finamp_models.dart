@@ -128,7 +128,7 @@ class DefaultSettings {
   static const volumeNormalizationIOSBaseGain = 6.0;
   static const volumeNormalizationMode = VolumeNormalizationMode.hybrid;
   static const perTabContentViewType = {
-    ContentType.albums: ContentViewType.list,
+    ContentType.albums: ContentViewType.grid,
     ContentType.genericArtists: ContentViewType.list,
     ContentType.albumArtists: ContentViewType.list,
     ContentType.performingArtists: ContentViewType.list,
@@ -4638,6 +4638,9 @@ class SortAndFilterConfiguration {
       filters.firstWhereOrNull((x) => x.type == ItemFilterType.artistFilter)?.extraBaseItem;
 
   bool get favoritesFilter => filters.firstWhereOrNull((x) => x.type == ItemFilterType.isFavorite) != null;
+
+  bool get onlyShowFullyDownloadedFilter =>
+      filters.firstWhereOrNull((x) => x.type == ItemFilterType.isFullyDownloaded) != null;
 
   SortAndFilterConfiguration copyWith({
     SortBy? sortBy,
