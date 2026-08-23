@@ -66,7 +66,7 @@ class _LoginServerSelectionPageState extends ConsumerState<LoginServerSelectionP
           }
         } else {
           _loginServerSelectionPageLogger.severe(
-            "Failed to load public server info for discovered server '${response.name}' at ${response.address}: $error",
+            "Couldn't fetch public server info from '${response.name}' at ${response.address}: $error",
           );
         }
         return;

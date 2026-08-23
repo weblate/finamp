@@ -267,7 +267,7 @@ class ServerState {
           // Found server requiring mTLS certificate, no need to try other protocols/ports.
           return;
         } else {
-          serverStateLogger.severe("Error loading server info: $error");
+          serverStateLogger.severe("Couldn't reach server at $baseUrlToTest (HTTPS): $error");
         }
       }
       if (this.baseUrlToTest != baseUrl) {
@@ -282,7 +282,7 @@ class ServerState {
         try {
           publicServerInfo = await jellyfinApiHelper.loadServerPublicInfo();
         } catch (error) {
-          serverStateLogger.severe("Error loading server info: $error");
+          serverStateLogger.severe("Couldn't reach server at $baseUrlToTest (HTTP): $error");
         }
       }
       if (this.baseUrlToTest != baseUrl) {
@@ -297,7 +297,7 @@ class ServerState {
         try {
           publicServerInfo = await jellyfinApiHelper.loadServerPublicInfo();
         } catch (error) {
-          serverStateLogger.severe("Error loading server info: $error");
+          serverStateLogger.severe("Couldn't reach server at $baseUrlToTest (default port): $error");
         }
       }
       if (this.baseUrlToTest != baseUrl) {
