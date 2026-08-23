@@ -153,7 +153,7 @@ class _AlbumChipContent extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  "$albumName and me too",
+                  albumName,
                   overflow: TextOverflow.ellipsis,
                   softWrap: false,
                   style: TextStyle(color: color ?? Theme.of(context).textTheme.bodySmall!.color ?? Colors.white),
