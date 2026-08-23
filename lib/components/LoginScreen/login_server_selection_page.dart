@@ -11,7 +11,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get_it/get_it.dart';
-import 'package:http/http.dart' show ClientException;
 import 'package:logging/logging.dart';
 
 import 'login_flow.dart';
@@ -56,9 +55,7 @@ class _LoginServerSelectionPageState extends ConsumerState<LoginServerSelectionP
       try {
         serverInfo = await jellyfinApiHelper.loadCustomServerPublicInfo(serverUrl);
       } catch (error) {
-        if (ClientCertificateInstaller.isSupported &&
-            error is ClientException &&
-            error.message.contains("TLSV1_ALERT_CERTIFICATE_REQUIRED")) {
+        if (await ClientCertificateInstaller.isCertificateRequiredError(error, serverUrl)) {
           _loginServerSelectionPageLogger.info(
             "Discovered server '${response.name}' at ${response.address} requires an mTLS client certificate",
           );
@@ -168,10 +165,15 @@ class _LoginServerSelectionPageState extends ConsumerState<LoginServerSelectionP
                         child: ListTile(
                           leading: const Icon(TablerIcons.alert_triangle),
                           title: Text(AppLocalizations.of(context)!.clientCertificateRequired),
-                          onTap: () => Navigator.of(
-                            context,
-                            rootNavigator: true,
-                          ).pushNamed(AdvancedLoginOptionsScreen.routeName),
+                          subtitle: ClientCertificateInstaller.isSupported
+                              ? null
+                              : Text(AppLocalizations.of(context)!.clientCertificatesUnsupported),
+                          onTap: ClientCertificateInstaller.isSupported
+                              ? () => Navigator.of(
+                                  context,
+                                  rootNavigator: true,
+                                ).pushNamed(AdvancedLoginOptionsScreen.routeName)
+                              : null,
                           shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(12.0))),
                         ),
                       ),
