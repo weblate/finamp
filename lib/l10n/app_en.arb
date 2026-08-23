@@ -3632,6 +3632,10 @@
     "@clientCertificateInstalled": {
         "description": "Message shown when the user has successfully installed an SSL client certificate."
     },
+    "clientCertificatesUnsupported": "Client certificates are not supported on this platform",
+    "@clientCertificatesUnsupported": {
+        "description": "Message shown when client certificates are not supported on the user's current platform."
+    },
     "clientCertificateDescription": "A TLS client certificate (.p12 or .pfx) is used to additionally authenticate this device with your Jellyfin server. Only required if your server is configured for mutual TLS.",
     "@clientCertificateDescription": {
         "description": "Explanatory text in the client certificate settings menu describing what a client certificate is used for"

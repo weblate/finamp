@@ -222,17 +222,19 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
             title: Text(AppLocalizations.of(context)!.quickConnectAuthorizationMenuButtonTitle),
             onTap: () => showQuickConnectAuthorizationMenu(context: context),
           ),
-          if (ClientCertificateInstaller.isSupported)
-            ListTile(
-              leading: Icon(TablerIcons.certificate),
-              title: Text(AppLocalizations.of(context)!.clientCertificate),
-              subtitle: Text(
-                ref.watch(finampSettingsProvider.clientCertificate) != null
-                    ? AppLocalizations.of(context)!.clientCertificateInstalled
-                    : AppLocalizations.of(context)!.clientCertificateUnavailable,
-              ),
-              onTap: () => showClientCertificateMenu(context: context),
+          ListTile(
+            leading: Icon(TablerIcons.certificate),
+            title: Text(AppLocalizations.of(context)!.clientCertificate),
+            subtitle: Text(
+              !ClientCertificateInstaller.isSupported
+                  ? AppLocalizations.of(context)!.clientCertificatesUnsupported
+                  : ref.watch(finampSettingsProvider.clientCertificate) != null
+                  ? AppLocalizations.of(context)!.clientCertificateInstalled
+                  : AppLocalizations.of(context)!.clientCertificateUnavailable,
             ),
+            enabled: ClientCertificateInstaller.isSupported,
+            onTap: () => showClientCertificateMenu(context: context),
+          ),
           const LogoutListTile(),
         ],
       ),
