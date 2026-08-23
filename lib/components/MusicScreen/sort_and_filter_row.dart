@@ -63,7 +63,7 @@ abstract class SortAndFilterController {
     final output = resolveOfflineWithoutFallback(ref, type, config);
     if (output != null) return output;
     if (type == ContentType.inPlaylistOrAlbum) {
-      return ResolvedSortConfig._(config.copyWith(sortBy: SortBy.defaultOrder, filters: {}));
+      return ResolvedSortConfig._(config.copyWith(sortBy: SortBy.defaultOrder));
     } else {
       return ResolvedSortConfig._(config.copyWith(sortBy: SortBy.sortName));
     }
@@ -136,10 +136,8 @@ class StaticSortAndFilterController extends SortAndFilterController {
 }
 
 class TrackingSortAndFilterController extends SortAndFilterController {
-  ContentType contentType;
   TrackingSortAndFilterController({required super.contentType})
-    : contentType = contentType,
-      super._(
+    : super._(
         startingConfig: switch (contentType) {
           ContentType.inPlaylistOrAlbum => ResolvedSortConfig.defaultInAlbumSort,
           ContentType.inPerformingArtistAlbums => ResolvedSortConfig.defaultArtistAlbumSort,
@@ -158,8 +156,8 @@ class TrackingSortAndFilterController extends SortAndFilterController {
       FinampSetters.setTabSortOrder(_type, newConfig.sortOrder);
     }
 
-    // disallow filtering track lists in albums or playlists until we are able to store the filter per tab/context
-    if (contentType != ContentType.inPlaylistOrAlbum) {
+    // prevent propagating configuration changes to the globally tracked settings for track lists in albums or playlists until we are able to store the filter per tab/context
+    if (_type != ContentType.inPlaylistOrAlbum) {
       if (newConfig.filters.contains(ItemFilter(type: ItemFilterType.isFavorite)) !=
           FinampSettingsHelper.finampSettings.onlyShowFavorites) {
         FinampSetters.setOnlyShowFavorites(newConfig.filters.contains(ItemFilter(type: ItemFilterType.isFavorite)));
@@ -181,13 +179,12 @@ class TrackingSortAndFilterController extends SortAndFilterController {
     return _config.copyWith(
       sortBy: ref.watch(finampSettingsProvider.tabSortBy(_type)),
       sortOrder: ref.watch(finampSettingsProvider.tabSortOrder(_type)),
-      favoriteFilter: contentType == ContentType.inPlaylistOrAlbum
-          ? false
+      favoriteFilter: _type == ContentType.inPlaylistOrAlbum
+          ? _config.favoritesFilter
           : ref.watch(finampSettingsProvider.onlyShowFavorites),
-      onlyShowFullyDownloadedFilter: contentType == ContentType.inPlaylistOrAlbum
-          ? false
+      onlyShowFullyDownloadedFilter: _type == ContentType.inPlaylistOrAlbum
+          ? _config.onlyShowFullyDownloadedFilter
           : ref.watch(finampSettingsProvider.onlyShowFullyDownloaded),
-      filters: contentType == ContentType.inPlaylistOrAlbum ? {} : null,
     );
   }
 }
@@ -563,7 +560,6 @@ mixin _SortAndFilterMenuEntriesMixin<T extends ConsumerStatefulWidget> on Consum
     return ToggleableListTile(
       title: ItemFilter(type: option).getName(context.l10n),
       leading: Padding(padding: const EdgeInsets.only(left: 16.0), child: Icon(option.icon)),
-      enabled: contentType != ContentType.inPlaylistOrAlbum,
       trailing: SizedBox.shrink(),
       state: switch (option) {
         ItemFilterType.isFavorite => currentConfig.filters.contains(ItemFilter(type: ItemFilterType.isFavorite)),
