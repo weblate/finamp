@@ -16,6 +16,7 @@ import 'package:finamp/models/jellyfin_models.dart';
 import 'package:finamp/models/locale_adapter.dart';
 import 'package:finamp/models/music_models.dart';
 import 'package:finamp/screens/accessibility_settings_screen.dart';
+import 'package:finamp/screens/advanced_login_options_screen.dart';
 import 'package:finamp/screens/album_settings_screen.dart';
 import 'package:finamp/screens/artist_settings_screen.dart';
 import 'package:finamp/screens/content_view_type_settings_screen.dart';
@@ -967,6 +968,7 @@ class FinampApp extends ConsumerWidget {
       routes: {
         SplashScreen.routeName: (context) => const SplashScreen(),
         LoginScreen.routeName: (context) => const LoginScreen(),
+        AdvancedLoginOptionsScreen.routeName: (context) => const AdvancedLoginOptionsScreen(),
         ViewSelector.routeName: (context) => const ViewSelector(),
         MusicScreen.routeName: (context) => const MusicScreen(),
         AlbumScreen.routeName: (context) => const AlbumScreen(),
