@@ -3492,6 +3492,9 @@ class SleepTimer {
 
   final sleepTimerLogger = Logger("SleepTimer");
 
+  /// Identifier of the last track that was counted towards the timer, to diagnose unexpected counter jumps
+  String? _lastCountedTrackId;
+
   SleepTimer(this.secondsLength, this.tracksLength);
 
   Future<void> start(Function callback) async {
@@ -3500,6 +3503,10 @@ class SleepTimer {
     _callback = callback;
 
     remainingNotifier.value = secondsLength + tracksLength;
+    sleepTimerLogger.info(
+      "Sleep timer started for ${Duration(seconds: secondsLength)}, $tracksLength tracks "
+      "(deadline: ${_startTime!.add(totalDuration)}, now: $_startTime)",
+    );
 
     if (secondsLength > 0) {
       _timer = Timer.periodic(const Duration(seconds: 1), (t) async {
@@ -3511,7 +3518,7 @@ class SleepTimer {
           t.cancel();
           _timer = null;
           if (tracksLength > 0) {
-            sleepTimerLogger.info("Sleep timer switching to track count");
+            sleepTimerLogger.info("Sleep timer duration finished, switching to track count ($tracksLength)");
             _tracksRemaining = tracksLength;
           } else {
             sleepTimerLogger.info("Sleep timer duration finished");
@@ -3520,17 +3527,42 @@ class SleepTimer {
         }
       });
     } else {
+      sleepTimerLogger.info("Sleep timer has no duration phase, starting directly with track count ($tracksLength)");
       _tracksRemaining = tracksLength;
     }
-
-    sleepTimerLogger.info("Sleep timer started for ${Duration(seconds: secondsLength)}, $tracksLength tracks");
   }
 
-  void onTrackCompleted() {
-    if (_tracksRemaining == null) return;
+  void onTrackCompleted({required bool trackEndedNormally, MediaItem? track}) {
+    if (_tracksRemaining == null) {
+      sleepTimerLogger.fine(
+        "Ignoring track completion"
+        "(${trackEndedNormally ? "end" : "skip"})"
+        "${track?.id != null ? ", id: $track?.id" : ""}"
+        "${track?.title != null ? ", name: \"${track?.title}\"" : ""}"
+        ": no track-count phase active",
+      );
+      return;
+    }
     assert(_startTime != null && _callback != null);
-    _tracksRemaining = _tracksRemaining! - 1;
+
+    final previousTracks = _tracksRemaining!;
+    _tracksRemaining = previousTracks - 1;
     remainingNotifier.value = _tracksRemaining!;
+
+    // Warn about repeated decrements for the same track
+    final sameTrackAsLastTime = _lastCountedTrackId != null && _lastCountedTrackId == track?.id;
+    _lastCountedTrackId = track?.id;
+
+    sleepTimerLogger.info(
+      "Sleep timer counted completed track"
+      "(${trackEndedNormally ? "end" : "skip"})"
+      "${track?.id != null ? ", id: $track?.id" : ""}"
+      "${track?.title != null ? ", name: \"${track?.title}\"" : ""}"
+      ": $previousTracks -> $_tracksRemaining remaining",
+    );
+    if (sameTrackAsLastTime) {
+      sleepTimerLogger.warning("Sleep timer counted the same track twice in a row");
+    }
     if (_tracksRemaining! <= 0) {
       _tracksRemaining = null;
       sleepTimerLogger.info("Sleep timer tracks finished");
@@ -3539,12 +3571,18 @@ class SleepTimer {
   }
 
   void cancel() {
+    final hadDurationPhase = _timer != null;
+    final hadRemainingTracks = _tracksRemaining;
     _startTime = null;
     _timer?.cancel();
     _timer = null;
     _tracksRemaining = null;
     remainingNotifier.value = 0;
-    sleepTimerLogger.info("Sleep timer cancelled");
+    sleepTimerLogger.info(
+      "Sleep timer cancelled"
+      "${hadDurationPhase ? " during duration phase" : ""}"
+      "${hadRemainingTracks != null ? " with $hadRemainingTracks tracks remaining" : ""}",
+    );
   }
 
   Duration get totalDuration => Duration(seconds: secondsLength);
