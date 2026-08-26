@@ -197,7 +197,7 @@ jobs:
 
     - name: Run Integration Tests
       if: *integration_if
-      run: timeout 13m flutter test integration_test/test_cases.dart -d 'iPhone 17'
+      run: flutter test integration_test/test_cases.dart -d 'iPhone 17'
 
   build-linux:
     name: Build for Linux
@@ -230,8 +230,7 @@ jobs:
       id: flutter-version
       with:
         architecture: 'x64'
-        # https connections currently case a crash with 3.44, so temporarily use beta instead
-        channel: 'beta'
+        channel: 'stable'
         dry-run: true
 
     - name: Set up Flutter
@@ -240,7 +239,6 @@ jobs:
         # Prebuilt ARM linux builds are not provided, so build flutter from source
         channel: master
         flutter-version: "${{ steps.flutter-version.outputs.VERSION }}"
-        # flutter-version: "3.41.9"
         cache: false
         pub-cache: true
         # Include arch as linux aarch64 include isar overriding

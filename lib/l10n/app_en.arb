@@ -247,6 +247,10 @@
     "@defaultOrder": {
         "description": "Default sorting order for playlists (server order)"
     },
+    "inAlbumOrPlaylist": "Album/Playlist Order",
+    "@inAlbumOrPlaylist": {
+        "description": "Sorting order for tracks in an album or playlist (by disc, then index, then name"
+    },
     "adaptive": "Adaptive",
     "formattedRelativeTime": "{type, select, just_now{just now} minutes{{value} min ago} hours{{value} h ago} yesterday{yesterday} days{{value, plural, =1{1 day ago} other{{value} days ago}}} other{value}}",
     "@formattedRelativeTime": {
@@ -344,6 +348,10 @@
                 "type": "int"
             }
         }
+    },
+    "discUnknown": "Disc Unknown",
+    "@discUnknown": {
+        "description": "Shown when the disc number is unknown or not set for a group of tracks on the album screen"
     },
     "playButtonLabel": "Play",
     "shuffleButtonLabel": "Shuffle",
@@ -984,7 +992,7 @@
     "@loopModeAllButtonLabel": {
         "description": "Label for the button that toggles the loop mode between off, loop one, and loop all, while the queue is in loop all mode"
     },
-    "queuesScreen": "Restore Now Playing",
+    "queuesScreen": "Past Queues",
     "@queuesScreen": {
         "description": "Title for the screen where older now playing queues can be restored"
     },
@@ -2738,6 +2746,15 @@
                 "type": "int",
                 "example": "1"
             },
+            "albumName": {
+                "type": "String"
+            }
+        }
+    },
+    "discUnknownOfAlbum": "[Disc Unknown] {albumName}",
+    "@discUnknownOfAlbum": {
+        "description": "Used when a single disc of album is opened, but the disc number is unknown, then album name is replaced with this string",
+        "placeholders": {
             "albumName": {
                 "type": "String"
             }

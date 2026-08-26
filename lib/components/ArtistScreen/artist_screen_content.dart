@@ -358,7 +358,7 @@ class _ArtistScreenContentState extends ConsumerState<ArtistScreenContent> {
                         items: albumArtistAlbums,
                         albumsShowYearAndDurationInstead: true,
                         sortAndFilterRow: albumArtistAlbums.length > 1
-                            ? SortAndFilterRow(controller: albumsController, tabType: ContentType.albums)
+                            ? SortAndFilterRow(controller: albumsController, contentType: ContentType.albums)
                             : null,
                       ),
                     );
@@ -374,7 +374,7 @@ class _ArtistScreenContentState extends ConsumerState<ArtistScreenContent> {
                         items: appearsOnAlbums,
                         albumsShowYearAndDurationInstead: true,
                         sortAndFilterRow: appearsOnAlbums.length > 1
-                            ? SortAndFilterRow(controller: appearsOnController, tabType: ContentType.albums)
+                            ? SortAndFilterRow(controller: appearsOnController, contentType: ContentType.albums)
                             : null,
                       ),
                     );

@@ -501,7 +501,7 @@ class MusicPlayerBackgroundTask extends BaseAudioHandler with SeekHandler, Queue
 
     // But sleepTimer doesn't want to listen on queue changes
     mediaItem.distinct().listen((currentTrack) {
-      sleepTimer?.onTrackCompleted();
+      sleepTimer?.onTrackCompleted(trackEndedNormally: false, track: currentTrack);
     });
 
     _player.errorStream.listen((error) {
@@ -517,7 +517,12 @@ class MusicPlayerBackgroundTask extends BaseAudioHandler with SeekHandler, Queue
                 Duration(milliseconds: 500).inMilliseconds,
                 FinampSettingsHelper.finampSettings.audioFadeOutDuration.inMilliseconds,
               )) {
-        sleepTimer?.onTrackCompleted();
+        _audioServiceBackgroundTaskLogger.info(
+          "Sleep timer: triggering early end of final track "
+          "(remaining position: ${((mediaItem.value?.duration ?? Duration.zero) - position).inMilliseconds}ms, "
+          "threshold: ${max(Duration(milliseconds: 500).inMilliseconds, FinampSettingsHelper.finampSettings.audioFadeOutDuration.inMilliseconds)}ms)",
+        );
+        sleepTimer?.onTrackCompleted(trackEndedNormally: true, track: mediaItem.value);
       }
     });
 
@@ -770,6 +775,9 @@ class MusicPlayerBackgroundTask extends BaseAudioHandler with SeekHandler, Queue
 
   Future<void> stopPlayback() async {
     try {
+      if (sleepTimer != null) {
+        _audioServiceBackgroundTaskLogger.info("Stopping playback with active sleep timer");
+      }
       clearSleepTimer();
 
       await _player.stop();
@@ -1193,6 +1201,7 @@ class MusicPlayerBackgroundTask extends BaseAudioHandler with SeekHandler, Queue
 
   /// Handles a sleep timer triggering, pausing play and clearing the timer
   void completeSleepTimer() {
+    _audioServiceBackgroundTaskLogger.info("Sleep timer completed, pausing playback");
     pause();
     _timer.value?.cancel();
     _timer.value = null;
@@ -1202,12 +1211,23 @@ class MusicPlayerBackgroundTask extends BaseAudioHandler with SeekHandler, Queue
 
   /// Starts the new sleep timer
   void startSleepTimer(SleepTimer newSleepTimer) {
+    if (sleepTimer != null) {
+      _audioServiceBackgroundTaskLogger.info(
+        "Sleep timer restarted before previous one finished (${sleepTimer!.remainingDuration} left, "
+        "${sleepTimer!.remainingTracks} tracks remaining)",
+      );
+      clearSleepTimer();
+    }
+    _audioServiceBackgroundTaskLogger.info(
+      "Starting sleep timer: ${newSleepTimer.secondsLength}s, ${newSleepTimer.tracksLength} tracks",
+    );
     _timer.value = newSleepTimer;
     sleepTimer?.start(completeSleepTimer);
   }
 
   /// Cancels the sleep timer and clears it.
   void clearSleepTimer() {
+    _audioServiceBackgroundTaskLogger.info("Clearing sleep timer");
     _timer.value?.cancel();
     _timer.value = null;
   }

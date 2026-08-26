@@ -539,10 +539,10 @@ void _migrateHomescreen() {
     changed = true;
   }
 
-  if (!finampSettings.tabSortBy.keys.contains(ContentType.inPlaylist)) {
-    finampSettings.tabSortBy[ContentType.inPlaylist] =
+  if (!finampSettings.tabSortBy.keys.contains(ContentType.inPlaylistOrAlbum)) {
+    finampSettings.tabSortBy[ContentType.inPlaylistOrAlbum] =
         finampSettings.playlistTracksSortBy ?? SortAndFilterConfiguration.defaultInAlbumSort.sortBy;
-    finampSettings.tabSortOrder[ContentType.inPlaylist] =
+    finampSettings.tabSortOrder[ContentType.inPlaylistOrAlbum] =
         finampSettings.playlistTracksSortOrder ?? SortAndFilterConfiguration.defaultInAlbumSort.sortOrder;
     changed = true;
   }

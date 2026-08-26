@@ -455,7 +455,7 @@ class FinampSettingsAdapter extends TypeAdapter<FinampSettings> {
             : fields[154] as bool,
         perTabContentViewType: fields[155] == null
             ? {
-                ContentType.albums: ContentViewType.list,
+                ContentType.albums: ContentViewType.grid,
                 ContentType.genericArtists: ContentViewType.list,
                 ContentType.albumArtists: ContentViewType.list,
                 ContentType.performingArtists: ContentViewType.list,
@@ -1925,7 +1925,7 @@ class ContentTypeAdapter extends TypeAdapter<ContentType> {
       case 7:
         return ContentType.albumArtists;
       case 8:
-        return ContentType.inPlaylist;
+        return ContentType.inPlaylistOrAlbum;
       case 9:
         return ContentType.mixed;
       case 10:
@@ -1956,7 +1956,7 @@ class ContentTypeAdapter extends TypeAdapter<ContentType> {
         writer.writeByte(6);
       case ContentType.albumArtists:
         writer.writeByte(7);
-      case ContentType.inPlaylist:
+      case ContentType.inPlaylistOrAlbum:
         writer.writeByte(8);
       case ContentType.mixed:
         writer.writeByte(9);
@@ -9571,7 +9571,7 @@ const _$ContentTypeEnumMap = {
   ContentType.home: 'home',
   ContentType.performingArtists: 'performingArtists',
   ContentType.albumArtists: 'albumArtists',
-  ContentType.inPlaylist: 'inPlaylist',
+  ContentType.inPlaylistOrAlbum: 'inPlaylistOrAlbum',
   ContentType.mixed: 'mixed',
   ContentType.inPerformingArtistAlbums: 'inPerformingArtistAlbums',
   ContentType.inAlbumArtistAlbums: 'inAlbumArtistAlbums',
@@ -9795,6 +9795,7 @@ const _$SortByEnumMap = {
   SortBy.revenue: 'revenue',
   SortBy.runtime: 'runtime',
   SortBy.defaultOrder: 'defaultOrder',
+  SortBy.inAlbumOrPlaylist: 'inAlbumOrPlaylist',
 };
 
 const _$SortOrderEnumMap = {
