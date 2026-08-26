@@ -248,7 +248,11 @@ class AudioServiceHelper {
     }
   }
 
-  Future<void> playRandomItem({bool favoritesOnly = false, Set<ContentType>? limitContentTypes}) async {
+  Future<void> playRandomItem({
+    bool favoritesOnly = false,
+    Set<ContentType>? limitContentTypes,
+    Map<ContentType, num>? contentWeights,
+  }) async {
     assert(
       limitContentTypes == null || limitContentTypes.isNotEmpty,
       "limitContentTypes must not be empty if provided",
@@ -257,152 +261,31 @@ class AudioServiceHelper {
       limitContentTypes?.every((type) => type.isPlayableJellyfinType && type.itemType != null) ?? true,
       "limitContentTypes must only contain playable Jellyfin item types",
     );
+    assert(
+      contentWeights == null ||
+          (limitContentTypes != null &&
+              contentWeights.keys.toSet().intersection(limitContentTypes).length == limitContentTypes.length),
+      "contentWeights must contain all allowed content Types if provided.",
+    );
 
-    ContentType? contentType;
-    if (favoritesOnly) {
-      // final tracksStub = await downloadsService.getAllTracks(
-      //   viewFilter: _finampUserHelper.currentUser?.currentView?.id,
-      //   onlyFavorites: true,
-      // );
-      // final albumStubs = await downloadsService.getAllCollections(
-      //   viewFilter: _finampUserHelper.currentUser?.currentView?.id,
-      //   fullyDownloaded: false,
-      //   onlyFavorites: true,
-      //   includeItemTypes: [BaseItemDtoType.album],
-      // );
-      // final playlistStubs = await downloadsService.getAllCollections(
-      //   viewFilter: _finampUserHelper.currentUser?.currentView?.id,
-      //   fullyDownloaded: false,
-      //   onlyFavorites: true,
-      //   includeItemTypes: [BaseItemDtoType.playlist],
-      // );
-      // final albumArtistStubs = await downloadsService.getAllCollections(
-      //   viewFilter: _finampUserHelper.currentUser?.currentView?.id,
-      //   fullyDownloaded: false,
-      //   onlyFavorites: true,
-      //   artistType: ArtistType.albumArtist,
-      //   includeItemTypes: [BaseItemDtoType.artist],
-      // );
-      // final performingArtistStubs = await downloadsService.getAllCollections(
-      //   viewFilter: _finampUserHelper.currentUser?.currentView?.id,
-      //   fullyDownloaded: false,
-      //   onlyFavorites: true,
-      //   artistType: ArtistType.artist,
-      //   includeItemTypes: [BaseItemDtoType.artist],
-      // );
-      // final genreStubs = await downloadsService.getAllCollections(
-      //   viewFilter: _finampUserHelper.currentUser?.currentView?.id,
-      //   fullyDownloaded: false,
-      //   onlyFavorites: true,
-      //   includeItemTypes: [BaseItemDtoType.genre],
-      // );
-      // final contentTypeCounts = {
-      //   ContentType.tracks: max(tracksStub.length, 1),
-      //   ContentType.albums: max(albumStubs.length, 1),
-      //   ContentType.playlists: max(playlistStubs.length, 1),
-      //   ContentType.albumArtists: max(albumArtistStubs.length, 1),
-      //   ContentType.performingArtists: max(performingArtistStubs.length, 1),
-      //   ContentType.genres: max(genreStubs.length, 1),
-      // };
-      num trackCount, albumCount, playlistCount, albumArtistCount, performingArtistCount, genreCount;
-      if (FinampSettingsHelper.finampSettings.isOffline) {
-        final downloadsService = GetIt.instance<DownloadsService>();
-        trackCount = downloadsService.getFavoritesCount(baseItemType: BaseItemDtoType.track) ?? 0;
-        albumCount = downloadsService.getFavoritesCount(baseItemType: BaseItemDtoType.album) ?? 0;
-        playlistCount = downloadsService.getFavoritesCount(baseItemType: BaseItemDtoType.playlist) ?? 0;
-        albumArtistCount = downloadsService.getFavoritesCount(baseItemType: BaseItemDtoType.artist) ?? 0 / 2;
-        performingArtistCount = downloadsService.getFavoritesCount(baseItemType: BaseItemDtoType.artist) ?? 0 / 2;
-        genreCount = downloadsService.getFavoritesCount(baseItemType: BaseItemDtoType.genre) ?? 0;
-      } else {
-        trackCount = (await _jellyfinApiHelper.getItemsWithTotalRecordCount(
-          parentItem: _finampUserHelper.currentUser!.currentView,
-          libraryFilter: _finampUserHelper.currentUser!.currentView!.id,
-          includeItemTypes: [BaseItemDtoType.track.jellyfinName].join(","),
-          filters: "IsFavorite",
-          limit: 1,
-        )).totalRecordCount;
-        albumCount = (await _jellyfinApiHelper.getItemsWithTotalRecordCount(
-          parentItem: _finampUserHelper.currentUser!.currentView,
-          libraryFilter: _finampUserHelper.currentUser!.currentView!.id,
-          includeItemTypes: [BaseItemDtoType.album.jellyfinName].join(","),
-          filters: "IsFavorite",
-          limit: 1,
-        )).totalRecordCount;
-        playlistCount = (await _jellyfinApiHelper.getItemsWithTotalRecordCount(
-          parentItem: _finampUserHelper.currentUser!.currentView,
-          libraryFilter: _finampUserHelper.currentUser!.currentView!.id,
-          includeItemTypes: [BaseItemDtoType.playlist.jellyfinName].join(","),
-          filters: "IsFavorite",
-          limit: 1,
-        )).totalRecordCount;
-        albumArtistCount = (await _jellyfinApiHelper.getItemsWithTotalRecordCount(
-          parentItem: _finampUserHelper.currentUser!.currentView,
-          libraryFilter: _finampUserHelper.currentUser!.currentView!.id,
-          includeItemTypes: [BaseItemDtoType.artist.jellyfinName].join(","),
-          filters: "IsFavorite",
-          artistType: ArtistType.albumArtist,
-          limit: 1,
-        )).totalRecordCount;
-        performingArtistCount = (await _jellyfinApiHelper.getItemsWithTotalRecordCount(
-          parentItem: _finampUserHelper.currentUser!.currentView,
-          libraryFilter: _finampUserHelper.currentUser!.currentView!.id,
-          includeItemTypes: [BaseItemDtoType.artist.jellyfinName].join(","),
-          filters: "IsFavorite",
-          artistType: ArtistType.artist,
-          limit: 1,
-        )).totalRecordCount;
-        genreCount = (await _jellyfinApiHelper.getItemsWithTotalRecordCount(
-          parentItem: _finampUserHelper.currentUser!.currentView,
-          libraryFilter: _finampUserHelper.currentUser!.currentView!.id,
-          includeItemTypes: [BaseItemDtoType.genre.jellyfinName].join(","),
-          // filters: "IsFavorite",
-          isFavorite: true, // genres use a different filter
-          limit: 1,
-        )).totalRecordCount;
-      }
+    limitContentTypes ??= {
+      ContentType.tracks,
+      ContentType.albums,
+      ContentType.albumArtists,
+      ContentType.performingArtists,
+      ContentType.genres,
+      ContentType.playlists,
+    };
+    contentWeights ??= await _generateRandomContentTypeWeights(favoritesOnly, limitContentTypes);
+    contentWeights.removeWhere((key, val) => !limitContentTypes!.contains(key));
 
-      final contentTypeCounts = {
-        ContentType.tracks: trackCount,
-        ContentType.albums: albumCount,
-        ContentType.playlists: playlistCount,
-        ContentType.albumArtists: albumArtistCount,
-        ContentType.performingArtists: performingArtistCount,
-        ContentType.genres: genreCount,
-      };
-      final largestContentType = contentTypeCounts.entries.reduce((a, b) => a.value >= b.value ? a : b).key;
-      final fractionsOfLargestContentType = contentTypeCounts.map(
-        (key, value) => MapEntry(key, value / contentTypeCounts[largestContentType]!),
-      );
-      // adjust how much we want to even out the selection of content types. 1.0 = completely even, 0.0 = completely weighted towards the largest content type
-      // the goal is to frequently pick *all* item types, but also avoid frequent repetition of items when a certain type only has a few favorites
-      final weightingTuningAlpha = 0.6;
-      final inverseFrequencyWeights = fractionsOfLargestContentType.map(
-        (key, value) => MapEntry(key, pow(value, weightingTuningAlpha)),
-      );
-      // randomly select a content type based on the weights
-      final totalWeight = inverseFrequencyWeights.values.reduce((a, b) => a + b);
-      final randomValue = Random().nextDouble() * totalWeight;
-      var cumulativeWeight = 0.0;
-      contentType = inverseFrequencyWeights.entries.firstWhere((entry) {
-        cumulativeWeight += entry.value;
-        return randomValue < cumulativeWeight;
-      }).key;
-    } else {
-      // we randomly decide on an item type, each item type should be diverse enough to not get a lot of repetition when often using the "random item" quick action
-      contentType =
-          ((limitContentTypes ??
-                      {
-                        ContentType.tracks,
-                        ContentType.albums,
-                        ContentType.albumArtists,
-                        ContentType.performingArtists,
-                        ContentType.genres,
-                        ContentType.playlists,
-                      })
-                  .toList()
-                ..shuffle())
-              .firstOrNull;
-    }
+    final sum = contentWeights.values.sum;
+    final randomValue = Random().nextDouble() * sum;
+    var cumulativeWeight = 0.0;
+    final contentType = contentWeights.entries.firstWhere((entry) {
+      cumulativeWeight += entry.value;
+      return randomValue < cumulativeWeight;
+    }).key;
 
     audioServiceHelperLogger.info("Attempting to play random $contentType (favorite: $favoritesOnly)");
 
@@ -414,7 +297,7 @@ class AudioServiceHelper {
       // I guess part of the reason for this is that it's not possible to favorite a genre through the Jellyfin Web UI at all...
       // true = only favorites, false = exclude favorites, null = all items
       isFavorite: contentType == ContentType.genres && favoritesOnly ? true : null,
-      includeItemTypes: contentType?.itemType?.jellyfinName,
+      includeItemTypes: contentType.itemType?.jellyfinName,
       artistType: switch (contentType) {
         ContentType.albumArtists => ArtistType.albumArtist,
         ContentType.performingArtists => ArtistType.artist,
@@ -425,10 +308,14 @@ class AudioServiceHelper {
     ))?.firstOrNull;
 
     if (randomItem == null) {
-      final additionalContentType = limitContentTypes?.whereNot((x) => x == contentType).toSet() ?? <ContentType>{};
+      final additionalContentType = limitContentTypes.whereNot((x) => x == contentType).toSet();
       // If no results are found, we may have just chosen a bad contentType.  Recursively cycle through the others if they exist.
       if (additionalContentType.isNotEmpty) {
-        return playRandomItem(favoritesOnly: favoritesOnly, limitContentTypes: additionalContentType);
+        return playRandomItem(
+          favoritesOnly: favoritesOnly,
+          limitContentTypes: additionalContentType,
+          contentWeights: contentWeights,
+        );
       } else {
         GlobalSnackbar.message((context) => context.l10n.nothingFoundToPlay);
         return;
@@ -455,5 +342,65 @@ class AudioServiceHelper {
     }
 
     await _queueService.startPlayback(items: itemsToPlay, source: QueueItemSource.fromBaseItem(randomItem));
+  }
+
+  Future<Map<ContentType, num>> _generateRandomContentTypeWeights(
+    bool favoritesOnly,
+    Set<ContentType> contentTypes,
+  ) async {
+    final Map<ContentType, num> contentWeights;
+
+    if (favoritesOnly) {
+      final Map<ContentType, num> contentCounts;
+      if (FinampSettingsHelper.finampSettings.isOffline) {
+        final downloadsService = GetIt.instance<DownloadsService>();
+        contentCounts = Map.fromEntries(
+          contentTypes.map(
+            (x) => MapEntry(x, switch (x) {
+              ContentType.performingArtists ||
+              ContentType.albumArtists => (downloadsService.getFavoritesCount(baseItemType: x.itemType!) ?? 0) / 2.0,
+              _ => downloadsService.getFavoritesCount(baseItemType: x.itemType!) ?? 0,
+            }),
+          ),
+        );
+      } else {
+        final futures = contentTypes.map(
+          (x) async => MapEntry(
+            x,
+            (await switch (x) {
+              ContentType.genres => _jellyfinApiHelper.getItemsWithTotalRecordCount(
+                parentItem: _finampUserHelper.currentUser!.currentView,
+                libraryFilter: _finampUserHelper.currentUser!.currentView!.id,
+                includeItemTypes: [BaseItemDtoType.genre.jellyfinName].join(","),
+                // filters: "IsFavorite",
+                isFavorite: true,
+                // genres use a different filter
+                limit: 1,
+              ),
+              _ => _jellyfinApiHelper.getItemsWithTotalRecordCount(
+                parentItem: _finampUserHelper.currentUser!.currentView,
+                libraryFilter: _finampUserHelper.currentUser!.currentView!.id,
+                includeItemTypes: [x.itemType!.jellyfinName].join(","),
+                filters: "IsFavorite",
+                limit: 1,
+              ),
+            }).totalRecordCount,
+          ),
+        );
+        contentCounts = Map.fromEntries(await Future.wait(futures));
+      }
+
+      // adjust how much we want to even out the selection of content types. 0.0 = completely even per type, 1.0 = completely even per individual item
+      // the goal is to frequently pick *all* item types, but also avoid frequent repetition of items when a certain type only has a few favorites
+      const weightingTuningAlpha = 0.6;
+
+      contentWeights = contentCounts.map((key, val) => MapEntry(key, pow(val, weightingTuningAlpha)));
+    } else {
+      // Just assume that libraries have a reasonable balance between content types if favorite filter is not active
+      contentWeights = Map.fromEntries(contentTypes.map((x) => MapEntry(x, 100.0)));
+    }
+
+    //
+    return contentWeights;
   }
 }

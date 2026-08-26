@@ -1615,10 +1615,11 @@ class DownloadsService {
       return favoriteIds.length;
     }
     return _isar.downloadItems
-        .getAllSync(favoriteIds)
-        .nonNulls
-        .where((item) => item.baseItemType == baseItemType)
-        .length;
+        .where()
+        .anyOf(favoriteIds, (q, id) => q.isarIdEqualTo(id))
+        .filter()
+        .baseItemTypeEqualTo(baseItemType)
+        .countSync();
   }
 
   List<int>? _getFavoriteIds() {
