@@ -58,6 +58,32 @@
   </screenshots>
   <launchable type="desktop-id">com.unicornsonlsd.finamp.desktop</launchable>
   <releases>
+    <release version="1.0.0-beta" date="2026-08-28">
+      <url
+        type="details"
+      >https://github.com/jmshrv/finamp/releases/tag/1.0.0-beta</url>
+      <description>
+        <p>
+          New Features
+        </p>
+        <ul>
+          <li>Quick Settings</li>
+          <li>Choose between list and grid mode for each tab</li>
+        </ul>
+        <p>
+          Bug Fixes
+        </p>
+        <ul>
+          <li>Fixed slow load times on Jellyfin 12 when browsing tracks and playlists</li>
+          <li>Fixed filters applying to albums and playlists instead of only to tabs</li>
+          <li>Fixed adding long queues or playlists to another playlist</li>
+          <li>Reduced repetition when using "random..." quick actions</li>
+        </ul>
+        <p>
+          <em>Thank you for using Finamp!</em>
+        </p>
+      </description>
+    </release>
     <release version="0.9.25-beta" date="2026-08-01">
       <url
         type="details"
