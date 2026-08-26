@@ -282,10 +282,13 @@ class AudioServiceHelper {
     final sum = contentWeights.values.sum;
     final randomValue = Random().nextDouble() * sum;
     var cumulativeWeight = 0.0;
-    final contentType = contentWeights.entries.firstWhere((entry) {
-      cumulativeWeight += entry.value;
-      return randomValue < cumulativeWeight;
-    }).key;
+    final contentType =
+        contentWeights.entries.firstWhereOrNull((entry) {
+          cumulativeWeight += entry.value;
+          return randomValue < cumulativeWeight;
+          // Fallback to last entry if selection fails due to rounding issues or whatnot.
+        })?.key ??
+        contentWeights.entries.last.key;
 
     audioServiceHelperLogger.info("Attempting to play random $contentType (favorite: $favoritesOnly)");
 
