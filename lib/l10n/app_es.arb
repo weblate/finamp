@@ -160,7 +160,7 @@
     "enterLowPriorityStateOnPause": "Entrar en estado de baja prioridad al pausar",
     "pathReturnSlashErrorMessage": "No se pueden usar rutas que devuelvan \"/\"",
     "grid": "Cuadrícula",
-    "viewType": "Tipo de vista",
+    "viewType": "Tipo de vista para la pantalla de música",
     "viewTypeSubtitle": "Tipo de vista para la pantalla de música",
     "useCoverAsBackground": "Mostrar la carátula con desenfoque como fondo del reproductor",
     "tabs": "Pestañas",
