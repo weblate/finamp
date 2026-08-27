@@ -2417,5 +2417,9 @@
     "multichannelHandlingSubtitle": "Cómo gestionar pistas multicanal (más de 2 canales) al realizar la transcodificación. Se aplica tanto al streaming como a las descargas.",
     "@multichannelHandlingSubtitle": {
         "description": "Subtitle for multi-channel handling dropdown"
+    },
+    "activeLibraries": "Bibliotecas activas",
+    "@activeLibraries": {
+        "description": "Active Libraries"
     }
 }
