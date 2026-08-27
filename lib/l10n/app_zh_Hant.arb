@@ -148,8 +148,8 @@
     "enterLowPriorityStateOnPauseSubtitle": "允許暫停後可滑掉通知，並讓 Android 關閉播放服務。",
     "shuffleAllTrackCount": "隨機播放所有歌曲次數",
     "shuffleAllTrackCountSubtitle": "使用全部隨機播放按鈕時，要載入的歌曲數量。",
-    "viewType": "瀏覽方式",
-    "viewTypeSubtitle": "調整音樂列表的瀏覽方式",
+    "viewType": "音樂列表顯示方式",
+    "viewTypeSubtitle": "調整所有音樂列表分頁以網格或清單模式顯示，主畫面除外。",
     "list": "列表",
     "grid": "網格",
     "landscape": "橫向",
@@ -157,7 +157,7 @@
     "useCoverAsBackground": "使用模糊的專輯封面作為播放介面的背景",
     "useCoverAsBackgroundSubtitle": "在播放介面中是否顯示模糊的專輯封面作為背景。",
     "theme": "主題",
-    "system": "系統",
+    "system": "跟隨系統設定",
     "light": "淺色",
     "dark": "深色",
     "tabs": "分頁",
@@ -3643,5 +3643,7 @@
     "verboseLoggingSubtitle": "保留詳細日誌以供錯誤回報使用。若要獲得較佳的播放效能，請關閉此功能。",
     "@verboseLoggingSubtitle": {
         "description": "Subtitle explaining the verbose logging toggle"
-    }
+    },
+    "perTabGridMode": "依分頁個別選擇",
+    "showFastScrollerSubtitle": "顯示或隱藏音樂分頁右側的字母索引，可快速跳至指定字母。"
 }
