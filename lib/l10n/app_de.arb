@@ -3568,5 +3568,9 @@
     "playRandomItemActionDescription": "Spielt eine zufällige Datei ab",
     "@playRandomItemActionDescription": {
         "description": "Description of a home screen quick action"
+    },
+    "applyChangesOnClose": "Änderungen werden nach schließen des Menüs angewendet",
+    "@applyChangesOnClose": {
+        "description": "Notification on sort and filter menu that currently pending changes will be automatically applied on close."
     }
 }
