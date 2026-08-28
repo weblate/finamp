@@ -3564,5 +3564,9 @@
     "selectItemTypes": "Wähle Dateitypen aus.",
     "@selectItemTypes": {
         "description": "Title for 'play random item' quick action edit menu"
+    },
+    "playRandomItemActionDescription": "Spielt eine zufällige Datei ab",
+    "@playRandomItemActionDescription": {
+        "description": "Description of a home screen quick action"
     }
 }
