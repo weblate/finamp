@@ -867,7 +867,7 @@
     "@loopModeAllButtonLabel": {
         "description": "Label for the button that toggles the loop mode between off, loop one, and loop all, while the queue is in loop all mode"
     },
-    "queuesScreen": "Восстановить очередь",
+    "queuesScreen": "Прошлые очереди",
     "@queuesScreen": {
         "description": "Title for the screen where older now playing queues can be restored"
     },
@@ -3546,11 +3546,11 @@
             }
         }
     },
-    "clientCertificate": "Клиентский сертификат mTLS (SSL)",
+    "clientCertificate": "Клиентский сертификат (mTLS)",
     "@clientCertificate": {
         "description": "Title for the setting that allows managing SSL client certificates used for authentication"
     },
-    "clientCertificateUnavailable": "Нет установленных сертификатов, клиентская аутентификация выключена",
+    "clientCertificateUnavailable": "Нет установленных сертификатов, дополнительная клиентская аутентификация выключена",
     "@clientCertificateUnavailable": {
         "description": "Message shown when the user has no SSL client certificate available to use."
     },
@@ -3558,7 +3558,7 @@
     "@clientCertificateInstalled": {
         "description": "Message shown when the user has successfully installed an SSL client certificate."
     },
-    "clientCertificateDescription": "Клиентский TLS сертификат (.p12 или .pfx) используется для аутентификации данного устройства при подключении к вашему Jellyfin серверу. Требуется только если ваш сервер настроен на использование взаимного TLS (mTLS).",
+    "clientCertificateDescription": "Клиентский TLS сертификат (.p12 или .pfx) используется для дополнительной аутентификации данного устройства при подключении к вашему Jellyfin серверу. Требуется только если ваш сервер настроен на использование взаимного TLS (mTLS).",
     "@clientCertificateDescription": {
         "description": "Explanatory text in the client certificate settings menu describing what a client certificate is used for"
     },
@@ -3674,5 +3674,30 @@
     "quickSettingsAllSettingsLink": "Все настройки",
     "quickSettingsNetworkLink": "Настройте локальный адрес вашего сервера",
     "perTabGridMode": "Выбрать по вкладкам",
-    "showFastScrollerSubtitle": "Показать или скрыть алфавитную ленту справа от вкладок с музыкой, позволяющую переходить к нужным буквам в списке."
+    "showFastScrollerSubtitle": "Показать или скрыть алфавитную ленту справа от вкладок с музыкой, позволяющую переходить к нужным буквам в списке.",
+    "discUnknown": "Диск неизвестен",
+    "@discUnknown": {
+        "description": "Shown when the disc number is unknown or not set for a group of tracks on the album screen"
+    },
+    "discUnknownOfAlbum": "[Диск неизвестен] {albumName}",
+    "@discUnknownOfAlbum": {
+        "description": "Used when a single disc of album is opened, but the disc number is unknown, then album name is replaced with this string",
+        "placeholders": {
+            "albumName": {
+                "type": "String"
+            }
+        }
+    },
+    "advanced": "Дополнительные настройки",
+    "@advanced": {
+        "description": "Label for the button on the login screen that opens the advanced options screen, and the title of that screen."
+    },
+    "clientCertificatesUnsupported": "Клиентские сертификаты не поддерживаются на этой платформе",
+    "@clientCertificatesUnsupported": {
+        "description": "Message shown when client certificates are not supported on the user's current platform."
+    },
+    "inAlbumOrPlaylist": "Порядок альбома/плейлиста",
+    "@inAlbumOrPlaylist": {
+        "description": "Sorting order for tracks in an album or playlist (by disc, then index, then name"
+    }
 }
