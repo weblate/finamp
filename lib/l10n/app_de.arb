@@ -3560,5 +3560,9 @@
     "recentlyAddedPlaylistsDescription": "Playlists nach erstellungsdatum, zuerst mit den Neusten",
     "@recentlyAddedPlaylistsDescription": {
         "description": "Description of a home screen section preset"
+    },
+    "selectItemTypes": "Wähle Dateitypen aus.",
+    "@selectItemTypes": {
+        "description": "Title for 'play random item' quick action edit menu"
     }
 }
