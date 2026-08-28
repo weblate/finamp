@@ -3556,5 +3556,9 @@
             }
         }
     },
-    "removeFromQueue": "Von der Wiedergabeliste entfernen"
+    "removeFromQueue": "Von der Wiedergabeliste entfernen",
+    "recentlyAddedPlaylistsDescription": "Playlists nach erstellungsdatum, zuerst mit den Neusten",
+    "@recentlyAddedPlaylistsDescription": {
+        "description": "Description of a home screen section preset"
+    }
 }
