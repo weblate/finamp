@@ -108,13 +108,13 @@
     },
     "required": "Pakollinen",
     "layoutAndTheme": "Asettelu ja teema",
-    "viewType": "Näkymän Tyyppi",
+    "viewType": "Musiikkinäkymän esitystapa",
     "list": "Lista",
     "grid": "Ruudukko",
     "landscape": "Vaaka",
     "showTextOnGridView": "Näytä teksti ruudukkonäkymässä",
     "theme": "Teema",
-    "system": "Järjestelmä",
+    "system": "Seuraa järjestelmän asetusta",
     "light": "Vaalea",
     "tabs": "Välilehdet",
     "cancelSleepTimer": "Peruuta uniajastin?",
@@ -229,7 +229,7 @@
     "@startMixNoTracksArtist": {
         "description": "Snackbar message that shows when the user presses the instant mix button with no artists selected"
     },
-    "viewTypeSubtitle": "Musiikkinäytön näkymätyyppi",
+    "viewTypeSubtitle": "Määrittää ruudukko- tai luettelonäkymän kaikille musiikkinäytön välilehdille kotinäkymää lukuun ottamatta.",
     "loginFlowAccountSelectionHeading": "Valitse tilisi",
     "@loginFlowAccountSelectionHeading": {
         "description": "Heading for the account selection step during the login flow."
@@ -572,7 +572,7 @@
     "@startInstantMixForIndividualTracksSwitchTitle": {
         "description": "Title for the switch that toggles if tapping a track on the tracks tab will start an instant mix of that track instead of just playing a single track."
     },
-    "startInstantMixForIndividualTracksSwitchSubtitle": "Kun käytössä, kappaleen napautus kappaleiden välilehdellä aloittaa välittömän sekoituksen yksittäisen kappaleen toiston sijaan.",
+    "startInstantMixForIndividualTracksSwitchSubtitle": "Kun käytössä, kappaleen napautus kappaleiden välilehdellä aloittaa välittömän sekoituksen normaalin toistojärjestyksen sijaan.",
     "downloadItem": "Lataa",
     "@downloadItem": {
         "description": "Option to download item in long-press menu."
@@ -1049,7 +1049,7 @@
     "@skipToPreviousTrackButtonTooltip": {
         "description": "Tooltip for the button that skips to the beginning of the current track or to the previous track"
     },
-    "confirmAddToNextUp": "Lisättiin {type, select, track{kappale} album{albumi} artist{artisti} playlist{soittolista} genre{tyylilaji} disc{levy} other{kohde}} seuraavaksi- jonoon",
+    "confirmAddToNextUp": "Lisättiin {type, select, track{kappale} album{albumi} artist{artisti} playlist{soittolista} genre{tyylilaji} disc{levy} other{kohde}} seuraavaksi-jonoon",
     "@confirmAddToNextUp": {
         "description": "A confirmation message that is shown after successfully adding a track to the end of the \"Next Up\" queue",
         "placeholders": {
@@ -3407,7 +3407,7 @@
             }
         }
     },
-    "homeAllPlaylistsWarning": "Haluatko varmasti ladata kaikki soittolistat?   Tämä lataa kaikki soittolistat, ei pelkästään tässä osiossa näkyvät.",
+    "homeAllPlaylistsWarning": "Haluatko varmasti ladata kaikki soittolistat? Tämä lataa kaikki soittolistat, ei pelkästään tässä osiossa näkyvät.",
     "@homeAllPlaylistsWarning": {
         "description": "Warning presented when pressing the download button on playlist home sections with a filter applied.  This is shown because the download will not apply the filter."
     },
@@ -3600,7 +3600,7 @@
         },
         "description": "Titles for settings controlling which pieces of advanced track info are displayed."
     },
-    "featureChipDescription": "{chipName, select, additionalPeople{Muut kappaleeseen liitetyt henkilöt kuin esiintyjät, jos saatavilla (säveltäjät, sanoittajat jne.)} playbackMode{Suoratoisto- ja uudelleenkoodaustilan tiedot} bitDepth{Bittiä ääninäytettä kohden. Koskee vain häviöttömiä koodekkeja, yleensä 16 bittiä.} sampleRate{Ääninäytettä sekunnissa. Yleensä 44,1 kHz.} normalizationGain{Tällä hetkellä aktiivinen ReplayGain-taso} other{null}}",
+    "featureChipDescription": "{chipName, select, explicit{Merkitsee kappaleet, joissa on sopimatonta sisältöä} additionalPeople{Muut kappaleeseen liitetyt henkilöt kuin esiintyjät, jos saatavilla (säveltäjät, sanoittajat jne.)} playbackMode{Suoratoisto- ja uudelleenkoodaustilan tiedot} bitDepth{Bittiä ääninäytettä kohden. Koskee vain häviöttömiä koodekkeja, yleensä 16 bittiä.} sampleRate{Ääninäytettä sekunnissa. Yleensä 44,1 kHz.} normalizationGain{Tällä hetkellä aktiivinen ReplayGain-taso} size{Alkuperäistiedoston koko} other{null}}",
     "@featureChipDescription": {
         "placeholders": {
             "chipName": {
@@ -3638,5 +3638,32 @@
                 "type": "String"
             }
         }
-    }
+    },
+    "verboseLogging": "Yksityiskohtaiset lokit",
+    "@verboseLogging": {
+        "description": "Title for the toggle that enables detailed logging on the logs screen"
+    },
+    "verboseLoggingSubtitle": "Säilytä yksityiskohtaiset lokit vikaraportointia varten. Jätä tämä pois päältä paremman suorituskyvyn takaamiseksi.",
+    "@verboseLoggingSubtitle": {
+        "description": "Subtitle explaining the verbose logging toggle"
+    },
+    "perTabGridMode": "Valitse välilehtikohtaisesti",
+    "showFastScrollerSubtitle": "Näytä tai piilota musiikkivälilehtien oikeassa laidassa oleva aakkosluettelo, jolla voit siirtyä suoraan kirjaimiin.",
+    "quickActionBanner": "Tutustu yleisesti muutettuihin asetuksiin!",
+    "@quickActionBanner": {
+        "description": "Banner directing new users to the quick settings, where they can adjust the most commonly used settings"
+    },
+    "themeSettingTitle": "Sovelluksen väriteema (tumma/vaalea)",
+    "@themeSettingTitle": {
+        "description": "Title for the setting that allows you to override the system theme and force dark or light mode"
+    },
+    "perTabGridModeScreen": "Aseta näkymätyyppi välilehtikohtaisesti",
+    "perTabAlbumGrid": "Albumit vain ruudukossa",
+    "quickSettingsScreen": "Pika-asetukset",
+    "quickSettingsScreenDescription": "Räätälöi Finamp mieleiseksesi näillä perusasetuksilla. Voit palata tänne milloin vain Asetukset-valikon kautta.",
+    "quickSettingsTabsLink": "Järjestä ja piilota välilehtiä",
+    "quickSettingsTranscodeLink": "Kaikki uudelleenkoodausasetukset",
+    "quickSettingsLayoutLink": "Kaikki asettelu- ja teema-asetukset",
+    "quickSettingsAllSettingsLink": "Kaikki asetukset",
+    "quickSettingsNetworkLink": "Määritä palvelimen paikallinen osoite"
 }
