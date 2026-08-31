@@ -63,6 +63,7 @@
         type="details"
       >https://github.com/jmshrv/finamp/releases/tag/1.0.0-beta</url>
       <description>
+        <p>This release was updated to 1.0.0-beta early on due to some issues with 1.0.0-beta. 1.0.0-beta was never published on Flathub.</p>
         <p>
           New Features
         </p>
