@@ -955,15 +955,18 @@ class FinampSettings {
   @HiveField(152, defaultValue: "unset") // pre-generation default
   String deviceId;
 
+  //!!! Hive IDs 153, 154, 156, and 157 are burned by changes from https://github.com/finamp-app/finamp/pull/1504/ that were at some point released but reverted before the version was tagged.
+  // Don't ever use them
+
   /// Keeps verbose FINE/FINER/FINEST records for bug reports. Off by default;
   /// release builds otherwise cap at INFO.
-  @HiveField(153, defaultValue: DefaultSettings.verboseLogging)
+  @HiveField(158, defaultValue: DefaultSettings.verboseLogging)
   bool verboseLogging = DefaultSettings.verboseLogging;
 
-  @HiveField(154, defaultValue: DefaultSettings.showQuickActionsBanner)
+  @HiveField(159, defaultValue: DefaultSettings.showQuickActionsBanner)
   bool showQuickActionsBanner;
 
-  @HiveField(155, defaultValue: DefaultSettings.perTabContentViewType)
+  @HiveField(160, defaultValue: DefaultSettings.perTabContentViewType)
   @SettingsHelperMap("tabContentType")
   Map<ContentType, ContentViewType> perTabContentViewType;
 

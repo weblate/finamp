@@ -434,7 +434,7 @@ class FinampSettingsAdapter extends TypeAdapter<FinampSettings> {
         forceAudioOffloadingOnAndroid: fields[143] == null
             ? false
             : fields[143] as bool,
-        verboseLogging: fields[153] == null ? false : fields[153] as bool,
+        verboseLogging: fields[158] == null ? false : fields[158] as bool,
         previousTracksPersistenceMode: fields[145] == null
             ? PreviousTracksPersistenceMode.persistent
             : fields[145] as PreviousTracksPersistenceMode,
@@ -450,10 +450,10 @@ class FinampSettingsAdapter extends TypeAdapter<FinampSettings> {
         clientCertificate: fields[151] == null
             ? DefaultSettings.clientCertificate
             : fields[151] as ClientCertificate?,
-        showQuickActionsBanner: fields[154] == null
+        showQuickActionsBanner: fields[159] == null
             ? true
-            : fields[154] as bool,
-        perTabContentViewType: fields[155] == null
+            : fields[159] as bool,
+        perTabContentViewType: fields[160] == null
             ? {
                 ContentType.albums: ContentViewType.grid,
                 ContentType.genericArtists: ContentViewType.list,
@@ -462,7 +462,7 @@ class FinampSettingsAdapter extends TypeAdapter<FinampSettings> {
                 ContentType.playlists: ContentViewType.list,
                 ContentType.genres: ContentViewType.list,
               }
-            : (fields[155] as Map).cast<ContentType, ContentViewType>(),
+            : (fields[160] as Map).cast<ContentType, ContentViewType>(),
       )
       ..sortBy = fields[7] as SortBy?
       ..sortOrder = fields[8] as SortOrder?
@@ -779,11 +779,11 @@ class FinampSettingsAdapter extends TypeAdapter<FinampSettings> {
       ..write(obj.clientCertificate)
       ..writeByte(152)
       ..write(obj.deviceId)
-      ..writeByte(153)
+      ..writeByte(158)
       ..write(obj.verboseLogging)
-      ..writeByte(154)
+      ..writeByte(159)
       ..write(obj.showQuickActionsBanner)
-      ..writeByte(155)
+      ..writeByte(160)
       ..write(obj.perTabContentViewType);
   }
 
