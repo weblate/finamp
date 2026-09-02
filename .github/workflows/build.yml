@@ -319,7 +319,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ github.token }}
       with:
-        asset_paths: '["./${{ env.TAR_NAME }}", "./${{ env.SHA_NAME }}"]'
+        asset_paths: '["./${{ env.TAR_NAME }}"]'
 
     - name: Run Integration Tests
       if: *integration_if
