@@ -260,7 +260,7 @@ flutter_launcher_icons:
 
 msix_config:
   display_name: Finamp
-  publisher_display_name: jmshrv
+  publisher_display_name: Finamp
   identity_name: com.unicornsonlsd.finamp
   msix_version: 1.0.1.0
   logo_path: ./images/finamp_cropped.png
