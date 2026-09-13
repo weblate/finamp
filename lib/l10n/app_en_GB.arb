@@ -1,1 +1,638 @@
-{}
+{
+    "finamp": "Finamp",
+    "@finamp": {
+        "description": "App name, possibly translated"
+    },
+    "finampTagline": "An open source Jellyfin music player",
+    "@finampTagline": {
+        "description": "Tagline / short description for the app"
+    },
+    "startupErrorTitle": "Something went wrong during app startup!",
+    "@startupErrorTitle": {
+        "description": "The title for the error screen that shows when startup fails."
+    },
+    "startupErrorCallToAction": "Please create an issue on \"github.com/jmshrv/finamp\" with the logs (use the button below) and a screenshot of this page, so that we can fix it as quickly as possible.",
+    "@startupErrorCallToAction": {
+        "description": "The subtitle / call to action for what to do after encountering a startup error"
+    },
+    "startupErrorWorkaround": "As a workaround to the error you could clear your app data to reset the app. Keep in mind that in this case all your settings and downloads will be deleted.",
+    "@startupErrorWorkaround": {
+        "description": "The subtitle for how to manually recover from a startup error"
+    },
+    "about": "About Finamp",
+    "@about": {
+        "description": "Label for the about/info button on the settings screen"
+    },
+    "aboutContributionPrompt": "Made by awesome people in their free time.\nYou could be one of them!",
+    "@aboutContributionPrompt": {
+        "description": "Text shown in the about screen, explaining that the app is made by volunteers and that the user could be one of them."
+    },
+    "aboutContributionLink": "Contribute to Finamp on GitHub:",
+    "@aboutContributionLink": {
+        "description": "Link to the Finamp GitHub repository, shown in the about screen."
+    },
+    "aboutReleaseNotes": "Read the latest release notes:",
+    "@aboutReleaseNotes": {
+        "description": "Link to the release notes, shown in the about screen."
+    },
+    "aboutTranslations": "Help translate Finamp into your language:",
+    "@aboutTranslations": {
+        "description": "Link to the translation project, shown in the about screen."
+    },
+    "aboutThanks": "Thank you for using Finamp!",
+    "@aboutThanks": {
+        "description": "Thank you message shown in the about screen."
+    },
+    "loginFlowWelcomeHeading": "Welcome to {styledName}",
+    "@loginFlowWelcomeHeading": {
+        "description": "Greeting shown on the login screen.",
+        "placeholders": {
+            "styledName": {
+                "type": "String",
+                "example": "Finamp"
+            }
+        }
+    },
+    "loginFlowSlogan": "Your music, the way you want it.",
+    "@loginFlowSlogan": {
+        "description": "Slogan shown on the login screen."
+    },
+    "loginFlowGetStarted": "Get Started!",
+    "@loginFlowGetStarted": {
+        "description": "Button label for the login/splash screen."
+    },
+    "viewLogs": "View Logs",
+    "@viewLogs": {
+        "description": "Label for button shown during the login process that allows the user to view the app logs"
+    },
+    "changeLanguage": "Change Language",
+    "@changeLanguage": {
+        "description": "Label for button shown during the login process that allows the user to change the app language"
+    },
+    "loginFlowServerSelectionHeading": "Connect to Jellyfin",
+    "@loginFlowServerSelectionHeading": {
+        "description": "Heading for the server selection step during the login flow."
+    },
+    "back": "Back",
+    "@back": {
+        "description": "Label for the back button."
+    },
+    "serverUrl": "Server URL",
+    "internalExternalIpExplanation": "If you want to be able to access your Jellyfin server remotely, you need to use your external IP.\n\nIf your server is on a HTTP default port (80 or 443) or Jellyfin's default port (8096), you don't have to specify the port.\n\nIf the URL is correct, you should see some information about your server pop up below the input field.",
+    "@internalExternalIpExplanation": {
+        "description": "Extra info for which IP to use for remote access, and info on whether or not the user needs to specify a port."
+    },
+    "serverUrlHint": "e.g. demo.jellyfin.org/stable",
+    "@serverUrlHint": {
+        "description": "Hint text for the server URL input field. Should be the address to an actual, public Jellyfin server."
+    },
+    "serverUrlInfoButtonTooltip": "Server URL Help",
+    "@serverUrlInfoButtonTooltip": {
+        "description": "Tooltip for the button that shows the extra info dialog for which IP to use for remote access, and info on whether or not the user needs to specify a port."
+    },
+    "emptyServerUrl": "Server URL cannot be empty",
+    "@emptyServerUrl": {
+        "description": "Error message that shows when the user submits a login without a server URL"
+    },
+    "connectingToServer": "Connecting to server…",
+    "@connectingToServer": {
+        "description": "Text shown while the connection to the specified server is attempted"
+    },
+    "loginFlowLocalNetworkServers": "Servers on your local network:",
+    "@loginFlowLocalNetworkServers": {
+        "description": "Heading for the list of servers on the local network, shown during the login flow. Should ideally have a colon at the end."
+    },
+    "loginFlowLocalNetworkServersScanningForServers": "Scanning for servers…",
+    "@loginFlowLocalNetworkServersScanningForServers": {
+        "description": "Text shown while servers are being discovered via UDP broadcasts"
+    },
+    "loginFlowAccountSelectionHeading": "Select your account",
+    "@loginFlowAccountSelectionHeading": {
+        "description": "Heading for the account selection step during the login flow."
+    },
+    "backToServerSelection": "Back to Server Selection",
+    "@backToServerSelection": {
+        "description": "Label for the button that takes the user back to the server selection step during the login flow."
+    },
+    "loginFlowNamelessUser": "Unnamed User",
+    "@loginFlowNamelessUser": {
+        "description": "Name for a user that doesn't have a name set on the server."
+    },
+    "loginFlowCustomUser": "Custom User",
+    "@loginFlowCustomUser": {
+        "description": "Label for a button that allows the user to enter a custom username/password, for example if their user account is hidden."
+    },
+    "loginFlowAuthenticationHeading": "Log in to your account",
+    "@loginFlowAuthenticationHeading": {
+        "description": "Heading for the authentication step during the login flow."
+    },
+    "backToAccountSelection": "Back to Account Selection",
+    "@backToAccountSelection": {
+        "description": "Label for the button that takes the user back to the account selection step during the login flow."
+    },
+    "loginFlowQuickConnectPrompt": "Use Quick Connect code",
+    "@loginFlowQuickConnectPrompt": {
+        "description": "Text shown above the quick connect code. The full message will be 'Use Quick Connect code {code}'. The code will be a 6-digit number. Ideally, 'Quick Connect' should be capitalized and translated exactly as it is in the Jellyfin web UI."
+    },
+    "loginFlowQuickConnectInstructions": "Open the Jellyfin app or website, click on your user icon, and select Quick Connect.",
+    "@loginFlowQuickConnectInstructions": {
+        "description": "Instructions for how and where to enter the Quick Connect code. Ideally, 'Quick Connect' should be capitalized and translated exactly as it is in the Jellyfin web UI."
+    },
+    "loginFlowQuickConnectDisabled": "Quick Connect is disabled on this server.",
+    "@loginFlowQuickConnectDisabled": {
+        "description": "Warning that is shown during authentication if Quick Connect is disabled on the server."
+    },
+    "orDivider": "or",
+    "@orDivider": {
+        "description": "Text that separates two different ways to log in. For example, after selecting a server during the login flow, the other can either use Quick Connect, *or* select an account from a list. The text is stylized by wrapping it in dashes: '- or -'."
+    },
+    "loginFlowSelectAUser": "Select a user",
+    "@loginFlowSelectAUser": {
+        "description": "Heading for the list of users that the user can select from during the login flow."
+    },
+    "username": "Username",
+    "usernameHint": "Enter your username",
+    "@usernameHint": {
+        "description": "Hint text for the username input field."
+    },
+    "usernameValidationMissingUsername": "Please enter a username",
+    "@usernameValidationMissingUsername": {
+        "description": "Error message that shows when the user submits a login without a username"
+    },
+    "password": "Password",
+    "passwordHint": "Enter your password",
+    "@passwordHint": {
+        "description": "Hint text for the password input field."
+    },
+    "login": "Log In",
+    "@login": {
+        "description": "Label for the login button."
+    },
+    "logs": "Logs",
+    "verboseLogging": "Verbose Logging",
+    "@verboseLogging": {
+        "description": "Title for the toggle that enables detailed logging on the logs screen"
+    },
+    "verboseLoggingSubtitle": "Keep detailed logs for bug reports. Leave this off for better playback performance.",
+    "@verboseLoggingSubtitle": {
+        "description": "Subtitle explaining the verbose logging toggle"
+    },
+    "next": "Next",
+    "selectMusicLibraries": "Select Music Libraries",
+    "@selectMusicLibraries": {
+        "description": "App bar title for library select screen"
+    },
+    "allLibraries": "All Libraries",
+    "@allLibraries": {
+        "description": "All Libraries"
+    },
+    "activeLibraries": "Active Libraries",
+    "@activeLibraries": {
+        "description": "Active Libraries"
+    },
+    "unknownName": "Unknown Name",
+    "tracks": "Tracks",
+    "albums": "Albums",
+    "appearsOnAlbums": "Appears On",
+    "artists": "Artists",
+    "genres": "Genres",
+    "noGenres": "No Genres",
+    "@noGenres": {
+        "description": "Gets shown when there are no genres available for an album or artist"
+    },
+    "playlists": "Playlists",
+    "startMix": "Start Mix",
+    "startMixNoTracksArtist": "Long-press an artist to add or remove it from the mix builder before starting a mix",
+    "@startMixNoTracksArtist": {
+        "description": "Snackbar message that shows when the user presses the instant mix button with no artists selected"
+    },
+    "startMixNoTracksAlbum": "Long-press an album to add or remove it from the mix builder before starting a mix",
+    "@startMixNoTracksAlbum": {
+        "description": "Snackbar message that shows when the user presses the instant mix button with no albums selected"
+    },
+    "startMixNoTracksGenre": "Long-press a genre to add or remove it from the mix builder before starting a mix",
+    "@startMixNoTracksGenre": {
+        "description": "Snackbar message that shows when the user presses the instant mix button with no genres selected"
+    },
+    "music": "Music",
+    "clear": "Clear",
+    "favorite": "Favourite",
+    "favorites": "Favourites",
+    "shuffleSome": "Shuffle some",
+    "shuffleAll": "Shuffle all",
+    "downloads": "Downloads",
+    "settings": "Settings",
+    "offlineMode": "Offline Mode",
+    "sortBy": "Sort by",
+    "title": "Title",
+    "album": "Album",
+    "albumArtist": "Album Artist",
+    "albumArtists": "Album Artists",
+    "performingArtists": "Performing Artists",
+    "artist": "Artist",
+    "performingArtist": "Performing Artist",
+    "budget": "Budget",
+    "communityRating": "Community Rating",
+    "criticRating": "Critic Rating",
+    "dateAdded": "Date Added",
+    "datePlayed": "Date Last Played",
+    "playCount": "Play Count",
+    "premiereDate": "Release Date",
+    "productionYear": "Production Year",
+    "name": "Name",
+    "random": "Random",
+    "revenue": "Revenue",
+    "duration": "Duration",
+    "defaultOrder": "Default Order",
+    "@defaultOrder": {
+        "description": "Default sorting order for playlists (server order)"
+    },
+    "inAlbumOrPlaylist": "Album/Playlist Order",
+    "@inAlbumOrPlaylist": {
+        "description": "Sorting order for tracks in an album or playlist (by disc, then index, then name"
+    },
+    "adaptive": "Adaptive",
+    "formattedRelativeTime": "{type, select, just_now{just now} minutes{{value} min ago} hours{{value} h ago} yesterday{yesterday} days{{value, plural, =1{1 day ago} other{{value} days ago}}} other{value}}",
+    "@formattedRelativeTime": {
+        "description": "Returns a relative time string based on how long ago something happened. Used for various DateTime values such as Date Last Played and Date Added.",
+        "placeholders": {
+            "type": {
+                "type": "String",
+                "description": "The category of time passed: one of 'just_now', 'minutes', 'hours', 'yesterday', or 'days'."
+            },
+            "value": {
+                "type": "int",
+                "example": "5"
+            }
+        }
+    },
+    "activeDownloads": "Active Downloads",
+    "downloadCount": "{count,plural, =1{{count} download} other{{count} downloads}}",
+    "@downloadCount": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "downloadedCountUnified": "{trackCount,plural,=1{{trackCount} track} other{{trackCount} tracks}}, {imageCount,plural,=1{{imageCount} image} other{{imageCount} images}}\n{syncCount,plural,=1{{syncCount} node syncing} other{{syncCount} nodes syncing}}{repairing, plural, =0{} other{\nCurrently repairing}}",
+    "@downloadedCountUnified": {
+        "description": "Display of downloaded track and image count on downloads screen.",
+        "placeholders": {
+            "trackCount": {
+                "type": "int"
+            },
+            "imageCount": {
+                "type": "int"
+            },
+            "syncCount": {
+                "type": "int"
+            },
+            "repairing": {
+                "type": "int"
+            }
+        }
+    },
+    "dlComplete": "{count} complete",
+    "@dlComplete": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "dlFailed": "{count} failed",
+    "@dlFailed": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "dlEnqueued": "{count} enqueued",
+    "@dlEnqueued": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "dlRunning": "{count} running",
+    "@dlRunning": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "activeDownloadsTitle": "Active Downloads",
+    "noActiveDownloads": "No active downloads.",
+    "errorScreenError": "An error occurred while getting the list of errors! At this point, you should probably just create an issue on GitHub and delete app data",
+    "specialDownloads": "Special downloads",
+    "@specialDownloads": {
+        "description": "Title for the special downloads section on the downloads screen."
+    },
+    "libraryDownloads": "Library downloads",
+    "@libraryDownloads": {
+        "description": "Title for the library downloads section on the downloads screen."
+    },
+    "noItemsDownloaded": "No items downloaded.",
+    "@noItemsDownloaded": {
+        "description": "Shown on the downloads screen for sections without any downloaded items."
+    },
+    "error": "Error",
+    "discNumber": "Disc {number}",
+    "@discNumber": {
+        "placeholders": {
+            "number": {
+                "type": "int"
+            }
+        }
+    },
+    "discUnknown": "Disc Unknown",
+    "@discUnknown": {
+        "description": "Shown when the disc number is unknown or not set for a group of tracks on the album screen"
+    },
+    "playButtonLabel": "Play",
+    "shuffleButtonLabel": "Shuffle",
+    "playbackActionPageMoveWithinQueue": "Move Within Queue",
+    "@playbackActionPageMoveWithinQueue": {
+        "description": "Label for the playback action page that contains all actions related to moving tracks within the queue"
+    },
+    "playbackActionPageRegularTrackOptions": "Play",
+    "@playbackActionPageRegularTrackOptions": {
+        "description": "Label for the playback action page that contains all actions of the normal track menu, like starting a new queue or duplicating the track within the existing queue"
+    },
+    "playbackActionPageNewQueue": "New Queue",
+    "@playbackActionPageNewQueue": {
+        "description": "Label for the playback action page that contains all actions related to starting a new queue"
+    },
+    "playbackActionPageNext": "Play Next",
+    "@playbackActionPageNext": {
+        "description": "Label for the playback action page that contains all actions related to playing tracks directly after the current one"
+    },
+    "playbackActionPageNextUp": "Append Next",
+    "@playbackActionPageNextUp": {
+        "description": "Label for the playback action page that contains all actions related to appending tracks to Next Up"
+    },
+    "playbackActionPageAppendToQueue": "Play Last",
+    "@playbackActionPageAppendToQueue": {
+        "description": "Label for the playback action page that contains all actions related to appending tracks at the end of the queue"
+    },
+    "trackCount": "{count,plural,=1{{count} Track} other{{count} Tracks}}",
+    "@trackCount": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "offlineTrackCount": "{count,plural,=1{{count} Track} other{{count} Tracks}}, {downloads} Downloaded",
+    "@offlineTrackCount": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            },
+            "downloads": {
+                "type": "int"
+            }
+        }
+    },
+    "offlineTrackCountArtist": "{count,plural,=1{{count} Track} other{{count} Tracks}} Downloaded",
+    "@offlineTrackCountArtist": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "editItemTitle": "Edit {itemType, select, playlist{Playlist} other{}}",
+    "@editItemTitle": {
+        "placeholders": {
+            "itemType": {
+                "type": "String"
+            }
+        }
+    },
+    "required": "Required",
+    "updatePlaylistButtonLabel": "Update Playlist",
+    "@updatePlaylistButtonLabel": {
+        "description": "Label for the button that updates the playlist on the edit playlist screen"
+    },
+    "savingChanges": "Saving changes…",
+    "@savingChanges": {
+        "description": "Text shown while the changes to a playlist are being saved"
+    },
+    "playlistUpdated": "Playlist updated.",
+    "addDownloads": "Add Downloads",
+    "location": "Location",
+    "confirmDownloadStarted": "Download started",
+    "@confirmDownloadStarted": {
+        "description": "A confirmation message that is shown after successfully adding an item to the download queue, before it starts being processed and enqueued for download"
+    },
+    "downloadsQueued": "Downloading files",
+    "addButtonLabel": "Add",
+    "shareLogs": "Share logs",
+    "exportLogs": "Save logs",
+    "logsCopied": "Logs copied.",
+    "message": "Message",
+    "stackTrace": "Stack Trace",
+    "applicationLegalese": "Licensed with the Mozilla Public License 2.0.\nSource code available at {sourceCodeLink}.",
+    "@applicationLegalese": {
+        "placeholders": {
+            "sourceCodeLink": {
+                "type": "String",
+                "example": "https://github.com/jmshrv/finamp"
+            }
+        }
+    },
+    "transcoding": "Transcoding",
+    "downloadLocations": "Download Locations",
+    "audioService": "Audio Service",
+    "interactions": "Interactions",
+    "layoutAndTheme": "Layout & Theme",
+    "notAvailable": "Not available",
+    "notAvailableInOfflineMode": "Not available in offline mode",
+    "logOut": "Log Out",
+    "logoutButtonSubtitle": "Logging in to a different server will delete existing downloads",
+    "areYouSure": "Are you sure?",
+    "enableTranscoding": "Enable Transcoding",
+    "enableTranscodingSubtitle": "Transcodes music streams on the server side.",
+    "bitrate": "Bitrate",
+    "bitrateSubtitle": "A higher bitrate gives higher quality audio at the cost of higher bandwidth. Does not apply to lossless codecs, e.g. FLAC",
+    "customLocation": "Custom Location",
+    "appDirectory": "App Directory",
+    "addDownloadLocation": "Add Download Location",
+    "selectDirectory": "Select Directory",
+    "unknownError": "Unknown Error",
+    "pathReturnSlashErrorMessage": "Paths that return \"/\" can't be used",
+    "customLocationsBuggy": "Custom locations can be extremely buggy and are not recommended in most cases. Locations under the system 'Music' folder prevent saving album covers due to OS limitations.",
+    "enterLowPriorityStateOnPause": "Enter Low-Priority State on Pause",
+    "enterLowPriorityStateOnPauseSubtitle": "Lets the notification be swiped away when paused. Also allows Android to kill the service when paused.",
+    "shuffleAllTrackCount": "Shuffle All Track Count",
+    "shuffleAllTrackCountSubtitle": "Amount of tracks to load when using the shuffle all button on the tracks tab or genre screen.",
+    "viewType": "Music Screen Display Type",
+    "viewTypeSubtitle": "Controls whether to use grid or list mode for all music screen tabs, except for the home screen.",
+    "list": "List",
+    "grid": "Grid",
+    "perTabGridMode": "Choose per tab",
+    "none": "None",
+    "customizationSettingsTitle": "Customisation",
+    "@customizationSettingsTitle": {
+        "description": "Title for the customization settings screen"
+    },
+    "playbackSpeedControlSetting": "Playback Speed Visibility",
+    "@playbackSpeedControlSetting": {
+        "description": "Title of the visibility setting of the playback speed controls"
+    },
+    "playbackSpeedControlSettingSubtitle": "Whether the playback speed controls are shown in the player screen menu",
+    "@playbackSpeedControlSettingSubtitle": {
+        "description": "Subtitle for the playback speed visibility setting"
+    },
+    "playbackSpeedControlSettingDescription": "Automatic:\nFinamp tries to identify whether the track you are playing is a podcast or (part of) an audiobook. This is considered to be the case if the track is longer than {trackDuration} minutes, if the track''s album is longer than {albumDuration} hours, or if the track has at least one of these genres assigned: {genreList}\nPlayback speed controls will then be shown in the player screen menu.\n\nShown:\nThe playback speed controls will always be shown in the player screen menu.\n\nHidden:\nThe playback speed controls in the player screen menu are always hidden.",
+    "@playbackSpeedControlSettingDescription": {
+        "description": "Description for the dropdown that selects the replay gain mode, shown in a dialog that opens when the user presses the info icon next to the dropdown",
+        "placeholders": {
+            "trackDuration": {
+                "type": "int",
+                "example": "30"
+            },
+            "albumDuration": {
+                "type": "int",
+                "example": "3"
+            },
+            "genreList": {
+                "type": "String",
+                "example": "Podcast, Audiobook"
+            }
+        }
+    },
+    "automatic": "Automatic",
+    "@automatic": {
+        "description": "Used as an option in the playback speed visibility settings"
+    },
+    "shown": "Shown",
+    "@shown": {
+        "description": "Used as an option in the playback speed visibility settings"
+    },
+    "hidden": "Hidden",
+    "@hidden": {
+        "description": "Used as an option in the playback speed visibility settings"
+    },
+    "speed": "Speed",
+    "@speed": {
+        "description": "Used as a placeholder in the input of the playback speed menu"
+    },
+    "reset": "Reset",
+    "@reset": {
+        "description": "Used for buttons in the playback speed menu and the settings"
+    },
+    "apply": "Apply",
+    "@apply": {
+        "description": "Used for a button in the playback speed menu"
+    },
+    "landscape": "Landscape",
+    "showTextOnGridView": "Show text in grid view",
+    "showTextOnGridViewSubtitle": "Whether or not to show the text (title, artist etc) on the grid music screen. Text is always shown on the home screen, ignoring this setting.",
+    "useCoverAsBackground": "Use blurred cover as background",
+    "useCoverAsBackgroundSubtitle": "Whether or not to use a blurred album cover as background in various parts of the app.",
+    "playerScreenMinimumCoverPaddingEditorTitle": "Minimum album cover padding",
+    "@playerScreenMinimumCoverPaddingEditorTitle": {
+        "description": "Title for the editor that allows the user to set the minimum padding around the album cover on the player screen."
+    },
+    "playerScreenMinimumCoverPaddingEditorSubtitle": "Minimum padding around the album cover on the player screen, in % of the screen width.",
+    "@playerScreenMinimumCoverPaddingEditorSubtitle": {
+        "description": "Subtitle for the editor that allows the user to set the minimum padding around the album cover on the player screen."
+    },
+    "autoSwitchItemCurationTypeTitle": "Auto-Switch Item Curation Type",
+    "autoSwitchItemCurationTypeSubtitle": "When enabled, Item Sections on the Artist and Genre Screens automatically switch to a different curation type if no items are available (e.g., no favourites for a specific artist).",
+    "showArtistsTracksSection": "Show Tracks Section",
+    "showArtistsTracksSectionSubtitle": "Whether to show a section with up to five tracks. When enabled, you can choose between Most Played, Favourite, Random, Latest Releases, Recently Added and Recently Played Tracks.",
+    "disableGesture": "Disable gestures",
+    "disableGestureSubtitle": "Whether to disables gestures.",
+    "showFastScroller": "Show fast scroller",
+    "showFastScrollerSubtitle": "Show or hide the alphabet list on the right of music tabs, which allows jumping to letters.",
+    "theme": "Theme",
+    "system": "Follow system",
+    "light": "Light",
+    "dark": "Dark",
+    "accentColor": "Accent Colour",
+    "@accentColor": {
+        "description": "Title of the accent color setting"
+    },
+    "accentColorTitle": "Pick an Accent Colour",
+    "@accentColorTitle": {
+        "description": "Title for the accent color picker sheet"
+    },
+    "systemAccentColor": "Use System Accent Colour",
+    "@systemAccentColor": {
+        "description": "Title of the System Accent Color setting."
+    },
+    "systemAccentColorHasPriorityInfo": "Custom Accent Colour disabled because System Accent is currently in use",
+    "@systemAccentColorHasPriorityInfo": {
+        "description": "Text under the AccentColorTitle which is only visible when the system color is enabled since the system color will be prioritized over custom accent color"
+    },
+    "amoledTheme": "Use AMOLED Theme",
+    "@amoledTheme": {
+        "description": "Toggles the dark color scheme between dark gray and pure black."
+    },
+    "amoledThemeSubtitle": "Replaces the dark colour scheme with a pure black theme.",
+    "useMonochromeIcon": "Use Monochrome Logo",
+    "@useMonochromeIcon": {
+        "description": "Toggles the Finamp icon between classic and it being monochromic. This does not change the outside-app-icon"
+    },
+    "useMonochromeIconSubtitle": "This only affect the icon within the app, not the launcher icon.",
+    "@useMonochromeIconSubtitle": {
+        "description": "Subtitle for the toggle that switches the Finamp icon between classic and it being monochromic."
+    },
+    "defaultWord": "Default",
+    "useDefaultButton": "Reset to Default Accent Colour",
+    "colorCode": "Colour Code (Hex)",
+    "@colorCode": {
+        "description": "Label for a text field where the user can manually enter a color in hexadecimal format"
+    },
+    "colorCodeHint": "e.g. #FFFFFF or #coffee",
+    "@colorCodeHint": {
+        "description": "Hint text for the color code input field. Don't translate 'coffee', unless the translation is also a valid hex color code."
+    },
+    "save": "Save",
+    "tabs": "Tabs",
+    "playerScreen": "Player Screen",
+    "@playerScreen": {
+        "description": "Name for the expanded player"
+    },
+    "cancelSleepTimer": "Cancel Sleep Timer?",
+    "yesButtonLabel": "Yes",
+    "noButtonLabel": "No",
+    "hours": "Hours",
+    "seconds": "Seconds",
+    "minutes": "Minutes",
+    "timeFractionTooltip": "{currentTime} of {totalTime}",
+    "@timeFractionTooltip": {
+        "placeholders": {
+            "currentTime": {
+                "type": "String",
+                "example": "2 minutes 40 seconds"
+            },
+            "totalTime": {
+                "type": "String",
+                "example": "3 minutes 20 seconds"
+            }
+        },
+        "description": "Tooltip and accessibility label for the track progress. {currentTime} is the current position within the track, as a translated string like '2 minutes 40 seconds', and {totalTime} is the total duration of the track, also a translated string."
+    },
+    "trackCountTooltip": "Track {currentTrackIndex} of {totalTrackCount}",
+    "@trackCountTooltip": {
+        "description": "Tooltip and accessibility label for the queue progress. {currentTrackIndex} and {totalTrackCount} are both numbers",
+        "placeholders": {
+            "currentTrackIndex": {
+                "type": "int",
+                "example": "10"
+            },
+            "totalTrackCount": {
+                "type": "int",
+                "example": "13"
+            }
+        }
+    }
+}
