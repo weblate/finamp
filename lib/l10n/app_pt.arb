@@ -638,7 +638,7 @@
     "@playbackModeTranscoding": {
         "description": "Feature chip that is shown when tracks are being transcoded by the server"
     },
-    "kiloBitsPerSecondLabel": "{bitrate} kbps",
+    "kiloBitsPerSecondLabel": "{bitrate} KiB/s",
     "@kiloBitsPerSecondLabel": {
         "description": "Label for the bitrate of a track or for transcoding. The value will be the bitrate in kilobits per second.",
         "placeholders": {
@@ -814,7 +814,7 @@
     "bufferDisableSizeConstraintsTitle": "Não limitar o tamanho do buffer",
     "bufferDisableSizeConstraintsSubtitle": "Desativa as restrições do tamanho do buffer. O buffer será sempre carregado de acordo com a duração configurada, mesmo para ficheiros muito grandes. Pode causar instabilidade. É necessário reiniciar.",
     "bufferSizeTitle": "Tamanho do Buffer",
-    "bufferSizeSubtitle": "O tamanho do buffer em MB. É necessário reiniciar",
+    "bufferSizeSubtitle": "O tamanho do buffer em MiB. É necessário reiniciar",
     "confirmPlayNext": "{type, select, track{Faixa} album{Álbum} artist{Artista} playlist{Lista de Reprodução} genre{Estilo} disc{Disco} other{Item}} vai tocar a seguir",
     "@confirmPlayNext": {
         "description": "A confirmation message that is shown after successfully adding a track to the front of the \"Next Up\" queue",
