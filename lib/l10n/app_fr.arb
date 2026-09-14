@@ -384,7 +384,7 @@
     "@playbackModeDirectPlaying": {
         "description": "Feature chip that is shown when tracks are being played directly from the server, without transcoding"
     },
-    "kiloBitsPerSecondLabel": "{bitrate} kbps",
+    "kiloBitsPerSecondLabel": "{bitrate} KiB/s",
     "@kiloBitsPerSecondLabel": {
         "description": "Label for the bitrate of a track or for transcoding. The value will be the bitrate in kilobits per second.",
         "placeholders": {
@@ -709,7 +709,7 @@
     "@emptyFilteredListSubtitle": {
         "description": "Message shown when a list of items is filtered and no items match the filter"
     },
-    "bufferSizeSubtitle": "Taille du tampon en Mo. Un redémarrage est nécessaire",
+    "bufferSizeSubtitle": "Taille de la mémoire tampon en MiB. Nécessite un redémarrage.",
     "playbackOrderLinearButtonLabel": "Jouer dans l'ordre",
     "@playbackOrderLinearButtonLabel": {
         "description": "Label for the button that toggles the playback order between linear/in-order and shuffle, while the queue is in linear/in-order mode"
