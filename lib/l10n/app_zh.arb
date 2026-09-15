@@ -429,7 +429,7 @@
     "@playbackModeDirectPlaying": {
         "description": "Feature chip that is shown when tracks are being played directly from the server, without transcoding"
     },
-    "kiloBitsPerSecondLabel": "{bitrate} kbps",
+    "kiloBitsPerSecondLabel": "{bitrate} KiB/s",
     "@kiloBitsPerSecondLabel": {
         "description": "Label for the bitrate of a track or for transcoding. The value will be the bitrate in kilobits per second.",
         "placeholders": {
@@ -1237,7 +1237,7 @@
         "description": "Subtitle for the editor that allows the user to set the minimum padding around the album cover on the player screen."
     },
     "noActiveDownloads": "无正在下载。",
-    "bufferSizeSubtitle": "缓冲区的容量（MB）。重启生效",
+    "bufferSizeSubtitle": "缓冲区大小（单位：MiB）。需要重启",
     "addToMorePlaylistsTitle": "添加至更多播放列表",
     "shuffleAllQueueSource": "随机播放",
     "@shuffleAllQueueSource": {
