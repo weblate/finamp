@@ -146,7 +146,7 @@
     "@loginFlowSelectAUser": {
         "description": "Heading for the list of users that the user can select from during the login flow."
     },
-    "username": "Username",
+    "username": "Nama pengguna",
     "usernameHint": "Masukkan username Anda",
     "@usernameHint": {
         "description": "Hint text for the username input field."
@@ -655,7 +655,7 @@
     "@playbackModeTranscoding": {
         "description": "Feature chip that is shown when tracks are being transcoded by the server"
     },
-    "kiloBitsPerSecondLabel": "{bitrate} kbps",
+    "kiloBitsPerSecondLabel": "{bitrate} KiB/s",
     "@kiloBitsPerSecondLabel": {
         "description": "Label for the bitrate of a track or for transcoding. The value will be the bitrate in kilobits per second.",
         "placeholders": {
@@ -724,7 +724,7 @@
     "bufferDisableSizeConstraintsTitle": "Jangan batasi ukuran buffer",
     "bufferDisableSizeConstraintsSubtitle": "Menonaktifkan batasan ukuran buffer ('Ukuran Buffer'). Buffer akan selalu dimuat sampai durasi yang dikonfigurasi ('Durasi Buffer'), bahkan untuk file yang sangat besar. Dapat menyebabkan crash. Memerlukan mulai ulang.",
     "bufferSizeTitle": "Ukuran buffer",
-    "bufferSizeSubtitle": "Ukuran buffer dalam MB. Memerlukan mulai ulang",
+    "bufferSizeSubtitle": "Ukuran buffer dalam MiB. Memerlukan mulai ulang",
     "language": "Bahasa",
     "skipToPreviousTrackButtonTooltip": "Lompat ke awal atau ke trek sebelumnya",
     "@skipToPreviousTrackButtonTooltip": {
