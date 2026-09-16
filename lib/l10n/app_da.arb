@@ -1910,5 +1910,9 @@
     "serverSharingMenuDescription": "Deling af din server addresse kan være brugbart til at sætte nye klienter op på samme lokale netværk som din Jellyfin server,",
     "@serverSharingMenuDescription": {
         "description": "Description text shown in the server sharing menu, right below the controls"
+    },
+    "customizeHomeScreen": "Personliggør Hjemmeskærm",
+    "@customizeHomeScreen": {
+        "description": "Label for home screen customize button"
     }
 }
