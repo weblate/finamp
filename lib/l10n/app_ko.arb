@@ -113,7 +113,7 @@
     "unknownError": "알수 없는 오류",
     "shuffleAllTrackCount": "전곡 임의 재생시 곡 수",
     "shuffleAllTrackCountSubtitle": "노래 또는 장르 탭에서 '전곡 임의 재생' 버튼을 사용할 때 불러올 곡(들)의 개수입니다.",
-    "viewTypeSubtitle": "음악 화면 보기 유형",
+    "viewTypeSubtitle": "모든 음악 화면 탭에서 그리드나 리스트 모드를 제어합니다. (단, 홈스크린은 제외)",
     "list": "목록",
     "grid": "그리드(격자)",
     "landscape": "가로 보기",
@@ -123,7 +123,7 @@
     "disableGestureSubtitle": "제스처 비활성화 여부를 설정합니다.",
     "showFastScroller": "빠른 스크롤 표시",
     "theme": "테마",
-    "system": "시스템",
+    "system": "시스템 설정을 따름",
     "light": "밝은 테마",
     "tabs": "탭",
     "yesButtonLabel": "네",
@@ -419,7 +419,7 @@
     "@playbackModeDirectPlaying": {
         "description": "Feature chip that is shown when tracks are being played directly from the server, without transcoding"
     },
-    "kiloBitsPerSecondLabel": "{bitrate} kbps",
+    "kiloBitsPerSecondLabel": "{bitrate} KiB/초",
     "@kiloBitsPerSecondLabel": {
         "description": "Label for the bitrate of a track or for transcoding. The value will be the bitrate in kilobits per second.",
         "placeholders": {
@@ -449,7 +449,7 @@
     "@loopModeNoneButtonLabel": {
         "description": "Label for the button that toggles the loop mode between off, loop one, and loop all, while the queue is in loop off mode"
     },
-    "queuesScreen": "‘지금 재생중’ 복원",
+    "queuesScreen": "이전 대기열 복원",
     "@queuesScreen": {
         "description": "Title for the screen where older now playing queues can be restored"
     },
@@ -747,7 +747,7 @@
         }
     },
     "bufferDisableSizeConstraintsTitle": "버퍼 크기를 제한하지 않습니다",
-    "bufferSizeSubtitle": "버퍼의 크기(MB단위). 변경시 재시작이 필요합니다",
+    "bufferSizeSubtitle": "버퍼의 크기(MiB단위). 변경시 재시작이 필요합니다",
     "placeholderSource": "출처 미상",
     "@placeholderSource": {
         "description": "Placeholder text used when the source of the current track/queue is unknown"
@@ -855,7 +855,7 @@
         }
     },
     "close": "닫기",
-    "couldNotLoad": "{source, select, album{앨범} playlist{플레이리스트} trackMix{트랙 믹스} artistMix{아티스트 믹스} albumMix{앨범 믹스} genreMix{장르 믹스} favorites{즐겨찾기} allTracks{전체 트랙} filteredList{트랙 목록} genre{장르} artist{아티스트} track{트랙} nextUpAlbum{Next Up 앨범} nextUpPlaylist{Next Up 플레이리스트 } nextUpArtist{Next Up 아티스트 } nextUpGenre{Next Up 장르} other{}} 로딩에 실패하였습니다",
+    "couldNotLoad": "{source, select, album{앨범} playlist{플레이리스트} trackMix{트랙 믹스} artistMix{아티스트 믹스} albumMix{앨범 믹스} genreMix{장르 믹스} favorites{즐겨찾기} allTracks{전체 트랙} filteredList{트랙 목록} genre{장르} artist{아티스트} track{트랙} nextUpAlbum{Next Up 앨범} nextUpPlaylist{Next Up 플레이리스트 } nextUpArtist{Next Up 아티스트 } nextUpGenre{Next Up 장르} other{}} 로딩할 수 없습니다",
     "@couldNotLoad": {
         "placeholders": {
             "source": {
@@ -1931,7 +1931,7 @@
     "@playbackActionPageRegularTrackOptions": {
         "description": "Label for the playback action page that contains all actions of the normal track menu, like starting a new queue or duplicating the track within the existing queue"
     },
-    "systemAccentColor": "시스템 강조(색상) 설정을 사용합니다",
+    "systemAccentColor": "시스템 강조 색상을 사용합니다",
     "@systemAccentColor": {
         "description": "Title of the System Accent Color setting."
     },
@@ -2173,5 +2173,27 @@
     "allowDeleteFromServerSubtitle": "(삭제가 가능한 경우) 서버 파일 시스템에서 항목을 영구적으로 삭제하는 옵션을 활성화 또는 비활성화 합니다.",
     "@allowDeleteFromServerSubtitle": {
         "description": "Subtitle for the setting that controls if items can be deleted from the server"
-    }
+    },
+    "verboseLogging": "상세 로깅",
+    "@verboseLogging": {
+        "description": "Title for the toggle that enables detailed logging on the logs screen"
+    },
+    "verboseLoggingSubtitle": "버그 리포트를 위해 상세한 로그를 유지합니다. 재생 성능을 높이려면 설정을 끄십시오.",
+    "@verboseLoggingSubtitle": {
+        "description": "Subtitle explaining the verbose logging toggle"
+    },
+    "activeLibraries": "활성 라이브러리",
+    "@activeLibraries": {
+        "description": "Active Libraries"
+    },
+    "inAlbumOrPlaylist": "앨범/플레이리스트 정렬 순서",
+    "@inAlbumOrPlaylist": {
+        "description": "Sorting order for tracks in an album or playlist (by disc, then index, then name"
+    },
+    "discUnknown": "디스크 번호 알 수 없음",
+    "@discUnknown": {
+        "description": "Shown when the disc number is unknown or not set for a group of tracks on the album screen"
+    },
+    "perTabGridMode": "탭별로 선택하십시오",
+    "showFastScrollerSubtitle": "글자 단위로 검색하게 해주는 알파벳 리스트를 음악 탭 오른쪽 가장자리에 표시하거나 숨깁니다."
 }
