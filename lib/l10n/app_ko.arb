@@ -2195,5 +2195,33 @@
         "description": "Shown when the disc number is unknown or not set for a group of tracks on the album screen"
     },
     "perTabGridMode": "탭별로 선택하십시오",
-    "showFastScrollerSubtitle": "글자 단위로 검색하게 해주는 알파벳 리스트를 음악 탭 오른쪽 가장자리에 표시하거나 숨깁니다."
+    "showFastScrollerSubtitle": "글자 단위로 검색하게 해주는 알파벳 리스트를 음악 탭 오른쪽 가장자리에 표시하거나 숨깁니다.",
+    "noDateLastPlayed": "최초 재생 대기중",
+    "@noDateLastPlayed": {
+        "description": "Placeholder text if an item has no lastPlayedDate set."
+    },
+    "librarySelectError": "이용 가능한 라이브러리를 불러오는데 실패했습니다",
+    "@librarySelectError": {
+        "description": "Error shown when the library select screen fails to load."
+    },
+    "autoOfflineOptionOff": "비활성화됨",
+    "@autoOfflineOptionOff": {
+        "description": "This is shown when the autoOffline feature is turned off and has no effects"
+    },
+    "autoOfflineOptionNetwork": "근거리 네트워크",
+    "@autoOfflineOptionNetwork": {
+        "description": "This is shown when the autoOffline feature is set to \"local Network\", this means offline mode will be automatically enabled when no wifi or ethernet connection is active"
+    },
+    "autoOfflineOptionDisconnected": "연결 끊김",
+    "@autoOfflineOptionDisconnected": {
+        "description": "This is shown when the autoOffline feature is set to Disconnected, this means offline mode will be automatically enabled when either wifi, ethernet or cellular is active"
+    },
+    "autoOfflineOptionUnreachable": "연결 불가",
+    "@autoOfflineOptionUnreachable": {
+        "description": "This is shown when the autoOffline feature is set to Unreachable, this means offline mode will be automatically enabled when - after a network change - the server cant be pinged"
+    },
+    "autoOfflineSettingSubtitle": "네트워크 및 서버 연결 상태에 따라 오프라인 모드를 자동으로 활성화 합니다.",
+    "@autoOfflineSettingSubtitle": {
+        "description": "Subtitle for the automated offline mode setting."
+    }
 }
