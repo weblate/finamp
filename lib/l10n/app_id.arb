@@ -720,11 +720,11 @@
         "description": "Menu label for starting a radio from a playlist, album, etc."
     },
     "bufferDuration": "Durasi buffer",
-    "bufferDurationSubtitle": "Durasi yang harus dibuffer, dalam detik. Memerlukan mulai ulang.",
+    "bufferDurationSubtitle": "Durasi yang harus dibuffer, dalam detik. Perlu mulai ulang.",
     "bufferDisableSizeConstraintsTitle": "Jangan batasi ukuran buffer",
-    "bufferDisableSizeConstraintsSubtitle": "Menonaktifkan batasan ukuran buffer ('Ukuran Buffer'). Buffer akan selalu dimuat sampai durasi yang dikonfigurasi ('Durasi Buffer'), bahkan untuk file yang sangat besar. Dapat menyebabkan crash. Memerlukan mulai ulang.",
+    "bufferDisableSizeConstraintsSubtitle": "Menonaktifkan batasan ukuran buffer ('Ukuran Buffer'). Buffer akan selalu dimuat sampai durasi yang dikonfigurasi ('Durasi Buffer'), bahkan untuk file yang sangat besar. Dapat menyebabkan crash. Perlu mulai ulang.",
     "bufferSizeTitle": "Ukuran buffer",
-    "bufferSizeSubtitle": "Ukuran buffer dalam MiB. Memerlukan mulai ulang",
+    "bufferSizeSubtitle": "Ukuran buffer dalam MiB. Perlu mulai ulang",
     "language": "Bahasa",
     "skipToPreviousTrackButtonTooltip": "Lompat ke awal atau ke trek sebelumnya",
     "@skipToPreviousTrackButtonTooltip": {
@@ -2796,7 +2796,7 @@
     "@duckOnAudioInterruptionTitle": {
         "description": "Title for the setting that controls ducking."
     },
-    "duckOnAudioInterruptionSubtitle": "Turunkan volume (duck) saat aplikasi lain memutar audio sebentar. Memerlukan mulai ulang.",
+    "duckOnAudioInterruptionSubtitle": "Turunkan volume (duck) saat aplikasi lain memutar audio sebentar. Perlu mulai ulang.",
     "@duckOnAudioInterruptionSubtitle": {
         "description": "Subtitle for the setting that controls ducking."
     },
@@ -2878,7 +2878,7 @@
     "@useAndroidGainEffectTitle": {
         "description": "Title for Android gain effect setting.  This setting is used to work around player errors on some devices."
     },
-    "useAndroidGainEffectSubtitle": "Gunakan efek gain bawaan untuk mengontrol volume. Ini lebih fleksibel tetapi dapat merusak pemutar di beberapa perangkat. Anda tidak perlu mengubah ini secara manual. Memerlukan restart aplikasi untuk diterapkan.",
+    "useAndroidGainEffectSubtitle": "Gunakan efek gain bawaan untuk mengontrol volume. Ini lebih fleksibel tetapi dapat merusak pemutar di beberapa perangkat. Anda tidak perlu mengubah ini secara manual. Perlu restart aplikasi untuk diterapkan.",
     "@useAndroidGainEffectSubtitle": {
         "description": "Subtitle for Android gain effect setting.  This setting is used to work around player errors on some devices."
     },
