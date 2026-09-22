@@ -218,7 +218,7 @@
     "customLocationsBuggy": "사용자 지정 위치는 대부분의 상황에서 권장하지 않습니다(버그가 매우 많이 발생할 수 있습니다). 운영체제 '음악'폴더 위치의 경우 시스템 제한 때문에 앨범 커버를 저장할 수 없습니다.",
     "enterLowPriorityStateOnPause": "일시 중지시 낮은 우선순위 상태로 전환합니다",
     "enterLowPriorityStateOnPauseSubtitle": "일시 중지시 알림창을 밀어서 사라지게 합니다. 안드로이드에서는 일시 중지시 서비스를 강제 종료할 수 있게 합니다.",
-    "viewType": "보기 유형",
+    "viewType": "음악 화면 표시 유형",
     "dark": "어두운 테마",
     "sleepTimerTooltip": "취침 타이머",
     "cancelSleepTimer": "취침 타이머를 취소할까요?",
@@ -989,7 +989,7 @@
             }
         }
     },
-    "startInstantMixForIndividualTracksSwitchSubtitle": "활성화하면 (노래 탭에서) 곡을 탭했을 때 단일 곡 재생 대신 해당 곡으로 인스턴트 믹스를 시작합니다.",
+    "startInstantMixForIndividualTracksSwitchSubtitle": "활성화하면 (노래 탭에서) 곡을 탭했을 때 노래를 순서대로 재생하는 대신 해당 노래로 인스턴트 믹스를 시작합니다.",
     "downloadItem": "다운로드",
     "@downloadItem": {
         "description": "Option to download item in long-press menu."
@@ -2094,7 +2094,7 @@
         "description": "Name for the view/screen that shows albums"
     },
     "downloadAllPlaylistsSettingWarning": "주의: 라이브러리 출처와 관계없이 모든 플레이리스트의 모든 항목들을 다운로드 합니다.",
-    "lyricsEmptyStateLoading": "가사 불러오는 중...",
+    "lyricsEmptyStateLoading": "가사 불러오는 중…",
     "@lyricsEmptyStateLoading": {
         "description": "Message shown while lyrics are being loaded"
     },
@@ -2223,5 +2223,112 @@
     "autoOfflineSettingSubtitle": "네트워크 및 서버 연결 상태에 따라 오프라인 모드를 자동으로 활성화 합니다.",
     "@autoOfflineSettingSubtitle": {
         "description": "Subtitle for the automated offline mode setting."
+    },
+    "audioFadeOutDurationSettingTitle": "페이드 아웃 지속시간",
+    "@audioFadeOutDurationSettingTitle": {
+        "description": "Title for the audio fade-out duration setting."
+    },
+    "audioFadeOutDurationSettingSubtitle": "오디오 페이드 아웃의 지속시간을 밀리초 단위로 설정합니다.",
+    "@audioFadeOutDurationSettingSubtitle": {
+        "description": "Subtitle for the audio fade-out duration setting. Set to 0 to disable fade-out."
+    },
+    "audioFadeInDurationSettingTitle": "페이드 인 지속시간",
+    "@audioFadeInDurationSettingTitle": {
+        "description": "Title for the audio fade-in duration setting."
+    },
+    "audioFadeInDurationSettingSubtitle": "오디오 페이드 인의 지속시간을 밀리초 단위로 설정합니다. 0으로 설정하면 비활성화 합니다.",
+    "@audioFadeInDurationSettingSubtitle": {
+        "description": "Subtitle for the audio fade-in duration setting. Set to 0 to disable fade-in."
+    },
+    "outputMenuButtonTitle": "출력",
+    "@outputMenuButtonTitle": {
+        "description": "Button title for opening the output menu/panel"
+    },
+    "outputMenuTitle": "출력 변경",
+    "@outputMenuTitle": {
+        "description": "Title for the output menu that allows the user to change the audio output device and volume"
+    },
+    "outputMenuVolumeSectionTitle": "볼륨",
+    "@outputMenuVolumeSectionTitle": {
+        "description": "Title for the volume section in the output menu"
+    },
+    "outputMenuDevicesSectionTitle": "이용할 수 있는 기기",
+    "@outputMenuDevicesSectionTitle": {
+        "description": "Title for the available devices section in the output menu"
+    },
+    "outputMenuOpenConnectionSettingsButtonTitle": "기기에 연결하기",
+    "@outputMenuOpenConnectionSettingsButtonTitle": {
+        "description": "Button title for connecting to a device from the output menu"
+    },
+    "deviceType": "{type, select, speaker{기기 스피커} tv{TV} bluetooth{블루투스} other{알 수 없음}}",
+    "@deviceType": {
+        "placeholders": {
+            "type": {
+                "type": "String"
+            }
+        },
+        "description": "Label for the type of device in the output menu"
+    },
+    "itemCountCalculating": "아이템 개수 계산",
+    "@itemCountCalculating": {
+        "description": "Shown to screen readers while the item count is being calculated."
+    },
+    "preferLocalNetworkActiveAddressInfoText": "활성화된 주소",
+    "@preferLocalNetworkActiveAddressInfoText": {
+        "description": "Shows the active address inside the network settings screen so the user can see if this feature works"
+    },
+    "preferLocalNetworkTargetAddressLocalSettingTitle": "근거리 네트워크 주소",
+    "preferLocalNetworkTargetAddressLocalSettingDescription": "근거리 네트워크에 속한 젤리핀 서버의 주소",
+    "preferLocalNetworkEnableSwitchTitle": "근거리 네트워크 선호",
+    "preferLocalNetworkEnableSwitchDescription": "젤리핀 서버가 근거리 네트워크에 속한 경우 다른 주소를 사용할지 여부",
+    "preferLocalNetworkPublicAddressSettingTitle": "공용 주소",
+    "preferLocalNetworkPublicAddressSettingDescription": "젤리핀 서버에 연결하기 위한 기본 주소",
+    "networkSettingsTitle": "네트워크",
+    "@networkSettingsTitle": {
+        "description": "Title for the network settings screen"
+    },
+    "downloadPaused": "기기가 와이파이에 연결되어 있지 않아서 다운로드를 일시중지 했습니다",
+    "@downloadPaused": {
+        "description": "Gets shown in the snackbar if loosing wifi connection while downloads are running and the 'requireWifiForDownloads' is enabled"
+    },
+    "missingSchemaError": "인터넷 주소(url)는 'http://' 또는 'https://'로 시작해야 합니다",
+    "@missingSchemaError": {
+        "description": "Snackbar message when the user changes their home/public address but it doesn't start with http"
+    },
+    "testConnectionButtonLabel": "두 가지 연결 테스트",
+    "@testConnectionButtonLabel": {
+        "description": "Button to test the public and local url inside the network settings tab"
+    },
+    "ping": "{status, select, true_true{두 가지 연결 가능} true_false{근거리 네트워크 연결 실패} false_true{공용 주소 연결 실패} false_false{두 가지 연결 실패} other{알 수 없음}}",
+    "@ping": {
+        "description": "Gets shown in the Snackbar when using the Test Connection Button inside the Network Settings. true means reachable, false means unreachable. the first value is for the public address, the second value is fot the home address."
+    },
+    "autoReloadQueueTitle": "대기열 자동으로 다시 불러오기",
+    "@autoReloadQueueTitle": {
+        "description": "Title for the setting that controls if the queue is automatically reloaded when the source changes"
+    },
+    "autoReloadQueueSubtitle": "출처(소스)가 바뀌면 대기열을 자동으로 다시 불러옵니다 (오프라인 모드가 활성화되거나 서버 주소가 바뀐 경우). 설정을 비활성화 하면 Finamp는 확인 메시지를 띄웁니다.",
+    "@autoReloadQueueSubtitle": {
+        "description": "Subtitle for the setting that controls if the queue is automatically reloaded when the source changes"
+    },
+    "clearQueueOnStopEventTitle": "외부 요인에 의한 정지시 대기열을 초기화함",
+    "@clearQueueOnStopEventTitle": {
+        "description": "Title for the setting that controls if OS stop commands clear the queue."
+    },
+    "deleteFromTargetConfirmButton": "{target, select, device{ 기기에서} server{ 서버에서} other{}} 삭제",
+    "@deleteFromTargetConfirmButton": {
+        "description": "(Important: Note the space in front of some cases) The button the user needs to press to execute the delete action. If no target is set, the text should just be a generic 'delete' text. This button is both visible before and after the delete confirm prompt."
+    },
+    "downloadSizeWarningCutoff": "다운로드 용량 경고의 기준",
+    "@downloadSizeWarningCutoff": {
+        "description": "Title for the setting controlling when to warn about a large download"
+    },
+    "publiclyVisiblePlaylist": "공개됨:",
+    "@publiclyVisiblePlaylist": {
+        "description": "Toggle for playlist creation where true means the playlist is publicly visible, false means only the creator can see it."
+    },
+    "additionalBaseItemInfoTitle": "추가적인 아이템 정보",
+    "@additionalBaseItemInfoTitle": {
+        "description": "Title for the setting that controls the displayed additional item info."
     }
 }
