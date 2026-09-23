@@ -2330,5 +2330,60 @@
     "additionalBaseItemInfoTitle": "추가적인 아이템 정보",
     "@additionalBaseItemInfoTitle": {
         "description": "Title for the setting that controls the displayed additional item info."
+    },
+    "deleteFromTargetDialogText": "지정한 {itemType, select, album{앨범} playlist{플레이리스트} artist{아티스트} genre{장르} track{곡} library{라이브러리} other{아이템}}을(를) {device, select, device{이 기기} server{서버 파일과 라이브러리.{deleteType, select, canDelete{ 삭제시 이 기기의 항목도 함께 삭제합니다.} cantDelete{ 이 항목은 다음 동기화 시점까지 이 기기에 유지됩니다.} notDownloaded{} other{}}\n이 작업은 되돌릴 수 없습니다} other{}}에서 지우려고 합니다.",
+    "@deleteFromTargetDialogText": {
+        "description": "(Important: Note the space in front of some cases) A Confirm Prompt used whenever an item is about to be deleted from the device or server. The Server case should explain that this cannot be reverted, this information is not needed for the device since the user can just download the track again. The delete Type adapts the server text even more in can the user can or cant delete the item."
+    },
+    "additionalBaseItemInfoSubtitle": "아이템 목록에서 어떤 유형의 추가 정보를 보여줄지 설정합니다. \"적응형\"을 선택하면 추가 정보 유형은 현재 정렬이나 내용에 기반하여 자동으로 선택됩니다.",
+    "@additionalBaseItemInfoSubtitle": {
+        "description": "Subtitle for the setting that controls the displayed additional item info."
+    },
+    "noDateAdded": "추가된 날짜 정보 없음",
+    "@noDateAdded": {
+        "description": "Placeholder text if an item has no dateAdded set."
+    },
+    "autoOfflineSettingDescription": "{disabledModeName}:\n오프라인 모드로 자동 전환하지 않습니다. 배터리를 절약할 수 있습니다.\n\n{localNetworkModeName}:\n와이파이나 이더넷에 연결되지 않은 경우 오프라인 모드로 전환합니다.\n\n{disconnectedModeName}:\n아무것도 연결되지 않은 경우 오프라인 모드로 전환합니다.\n\n{unreachableModeName}:\n네트워크 변경 후 서버 연결(Ping)이 안 될 경우 오프라인 모드로 전환합니다.\n\n오프라인 모드는 언제라도 수동으로 켜고 끌 수 있으며, 이 때 오프라인 모드 자동전환 기능은 사용자가 다시 활성화 할 때까지 중단됩니다.",
+    "@autoOfflineSettingDescription": {
+        "description": "Setting description. Make sure the Mode names match the translations.",
+        "placeholders": {
+            "disabledModeName": {
+                "type": "String"
+            },
+            "localNetworkModeName": {
+                "type": "String"
+            },
+            "disconnectedModeName": {
+                "type": "String"
+            },
+            "unreachableModeName": {
+                "type": "String"
+            }
+        }
+    },
+    "autoOfflineSettingTitle": "오프라인 모드로 자동 전환",
+    "autoOfflineNotification": "오프라인 모드가 자동으로 {state, select, enabled{활성화됨} disabled{비활성화됨} other{번역:조형래}}",
+    "@autoOfflineNotification": {
+        "description": "The text for 'other' should never be seen anyway, so feel free to put in a little harmless easter egg :)"
+    },
+    "radioModeActiveTitle": "라디오 모드 활성화됨",
+    "@radioModeActiveTitle": {
+        "description": "Title displayed in the queue to show that radio mode is enabled and active."
+    },
+    "radioModeDisabledTitle": "라디오 모드 비활성화됨",
+    "@radioModeDisabledTitle": {
+        "description": "Title displayed in the queue to show that radio mode is disabled."
+    },
+    "radioModeInactiveTitle": "라디오 모드 일시 정지",
+    "@radioModeInactiveTitle": {
+        "description": "Title displayed in the queue to show that the radio is enabled but not active."
+    },
+    "radioModeEnableButtonTitle": "라디오 모드 켜기",
+    "@radioModeEnableButtonTitle": {
+        "description": "Title for the option that enables radio mode."
+    },
+    "radioModeDisableButtonTitle": "라디오 모드 끄기",
+    "@radioModeDisableButtonTitle": {
+        "description": "Title for the option that disables radio mode."
     }
 }
