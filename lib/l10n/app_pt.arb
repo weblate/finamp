@@ -1840,7 +1840,7 @@
     "preferLocalNetworkEnableSwitchDescription": "Se usa ou não um endereço diferente quando você está na sua rede local do seu servidor jellyfin",
     "preferLocalNetworkPublicAddressSettingTitle": "Endereço Público",
     "preferLocalNetworkPublicAddressSettingDescription": "O endereço principal usado para ligação ao seu servidor Jellyfin",
-    "missingSchemaError": "Url precisa de começar com http(s)://",
+    "missingSchemaError": "URL precisa de começar com http(s)://",
     "@missingSchemaError": {
         "description": "Snackbar message when the user changes their home/public address but it doesn't start with http"
     },
