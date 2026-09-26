@@ -501,7 +501,7 @@ class MusicPlayerBackgroundTask extends BaseAudioHandler with SeekHandler, Queue
 
     // But sleepTimer doesn't want to listen on queue changes
     mediaItem.distinct().listen((currentTrack) {
-      sleepTimer?.onTrackCompleted();
+      sleepTimer?.onTrackCompleted(trackEndedNormally: false, track: currentTrack);
     });
 
     _player.errorStream.listen((error) {
@@ -517,7 +517,12 @@ class MusicPlayerBackgroundTask extends BaseAudioHandler with SeekHandler, Queue
                 Duration(milliseconds: 500).inMilliseconds,
                 FinampSettingsHelper.finampSettings.audioFadeOutDuration.inMilliseconds,
               )) {
-        sleepTimer?.onTrackCompleted();
+        _audioServiceBackgroundTaskLogger.info(
+          "Sleep timer: triggering early end of final track "
+          "(remaining position: ${((mediaItem.value?.duration ?? Duration.zero) - position).inMilliseconds}ms, "
+          "threshold: ${max(Duration(milliseconds: 500).inMilliseconds, FinampSettingsHelper.finampSettings.audioFadeOutDuration.inMilliseconds)}ms)",
+        );
+        sleepTimer?.onTrackCompleted(trackEndedNormally: true, track: mediaItem.value);
       }
     });
 
@@ -608,7 +613,7 @@ class MusicPlayerBackgroundTask extends BaseAudioHandler with SeekHandler, Queue
 
   @override
   Future<void> play({bool disableFade = false}) async {
-    _audioServiceBackgroundTaskLogger.fine(
+    _audioServiceBackgroundTaskLogger.info(
       "play() start: disableFade=$disableFade, playing=${_player.playing}, fadeDirection=${fadeState.value.fadeDirection}, currentIndex=${_player.currentIndex}, position=${_player.position}",
     );
     if (_shouldIgnorePlayPauseAfterRecentSkip) {
@@ -639,7 +644,7 @@ class MusicPlayerBackgroundTask extends BaseAudioHandler with SeekHandler, Queue
 
   @override
   Future<void> pause({bool disableFade = false}) async {
-    _audioServiceBackgroundTaskLogger.fine(
+    _audioServiceBackgroundTaskLogger.info(
       "pause() start: disableFade=$disableFade, playing=${_player.playing}, fadeDirection=${fadeState.value.fadeDirection}, currentIndex=${_player.currentIndex}, position=${_player.position}",
     );
     if (_shouldIgnorePlayPauseAfterRecentSkip) {
@@ -770,6 +775,9 @@ class MusicPlayerBackgroundTask extends BaseAudioHandler with SeekHandler, Queue
 
   Future<void> stopPlayback() async {
     try {
+      if (sleepTimer != null) {
+        _audioServiceBackgroundTaskLogger.info("Stopping playback with active sleep timer");
+      }
       clearSleepTimer();
 
       await _player.stop();
@@ -1193,6 +1201,7 @@ class MusicPlayerBackgroundTask extends BaseAudioHandler with SeekHandler, Queue
 
   /// Handles a sleep timer triggering, pausing play and clearing the timer
   void completeSleepTimer() {
+    _audioServiceBackgroundTaskLogger.info("Sleep timer completed, pausing playback");
     pause();
     _timer.value?.cancel();
     _timer.value = null;
@@ -1202,12 +1211,23 @@ class MusicPlayerBackgroundTask extends BaseAudioHandler with SeekHandler, Queue
 
   /// Starts the new sleep timer
   void startSleepTimer(SleepTimer newSleepTimer) {
+    if (sleepTimer != null) {
+      _audioServiceBackgroundTaskLogger.info(
+        "Sleep timer restarted before previous one finished (${sleepTimer!.remainingDuration} left, "
+        "${sleepTimer!.remainingTracks} tracks remaining)",
+      );
+      clearSleepTimer();
+    }
+    _audioServiceBackgroundTaskLogger.info(
+      "Starting sleep timer: ${newSleepTimer.secondsLength}s, ${newSleepTimer.tracksLength} tracks",
+    );
     _timer.value = newSleepTimer;
     sleepTimer?.start(completeSleepTimer);
   }
 
   /// Cancels the sleep timer and clears it.
   void clearSleepTimer() {
+    _audioServiceBackgroundTaskLogger.info("Clearing sleep timer");
     _timer.value?.cancel();
     _timer.value = null;
   }
@@ -1318,7 +1338,7 @@ class MusicPlayerBackgroundTask extends BaseAudioHandler with SeekHandler, Queue
           FinampSettingsHelper.finampSettings.volumeNormalizationMode != VolumeNormalizationMode.hybrid) {
         return;
       }
-      if (previous?.valueOrNull?.parentNormalizationGain != next.valueOrNull?.parentNormalizationGain) {
+      if (previous?.valueOrNull?.albumNormalizationGain != next.valueOrNull?.albumNormalizationGain) {
         _applyVolumeNormalization(mediaItem.valueOrNull);
       }
     });
@@ -1547,18 +1567,13 @@ double? getGainForCurrentPlayback(MediaItem currentTrack, jellyfin_models.BaseIt
     case VolumeNormalizationMode.hybrid
         when GetIt.instance<QueueService>().getQueue().isCurrentlyPlayingTracksFromSameAlbum():
     case VolumeNormalizationMode.albumBased:
-      // final parentNormalizationGain = providerContainer.read(currentTrackMetadataProvider).valueOrNull?.parentNormalizationGain;
-      // includeLyrics is always true - fetch the metadataRequest directly.
-      // Requires that provided arguments are the only fields of request,
-      // along with `includeLyrics` always being true in currentTrackMetadataProvider
-      // Otherwise, use code commented above
-      final parentNormalizationGain = providerContainer
-          .read(metadataProvider(baseItem))
-          .valueOrNull
-          ?.parentNormalizationGain;
+      // metadataProvider is still used for Jellyfin <12.0
+      final albumNormalizationGain =
+          baseItem.albumNormalizationGain ??
+          providerContainer.read(metadataProvider(baseItem)).valueOrNull?.albumNormalizationGain;
 
       effectiveGainChange =
-          parentNormalizationGain ??
+          albumNormalizationGain ??
           (currentTrack.extras?["contextNormalizationGain"] as double?) ??
           baseItem.normalizationGain;
       break;

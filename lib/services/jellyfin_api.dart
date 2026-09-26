@@ -16,8 +16,7 @@ import 'jellyfin_api_helper.dart';
 
 part 'jellyfin_api.chopper.dart';
 
-const String defaultFields =
-    "ChildCount,DateCreated,DateLastMediaAdded,Etag,Genres,ParentId,ProviderIds,Tags,SortName,People";
+const String defaultFields = "ChildCount,DateCreated,DateLastMediaAdded,Etag,Genres,ParentId,ProviderIds,Tags,SortName";
 
 @ChopperApi()
 abstract class JellyfinApi extends ChopperService {
@@ -575,8 +574,13 @@ abstract class JellyfinApi extends ChopperService {
   @Get(path: "/System/Endpoint", optionalBody: true)
   Future<Response<dynamic>> pingServer();
 
-  static JellyfinApi create({required bool inForeground}) {
-    final chopperHttpLogLevel = Level.body; //TODO allow changing the log level in settings (and a debug config file?)
+  static JellyfinApi create({required bool inForeground, required bool verboseLogging}) {
+    // Body logging can be very excessive, so we do not perform it by default.  If in debug mode or configured for verbose
+    // logging, body log foreground requests but keep disabled for verbose getItems calls in background.  If using verbose
+    // logs in debug mode, body log every request.
+    final chopperHttpLogLevel = (kDebugMode && verboseLogging) || ((kDebugMode || verboseLogging) && inForeground)
+        ? Level.body
+        : Level.headers;
 
     final client = ChopperClient(
       client: http.IOClient(

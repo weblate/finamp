@@ -253,7 +253,7 @@ class PlayOnService {
     );
 
     _keepaliveSubscription = Stream<void>.periodic(const Duration(seconds: 30)).listen((event) {
-      _playOnServiceLogger.info("Sent KeepAlive message through websocket");
+      _playOnServiceLogger.fine("Sent KeepAlive message through websocket");
       _channel.sink.add('{"MessageType":"KeepAlive"}');
     });
   }

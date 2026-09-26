@@ -223,6 +223,9 @@ class _MusicScreenState extends ConsumerState<MusicScreen> with TickerProviderSt
 
     refreshMap[sortedTabs.elementAt(_tabController!.index)] = MusicRefreshCallback();
 
+    // If this setting changes, the appbar will change its preferred height, so we need to rebuild the scaffold.
+    ref.watch(finampSettingsProvider.showQuickActionsBanner);
+
     return PopScope(
       canPop: !isSearching,
       onPopInvokedWithResult: (popped, result) {
@@ -317,7 +320,7 @@ class _MusicScreenState extends ConsumerState<MusicScreen> with TickerProviderSt
                   children: [
                     if (displayable is FinampSortable)
                       SortAndFilterRow(
-                        tabType: contentTabType,
+                        contentType: contentTabType,
                         controller: sortAndFilterControllerMap[contentTabType]!,
                         allowFilters: widget.allowFilters,
                       ),
@@ -325,6 +328,7 @@ class _MusicScreenState extends ConsumerState<MusicScreen> with TickerProviderSt
                       tabType: tabType,
                       defaultArtistType: ref.watch(finampSettingsProvider.defaultArtistType),
                       refreshTab: refreshTab,
+                      singleTabConfig: widget.singleTabConfig,
                     ),
                     Expanded(
                       // Prevent track highlight background from showing on header

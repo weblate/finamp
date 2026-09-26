@@ -15,9 +15,13 @@ on:
       - main
       - redesign
 
+# set permission so that actions can modify repo contents, which is needed to add release assets
+permissions:
+  contents: write
+
 env:
   if_condition: &integration_if github.event_name == 'workflow_dispatch' ||
-    (github.event_name == 'push' && github.repository == 'UnicornsOnLSD/finamp' )
+    (github.event_name == 'push' && github.repository == 'finamp-app/finamp' )
 
 # Due to a flutter bug, flutter build is not generating localizations
 # workaround by always running flutter pub get immediately before building,
@@ -123,7 +127,7 @@ jobs:
           disk-size: 5120M
           script: |
             adb logcat -c
-            adb logcat &
+            adb logcat *:I &
             timeout 13m flutter test integration_test/test_cases.dart -d emulator
 
     - name: Run Integration tests on api 25
@@ -142,7 +146,7 @@ jobs:
           disk-size: 5120M
           script: |
             adb logcat -c
-            adb logcat &
+            adb logcat *:I &
             timeout 13m flutter test integration_test/test_cases.dart -d emulator
 
   build-ios:
@@ -189,7 +193,7 @@ jobs:
       if: *integration_if
       uses: futureware-tech/simulator-action@v5
       with:
-        model: 'iPhone 16'
+        model: 'iPhone 17'
         os_version: '>= 26.0'
         wait_for_boot: true
         erase_before_boot: true
@@ -197,7 +201,7 @@ jobs:
 
     - name: Run Integration Tests
       if: *integration_if
-      run: flutter test integration_test/test_cases.dart -d 'iPhone 16'
+      run: flutter test integration_test/test_cases.dart -d 'iPhone 17'
 
   build-linux:
     name: Build for Linux
@@ -239,7 +243,6 @@ jobs:
         # Prebuilt ARM linux builds are not provided, so build flutter from source
         channel: master
         flutter-version: "${{ steps.flutter-version.outputs.VERSION }}"
-        # flutter-version: "3.41.9"
         cache: false
         pub-cache: true
         # Include arch as linux aarch64 include isar overriding
@@ -312,11 +315,11 @@ jobs:
 
     - name: Upload release archive
       if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
-      uses: alexellis/upload-assets@0.4.1
+      uses: alexellis/upload-assets@0.5.0
       env:
         GITHUB_TOKEN: ${{ github.token }}
       with:
-        asset_paths: '["./${{ env.TAR_NAME }}", "./${{ env.SHA_NAME }}"]'
+        asset_paths: '["./${{ env.TAR_NAME }}"]'
 
     - name: Run Integration Tests
       if: *integration_if
@@ -404,7 +407,7 @@ jobs:
 
     - name: Upload release archive
       if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
-      uses: alexellis/upload-assets@0.4.1
+      uses: alexellis/upload-assets@0.5.0
       env:
         GITHUB_TOKEN: ${{ github.token }}
       with:

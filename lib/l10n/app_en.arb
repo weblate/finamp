@@ -169,6 +169,14 @@
         "description": "Label for the login button."
     },
     "logs": "Logs",
+    "verboseLogging": "Verbose Logging",
+    "@verboseLogging": {
+        "description": "Title for the toggle that enables detailed logging on the logs screen"
+    },
+    "verboseLoggingSubtitle": "Keep detailed logs for bug reports. Leave this off for better playback performance.",
+    "@verboseLoggingSubtitle": {
+        "description": "Subtitle explaining the verbose logging toggle"
+    },
     "next": "Next",
     "selectMusicLibraries": "Select Music Libraries",
     "@selectMusicLibraries": {
@@ -238,6 +246,10 @@
     "defaultOrder": "Default Order",
     "@defaultOrder": {
         "description": "Default sorting order for playlists (server order)"
+    },
+    "inAlbumOrPlaylist": "Album/Playlist Order",
+    "@inAlbumOrPlaylist": {
+        "description": "Sorting order for tracks in an album or playlist (by disc, then index, then name"
     },
     "adaptive": "Adaptive",
     "formattedRelativeTime": "{type, select, just_now{just now} minutes{{value} min ago} hours{{value} h ago} yesterday{yesterday} days{{value, plural, =1{1 day ago} other{{value} days ago}}} other{value}}",
@@ -336,6 +348,10 @@
                 "type": "int"
             }
         }
+    },
+    "discUnknown": "Disc Unknown",
+    "@discUnknown": {
+        "description": "Shown when the disc number is unknown or not set for a group of tracks on the album screen"
     },
     "playButtonLabel": "Play",
     "shuffleButtonLabel": "Shuffle",
@@ -455,10 +471,11 @@
     "enterLowPriorityStateOnPauseSubtitle": "Lets the notification be swiped away when paused. Also allows Android to kill the service when paused.",
     "shuffleAllTrackCount": "Shuffle All Track Count",
     "shuffleAllTrackCountSubtitle": "Amount of tracks to load when using the shuffle all button on the tracks tab or genre screen.",
-    "viewType": "View Type",
-    "viewTypeSubtitle": "View type for the music screen",
+    "viewType": "Music Screen Display Type",
+    "viewTypeSubtitle": "Controls grid or list mode for all music screen tabs, excepting the home screen.",
     "list": "List",
     "grid": "Grid",
+    "perTabGridMode": "Choose per tab",
     "none": "None",
     "customizationSettingsTitle": "Customization",
     "@customizationSettingsTitle": {
@@ -534,8 +551,9 @@
     "disableGesture": "Disable gestures",
     "disableGestureSubtitle": "Whether to disables gestures.",
     "showFastScroller": "Show fast scroller",
+    "showFastScrollerSubtitle": "Show or hide the alphabet list on the right of music tabs which allows jumping to letters.",
     "theme": "Theme",
-    "system": "System",
+    "system": "Follow system",
     "light": "Light",
     "dark": "Dark",
     "accentColor": "Accent Color",
@@ -546,7 +564,7 @@
     "@accentColorTitle": {
         "description": "Title for the accent color picker sheet"
     },
-    "systemAccentColor": "Use System Accent",
+    "systemAccentColor": "Use System Accent Color",
     "@systemAccentColor": {
         "description": "Title of the System Accent Color setting."
     },
@@ -814,7 +832,7 @@
     "@moveAddToQueue": {
         "description": "Used for moving a track to the end of the queue, to play after all prior tracks from the queue have played"
     },
-    "confirmPlayNext": "{type, select, track{Track} album{Album} artist{Artist} playlist{Playlist} genre{Genre} other{Item}} will play next",
+    "confirmPlayNext": "{type, select, track{Track} album{Album} artist{Artist} playlist{Playlist} genre{Genre} disc{Disc} other{Item}} will play next",
     "@confirmPlayNext": {
         "description": "A confirmation message that is shown after successfully adding a track to the front of the \"Next Up\" queue",
         "placeholders": {
@@ -823,7 +841,7 @@
             }
         }
     },
-    "confirmAddToNextUp": "Added {type, select, track{Track} album{album} artist{artist} playlist{playlist} genre{genre} disc{disc} other{item}} to Next Up",
+    "confirmAddToNextUp": "Added {type, select, track{track} album{album} artist{artist} playlist{playlist} genre{genre} disc{disc} other{item}} to Next Up",
     "@confirmAddToNextUp": {
         "description": "A confirmation message that is shown after successfully adding a track to the end of the \"Next Up\" queue",
         "placeholders": {
@@ -974,7 +992,7 @@
     "@loopModeAllButtonLabel": {
         "description": "Label for the button that toggles the loop mode between off, loop one, and loop all, while the queue is in loop all mode"
     },
-    "queuesScreen": "Restore Now Playing",
+    "queuesScreen": "Past Queues",
     "@queuesScreen": {
         "description": "Title for the screen where older now playing queues can be restored"
     },
@@ -1240,7 +1258,7 @@
             }
         }
     },
-    "couldNotLoad": "Couldn''t load {source, select, album{album} playlist{playlist} trackMix{track mix} artistMix{artist mix} albumMix{album mix} genreMix{genre mix} favorites{favorites} allTracks{all tracks} filteredList{tracks} genre{genre} artist{artist} track{track} nextUpAlbum{album in next up} nextUpPlaylist{playlist in next up} nextUpArtist{artist in next up} nextUpGenre{genre in next up} other{}}",
+    "couldNotLoad": "Couldn't load {source, select, album{album} playlist{playlist} trackMix{track mix} artistMix{artist mix} albumMix{album mix} genreMix{genre mix} favorites{favorites} allTracks{all tracks} filteredList{tracks} genre{genre} artist{artist} track{track} nextUpAlbum{album in next up} nextUpPlaylist{playlist in next up} nextUpArtist{artist in next up} nextUpGenre{genre in next up} other{}}",
     "@couldNotLoad": {
         "placeholders": {
             "source": {
@@ -1331,9 +1349,9 @@
     "swipeRightToLeftActionSubtitle": "Action triggered when swiping a track in the list from right to left.",
     "startInstantMixForIndividualTracksSwitchTitle": "Start Instant Mixes for Individual Tracks",
     "@startInstantMixForIndividualTracksSwitchTitle": {
-        "description": "Title for the switch that toggles if tapping a track on the tracks tab will start an instant mix of that track instead of just playing a single track."
+        "description": "Title for the switch that toggles if tapping a track on the tracks tab will start an instant mix of that track instead of playing tracks in order."
     },
-    "startInstantMixForIndividualTracksSwitchSubtitle": "When enabled, tapping a track on the tracks tab will start an instant mix of that track instead of just playing a single track.",
+    "startInstantMixForIndividualTracksSwitchSubtitle": "When enabled, tapping a track on the tracks tab will start an instant mix of that track instead of playing tracks in order.",
     "downloadItem": "Download",
     "@downloadItem": {
         "description": "Option to download item in long-press menu."
@@ -2135,9 +2153,13 @@
     "@releaseDateFormatMonthYear": {
         "description": "Date format option for the release date of an album, showing the year and month. Example: March 2022"
     },
-    "releaseDateFormatMonthDayYear": "Month, Day & Year",
+    "releaseDateFormatMonthDayYear": "Month, Day & Year (Locale based)",
     "@releaseDateFormatMonthDayYear": {
-        "description": "Date format option for the release date of an album, showing the year and month and day/date. Example: March 2, 2022"
+        "description": "Date format option for the release date of an album, showing the year and month and day/date. Changes based on locale. Example: March 2, 2022"
+    },
+    "releaseDateFormatNumerical": "Short Numerical (Locale based)",
+    "@releaseDateFormatNumerical": {
+        "description": "Date format option for the release date of an album, showing the date in a short numerical format. Changes based on locale such as DD/MM/YYYY for en_gb and MM/DD/YYYY for en_us."
     },
     "showAlbumReleaseDateOnPlayerScreenTitle": "Show Album Release Date on Player Screen",
     "@showAlbumReleaseDateOnPlayerScreenTitle": {
@@ -2733,6 +2755,15 @@
             }
         }
     },
+    "discUnknownOfAlbum": "[Disc Unknown] {albumName}",
+    "@discUnknownOfAlbum": {
+        "description": "Used when a single disc of album is opened, but the disc number is unknown, then album name is replaced with this string",
+        "placeholders": {
+            "albumName": {
+                "type": "String"
+            }
+        }
+    },
     "moreActionsOnAlbumDisc": "More actions on album disc",
     "@moreActionsOnAlbumDisc": {
         "description": "Label for the disc header menu button."
@@ -2850,6 +2881,10 @@
                 "example": "Ctrl + ↑/↓"
             }
         }
+    },
+    "volumeControlDisabledCastingHint": "Audio is being cast to a device that doesn't support the in-app volume control.",
+    "@volumeControlDisabledCastingHint": {
+        "description": "Hint text displayed below the volume bar when the in-app volume slider is disabled because audio is being cast to a device that bypasses the in-app volume handling and handles its own volume, such as when using Airplay."
     },
     "seekControlHint": "{shortcut} to skip -5s/+30s",
     "@seekControlHint": {
@@ -3466,7 +3501,16 @@
     },
     "genreFilter": "Genre: {name}",
     "@genreFilter": {
-        "description": "Name of genrefilter",
+        "description": "Name of genreFilter",
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "artistFilter": "Artist: {name}",
+    "@artistFilter": {
+        "description": "Name of artistFilter",
         "placeholders": {
             "name": {
                 "type": "String"
@@ -3533,7 +3577,7 @@
             }
         }
     },
-    "homeAllPlaylistsWarning": "Are you sure you want to all playlists?  This will download every playlist, not just the ones in this section.",
+    "homeAllPlaylistsWarning": "Are you sure you want to download all playlists? This will download every playlist, not just the ones in this section.",
     "@homeAllPlaylistsWarning": {
         "description": "Warning presented when pressing the download button on playlist home sections with a filter applied.  This is shown because the download will not apply the filter."
     },
@@ -3593,11 +3637,15 @@
             }
         }
     },
-    "clientCertificate": "mTLS (SSL) Client Certificate",
+    "advanced": "Advanced",
+    "@advanced": {
+        "description": "Label for the button on the login screen that opens the advanced options screen, and the title of that screen."
+    },
+    "clientCertificate": "Client Certificate (mTLS)",
     "@clientCertificate": {
         "description": "Title for the setting that allows managing SSL client certificates used for authentication"
     },
-    "clientCertificateUnavailable": "No certificate set up, client authentication disabled",
+    "clientCertificateUnavailable": "No certificate set up, additional client authentication disabled",
     "@clientCertificateUnavailable": {
         "description": "Message shown when the user has no SSL client certificate available to use."
     },
@@ -3605,7 +3653,11 @@
     "@clientCertificateInstalled": {
         "description": "Message shown when the user has successfully installed an SSL client certificate."
     },
-    "clientCertificateDescription": "A TLS client certificate (.p12 or .pfx) is used to authenticate this device with your Jellyfin server. Only required if your server is configured for mutual TLS.",
+    "clientCertificatesUnsupported": "Client certificates are not supported on this platform",
+    "@clientCertificatesUnsupported": {
+        "description": "Message shown when client certificates are not supported on the user's current platform."
+    },
+    "clientCertificateDescription": "A TLS client certificate (.p12 or .pfx) is used to additionally authenticate this device with your Jellyfin server. Only required if your server is configured for mutual TLS.",
     "@clientCertificateDescription": {
         "description": "Explanatory text in the client certificate settings menu describing what a client certificate is used for"
     },
@@ -3660,7 +3712,7 @@
         },
         "description": "Titles for settings controlling which pieces of advanced track info are displayed."
     },
-    "featureChipDescription": "{chipName, select, additionalPeople{Non-artist people linked to the track, if available (writers, lyricists, etc.)} playbackMode{Streaming and transcoding status information} bitDepth{Bits per audio sample.  Only applicable to lossless codecs, generally 16 bits.} sampleRate{Audio samples per second.  Generally 44.1 kHz.} normalizationGain{Currently active ReplayGain level} other{null}}",
+    "featureChipDescription": "{chipName, select, explicit{Marks tracks containing explicit content} additionalPeople{Non-artist people linked to the track, if available (writers, lyricists, etc.)} playbackMode{Streaming and transcoding status information} bitDepth{Bits per audio sample.  Only applicable to lossless codecs, generally 16 bits.} sampleRate{Audio samples per second.  Generally 44.1 kHz.} normalizationGain{Currently active ReplayGain level} size{The original file size of the track} other{null}}",
     "@featureChipDescription": {
         "placeholders": {
             "chipName": {
@@ -3695,5 +3747,22 @@
                 "example": "Never Gonna Give You Up"
             }
         }
-    }
+    },
+    "quickActionBanner": "Check out some commonly changed settings!",
+    "@quickActionBanner": {
+        "description": "Banner directing new users to the quick settings, where they can adjust the most commonly used settings"
+    },
+    "themeSettingTitle": "App color theme (dark/light)",
+    "@themeSettingTitle": {
+        "description": "Title for the setting that allows you to override the system theme and force dark or light mode"
+    },
+    "perTabGridModeScreen": "Set per-tab view types",
+    "perTabAlbumGrid": "Albums only in grid",
+    "quickSettingsScreen": "Quick Settings",
+    "quickSettingsScreenDescription": "Customize Finamp to your preferences with these core options. Come back here any time via Settings.",
+    "quickSettingsTabsLink": "Rearrange and hide tabs",
+    "quickSettingsTranscodeLink": "All transcoding settings",
+    "quickSettingsLayoutLink": "All layout & theme settings",
+    "quickSettingsAllSettingsLink": "All Settings",
+    "quickSettingsNetworkLink": "Configure the local address for your server"
 }

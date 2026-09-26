@@ -64,6 +64,7 @@ class FinampSettingsHelper {
     finampSettingsTemp.showSeekControlsOnMediaNotification = DefaultSettings.showSeekControlsOnMediaNotification;
     finampSettingsTemp.oneLineMarqueeTextButton = DefaultSettings.oneLineMarqueeTextButton;
     finampSettingsTemp.tileAdditionalInfoType = DefaultSettings.tileAdditionalInfoType;
+    finampSettingsTemp.releaseDateFormat = DefaultSettings.releaseDateFormat;
 
     Hive.box<FinampSettings>("FinampSettings").put("FinampSettings", finampSettingsTemp);
   }
@@ -129,7 +130,7 @@ class FinampSettingsHelper {
     FinampSetters.setAccentColor(DefaultSettings.accentColor);
     FinampSetters.setSystemAccentColor(DefaultSettings.accentColor);
     FinampSetters.setUseSystemAccentColor(DefaultSettings.useSystemAccentColor);
-    FinampSetters.setContentViewType(DefaultSettings.contentViewType);
+    finampSettingsTemp.perTabContentViewType = DefaultSettings.perTabContentViewType;
     finampSettingsTemp.gridImageSize = DefaultSettings.gridImageSize;
     finampSettingsTemp.homeScreenImageSize = DefaultSettings.homeScreenImageSize;
     finampSettingsTemp.showTextOnGridView = DefaultSettings.showTextOnGridView;

@@ -229,19 +229,15 @@ class HomeScreenSection extends ConsumerWidget {
               icon: TablerIcons.player_play,
             ),
             IconButtonWithSemantics(
-              onPressed: sectionInfo.sortConfig.sortBy == SortBy.random
-                  ? null
-                  : () async {
-                      final queueService = GetIt.instance<QueueService>();
-                      final playable = sectionDisplayable as FinampPlayable;
-                      // TODO better shuffling?  need to think about shuffle all versus shuffle first
-                      await queueService.startSlicePlayback(
-                        (await ref.read(getPlayableSliceProvider(item: playable, startingOffset: 0).future)).shuffle(),
-                      );
-                    },
-              label: sectionInfo.sortConfig.sortBy == SortBy.random
-                  ? context.l10n.alreadyRandomized
-                  : context.l10n.shuffleButtonLabel,
+              onPressed: () async {
+                final queueService = GetIt.instance<QueueService>();
+                final playable = sectionDisplayable as FinampPlayable;
+                // TODO better shuffling?  need to think about shuffle all versus shuffle first
+                await queueService.startSlicePlayback(
+                  (await ref.read(getPlayableSliceProvider(item: playable, startingOffset: 0).future)).shuffle(),
+                );
+              },
+              label: context.l10n.shuffleButtonLabel,
               icon: TablerIcons.arrows_shuffle,
             ),
           ],

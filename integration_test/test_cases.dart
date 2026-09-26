@@ -93,6 +93,7 @@ void main() async {
       // all still a bit mysterious.
       container = GetIt.instance<ProviderContainer>();
       GetIt.instance.unregister<ProviderContainer>();
+      await container!.pump();
       GetIt.instance.registerSingleton(ProviderContainer(parent: container));
 
       // This makes the screen sized correctly when watching integration test.
@@ -107,6 +108,7 @@ void main() async {
     });
     testWidgets('Log in to demo server', (tester) async {
       GetIt.instance.unregister<ProviderContainer>(disposingFunction: (old) => old.dispose());
+      await container!.pump();
       GetIt.instance.registerSingleton(ProviderContainer(parent: container));
       await tester.pumpWidget(app.Finamp());
       await tester.pumpAndSettle();
@@ -143,6 +145,7 @@ void main() async {
     });
     testWidgets('Start playing a track', (tester) async {
       GetIt.instance.unregister<ProviderContainer>(disposingFunction: (old) => old.dispose());
+      await container!.pump();
       GetIt.instance.registerSingleton(ProviderContainer(parent: container));
       await tester.pumpWidget(app.Finamp());
       await tester.pump();
