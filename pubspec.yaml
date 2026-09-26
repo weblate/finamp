@@ -126,6 +126,7 @@ dependencies:
     git:
       url: https://github.com/Komodo5197/flutter-balanced-text.git
       ref: a6e93dad04f650734eaa6fa4d332800c7523b2a7
+  # Use https://github.com/MrJai/flutter_to_airplay/pull/40 to add macOS airplay support
   flutter_to_airplay:
     git:
       url: https://github.com/obiwantoby/flutter_to_airplay.git
