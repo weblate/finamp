@@ -442,9 +442,7 @@ class QueueService {
         }
       }
     }
-    return _currentTrack != null ||
-        _audioHandler.audioSources.isNotEmpty ||
-        _savedQueueState == SavedQueueState.loading;
+    return _currentTrack != null || _audioHandler.audioSources.isNotEmpty;
   }
 
   Future<bool> _hasInitialPlayLink() async {
