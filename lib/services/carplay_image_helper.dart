@@ -36,6 +36,8 @@ const _collageTileSize = 100;
 /// Upper bound on tracks looked up for one collage.
 const _maxCollageTrackScan = 20;
 
+const _collageBuildTimeout = Duration(seconds: 2);
+
 /// Resolves and renders every image CarPlay shows.
 class CarPlayImageHelper {
   final _providers = GetIt.instance<ProviderContainer>();
@@ -60,14 +62,14 @@ class CarPlayImageHelper {
   /// indices out of alignment with the queue list.
   Future<String> recentQueueImage(FinampStorableQueueInfo info) async {
     try {
-      final collage = await _buildRecentQueueCollage(info);
+      final collage = await _buildRecentQueueCollage(info).timeout(_collageBuildTimeout);
       if (collage != null) {
         return collage;
       }
     } catch (e) {
       _carPlayImageLogger.warning("Failed to build collage for recent queue: $e");
     }
-    return _getRecentQueueCoverImage(info);
+    return _getRecentQueueCoverImage(info).timeout(_collageBuildTimeout, onTimeout: placeholderImageUri);
   }
 
   /// Resolves the current track's own artwork for a saved queue, falling
@@ -124,10 +126,18 @@ class CarPlayImageHelper {
     ];
 
     final candidateIds = upcomingIds.take(_maxCollageTrackScan).toList();
+
+    final tempPath = (await getTemporaryDirectory()).path;
+    final cacheFile = File(
+      path_helper.join(tempPath, 'carplay_queue_collage_${info.creation}_${candidateIds.join(',').hashCode}.png'),
+    );
+    if (await cacheFile.exists()) {
+      return Uri.file(cacheFile.path).toString();
+    }
+
     final tracks = await _lookupTracks(candidateIds);
 
     final albumTracks = <BaseItemDto>[];
-    final albumIds = <String>[];
     final seenAlbumIds = <String>{};
     for (final id in candidateIds) {
       final track = tracks[id];
@@ -136,30 +146,13 @@ class CarPlayImageHelper {
         continue;
       }
       albumTracks.add(track!);
-      albumIds.add(albumId);
     }
 
     if (albumTracks.isEmpty) {
       return null;
     }
 
-    final tempPath = (await getTemporaryDirectory()).path;
-    File collageFile(List<String> ids) =>
-        File(path_helper.join(tempPath, 'carplay_queue_collage_${info.creation}_${ids.join(',').hashCode}.png'));
-
-    // Anything short of a full 2x2 grid falls back to the best single
-    // cover scaled across the whole canvas, so every tile in the Recent
-    // Queues row stays the same size.
-    final expectedIds = albumIds.length >= _collageTileCount
-        ? albumIds.take(_collageTileCount).toList()
-        : [albumIds.first];
-    final expectedFile = collageFile(expectedIds);
-    if (await expectedFile.exists()) {
-      return Uri.file(expectedFile.path).toString();
-    }
-
     final tiles = <ImageInfo>[];
-    final usedAlbumIds = <String>[];
     try {
       for (var i = 0; i < albumTracks.length && tiles.length < _collageTileCount; i++) {
         final tile = await _resolveCollageTileImage(albumTracks[i]);
@@ -169,7 +162,6 @@ class CarPlayImageHelper {
           continue;
         }
         tiles.add(tile);
-        usedAlbumIds.add(albumIds[i]);
       }
 
       if (tiles.isEmpty) {
@@ -177,18 +169,14 @@ class CarPlayImageHelper {
       }
 
       final drawnTiles = tiles.length == _collageTileCount ? tiles : [tiles.first];
-      final drawnIds = tiles.length == _collageTileCount ? usedAlbumIds : [usedAlbumIds.first];
-      final cacheFile = collageFile(drawnIds);
-      if (await cacheFile.exists()) {
-        return Uri.file(cacheFile.path).toString();
-      }
-
       final bytes = await _composeCollage(drawnTiles.map((tile) => tile.image).toList());
       if (bytes == null) {
         return null;
       }
-      await cacheFile.writeAsBytes(bytes, flush: true);
-      return Uri.file(cacheFile.path).toString();
+      final missingArt = tiles.length < _collageTileCount && albumTracks.length >= _collageTileCount;
+      final outputFile = missingArt ? File('${cacheFile.path}.partial') : cacheFile;
+      await outputFile.writeAsBytes(bytes, flush: true);
+      return Uri.file(outputFile.path).toString();
     } finally {
       for (final tile in tiles) {
         tile.dispose();
