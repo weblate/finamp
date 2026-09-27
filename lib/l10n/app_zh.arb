@@ -1577,7 +1577,7 @@
     "@releaseDateFormatSubtitle": {
         "description": "Title for the setting that controls the format release dates throughout the app."
     },
-    "releaseDateFormatMonthDayYear": "月、日、年",
+    "releaseDateFormatMonthDayYear": "月、日、年（基于区域设置）",
     "@releaseDateFormatMonthDayYear": {
         "description": "Date format option for the release date of an album, showing the year and month and day/date. Example: March 2, 2022"
     },
@@ -3684,5 +3684,9 @@
     "quickSettingsTranscodeLink": "所有转码设置",
     "quickSettingsLayoutLink": "所有布局与主题设置",
     "quickSettingsAllSettingsLink": "所有设置",
-    "quickSettingsNetworkLink": "配置服务器的本地地址"
+    "quickSettingsNetworkLink": "配置服务器的本地地址",
+    "releaseDateFormatNumerical": "短数字（基于区域设置）",
+    "@releaseDateFormatNumerical": {
+        "description": "Date format option for the release date of an album, showing the date in a short numerical format. Changes based on locale such as DD/MM/YYYY for en_gb and MM/DD/YYYY for en_us."
+    }
 }
