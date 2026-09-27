@@ -1933,7 +1933,7 @@
     "@autoOfflineSettingDescription": {
         "description": "Setting description. Make sure the Mode names match the translations."
     },
-    "releaseDateFormatMonthDayYear": "Mês, Dia e Ano",
+    "releaseDateFormatMonthDayYear": "Mês, Dia e Ano (Baseado na localização)",
     "@releaseDateFormatMonthDayYear": {
         "description": "Date format option for the release date of an album, showing the year and month and day/date. Example: March 2, 2022"
     },
@@ -3697,5 +3697,9 @@
     "clientCertificatesUnsupported": "Certificados de cliente não são suportados nesta plataforma",
     "@clientCertificatesUnsupported": {
         "description": "Message shown when client certificates are not supported on the user's current platform."
+    },
+    "releaseDateFormatNumerical": "Numeração Curta (Baseada na localização)",
+    "@releaseDateFormatNumerical": {
+        "description": "Date format option for the release date of an album, showing the date in a short numerical format. Changes based on locale such as DD/MM/YYYY for en_gb and MM/DD/YYYY for en_us."
     }
 }
