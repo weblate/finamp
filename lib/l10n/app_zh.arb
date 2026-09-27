@@ -1756,7 +1756,7 @@
     "@downloadPaused": {
         "description": "Gets shown in the snackbar if loosing wifi connection while downloads are running and the 'requireWifiForDownloads' is enabled"
     },
-    "missingSchemaError": "Url 需要以 http(s):// 开头",
+    "missingSchemaError": "URL 需要以 http(s):// 开头",
     "@missingSchemaError": {
         "description": "Snackbar message when the user changes their home/public address but it doesn't start with http"
     },
