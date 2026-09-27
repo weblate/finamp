@@ -2291,7 +2291,7 @@
     "@downloadPaused": {
         "description": "Gets shown in the snackbar if loosing wifi connection while downloads are running and the 'requireWifiForDownloads' is enabled"
     },
-    "missingSchemaError": "인터넷 주소(url)는 'http://' 또는 'https://'로 시작해야 합니다",
+    "missingSchemaError": "인터넷 주소(URL)는 'http://' 또는 'https://'로 시작해야 합니다",
     "@missingSchemaError": {
         "description": "Snackbar message when the user changes their home/public address but it doesn't start with http"
     },
@@ -2385,5 +2385,208 @@
     "radioModeDisableButtonTitle": "라디오 모드 끄기",
     "@radioModeDisableButtonTitle": {
         "description": "Title for the option that disables radio mode."
+    },
+    "clearQueueOnStopEventSubtitle": "시스템(OS)에서 정지 명령을 수신하면 대기열을 비우고 앱을 종료합니다. 앱 내에서는 정지 동작이 항상 대기열을 비우고 앱을 종료합니다.",
+    "@clearQueueOnStopEventSubtitle": {
+        "description": "Subtitle for the setting that controls if OS stop commands clear the queue."
+    },
+    "radioModeMenuTitle": "라디오 모드 선택",
+    "@radioModeMenuTitle": {
+        "description": "Title for menu that allows users to choose the radio mode."
+    },
+    "loopingOverriddenByRadioSubtitle": "라디오 모드가 활성화되면 대기열 반복은 비활성화 됩니다",
+    "@loopingOverriddenByRadioSubtitle": {
+        "description": "Subtitle displayed in the radio menu to show that queue looping is disabled while radio mode is enabled."
+    },
+    "radioModeOptionName": "{option, select, reshuffle{임의 재생 다시 하기} random{무작위} similar{비슷한 분위기} continuous{연속} albumMix{앨범 믹스} other{{option}}}",
+    "@radioModeOptionName": {
+        "placeholders": {
+            "option": {
+                "type": "String",
+                "description": "Corresponds to RadioMode.name"
+            }
+        },
+        "description": "Radio mode names in radio mode/algorithm dropdown"
+    },
+    "radioModeOptionTitle": "{option, select, reshuffle{임의 재생 다시 하기 모드} random{무작위 모드} similar{비슷한 분위기 모드} continuous{연속 모드} albumMix{앨범 믹스} other{{option}}} 활성화됨",
+    "@radioModeOptionTitle": {
+        "placeholders": {
+            "option": {
+                "type": "String",
+                "description": "Corresponds to RadioMode.name"
+            }
+        },
+        "description": "Title displayed in the queue, showing which radio mode/algorithm is currently being used."
+    },
+    "radioModeDisableButtonSubtitle": "기존의 반복 모드로 되돌아갑니다",
+    "@radioModeDisableButtonSubtitle": {
+        "description": "Subtitle for the option that disables radio mode."
+    },
+    "radioModeEnabledSubtitle": "설정하려면 탭하세요",
+    "@radioModeEnabledSubtitle": {
+        "description": "Subtitle displayed in the queue to show when radio mode is enabled."
+    },
+    "radioModeDisabledSubtitle": "활성화 하려면 탭하세요",
+    "@radioModeDisabledSubtitle": {
+        "description": "Subtitle displayed in the queue to show that radio mode is disabled."
+    },
+    "radioModeUnavailableWhileOfflineDescription": "오프라인 모드에서는 이용 불가합니다",
+    "@radioModeUnavailableWhileOfflineDescription": {
+        "description": "Shown as the subtitle for radio modes when the user is offline and the radio mode requires the user to be online to function."
+    },
+    "radioModeUnavailableWhileOfflineSubtitle": "{modeName} 오프라인 모드에서는 이용 불가능합니다",
+    "@radioModeUnavailableWhileOfflineSubtitle": {
+        "placeholders": {
+            "modeName": {
+                "type": "String",
+                "description": "The pre-translated radio mode name"
+            }
+        },
+        "description": "Shown as the subtitle for radio modes when the user is offline and the radio mode requires the user to be online to function."
+    },
+    "radioModeUnavailableForSourceItemDescription": "이 대기열의 출처에서는 이용 불가합니다",
+    "@radioModeUnavailableForSourceItemDescription": {
+        "description": "Shown as the subtitle for radio modes when the queue source item type is not supported."
+    },
+    "radioModeUnavailableForSourceItemSubtitle": "{modeName} 이 대기열의 출처에서는 이용 불가합니다",
+    "@radioModeUnavailableForSourceItemSubtitle": {
+        "placeholders": {
+            "modeName": {
+                "type": "String",
+                "description": "The pre-translated radio mode name"
+            }
+        },
+        "description": "Shown as the subtitle for radio modes when the queue source item type is not supported."
+    },
+    "radioModeUnavailableQueueEmptyDescription": "대기열이 비어있어서 이용 불가합니다",
+    "@radioModeUnavailableQueueEmptyDescription": {
+        "description": "Shown as the subtitle for radio modes when the queue is empty."
+    },
+    "radioModeUnavailableQueueEmptySubtitle": "{modeName} 대기열이 비어있어서 이용 불가합니다",
+    "@radioModeUnavailableQueueEmptySubtitle": {
+        "placeholders": {
+            "modeName": {
+                "type": "String",
+                "description": "The pre-translated radio mode name"
+            }
+        },
+        "description": "Shown as the subtitle for radio modes when the queue is empty."
+    },
+    "radioModeRandomUnavailableNotDownloadedDescription": "'{sourceName}'이/가 다운로드 되지 않아서 이용 불가합니다",
+    "@radioModeRandomUnavailableNotDownloadedDescription": {
+        "description": "Shown as the subtitle for radio modes when the user is offline and the random radio mode can't be used since the queue source hasn't been downloaded.",
+        "placeholders": {
+            "sourceName": {
+                "type": "String"
+            }
+        }
+    },
+    "radioModeRandomUnavailableNotDownloadedSubtitle": "{modeName} '{sourceName}'이/가 다운로드 되지 않아서 이용불가합니다",
+    "@radioModeRandomUnavailableNotDownloadedSubtitle": {
+        "description": "Shown as the subtitle for radio modes when the user is offline and the random radio mode can't be used since the queue source hasn't been downloaded.",
+        "placeholders": {
+            "modeName": {
+                "type": "String",
+                "description": "The pre-translated radio mode name"
+            },
+            "sourceName": {
+                "type": "String"
+            }
+        }
+    },
+    "radioModeRandomUnavailableNotDownloadedGenericDescription": "대기열의 곡들(음원)이 다운로드 되지 않아서 이용 불가합니다",
+    "@radioModeRandomUnavailableNotDownloadedGenericDescription": {
+        "description": "Shown as the generic subtitle for radio modes when the user is offline and the random radio mode can't be used since the queue source hasn't been downloaded, when the queue source has no name."
+    },
+    "radioModeRandomUnavailableNotDownloadedGenericSubtitle": "{modeName} 대기열의 곡들(음원)이 다운로드 되지 않아서 이용 불가합니다",
+    "@radioModeRandomUnavailableNotDownloadedGenericSubtitle": {
+        "placeholders": {
+            "modeName": {
+                "type": "String",
+                "description": "The pre-translated radio mode name"
+            }
+        },
+        "description": "Shown as the generic subtitle for radio modes when the user is offline and the random radio mode can't be used since the queue source hasn't been downloaded, when the queue source has no name."
+    },
+    "loopingUnavailableWhileRadioActiveWarning": "라디오 모드가 활성화 되어 있을때는 대기열이 무한으로 계속되기 때문에 반복 재생 모드를 바꿀 수 없습니다.",
+    "@loopingUnavailableWhileRadioActiveWarning": {
+        "description": "Warning message when trying to change the loop mode while radio is active."
+    },
+    "autoReloadPrompt": "새로운 {type, select, network{네트워크 설정} transcoding{트랜스코딩 설정} other{설정}}을 적용하려면 대기열을 다시 불러오세요",
+    "@autoReloadPrompt": {
+        "description": "Prompt shown when the queue needs to be reloaded after changing network settings",
+        "placeholders": {
+            "type": {
+                "type": "String"
+            }
+        }
+    },
+    "menuButtonLabel": "추가 작업",
+    "@menuButtonLabel": {
+        "description": "Generic label for menu buttons shown throughout the app. Used for the album, artist, playlist, etc. menus"
+    },
+    "autoReloadPromptReloadButton": "다시 불러오기",
+    "@autoReloadPromptReloadButton": {
+        "description": "Button title for reloading the queue after network settings change"
+    },
+    "notImplementedYet": "아직 미구현 상태입니다.",
+    "@notImplementedYet": {
+        "description": "Message shown when a feature is not implemented yet"
+    },
+    "automaticOfflineModeOverrideActiveTitle": "자동 전환 일시 중지됨",
+    "@automaticOfflineModeOverrideActiveTitle": {
+        "description": "Title for the label shown below the offline mode toggle when automatic offline mode switching is paused"
+    },
+    "automaticOfflineModeOverrideActiveSubtitle": "다시 재생하려면 탭하세요",
+    "@automaticOfflineModeOverrideActiveSubtitle": {
+        "description": "Subtitle for the label shown below the offline mode toggle when automatic offline mode switching is paused"
+    },
+    "sleepTimerFinishLastTrack": "이번 곡에서 종료하시겠습니까?",
+    "@sleepTimerFinishLastTrack": {
+        "description": "Option for the sleep timer that will finish the last track before stopping playback."
+    },
+    "sleepTimerAfterCurrentTrack": "이 노래가 끝난 후",
+    "@sleepTimerAfterCurrentTrack": {
+        "description": "Option for the sleep timer that will stop playback after the current track finishes."
+    },
+    "sleepTimerStartTimer": "타이머 시작",
+    "@sleepTimerStartTimer": {
+        "description": "Label for the button that starts the sleep timer"
+    },
+    "syncPlaybackSpeedAndPitchLabel": "속도와 피치 동기화",
+    "@syncPlaybackSpeedAndPitchLabel": {
+        "description": "Label for the checkbox that toggled is the pitch is adjusted along with the playback speed, or if the pitch is kept constant. Shown in the speed submenu on the track menu"
+    },
+    "serverSharingMenuTitle": "근거리 네트워크에서 서버 공유",
+    "@serverSharingMenuTitle": {
+        "description": "Title for the server sharing menu that allows the user to share their server address with other devices on the local network"
+    },
+    "serverSharingMenuButtonTitle": "서버 공유",
+    "@serverSharingMenuButtonTitle": {
+        "description": "Title for the button in the drawer that opens the server sharing menu"
+    },
+    "serverSharingMenuConfirmationDialogText": "오프라인 모드에서도 서버 공유 기능을 활성화 하시겠습니까? Finamp가 근거리 네트워크를 통해 데이터를 송신하게 됩니다.",
+    "@serverSharingMenuConfirmationDialogText": {
+        "description": "Dialog text shown when enabling server sharing while offline mode is enabled"
+    },
+    "serverSharingMenuConfirmationDialogConfirmationButtonLabel": "확인 및 활성화",
+    "@serverSharingMenuConfirmationDialogConfirmationButtonLabel": {
+        "description": "Positive action label for the dialog shown when enabling server sharing while offline mode is enabled"
+    },
+    "serverSharingMenuControlTitleSharingEnabled": "서버 공유",
+    "@serverSharingMenuControlTitleSharingEnabled": {
+        "description": "Title of the toggle control in the server sharing menu used to turn server sharing on or off, when it's currently turned on"
+    },
+    "serverSharingMenuControlSubtitleSharingDisabled": "공유하려면 탭하세요",
+    "@serverSharingMenuControlSubtitleSharingDisabled": {
+        "description": "Subtitle of the toggle control in the server sharing menu used to turn server sharing on or off, when it's currently turned off"
+    },
+    "serverSharingMenuControlTitleSharingDisabled": "공유하지 않음",
+    "@serverSharingMenuControlTitleSharingDisabled": {
+        "description": "Title of the toggle control in the server sharing menu used to turn server sharing on or off, when it's currently turned off"
+    },
+    "serverSharingMenuControlSubtitleSharingEnabled": "정지하려면 탭하세요",
+    "@serverSharingMenuControlSubtitleSharingEnabled": {
+        "description": "Subtitle of the toggle control in the server sharing menu used to turn server sharing on or off, when it's currently turned on"
     }
 }
