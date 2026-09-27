@@ -2544,5 +2544,5 @@
             }
         }
     },
-  "loginFlowLocalNetworkServersNoResults": "Még nem találtunk szervert automatikusan. Ettől a szerver még elérhető lehet. A kapcsolódáshoz add meg fent a címét."
+  "loginFlowLocalNetworkServersNoResults": "Még nem találtunk szervert; lehet, hogy kézzel kell megadnod a szerver címét."
 }

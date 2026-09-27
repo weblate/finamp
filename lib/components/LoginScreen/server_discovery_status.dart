@@ -36,18 +36,25 @@ class _ServerDiscoveryStatusState extends State<ServerDiscoveryStatus> {
   Widget build(BuildContext context) {
     final strings = AppLocalizations.of(context)!;
     final style = Theme.of(context).textTheme.bodySmall;
-    if (_initialWaitComplete && !widget.hasServers) {
-      return Text(strings.loginFlowLocalNetworkServersNoResults, textAlign: TextAlign.center, style: style);
-    }
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+    return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
-        const Padding(
-          padding: EdgeInsets.all(4.0),
-          child: SizedBox(height: 20.0, width: 20.0, child: CircularProgressIndicator(strokeWidth: 2.0)),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Padding(
+              padding: EdgeInsets.all(4.0),
+              child: SizedBox(height: 20.0, width: 20.0, child: CircularProgressIndicator(strokeWidth: 2.0)),
+            ),
+            const SizedBox(width: 8.0),
+            Flexible(child: Text(strings.loginFlowLocalNetworkServersScanningForServers, style: style)),
+          ],
         ),
-        const SizedBox(width: 8.0),
-        Flexible(child: Text(strings.loginFlowLocalNetworkServersScanningForServers, style: style)),
+        if (_initialWaitComplete && !widget.hasServers)
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Text(strings.loginFlowLocalNetworkServersNoResults, textAlign: TextAlign.center, style: style),
+          ),
       ],
     );
   }

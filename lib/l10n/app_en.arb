@@ -3761,5 +3761,5 @@
     "quickSettingsLayoutLink": "All layout & theme settings",
     "quickSettingsAllSettingsLink": "All Settings",
     "quickSettingsNetworkLink": "Configure the local address for your server",
-  "loginFlowLocalNetworkServersNoResults": "No servers found automatically yet. Your server may still be reachable. Enter its address above to connect."
+  "loginFlowLocalNetworkServersNoResults": "No servers detected yet - you may need to manually enter the server address."
 }
