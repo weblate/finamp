@@ -217,10 +217,10 @@ class _DownloadDialogState extends ConsumerState<DownloadDialog> {
                 children: [
                   if (transcode) ...[
                     _TranscodeLineItem(
-                      label: l10n!.downloadDialogFileSizeLabel,
+                      label: l10n.downloadDialogFileSizeLabel,
                       originalValue: originalFileSizeFormatted,
                       transcodeValueCondition: (transcode && originalFileSize != transcodedFileSize),
-                      transcodeValue: transcodedFileSizeFormatted,
+                      transcodeValue: '~$transcodedFileSizeFormatted',
                     ),
                     _TranscodeLineItem(
                       label: l10n.downloadDialogFormatLabel,
