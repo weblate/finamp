@@ -1491,7 +1491,7 @@
     "@downloadSizeWarningCutoffSubtitle": {
         "description": "Subtitle for the setting controlling when to warn about a large download"
     },
-    "releaseDateFormatMonthDayYear": "Mois, Jour & Année",
+    "releaseDateFormatMonthDayYear": "Mois, jour et année (en fonction des paramètres régionaux)",
     "@releaseDateFormatMonthDayYear": {
         "description": "Date format option for the release date of an album, showing the year and month and day/date. Example: March 2, 2022"
     },
@@ -3698,5 +3698,9 @@
     "clientCertificatesUnsupported": "Les certificats client ne sont pas pris en charge sur cette plateforme.",
     "@clientCertificatesUnsupported": {
         "description": "Message shown when client certificates are not supported on the user's current platform."
+    },
+    "releaseDateFormatNumerical": "Format numérique court (en fonction des paramètres régionaux)",
+    "@releaseDateFormatNumerical": {
+        "description": "Date format option for the release date of an album, showing the date in a short numerical format. Changes based on locale such as DD/MM/YYYY for en_gb and MM/DD/YYYY for en_us."
     }
 }
