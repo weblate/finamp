@@ -458,7 +458,7 @@
     "@playbackModeLocal": {
         "description": "Feature chip that is shown when tracks are being played from local downloads, without using the server"
     },
-    "kiloBitsPerSecondLabel": "{bitrate} kbps",
+    "kiloBitsPerSecondLabel": "{bitrate} KiB/s",
     "@kiloBitsPerSecondLabel": {
         "description": "Label for the bitrate of a track or for transcoding. The value will be the bitrate in kilobits per second.",
         "placeholders": {
@@ -609,7 +609,7 @@
     "bufferDisableSizeConstraintsTitle": "不要限制緩衝區大小",
     "bufferDisableSizeConstraintsSubtitle": "關閉「緩衝區大小」的限制，無論檔案大小多大，緩衝區都會依照設定的「緩衝區持續時間」載入。不過，這可能會導致程式當機，並且需要重新啟動才能生效。",
     "bufferSizeTitle": "緩衝區大小",
-    "bufferSizeSubtitle": "緩衝區大小 (MB)。變更後需要重新啟動應用程式",
+    "bufferSizeSubtitle": "緩衝區大小 (MiB)。變更後需要重新啟動應用程式",
     "skipToPreviousTrackButtonTooltip": "從頭播放或切換至前一首",
     "@skipToPreviousTrackButtonTooltip": {
         "description": "Tooltip for the button that skips to the beginning of the current track or to the previous track"
@@ -3687,5 +3687,9 @@
     "quickSettingsTranscodeLink": "所有轉碼設定",
     "quickSettingsLayoutLink": "所有版面配置與主題設定",
     "quickSettingsAllSettingsLink": "所有設定",
-    "quickSettingsNetworkLink": "設定伺服器的本機位址"
+    "quickSettingsNetworkLink": "設定伺服器的本機位址",
+    "releaseDateFormatNumerical": "短格式數字日期",
+    "@releaseDateFormatNumerical": {
+        "description": "Date format option for the release date of an album, showing the date in a short numerical format. Changes based on locale such as DD/MM/YYYY for en_gb and MM/DD/YYYY for en_us."
+    }
 }
