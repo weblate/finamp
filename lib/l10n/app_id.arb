@@ -2106,7 +2106,7 @@
     "@releaseDateFormatMonthYear": {
         "description": "Date format option for the release date of an album, showing the year and month. Example: March 2022"
     },
-    "releaseDateFormatMonthDayYear": "Bulan, Hari & Tahun",
+    "releaseDateFormatMonthDayYear": "Bulan, Hari & Tahun (Berbasis wilayah)",
     "@releaseDateFormatMonthDayYear": {
         "description": "Date format option for the release date of an album, showing the year and month and day/date. Example: March 2, 2022"
     },
@@ -2285,7 +2285,7 @@
     "@downloadPaused": {
         "description": "Gets shown in the snackbar if loosing wifi connection while downloads are running and the 'requireWifiForDownloads' is enabled"
     },
-    "missingSchemaError": "Url harus dimulai dengan http(s)://",
+    "missingSchemaError": "URL harus dimulai dengan http(s)://",
     "@missingSchemaError": {
         "description": "Snackbar message when the user changes their home/public address but it doesn't start with http"
     },
@@ -3745,5 +3745,9 @@
     "clientCertificatesUnsupported": "Sertifikat client tidak didukung dalam platform ini",
     "@clientCertificatesUnsupported": {
         "description": "Message shown when client certificates are not supported on the user's current platform."
+    },
+    "releaseDateFormatNumerical": "Numerik Pendek (Berbasis wilayah)",
+    "@releaseDateFormatNumerical": {
+        "description": "Date format option for the release date of an album, showing the date in a short numerical format. Changes based on locale such as DD/MM/YYYY for en_gb and MM/DD/YYYY for en_us."
     }
 }
