@@ -205,7 +205,10 @@ class _DownloadDialogState extends ConsumerState<DownloadDialog> {
 
           if (widget.needsTranscode)
             CheckboxListTile(
-              title: Padding(padding: const EdgeInsets.only(bottom: 8.0), child: Text('Transcode files?')),
+              title: Padding(
+                padding: const EdgeInsets.only(bottom: 8.0),
+                child: Text(l10n!.downloadDialogTranscodeFilesTitle),
+              ),
               value: transcode,
               visualDensity: VisualDensity.compact,
               subtitle: Column(
