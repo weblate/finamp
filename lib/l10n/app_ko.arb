@@ -2588,5 +2588,21 @@
     "serverSharingMenuControlSubtitleSharingEnabled": "정지하려면 탭하세요",
     "@serverSharingMenuControlSubtitleSharingEnabled": {
         "description": "Subtitle of the toggle control in the server sharing menu used to turn server sharing on or off, when it's currently turned on"
+    },
+    "useHighContrastColorsTitle": "고대비 색상 사용",
+    "@useHighContrastColorsTitle": {
+        "description": "Title for the setting that controls if high contrast colors are used throughout the app"
+    },
+    "autoExpandPlayerScreenTitle": "재생을 시작하면 재생 화면을 엽니다",
+    "@autoExpandPlayerScreenTitle": {
+        "description": "Title for the setting that controls if the player screen is opened directly after starting a new queue"
+    },
+    "discordRPCSettingDescription": "디스코드 상태에 재생중인 노래를 보여주고 싶다면 디스코드 커스텀 상태 메시지를 활성화 하세요. 오프라인 모드가 활성화되면 디스코드에 연결하지 않습니다.",
+    "@discordRPCSettingDescription": {
+        "description": "Description for the setting that controls if the Discord RPC (Rich Presence) feature is enabled"
+    },
+    "discordRPCIconSettingTitle": "디스코드 상태 메시지 대체 아이콘",
+    "@discordRPCIconSettingTitle": {
+        "description": "Title for the setting that controls which icon gets shown in the Discord RPC (Rich Presence) in case the local address is in use"
     }
 }
