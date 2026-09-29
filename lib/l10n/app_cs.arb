@@ -1553,7 +1553,7 @@
     "@releaseDateFormatYear": {
         "description": "Date format option for the release date of an album, showing only the year"
     },
-    "releaseDateFormatMonthDayYear": "Měsíc, den a rok",
+    "releaseDateFormatMonthDayYear": "Měsíc, den a rok (podle místních předvoleb)",
     "@releaseDateFormatMonthDayYear": {
         "description": "Date format option for the release date of an album, showing the year and month and day/date. Example: March 2, 2022"
     },
@@ -3684,5 +3684,9 @@
     "clientCertificatesUnsupported": "Klientské certifikáty nejsou na této platformě podporovány",
     "@clientCertificatesUnsupported": {
         "description": "Message shown when client certificates are not supported on the user's current platform."
+    },
+    "releaseDateFormatNumerical": "Krátké numerické (podle místních předvoleb)",
+    "@releaseDateFormatNumerical": {
+        "description": "Date format option for the release date of an album, showing the date in a short numerical format. Changes based on locale such as DD/MM/YYYY for en_gb and MM/DD/YYYY for en_us."
     }
 }
