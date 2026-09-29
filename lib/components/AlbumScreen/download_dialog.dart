@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:file_sizes/file_sizes.dart';
 import 'package:finamp/l10n/app_localizations.dart';
@@ -129,6 +130,9 @@ class _DownloadDialogState extends ConsumerState<DownloadDialog> {
 
     final l10n = AppLocalizations.of(context);
 
+    const double kDialogMaxWidth = 720;
+    final double dialogWidth = min(kDialogMaxWidth, MediaQuery.sizeOf(context).width * 0.9);
+
     // original file
     final originalProfile = DownloadProfile(transcodeCodec: FinampTranscodingCodec.original);
     final originalFileSize = widget.children?.map((e) => e.mediaSources?.first.size ?? 0).fold(0, (a, b) => a + b) ?? 0;
@@ -169,45 +173,51 @@ class _DownloadDialogState extends ConsumerState<DownloadDialog> {
     final preferredDownloadLocation = getFirstSelectedLocation();
 
     return AlertDialog(
+      constraints: BoxConstraints(minWidth: dialogWidth),
       title: Text(AppLocalizations.of(context)!.addDownloads),
       content: Column(
-        spacing: 8,
+        spacing: 16,
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            spacing: 4,
+            children: [Text(l10n!.downloadDialogFileSizeLabel), Text(originalFileSizeFormatted)],
+          ),
+
           // Only show if there are multiple download locations
-          if (userSelectableDownloadLocations.length > 1)
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              child: Column(
-                spacing: 16,
-                children: [
-                  DropdownMenu(
-                    label: Text(l10n!.downloadDialogDownloadLocationLabel),
-                    initialSelection: preferredDownloadLocation,
-                    onSelected: (value) => setState(() {
-                      selectedDownloadLocation = value;
-                    }),
-                    expandedInsets: EdgeInsets.zero,
-                    dropdownMenuEntries: userSelectableDownloadLocations
-                        .map(
-                          (downloadLocation) => DropdownMenuEntry<DownloadLocation>(
-                            value: downloadLocation,
-                            label: downloadLocation.name,
-                          ),
-                        )
-                        .toList(),
-                  ),
-                  Text(l10n.downloadDialogPath(preferredDownloadLocation?.currentPath ?? '')),
-                ],
-              ),
+          // if (userSelectableDownloadLocations.length > 1)
+          Padding(
+            padding: const EdgeInsets.only(top: 16.0, bottom: 8),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              spacing: 16,
+              children: [
+                DropdownMenu(
+                  label: Text(l10n.downloadDialogDownloadLocationLabel),
+                  initialSelection: preferredDownloadLocation,
+                  onSelected: (value) => setState(() {
+                    selectedDownloadLocation = value;
+                  }),
+                  expandedInsets: EdgeInsets.zero,
+                  dropdownMenuEntries: userSelectableDownloadLocations
+                      .map(
+                        (downloadLocation) =>
+                            DropdownMenuEntry<DownloadLocation>(value: downloadLocation, label: downloadLocation.name),
+                      )
+                      .toList(),
+                ),
+                Text(l10n.downloadDialogPath(preferredDownloadLocation?.currentPath ?? '')),
+              ],
             ),
+          ),
 
           if (widget.needsTranscode)
             CheckboxListTile(
               title: Padding(
                 padding: const EdgeInsets.only(bottom: 8.0),
-                child: Text(l10n!.downloadDialogTranscodeFilesTitle),
+                child: Text(l10n.downloadDialogTranscodeFilesTitle),
               ),
               value: transcode,
               visualDensity: VisualDensity.compact,
