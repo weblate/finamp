@@ -120,6 +120,7 @@ Widget buildPlayerSplitScreenScaffold(BuildContext context, Widget? widget) {
                               child: ScaffoldMessenger(
                                 child: Navigator(
                                   pages: const [MaterialPage(canPop: false, child: PlayerScreen())],
+                                  onDidRemovePage: (_) {},
                                   onGenerateRoute: (x) {
                                     GlobalSnackbar.navigatorState!.pushNamed(x.name!, arguments: x.arguments);
                                     return EmptyRoute();

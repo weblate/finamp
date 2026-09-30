@@ -1155,10 +1155,7 @@ class QueueService {
     if (playbackOrder == FinampPlaybackOrder.shuffled) {
       final newShuffleOrder = [..._shuffleOrder.indices];
       final int itemToMove = newShuffleOrder.removeAt(_currentQueueIndex + oldOffset);
-      newShuffleOrder.insert(
-        oldOffset < newOffset ? _currentQueueIndex + newOffset - 1 : _currentQueueIndex + newOffset,
-        itemToMove,
-      );
+      newShuffleOrder.insert(_currentQueueIndex + newOffset, itemToMove);
       try {
         _shuffleOrder.overrideShuffle(newShuffleOrder);
         await _audioHandler.shuffle();
@@ -1167,7 +1164,7 @@ class QueueService {
       }
     } else {
       final oldIndex = _currentQueueIndex + oldOffset;
-      final newIndex = oldOffset < newOffset ? _currentQueueIndex + newOffset - 1 : _currentQueueIndex + newOffset;
+      final newIndex = _currentQueueIndex + newOffset;
 
       await _audioHandler.moveFinampQueueItem(oldIndex, newIndex);
     }
