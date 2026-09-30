@@ -873,10 +873,13 @@ class JellyfinApiHelper {
     required BaseItemId playlistId,
 
     /// Item ids to add.
-    List<BaseItemId>? ids,
+    required List<BaseItemId> ids,
   }) async {
     assert(_verifyCallable());
-    await jellyfinApi.addItemsToPlaylist(playlistId: playlistId, ids: ids?.join(","));
+    // since this uses query parameters, things can break when trying to add a ton of items at once. So we chunk this instead
+    for (final slice in ids.slices(200)) {
+      await jellyfinApi.addItemsToPlaylist(playlistId: playlistId, ids: slice.join(","));
+    }
   }
 
   /// Remove items from a playlist.

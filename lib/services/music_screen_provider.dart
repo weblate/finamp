@@ -532,6 +532,13 @@ List<BaseItemDto> sortItems(List<BaseItemDto> itemsToSort, SortBy? sortBy, SortO
           if (dateA == null) return -1;
           if (dateB == null) return 1;
           return dateA.compareTo(dateB);
+        case SortBy.inAlbumOrPlaylist:
+          // sort by ParentIndexNumber, then IndexNumber, then SortName
+          final parentIndexCompare = (a.parentIndexNumber ?? 0).compareTo(b.parentIndexNumber ?? 0);
+          if (parentIndexCompare != 0) return parentIndexCompare;
+          final indexCompare = (a.indexNumber ?? 0).compareTo(b.indexNumber ?? 0);
+          if (indexCompare != 0) return indexCompare;
+          return (a.sortName ?? "").compareTo(b.sortName ?? "");
         case SortBy.budget:
         case SortBy.revenue:
         case SortBy.defaultOrder:

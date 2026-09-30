@@ -2900,6 +2900,8 @@ class SortByAdapter extends TypeAdapter<SortBy> {
         return SortBy.runtime;
       case 15:
         return SortBy.defaultOrder;
+      case 16:
+        return SortBy.inAlbumOrPlaylist;
       default:
         return SortBy.album;
     }
@@ -2940,6 +2942,8 @@ class SortByAdapter extends TypeAdapter<SortBy> {
         writer.writeByte(14);
       case SortBy.defaultOrder:
         writer.writeByte(15);
+      case SortBy.inAlbumOrPlaylist:
+        writer.writeByte(16);
     }
   }
 

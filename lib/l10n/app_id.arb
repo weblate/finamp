@@ -700,7 +700,7 @@
             }
         }
     },
-    "responseError401": "{error} Kode status {statusCode}. Ini kemungkinan berarti Anda menggunakan nama pengguna/kata sandi yang salah, atau klien Anda sudah tidak masuk lagi.",
+    "responseError401": "{error} Kode status {statusCode}. Ini kemungkinan berarti Anda menggunakan nama pengguna/kata sandi yang salah, atau client Anda sudah tidak masuk lagi.",
     "@responseError401": {
         "placeholders": {
             "error": {
@@ -893,7 +893,7 @@
     "@savedQueue": {
         "description": "Title for the queue source for tracks were previously in the queue before an app restart and have been reloaded"
     },
-    "playingFromType": "Memutar dari {source, select, album{Album} playlist{Daftar Putar} trackMix{Mix Trek} artistMix{Mix Artis} albumMix{Mix Album} genreMix{Mix Genre} favorites{Favorit} allTracks{Semua Trek} filteredList{Trek} genre{Genre} artist{Artis} track{Trek} nextUpAlbum{Album Berikutnya} nextUpPlaylist{Daftar Putar Berikutnya} nextUpArtist{Artis Berikutnya} nextUpGenre{Genre Berikutnya} remoteClient{Klien jarak jauh} radio{Radio} homeScreenSection{} collection{Koleksi} collectionMix{Mix Koleksi} other{}}",
+    "playingFromType": "Memutar dari {source, select, album{Album} playlist{Daftar Putar} trackMix{Mix Trek} artistMix{Mix Artis} albumMix{Mix Album} genreMix{Mix Genre} favorites{Favorit} allTracks{Semua Trek} filteredList{Trek} genre{Genre} artist{Artis} track{Trek} nextUpAlbum{Album Berikutnya} nextUpPlaylist{Daftar Putar Berikutnya} nextUpArtist{Artis Berikutnya} nextUpGenre{Genre Berikutnya} remoteClient{Client Jarak Jauh} radio{Radio} homeScreenSection{} collection{Koleksi} collectionMix{Mix Koleksi} other{}}",
     "@playingFromType": {
         "description": "Prefix shown before the type of the main queue source at the top of the player screen. Example: \"Playing From Album\"",
         "placeholders": {
@@ -970,7 +970,7 @@
     "@loopModeAllButtonLabel": {
         "description": "Label for the button that toggles the loop mode between off, loop one, and loop all, while the queue is in loop all mode"
     },
-    "queuesScreen": "Pulihkan Sedang Diputar",
+    "queuesScreen": "Antrean Sebelumnya",
     "@queuesScreen": {
         "description": "Title for the screen where older now playing queues can be restored"
     },
@@ -1042,7 +1042,7 @@
     "@periodicPlaybackSessionUpdateFrequencySubtitle": {
         "description": "Description of the setting that controls how frequently (in seconds) the current playback session is reported to the Jellyfin server"
     },
-    "periodicPlaybackSessionUpdateFrequencyDetails": "Jika server Jellyfin tidak menerima pembaruan apa pun dari klien dalam 5 menit terakhir, server menganggap pemutaran telah berakhir. Ini berarti untuk trek yang lebih panjang dari 5 menit, pemutaran bisa salah dilaporkan sebagai telah berakhir, yang menurunkan kualitas data pelaporan pemutaran.",
+    "periodicPlaybackSessionUpdateFrequencyDetails": "Jika server Jellyfin tidak menerima pembaruan apa pun dari client dalam 5 menit terakhir, server menganggap pemutaran telah berakhir. Ini berarti untuk trek yang lebih panjang dari 5 menit, pemutaran bisa salah dilaporkan sebagai telah berakhir, yang menurunkan kualitas data pelaporan pemutaran.",
     "@periodicPlaybackSessionUpdateFrequencyDetails": {
         "description": "Additional details for the setting that controls how frequently (in seconds) the current playback session is reported to the Jellyfin server"
     },
@@ -1058,7 +1058,7 @@
     "@enablePlayonTitle": {
         "description": "Label for the setting to enable Jellyfin's 'Play On' feature (remote control)"
     },
-    "enablePlayonSubtitle": "Mengaktifkan fitur 'Play On' Jellyfin (mengendalikan Finamp dari jarak jauh melalui klien lain). Nonaktifkan ini jika reverse proxy atau server Anda tidak mendukung websocket.",
+    "enablePlayonSubtitle": "Mengaktifkan fitur 'Play On' Jellyfin (mengendalikan Finamp dari jarak jauh melalui client lain). Nonaktifkan ini jika reverse proxy atau server Anda tidak mendukung websocket.",
     "@enablePlayonSubtitle": {
         "description": "Description of the setting to enable Jellyfin's 'Play On' feature (remote control)"
     },
@@ -2559,11 +2559,11 @@
     "@serverSharingMenuControlSubtitleSharingEnabled": {
         "description": "Subtitle of the toggle control in the server sharing menu used to turn server sharing on or off, when it's currently turned on"
     },
-    "serverSharingMenuDescription": "Berbagi alamat server Anda dapat berguna untuk menyiapkan klien baru yang tidak berada di jaringan lokal yang sama dengan server Jellyfin Anda, misal: TV hotel, PC Anda di kantor, atau klien baru di ponsel Anda saat bepergian.",
+    "serverSharingMenuDescription": "Berbagi alamat server Anda dapat berguna untuk menyiapkan client baru yang tidak berada di jaringan lokal yang sama dengan server Jellyfin Anda, misal: TV hotel, PC Anda di kantor, atau client baru di ponsel Anda saat bepergian.",
     "@serverSharingMenuDescription": {
         "description": "Description text shown in the server sharing menu, right below the controls"
     },
-    "serverSharingMenuDetails": "Ini bekerja dengan mendengarkan permintaan penemuan server dari klien lain di jaringan lokal, lalu membalas permintaan tersebut dengan alamat server Jellyfin Anda yang telah dikonfigurasi.\nJika Anda mengonfigurasi alamat lokal dan publik, Finamp akan memberikan keduanya kepada klien yang meminta.",
+    "serverSharingMenuDetails": "Ini bekerja dengan mendengarkan permintaan penemuan server dari client lain di jaringan lokal, lalu membalas permintaan tersebut dengan alamat server Jellyfin Anda yang telah dikonfigurasi.\nJika Anda mengonfigurasi alamat lokal dan publik, Finamp akan memberikan keduanya kepada client yang meminta.",
     "@serverSharingMenuDetails": {
         "description": "Description text shown in the server sharing menu, below the description"
     },
@@ -2603,7 +2603,7 @@
     "@quickConnectAuthorizationMenuStateSubtitleFailed": {
         "description": "Subtitle for the quick connect authorization menu state info (above the input field) when the authorization was unsuccessful"
     },
-    "quickConnectAuthorizationMenuDescription": "Jika Anda mencoba masuk ke klien Jellyfin lain melalui Quick Connect, Anda dapat memasukkan atau menempelkan kode 6 digit ke kolom di atas. Ini akan mengotorisasikan permintaan masuk dari klien lain, dan membuat Anda masuk ke akun yang sama dengan yang Anda gunakan untuk Finamp.",
+    "quickConnectAuthorizationMenuDescription": "Jika Anda mencoba masuk ke client Jellyfin lain melalui Quick Connect, Anda dapat memasukkan atau menempelkan kode 6 digit ke kolom di atas. Ini akan mengotorisasikan permintaan masuk dari client lain, dan membuat Anda masuk ke akun yang sama dengan yang Anda gunakan untuk Finamp.",
     "@quickConnectAuthorizationMenuDescription": {
         "description": "Description for the quick connect authorization menu, shown at the bottom"
     },
@@ -3510,11 +3510,11 @@
             }
         }
     },
-    "clientCertificate": "Sertifikat Client mTLS (SSL)",
+    "clientCertificate": "Sertifikat Client (mTLS)",
     "@clientCertificate": {
         "description": "Title for the setting that allows managing SSL client certificates used for authentication"
     },
-    "clientCertificateUnavailable": "Tidak ada sertifikat, autentikasi client dinonaktifkan",
+    "clientCertificateUnavailable": "Tidak ada sertifikat, otentikasi client tambahan dinonaktifkan",
     "@clientCertificateUnavailable": {
         "description": "Message shown when the user has no SSL client certificate available to use."
     },
@@ -3538,7 +3538,7 @@
     "@clientCertificatePasswordHint": {
         "description": "Hint text for the password input field when importing a client certificate."
     },
-    "clientCertificateDeleteConfirm": "Hapus sertifikat yang terpasang? Autentikasi Client akan dinonaktifkan.",
+    "clientCertificateDeleteConfirm": "Hapus sertifikat yang terpasang? Otentikasi Client akan dinonaktifkan.",
     "@clientCertificateDeleteConfirm": {
         "description": "Confirmation prompt shown before removing the installed client certificate."
     },
@@ -3554,7 +3554,7 @@
     "@clientCertificateRequired": {
         "description": "Message shown on the server selection screen when the server requires a client certificate to be provided."
     },
-    "clientCertificateDescription": "Sebuah sertifikat klien TLS (.p12 atau .pfx) digunakan untuk mengautentikasi perangkat ini dengan server Jellyfin anda. Hanya diperlukan jika server anda diatur untuk Mutual TLS.",
+    "clientCertificateDescription": "Sertifikat client TLS (.p12 atau .pfx) digunakan untuk melakukan otentikasi tambahan pada perangkat ini dengan server Jellyfin anda. Hanya diperlukan jika server anda diatur untuk Mutual TLS.",
     "@clientCertificateDescription": {
         "description": "Explanatory text in the client certificate settings menu describing what a client certificate is used for"
     },
@@ -3720,5 +3720,30 @@
     "quickSettingsTranscodeLink": "Semua pengaturan transcoding",
     "quickSettingsLayoutLink": "Semua pengaturan tata letak dan tema",
     "quickSettingsAllSettingsLink": "Semua Pengaturan",
-    "quickSettingsNetworkLink": "Atur alamat lokal untuk server anda"
+    "quickSettingsNetworkLink": "Atur alamat lokal untuk server anda",
+    "inAlbumOrPlaylist": "Urutan Album/Daftar Putar",
+    "@inAlbumOrPlaylist": {
+        "description": "Sorting order for tracks in an album or playlist (by disc, then index, then name"
+    },
+    "discUnknown": "Disc Tidak Dikenal",
+    "@discUnknown": {
+        "description": "Shown when the disc number is unknown or not set for a group of tracks on the album screen"
+    },
+    "discUnknownOfAlbum": "[Disc Tidak Dikenal] {albumName}",
+    "@discUnknownOfAlbum": {
+        "description": "Used when a single disc of album is opened, but the disc number is unknown, then album name is replaced with this string",
+        "placeholders": {
+            "albumName": {
+                "type": "String"
+            }
+        }
+    },
+    "advanced": "Lanjutan",
+    "@advanced": {
+        "description": "Label for the button on the login screen that opens the advanced options screen, and the title of that screen."
+    },
+    "clientCertificatesUnsupported": "Sertifikat client tidak didukung dalam platform ini",
+    "@clientCertificatesUnsupported": {
+        "description": "Message shown when client certificates are not supported on the user's current platform."
+    }
 }

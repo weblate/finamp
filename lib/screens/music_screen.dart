@@ -320,7 +320,7 @@ class _MusicScreenState extends ConsumerState<MusicScreen> with TickerProviderSt
                   children: [
                     if (displayable is FinampSortable)
                       SortAndFilterRow(
-                        tabType: contentTabType,
+                        contentType: contentTabType,
                         controller: sortAndFilterControllerMap[contentTabType]!,
                         allowFilters: widget.allowFilters,
                       ),

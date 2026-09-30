@@ -434,7 +434,7 @@ class FinampSettingsAdapter extends TypeAdapter<FinampSettings> {
         forceAudioOffloadingOnAndroid: fields[143] == null
             ? false
             : fields[143] as bool,
-        verboseLogging: fields[153] == null ? false : fields[153] as bool,
+        verboseLogging: fields[158] == null ? false : fields[158] as bool,
         previousTracksPersistenceMode: fields[145] == null
             ? PreviousTracksPersistenceMode.persistent
             : fields[145] as PreviousTracksPersistenceMode,
@@ -450,19 +450,19 @@ class FinampSettingsAdapter extends TypeAdapter<FinampSettings> {
         clientCertificate: fields[151] == null
             ? DefaultSettings.clientCertificate
             : fields[151] as ClientCertificate?,
-        showQuickActionsBanner: fields[154] == null
+        showQuickActionsBanner: fields[159] == null
             ? true
-            : fields[154] as bool,
-        perTabContentViewType: fields[155] == null
+            : fields[159] as bool,
+        perTabContentViewType: fields[160] == null
             ? {
-                ContentType.albums: ContentViewType.list,
+                ContentType.albums: ContentViewType.grid,
                 ContentType.genericArtists: ContentViewType.list,
                 ContentType.albumArtists: ContentViewType.list,
                 ContentType.performingArtists: ContentViewType.list,
                 ContentType.playlists: ContentViewType.list,
                 ContentType.genres: ContentViewType.list,
               }
-            : (fields[155] as Map).cast<ContentType, ContentViewType>(),
+            : (fields[160] as Map).cast<ContentType, ContentViewType>(),
       )
       ..sortBy = fields[7] as SortBy?
       ..sortOrder = fields[8] as SortOrder?
@@ -779,11 +779,11 @@ class FinampSettingsAdapter extends TypeAdapter<FinampSettings> {
       ..write(obj.clientCertificate)
       ..writeByte(152)
       ..write(obj.deviceId)
-      ..writeByte(153)
+      ..writeByte(158)
       ..write(obj.verboseLogging)
-      ..writeByte(154)
+      ..writeByte(159)
       ..write(obj.showQuickActionsBanner)
-      ..writeByte(155)
+      ..writeByte(160)
       ..write(obj.perTabContentViewType);
   }
 
@@ -1925,7 +1925,7 @@ class ContentTypeAdapter extends TypeAdapter<ContentType> {
       case 7:
         return ContentType.albumArtists;
       case 8:
-        return ContentType.inPlaylist;
+        return ContentType.inPlaylistOrAlbum;
       case 9:
         return ContentType.mixed;
       case 10:
@@ -1956,7 +1956,7 @@ class ContentTypeAdapter extends TypeAdapter<ContentType> {
         writer.writeByte(6);
       case ContentType.albumArtists:
         writer.writeByte(7);
-      case ContentType.inPlaylist:
+      case ContentType.inPlaylistOrAlbum:
         writer.writeByte(8);
       case ContentType.mixed:
         writer.writeByte(9);
@@ -2945,6 +2945,8 @@ class ReleaseDateFormatAdapter extends TypeAdapter<ReleaseDateFormat> {
         return ReleaseDateFormat.monthYear;
       case 3:
         return ReleaseDateFormat.monthDayYear;
+      case 4:
+        return ReleaseDateFormat.numerical;
       default:
         return ReleaseDateFormat.year;
     }
@@ -2961,6 +2963,8 @@ class ReleaseDateFormatAdapter extends TypeAdapter<ReleaseDateFormat> {
         writer.writeByte(2);
       case ReleaseDateFormat.monthDayYear:
         writer.writeByte(3);
+      case ReleaseDateFormat.numerical:
+        writer.writeByte(4);
     }
   }
 
@@ -9571,7 +9575,7 @@ const _$ContentTypeEnumMap = {
   ContentType.home: 'home',
   ContentType.performingArtists: 'performingArtists',
   ContentType.albumArtists: 'albumArtists',
-  ContentType.inPlaylist: 'inPlaylist',
+  ContentType.inPlaylistOrAlbum: 'inPlaylistOrAlbum',
   ContentType.mixed: 'mixed',
   ContentType.inPerformingArtistAlbums: 'inPerformingArtistAlbums',
   ContentType.inAlbumArtistAlbums: 'inAlbumArtistAlbums',
@@ -9795,6 +9799,7 @@ const _$SortByEnumMap = {
   SortBy.revenue: 'revenue',
   SortBy.runtime: 'runtime',
   SortBy.defaultOrder: 'defaultOrder',
+  SortBy.inAlbumOrPlaylist: 'inAlbumOrPlaylist',
 };
 
 const _$SortOrderEnumMap = {

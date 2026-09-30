@@ -247,6 +247,10 @@
     "@defaultOrder": {
         "description": "Default sorting order for playlists (server order)"
     },
+    "inAlbumOrPlaylist": "Album/Playlist Order",
+    "@inAlbumOrPlaylist": {
+        "description": "Sorting order for tracks in an album or playlist (by disc, then index, then name"
+    },
     "adaptive": "Adaptive",
     "formattedRelativeTime": "{type, select, just_now{just now} minutes{{value} min ago} hours{{value} h ago} yesterday{yesterday} days{{value, plural, =1{1 day ago} other{{value} days ago}}} other{value}}",
     "@formattedRelativeTime": {
@@ -344,6 +348,10 @@
                 "type": "int"
             }
         }
+    },
+    "discUnknown": "Disc Unknown",
+    "@discUnknown": {
+        "description": "Shown when the disc number is unknown or not set for a group of tracks on the album screen"
     },
     "playButtonLabel": "Play",
     "shuffleButtonLabel": "Shuffle",
@@ -984,7 +992,7 @@
     "@loopModeAllButtonLabel": {
         "description": "Label for the button that toggles the loop mode between off, loop one, and loop all, while the queue is in loop all mode"
     },
-    "queuesScreen": "Restore Now Playing",
+    "queuesScreen": "Past Queues",
     "@queuesScreen": {
         "description": "Title for the screen where older now playing queues can be restored"
     },
@@ -2145,9 +2153,13 @@
     "@releaseDateFormatMonthYear": {
         "description": "Date format option for the release date of an album, showing the year and month. Example: March 2022"
     },
-    "releaseDateFormatMonthDayYear": "Month, Day & Year",
+    "releaseDateFormatMonthDayYear": "Month, Day & Year (Locale based)",
     "@releaseDateFormatMonthDayYear": {
-        "description": "Date format option for the release date of an album, showing the year and month and day/date. Example: March 2, 2022"
+        "description": "Date format option for the release date of an album, showing the year and month and day/date. Changes based on locale. Example: March 2, 2022"
+    },
+    "releaseDateFormatNumerical": "Short Numerical (Locale based)",
+    "@releaseDateFormatNumerical": {
+        "description": "Date format option for the release date of an album, showing the date in a short numerical format. Changes based on locale such as DD/MM/YYYY for en_gb and MM/DD/YYYY for en_us."
     },
     "showAlbumReleaseDateOnPlayerScreenTitle": "Show Album Release Date on Player Screen",
     "@showAlbumReleaseDateOnPlayerScreenTitle": {
@@ -2738,6 +2750,15 @@
                 "type": "int",
                 "example": "1"
             },
+            "albumName": {
+                "type": "String"
+            }
+        }
+    },
+    "discUnknownOfAlbum": "[Disc Unknown] {albumName}",
+    "@discUnknownOfAlbum": {
+        "description": "Used when a single disc of album is opened, but the disc number is unknown, then album name is replaced with this string",
+        "placeholders": {
             "albumName": {
                 "type": "String"
             }
@@ -3616,11 +3637,15 @@
             }
         }
     },
-    "clientCertificate": "mTLS (SSL) Client Certificate",
+    "advanced": "Advanced",
+    "@advanced": {
+        "description": "Label for the button on the login screen that opens the advanced options screen, and the title of that screen."
+    },
+    "clientCertificate": "Client Certificate (mTLS)",
     "@clientCertificate": {
         "description": "Title for the setting that allows managing SSL client certificates used for authentication"
     },
-    "clientCertificateUnavailable": "No certificate set up, client authentication disabled",
+    "clientCertificateUnavailable": "No certificate set up, additional client authentication disabled",
     "@clientCertificateUnavailable": {
         "description": "Message shown when the user has no SSL client certificate available to use."
     },
@@ -3628,7 +3653,11 @@
     "@clientCertificateInstalled": {
         "description": "Message shown when the user has successfully installed an SSL client certificate."
     },
-    "clientCertificateDescription": "A TLS client certificate (.p12 or .pfx) is used to authenticate this device with your Jellyfin server. Only required if your server is configured for mutual TLS.",
+    "clientCertificatesUnsupported": "Client certificates are not supported on this platform",
+    "@clientCertificatesUnsupported": {
+        "description": "Message shown when client certificates are not supported on the user's current platform."
+    },
+    "clientCertificateDescription": "A TLS client certificate (.p12 or .pfx) is used to additionally authenticate this device with your Jellyfin server. Only required if your server is configured for mutual TLS.",
     "@clientCertificateDescription": {
         "description": "Explanatory text in the client certificate settings menu describing what a client certificate is used for"
     },
@@ -3735,5 +3764,6 @@
     "quickSettingsTranscodeLink": "All transcoding settings",
     "quickSettingsLayoutLink": "All layout & theme settings",
     "quickSettingsAllSettingsLink": "All Settings",
-    "quickSettingsNetworkLink": "Configure the local address for your server"
+    "quickSettingsNetworkLink": "Configure the local address for your server",
+  "loginFlowLocalNetworkServersNoResults": "No servers detected yet - you may need to manually enter the server address."
 }

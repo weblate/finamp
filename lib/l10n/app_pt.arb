@@ -887,7 +887,7 @@
             }
         }
     },
-    "queuesScreen": "Restaurar Agora A Tocar",
+    "queuesScreen": "Filas de Espera Passadas",
     "@queuesScreen": {
         "description": "Title for the screen where older now playing queues can be restored"
     },
@@ -3462,11 +3462,11 @@
             }
         }
     },
-    "clientCertificate": "Certificado de Cliente mTLS (SSL)",
+    "clientCertificate": "Certificado de Cliente (mTLS)",
     "@clientCertificate": {
         "description": "Title for the setting that allows managing SSL client certificates used for authentication"
     },
-    "clientCertificateUnavailable": "Nenhum certificado configurado, autenticação de cliente desativada",
+    "clientCertificateUnavailable": "Nenhum certificado configurado, autenticação de cliente adicional desativada",
     "@clientCertificateUnavailable": {
         "description": "Message shown when the user has no SSL client certificate available to use."
     },
@@ -3474,7 +3474,7 @@
     "@clientCertificateInstalled": {
         "description": "Message shown when the user has successfully installed an SSL client certificate."
     },
-    "clientCertificateDescription": "É usado um certificado de cliente TLS (.p12 ou .pfx) para autenticar este dispositivo com o seu servidor Jellyfin. Apenas necessário se o seu servidor estiver configurado para TLS mútuo.",
+    "clientCertificateDescription": "É usado um certificado de cliente TLS (.p12 ou .pfx) para adicionalmente autenticar este dispositivo com o seu servidor Jellyfin. Apenas necessário se o seu servidor estiver configurado para TLS mútuo.",
     "@clientCertificateDescription": {
         "description": "Explanatory text in the client certificate settings menu describing what a client certificate is used for"
     },
@@ -3672,5 +3672,30 @@
     "quickSettingsTranscodeLink": "Todas as definições de transcodificação",
     "quickSettingsLayoutLink": "Todas as definições de disposição e tema",
     "quickSettingsAllSettingsLink": "Todas as Definições",
-    "quickSettingsNetworkLink": "Configurar o endereço local para o seu servidor"
+    "quickSettingsNetworkLink": "Configurar o endereço local para o seu servidor",
+    "inAlbumOrPlaylist": "Ordem de Álbum/Lista de Reprodução",
+    "@inAlbumOrPlaylist": {
+        "description": "Sorting order for tracks in an album or playlist (by disc, then index, then name"
+    },
+    "discUnknown": "Disco Desconhecido",
+    "@discUnknown": {
+        "description": "Shown when the disc number is unknown or not set for a group of tracks on the album screen"
+    },
+    "discUnknownOfAlbum": "[Disco Desconhecido] {albumName}",
+    "@discUnknownOfAlbum": {
+        "description": "Used when a single disc of album is opened, but the disc number is unknown, then album name is replaced with this string",
+        "placeholders": {
+            "albumName": {
+                "type": "String"
+            }
+        }
+    },
+    "advanced": "Avançado",
+    "@advanced": {
+        "description": "Label for the button on the login screen that opens the advanced options screen, and the title of that screen."
+    },
+    "clientCertificatesUnsupported": "Certificados de cliente não são suportados nesta plataforma",
+    "@clientCertificatesUnsupported": {
+        "description": "Message shown when client certificates are not supported on the user's current platform."
+    }
 }

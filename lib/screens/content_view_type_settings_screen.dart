@@ -12,7 +12,7 @@ import '../components/finamp_app_bar_back_button.dart';
 class ContentViewTypeSettingsScreen extends ConsumerWidget {
   const ContentViewTypeSettingsScreen({super.key});
 
-  static const routeName = "/settings/contentViewType";
+  static const routeName = "/settings/content-view-type";
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

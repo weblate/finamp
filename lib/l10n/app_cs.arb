@@ -127,11 +127,11 @@
     "enterLowPriorityStateOnPause": "Po pozastavení vstoupit do stavu nízké priority",
     "shuffleAllTrackCount": "Počet skladeb pro náhodné přehrávání všeho",
     "viewType": "Typ zobrazení hudební obrazovky",
-    "viewTypeSubtitle": "Typ zobrazení pro hudební obrazovku",
+    "viewTypeSubtitle": "Ovládá režim mřížky nebo seznamu pro všechny karty obrazovky s hudbou, kromě domovské obrazovky.",
     "list": "Seznam",
     "useCoverAsBackground": "Zobrazit rozmazaný obal jako pozadí přehrávače",
     "useCoverAsBackgroundSubtitle": "Zda použít rozmazaný obal alba jako pozadí na obrazovce přehrávače.",
-    "system": "Systémový",
+    "system": "Podle systému",
     "light": "Světlý",
     "theme": "Motiv",
     "dark": "Tmavý",
@@ -563,7 +563,7 @@
     "@loopModeAllButtonLabel": {
         "description": "Label for the button that toggles the loop mode between off, loop one, and loop all, while the queue is in loop all mode"
     },
-    "queuesScreen": "Obnovit právě hrající",
+    "queuesScreen": "Minulé fronty",
     "@queuesScreen": {
         "description": "Title for the screen where older now playing queues can be restored"
     },
@@ -1192,7 +1192,7 @@
     "@volumeNormalizationSwitchSubtitle": {
         "description": "Subtitle for the switch that toggles replay gain"
     },
-    "startInstantMixForIndividualTracksSwitchSubtitle": "Pokud je povoleno, klepnutím na skladbu na kartě skladeb spustíte okamžitý mix této skladby, namísto přehrání pouze té, na kterou jste klepli.",
+    "startInstantMixForIndividualTracksSwitchSubtitle": "Pokud je povoleno, klepnutím na skladbu na kartě skladeb spustíte okamžitý mix této skladby, namísto přehrávání skladeb v pořadí.",
     "syncComplete": "Všechny stažené byly znovu synchronizovány.",
     "@syncComplete": {
         "description": "Message displayed after download sync completes."
@@ -3449,11 +3449,11 @@
             }
         }
     },
-    "clientCertificate": "Klientský certifikát mTLS (SSL)",
+    "clientCertificate": "Klientský certifikát (mTLS)",
     "@clientCertificate": {
         "description": "Title for the setting that allows managing SSL client certificates used for authentication"
     },
-    "clientCertificateUnavailable": "Není nastaven žádný certifikát, autentifikace klienta zakázána",
+    "clientCertificateUnavailable": "Není nastaven žádný certifikát, dodatečná autentifikace klienta zakázána",
     "@clientCertificateUnavailable": {
         "description": "Message shown when the user has no SSL client certificate available to use."
     },
@@ -3461,7 +3461,7 @@
     "@clientCertificateInstalled": {
         "description": "Message shown when the user has successfully installed an SSL client certificate."
     },
-    "clientCertificateDescription": "Klientský certifikát TLS (.p12 nebo .pfx) je využíván pro autentifikaci tohoto zařízení s vaším serverem Jellyfin. Vyžadováno pouze, pokud je váš server nastaven pro vzájemné TLS.",
+    "clientCertificateDescription": "Klientský certifikát TLS (.p12 nebo .pfx) je využíván pro dodatečnou autentifikaci tohoto zařízení s vaším serverem Jellyfin. Vyžadováno pouze, pokud je váš server nastaven pro vzájemné TLS.",
     "@clientCertificateDescription": {
         "description": "Explanatory text in the client certificate settings menu describing what a client certificate is used for"
     },
@@ -3640,5 +3640,49 @@
     "verboseLoggingSubtitle": "Ponechávat podrobné protokoly pro nahlašování chyb. Ponechte vypnuté pro lepší výkon při přehrávání.",
     "@verboseLoggingSubtitle": {
         "description": "Subtitle explaining the verbose logging toggle"
+    },
+    "perTabGridMode": "Vybrat dle karty",
+    "showFastScrollerSubtitle": "Zobrazit nebo skrýt abecední seznam v pravé části karet s hudbou, který umožňuje rychle přejít na písmena.",
+    "quickActionBanner": "Podívejte se na některá z často měněných nastavení!",
+    "@quickActionBanner": {
+        "description": "Banner directing new users to the quick settings, where they can adjust the most commonly used settings"
+    },
+    "themeSettingTitle": "Barevný motiv aplikace (tmavý/světlý)",
+    "@themeSettingTitle": {
+        "description": "Title for the setting that allows you to override the system theme and force dark or light mode"
+    },
+    "perTabGridModeScreen": "Nastavit typy zobrazení dle karty",
+    "perTabAlbumGrid": "Alba pouze v mřížce",
+    "quickSettingsScreen": "Rychlá nastavení",
+    "quickSettingsScreenDescription": "Přizpůsobte si Finamp pomocí těchto základních možností. Kdykoli se sem můžete vrátit skrze nastavení.",
+    "quickSettingsTabsLink": "Přesunout a skrýt karty",
+    "quickSettingsTranscodeLink": "Všechna nastavení překódování",
+    "quickSettingsLayoutLink": "Všechna nastavení rozložení a motivu",
+    "quickSettingsAllSettingsLink": "Všechna nastavení",
+    "quickSettingsNetworkLink": "Nastavte si lokální adresu vašeho serveru",
+    "inAlbumOrPlaylist": "Pořadí alba / seznamu skladeb",
+    "@inAlbumOrPlaylist": {
+        "description": "Sorting order for tracks in an album or playlist (by disc, then index, then name"
+    },
+    "discUnknown": "Neznámý disk",
+    "@discUnknown": {
+        "description": "Shown when the disc number is unknown or not set for a group of tracks on the album screen"
+    },
+    "discUnknownOfAlbum": "[Neznámý disk] {albumName}",
+    "@discUnknownOfAlbum": {
+        "description": "Used when a single disc of album is opened, but the disc number is unknown, then album name is replaced with this string",
+        "placeholders": {
+            "albumName": {
+                "type": "String"
+            }
+        }
+    },
+    "advanced": "Pokročilé",
+    "@advanced": {
+        "description": "Label for the button on the login screen that opens the advanced options screen, and the title of that screen."
+    },
+    "clientCertificatesUnsupported": "Klientské certifikáty nejsou na této platformě podporovány",
+    "@clientCertificatesUnsupported": {
+        "description": "Message shown when client certificates are not supported on the user's current platform."
     }
 }

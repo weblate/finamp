@@ -154,7 +154,7 @@ class _HomeScreenSectionConfigurationMenuState extends ConsumerState<HomeScreenS
           switch (BaseItemDtoType.fromItem(searchListener.value!)) {
             case BaseItemDtoType.playlist:
             case BaseItemDtoType.album:
-              collectionContent = ContentType.inPlaylist;
+              collectionContent = ContentType.inPlaylistOrAlbum;
               // This shouldn't be used, but just in case there's no reason to filter
               collectionLibrary = allLibraryPlaceholder;
             case BaseItemDtoType.artist:
@@ -175,7 +175,7 @@ class _HomeScreenSectionConfigurationMenuState extends ConsumerState<HomeScreenS
             collectionLibrary = section.libraryId;
           } else {
             collectionSortController.updateConfiguration(
-              collectionContent == ContentType.inPlaylist
+              collectionContent == ContentType.inPlaylistOrAlbum
                   ? SortAndFilterConfiguration.defaultInAlbumSort
                   : SortAndFilterConfiguration.defaultSort,
             );

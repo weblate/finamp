@@ -27,7 +27,7 @@ import 'layout_settings_screen.dart';
 class QuickSettingsScreen extends ConsumerWidget {
   const QuickSettingsScreen({super.key});
 
-  static const routeName = "/quick-settings";
+  static const routeName = "/settings/quick-settings";
 
   static const fromSettingsScreen = Object();
 
