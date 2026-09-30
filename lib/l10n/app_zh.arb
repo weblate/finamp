@@ -3688,5 +3688,6 @@
     "releaseDateFormatNumerical": "短数字（基于区域设置）",
     "@releaseDateFormatNumerical": {
         "description": "Date format option for the release date of an album, showing the date in a short numerical format. Changes based on locale such as DD/MM/YYYY for en_gb and MM/DD/YYYY for en_us."
-    }
+    },
+    "loginFlowLocalNetworkServersNoResults": "尚未检测到服务器 - 您可能需要手动输入服务器地址。"
 }
