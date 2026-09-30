@@ -3701,5 +3701,6 @@
     "releaseDateFormatNumerical": "Numeração Curta (Baseada na localização)",
     "@releaseDateFormatNumerical": {
         "description": "Date format option for the release date of an album, showing the date in a short numerical format. Changes based on locale such as DD/MM/YYYY for en_gb and MM/DD/YYYY for en_us."
-    }
+    },
+    "loginFlowLocalNetworkServersNoResults": "Ainda não foram detetados servidores - pode precisar de inserir manualmente o endereço do servidor."
 }
