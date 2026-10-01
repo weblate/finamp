@@ -46,34 +46,6 @@ let flutterEngine = FlutterEngine(name: "SharedEngine", project: nil, allowHeadl
         }
         return nil
     }
-
-    // Required for scene-based lifecycle to properly configure CarPlay scene
-    @available(iOS 13.0, *)
-    override func application(
-        _ application: UIApplication,
-        configurationForConnecting connectingSceneSession: UISceneSession,
-        options: UIScene.ConnectionOptions
-    ) -> UISceneConfiguration {
-        // Check if this is a CarPlay scene (CPTemplateApplicationSceneSessionRoleApplication)
-        if connectingSceneSession.role.rawValue == "CPTemplateApplicationSceneSessionRoleApplication" {
-            let sceneConfig = UISceneConfiguration(
-                name: "CarPlay Configuration",
-                sessionRole: connectingSceneSession.role
-            )
-            // Use the flutter_carplay plugin's delegate directly (now that it's @objc accessible)
-            sceneConfig.delegateClass = NSClassFromString("flutter_carplay.FlutterCarPlaySceneDelegate")
-            return sceneConfig
-        }
-
-        // For the main app window scene, return configuration with SceneDelegate
-        let sceneConfig = UISceneConfiguration(
-            name: "Default Configuration",
-            sessionRole: connectingSceneSession.role
-        )
-        sceneConfig.delegateClass = SceneDelegate.self
-        sceneConfig.storyboard = UIStoryboard(name: "Main", bundle: nil)
-        return sceneConfig
-    }
 }
 
 private func setExcludeFromiCloudBackup(_ dir: URL, isExcluded: Bool) throws {
