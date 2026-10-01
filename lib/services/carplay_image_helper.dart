@@ -36,7 +36,7 @@ const _collageTileSize = 100;
 /// Upper bound on tracks looked up for one collage.
 const _maxCollageTrackScan = 20;
 
-const _collageBuildTimeout = Duration(seconds: 2);
+const _collageBuildTimeout = Duration(seconds: 10);
 
 /// Resolves and renders every image CarPlay shows.
 class CarPlayImageHelper {
@@ -70,6 +70,16 @@ class CarPlayImageHelper {
       _carPlayImageLogger.warning("Failed to build collage for recent queue: $e");
     }
     return _getRecentQueueCoverImage(info).timeout(_collageBuildTimeout, onTimeout: placeholderImageUri);
+  }
+
+  Future<String?> savedRecentQueueImage(FinampStorableQueueInfo info) async {
+    try {
+      final cacheFile = await _collageCacheFile(info, _collageCandidateIds(info));
+      return await cacheFile.exists() ? Uri.file(cacheFile.path).toString() : null;
+    } catch (e) {
+      _carPlayImageLogger.warning("Failed to check for a saved recent queue cover: $e");
+      return null;
+    }
   }
 
   /// Resolves the current track's own artwork for a saved queue, falling
@@ -114,8 +124,7 @@ class CarPlayImageHelper {
     return tracks;
   }
 
-  /// Composes the first distinct album covers of the queue into a cached PNG.
-  Future<String?> _buildRecentQueueCollage(FinampStorableQueueInfo info) async {
+  List<BaseItemId> _collageCandidateIds(FinampStorableQueueInfo info) {
     // Prefer albums still coming up, then pad with the most recently played
     // ones so a queue archived near its end can still fill the collage.
     final upcomingIds = <BaseItemId>[
@@ -124,13 +133,20 @@ class CarPlayImageHelper {
       ...info.queue,
       ...info.previousTracks.reversed,
     ];
+    return upcomingIds.take(_maxCollageTrackScan).toList();
+  }
 
-    final candidateIds = upcomingIds.take(_maxCollageTrackScan).toList();
-
+  Future<File> _collageCacheFile(FinampStorableQueueInfo info, List<BaseItemId> candidateIds) async {
     final tempPath = (await getTemporaryDirectory()).path;
-    final cacheFile = File(
+    return File(
       path_helper.join(tempPath, 'carplay_queue_collage_${info.creation}_${candidateIds.join(',').hashCode}.png'),
     );
+  }
+
+  /// Composes the first distinct album covers of the queue into a cached PNG.
+  Future<String?> _buildRecentQueueCollage(FinampStorableQueueInfo info) async {
+    final candidateIds = _collageCandidateIds(info);
+    final cacheFile = await _collageCacheFile(info, candidateIds);
     if (await cacheFile.exists()) {
       return Uri.file(cacheFile.path).toString();
     }

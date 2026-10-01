@@ -71,6 +71,11 @@ const _carPlayRecentlyPlayedLimit = 5;
 /// row, before clamping to the plugin's runtime grid-image limit.
 const _maxRecentQueues = 6;
 
+typedef _HomeSections = ({
+  List<CPListSection> sections,
+  Future<void> Function(CPListTemplate homeTemplate, int run)? fillMissingCovers,
+});
+
 class CarPlayHelper {
   ConnectionStatusTypes connectionStatus = ConnectionStatusTypes.unknown;
   final FlutterCarplay _flutterCarplay = FlutterCarplay();
@@ -90,6 +95,7 @@ class CarPlayHelper {
   bool _isSettingRootTemplate = false;
   bool _isUpdatingNowPlayingButtons = false;
   int _recentQueuesListImageRun = 0;
+  int _homeSectionsRun = 0;
   BaseItemId? _nowPlayingButtonsTrackId;
   void Function()? _cancelRadioPreview;
 
@@ -1098,7 +1104,7 @@ class CarPlayHelper {
     return desired;
   }
 
-  Future<List<CPListSection>> _buildHomeSections() async {
+  Future<_HomeSections> _buildHomeSections() async {
     List<CPListSection> sections = [];
 
     CPListSection quickActionsSection = CPListSection(
@@ -1215,46 +1221,88 @@ class CarPlayHelper {
       }
     }
 
+    Future<void> Function(CPListTemplate homeTemplate, int run)? fillMissingCovers;
     final recentQueueHistory = await _loadRecentQueueHistory();
     if (recentQueueHistory.isNotEmpty) {
       final queueLimit = await _clampToGridImageLimit(_maxRecentQueues);
       final recentQueues = recentQueueHistory.take(queueLimit).toList();
 
-      final queueImages = await Future.wait(recentQueues.map(_images.recentQueueImage));
-
+      final savedImages = await Future.wait(recentQueues.map(_images.savedRecentQueueImage));
+      final placeholderImage = await _images.placeholderImageUri();
       sections.add(
-        CPListSection(
-          items: [
-            CPListImageRowItem(
-              text: GlobalSnackbar.requireL10n.recentQueues,
-              gridImages: queueImages,
-              onPress: (complete, self) async {
-                try {
-                  await _showRecentQueuesTemplate(recentQueueHistory);
-                } catch (e) {
-                  GlobalSnackbar.error(e);
-                } finally {
-                  complete();
-                }
-              },
-              onItemPress: (complete, self, index) async {
-                try {
-                  if (index != null && index >= 0 && index < recentQueues.length) {
-                    await _resumeSavedQueue(recentQueues[index]);
-                  }
-                } catch (e) {
-                  GlobalSnackbar.error(e);
-                } finally {
-                  complete();
-                }
-              },
-            ),
-          ],
-        ),
+        _recentQueuesSection(recentQueueHistory, recentQueues, [
+          for (final image in savedImages) image ?? placeholderImage,
+        ]),
       );
+
+      if (savedImages.contains(null)) {
+        final sectionIndex = sections.length - 1;
+        fillMissingCovers = (homeTemplate, run) async {
+          try {
+            final images = await Future.wait([
+              for (var i = 0; i < recentQueues.length; i++)
+                savedImages[i] == null ? _images.recentQueueImage(recentQueues[i]) : Future.value(savedImages[i]!),
+            ]);
+            if (run != _homeSectionsRun) {
+              return;
+            }
+            final filledSections = [...sections];
+            filledSections[sectionIndex] = _recentQueuesSection(recentQueueHistory, recentQueues, images);
+            await _flutterCarplay.updateListTemplateSections(
+              elementId: homeTemplate.uniqueId,
+              sections: filledSections,
+            );
+          } catch (e) {
+            _carPlayLogger.warning("Failed to fill Recent Queues covers: $e");
+          }
+        };
+      }
     }
 
-    return sections;
+    return (sections: sections, fillMissingCovers: fillMissingCovers);
+  }
+
+  void _startCoverFill(_HomeSections home, CPListTemplate homeTemplate) {
+    if (!identical(homeTemplate, _homeTemplate)) {
+      return;
+    }
+    final run = ++_homeSectionsRun;
+    unawaited(home.fillMissingCovers?.call(homeTemplate, run));
+  }
+
+  CPListSection _recentQueuesSection(
+    List<FinampStorableQueueInfo> recentQueueHistory,
+    List<FinampStorableQueueInfo> recentQueues,
+    List<String> queueImages,
+  ) {
+    return CPListSection(
+      items: [
+        CPListImageRowItem(
+          text: GlobalSnackbar.requireL10n.recentQueues,
+          gridImages: queueImages,
+          onPress: (complete, self) async {
+            try {
+              await _showRecentQueuesTemplate(recentQueueHistory);
+            } catch (e) {
+              GlobalSnackbar.error(e);
+            } finally {
+              complete();
+            }
+          },
+          onItemPress: (complete, self, index) async {
+            try {
+              if (index != null && index >= 0 && index < recentQueues.length) {
+                await _resumeSavedQueue(recentQueues[index]);
+              }
+            } catch (e) {
+              GlobalSnackbar.error(e);
+            } finally {
+              complete();
+            }
+          },
+        ),
+      ],
+    );
   }
 
   Future<void> setCarplayRootTemplate() async {
@@ -1290,7 +1338,7 @@ class CarPlayHelper {
       GetIt.instance<MusicPlayerBackgroundTask>().getChildren(AudioService.browsableRootId),
     ]);
 
-    final homeSections = results[0] as List<CPListSection>;
+    final home = results[0] as _HomeSections;
     List<MediaItem> rootItems = results[1] as List<MediaItem>;
     CPListSection librarySection = CPListSection(items: []);
 
@@ -1326,7 +1374,7 @@ class CarPlayHelper {
     }
 
     final homeTemplate = CPListTemplate(
-      sections: homeSections,
+      sections: home.sections,
       title: GlobalSnackbar.requireL10n.home,
       emptyViewTitleVariants: [GlobalSnackbar.requireL10n.home],
       emptyViewSubtitleVariants: [GlobalSnackbar.requireL10n.notAvailable],
@@ -1355,8 +1403,9 @@ class CarPlayHelper {
         ],
       ),
     );
+    _startCoverFill(home, homeTemplate);
 
-    await _flutterCarplay.forceUpdateRootTemplate();
+    unawaited(_flutterCarplay.forceUpdateRootTemplate());
   }
 
   /// Rebuilds the home tab's sections in place. Setting a new root template
@@ -1369,8 +1418,9 @@ class CarPlayHelper {
       return;
     }
     try {
-      final sections = await _buildHomeSections();
-      await _flutterCarplay.updateListTemplateSections(elementId: homeTemplate.uniqueId, sections: sections);
+      final home = await _buildHomeSections();
+      await _flutterCarplay.updateListTemplateSections(elementId: homeTemplate.uniqueId, sections: home.sections);
+      _startCoverFill(home, homeTemplate);
     } catch (e) {
       _carPlayLogger.warning("Failed to refresh CarPlay home sections: $e");
     }
@@ -1388,7 +1438,7 @@ class CarPlayHelper {
       ),
     );
 
-    await _flutterCarplay.forceUpdateRootTemplate();
+    unawaited(_flutterCarplay.forceUpdateRootTemplate());
   }
 
   /// Shows the tracks within a single collection (album or playlist) as a
