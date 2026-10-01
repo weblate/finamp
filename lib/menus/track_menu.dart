@@ -442,7 +442,7 @@ class _TrackMenuState extends ConsumerState<TrackMenu> with TickerProviderStateM
                     layoutBuilder: (currentChild, previousChildren) {
                       return Stack(
                         alignment: Alignment.topCenter,
-                        children: <Widget>[...previousChildren, ?currentChild],
+                        children: <Widget>[...previousChildren, if (currentChild != null) currentChild],
                       );
                     },
                     transitionBuilder: (child, animation) {
