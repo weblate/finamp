@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:file_sizes/file_sizes.dart';
+import 'package:finamp/color_schemes.g.dart';
 import 'package:finamp/l10n/app_localizations.dart';
 import 'package:finamp/models/jellyfin_models.dart';
 import 'package:flutter/material.dart';
@@ -260,7 +261,7 @@ class _DownloadDialogState extends ConsumerState<DownloadDialog> {
                 AppLocalizations.of(context)!.largeDownloadWarning(widget.trackCount!),
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                  color: Theme.of(context).colorScheme.error,
+                  color: Theme.of(context).colorScheme.warning,
                   fontWeight: FontWeight.bold,
                 ),
               ),
