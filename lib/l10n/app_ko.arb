@@ -2648,5 +2648,53 @@
     "releaseDateFormatNumerical": "짧은 숫자양식 (지역 기반)",
     "@releaseDateFormatNumerical": {
         "description": "Date format option for the release date of an album, showing the date in a short numerical format. Changes based on locale such as DD/MM/YYYY for en_gb and MM/DD/YYYY for en_us."
+    },
+    "serverSharingMenuDescription": "서버 주소 공유는 Jellyfin 서버와 동일 근거리 네트워크에 포함되지 않은 신규 클라이언트 설정에 유용합니다(예를 들면 호텔 TV, 직장 PC, 이동중인 휴대폰).",
+    "@serverSharingMenuDescription": {
+        "description": "Description text shown in the server sharing menu, right below the controls"
+    },
+    "quickConnectAuthorizationMenuPrompt": "빠른 연결 코드를 입력함",
+    "@quickConnectAuthorizationMenuPrompt": {
+        "description": "Title for the button in server sharing menu that opens the quick connect authorization menu"
+    },
+    "quickConnectAuthorizationMenuTitle": "빠른 연결 요청 승인",
+    "@quickConnectAuthorizationMenuTitle": {
+        "description": "Title for the quick connect authorization menu that allows the user to authorize a quick connect request from another device"
+    },
+    "quickConnectAuthorizationMenuInputLabel": "빠른 연결 코드",
+    "@quickConnectAuthorizationMenuInputLabel": {
+        "description": "Label for the quick connect code input, shown below the input field"
+    },
+    "quickConnectAuthorizationMenuStateSubtitleIdle": "아래의 코드를 입력하거나 붙여넣으세요",
+    "@quickConnectAuthorizationMenuStateSubtitleIdle": {
+        "description": "Subtitle for the quick connect authorization menu state info (above the input field) while the code hasn't been submitted yet"
+    },
+    "quickConnectAuthorizationMenuStateTitleProcessing": "빠른 연결 승인중",
+    "@quickConnectAuthorizationMenuStateTitleProcessing": {
+        "description": "Title for the quick connect authorization menu state info (above the input field) while a request is being processed"
+    },
+    "quickConnectAuthorizationMenuStateTitleSuccess": "빠른 연결 요청 승인됨",
+    "@quickConnectAuthorizationMenuStateTitleSuccess": {
+        "description": "Title for the quick connect authorization menu state info (above the input field) when the authorization was successful"
+    },
+    "quickConnectAuthorizationMenuStateTitleFailed": "빠른 연결 코드 틀림",
+    "@quickConnectAuthorizationMenuStateTitleFailed": {
+        "description": "Title for the quick connect authorization menu state info (above the input field) when the authorization was unsuccessful"
+    },
+    "quickConnectAuthorizationMenuStateSubtitleFailed": "빠른 연결 코드를 다시 확인하고 입력하세요",
+    "@quickConnectAuthorizationMenuStateSubtitleFailed": {
+        "description": "Subtitle for the quick connect authorization menu state info (above the input field) when the authorization was unsuccessful"
+    },
+    "quickConnectAuthorizationMenuButtonTitle": "빠른 연결 승인",
+    "@quickConnectAuthorizationMenuButtonTitle": {
+        "description": "Title for the button in the drawer that opens the quick connect authorization menu"
+    },
+    "quickConnectAuthorizationMenuDescription": "빠른 연결 기능으로 다른 Jellyfin 클라이언트에 로그인 하려는 경우 상단 입력란에 6자리 숫자 코드를 입력하세요. 이렇게 하면 다른 클라이언트의 로그인 요청이 승인되고 Finamp에서 사용중인 계정으로 로그인 합니다.",
+    "@quickConnectAuthorizationMenuDescription": {
+        "description": "Description for the quick connect authorization menu, shown at the bottom"
+    },
+    "accessibility": "접근성",
+    "@accessibility": {
+        "description": "Title for the accessibility settings screen"
     }
 }
