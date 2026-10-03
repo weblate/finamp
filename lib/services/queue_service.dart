@@ -396,6 +396,7 @@ class QueueService {
 
   /// Startup queue restore, called once from main().
   Future<void> performInitialQueueLoad() async {
+    if (_savedQueueState != SavedQueueState.preInit) return;
     try {
       _savedQueueState = SavedQueueState.init;
       archiveSavedQueue(inInit: true);
