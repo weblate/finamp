@@ -19,25 +19,33 @@
 
 Finamp is a **free** Jellyfin music player for Android, iOS and Desktop. It allows you to Stream and Download the music you own. It has a **modern design** that should feel familiar right-away, a few **customizations** and of course **privacy**!
 
-Finamp is a **free** Jellyfin music player for Android, iOS and Desktop. It allows you to Stream and Download the music you own. It has a **modern design** which may remind you of other popular music streaming apps but with a unique twist and a few **customizations** and of course **privacy**!
-
 > [!IMPORTANT]
-> You do **need** access to a [Jellyfin](https://jellyfin.org) server else you **won't be able to use Finamp at all**.
+> You **need** access to a [Jellyfin](https://jellyfin.org) server or you **won't be able to use Finamp at all**.
+> ([Navidrome](https://github.com/navidrome/navidrome/releases/tag/v0.64.0) and [Lyra](https://github.com/lyra-org/lyra) also work, but aren't actively supported)
 
 ## Features
 
 Finamp comes with a bunch of features, we have hand picked a few **features** we believe you'll be the **most interested** in:
 
+- Gapless playback
 - Download music to listen offline
 - Transcoded streaming for reduced mobile data usage
-- Dynamic colors based on the current song applied to an unique and modern look&feel
+- Dynamic colors based on the current track & your device's theme
 - Lyrics Support
-- Audio volume normalization
-- [Desktop App](#other-installation-methods)
-- Support for the [Playback Reporting](https://jellyfin.org/docs/general/server/plugins/#playback-reporting) Plugin, even when you are offline!
-- Android Auto
+- Audio volume normalization (aka "ReplayGain")
+- [Desktop support](#other-installation-methods)
+- Support for the tracking your listening via the [Playback Reporting](https://jellyfin.org/docs/general/server/plugins/#playback-reporting) plugin, even when you are offline!
+- Android Auto & CarPlay support
+- Integration with [AudioMuse](https://github.com/NeptuneHub/AudioMuse-AI) for sonic analysis and improved mixes
 
 *And more for you to explore!*
+
+### Community & Discussions
+
+Have a simple question about Finamp, or struggling with setting up your Jellyfin correctly?  
+Just want someone to talk to and share your favorite music with?  
+Aside from using the [Issues](https://github.com/jmshrv/finamp/issues) and [Discussions](https://github.com/jmshrv/finamp/discussions) functionality here on GitHub, you could also **[join our Discord server](https://discord.gg/xh9SZ73jWk)!**  
+We post release notes and announcements there too, and you'll likely get a reply more quickly there compared to GitHub.
 
 ## FAQ - Frequently Asked Questions
 
@@ -146,11 +154,11 @@ TODO
 Since the app is not available via the Microsoft Store yet, you'll have to install a self-signed certificate before you can install the `.msix` file attached to each release. **You'll only have to do this once!**
 
 1. Download the latest `.msix` file from the [release page](https://github.com/jmshrv/finamp/releases), then navigate to the folder you downloaded it to in File Explorer
-2. Right-click the package and select _Properties_
-3. **Properties**: Switch to the _Digital Signatures_ tab, then select `Finamp` under _Signature list_ (or _Embedded Signatures_), then click _Details_
-4. **Digital Signature Details**: click _View Certificate_
-5. **Certificate**: click _Install Certificate..._
-6. **Certificate Import Wizard**: set _Store Location_ to `Local Machine`, click _Next_, then _Place ... in the following store_ and browse to `Trusted People`, then _Next_ and _Finish_
+2. Right-click the package and select *Properties*
+3. **Properties**: Switch to the *Digital Signatures* tab, then select `Finamp` under *Signature list* (or *Embedded Signatures*), then click *Details*
+4. **Digital Signature Details**: click *View Certificate*
+5. **Certificate**: click *Install Certificate...*
+6. **Certificate Import Wizard**: set *Store Location* to `Local Machine`, click *Next*, then *Place ... in the following store* and browse to `Trusted People`, then *Next* and *Finish*
 7. You can now close all the popups and open the MSIX file to install it!
 
 Alternatively, you could download the plain zip file and manually drag it into the correct place. This is however not a portable installation, since it will still create the database in your user directory.
@@ -172,6 +180,8 @@ TODO
 Just like any [FOSS software](https://en.wikipedia.org/wiki/Free_and_open-source_software) Finamp also relies on your contributions!
 If you are interested you can consult the [Contribution Guidelines](https://github.com/jmshrv/finamp/blob/main/CONTRIBUTING.md) to get stated. Anything helps!
 
+If you have any questions, just reach out to us on GitHub or [Discord](https://discord.gg/xh9SZ73jWk) (`#contributing`)`!
+
 ### Translations
 
 You can also help out by translating Finamp using our [weblate page](https://hosted.weblate.org/engage/finamp/). Here is the current state of translations:
@@ -188,8 +198,42 @@ You can also help out by translating Finamp using our [weblate page](https://hos
 - Thanks to all the Developers who created and maintain packages Finamp uses!
 - And thank **you** for using Finamp!
 
-# Contributers
+# Contributors
 
 <a href="https://github.com/jmshrv/finamp/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=jmshrv/finamp" width="100%"/>
 </a>
+
+Name source: <https://www.reddit.com/r/jellyfin/comments/hjxshn/jellyamp_crossplatform_desktop_music_player/fwqs5i0/>
+
+---
+
+## Info For Advanced Users
+
+### Dynamic Theming On Linux
+
+On Linux, Finamp registers itself with the DBus system, which means you can send messages locally to Finamp!
+This system allows you keep Finamp's color theme up to date with your dynamic color theme without restarting the app.
+There are two color related "endpoints" you can call:
+
+1. Reload the system accent color from GTK ([Settings > Layout & Theme > "Use System Accent"](https://intradeus.github.io/http-protocol-redirector?r=finamp://internal/settings/layout) needs to be *enabled*)
+
+```sh
+gdbus call \
+    --session \
+    --dest 'com.unicornsonlsd.FinampSettings' \
+    --object-path '/com/unicornsonlsd/Finamp' \
+    --method 'com.unicornsonlsd.Finamp.updateAccentColor'
+```
+
+1. Overwrite the accent color ([Settings > Layout & Theme > "Use System Accent"](https://intradeus.github.io/http-protocol-redirector?r=finamp://internal/settings/layout) needs to be *disabled*)  
+  Only works when Finamp is running.
+
+```sh
+gdbus call \
+    --session \
+    --dest 'com.unicornsonlsd.FinampSettings' \
+    --object-path '/com/unicornsonlsd/Finamp' \
+    --method 'com.unicornsonlsd.Finamp.setAccentColor' \
+    '#ff0000' # you can also send "default" to clear the accent color
+```
