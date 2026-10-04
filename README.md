@@ -1,18 +1,16 @@
-![Banner](./GitHub_Banner.png)
+![Several screenshots of Finamp, featuring various screens in the app on desktop, Android, and iOS](<images/GitHub_Banner.png>)
 
 <div align="center">
-
-[<img src="assets/app-store-badges/app-store.svg"
-    alt="Download on the App Store"
-    height="60">](https://apps.apple.com/us/app/finamp/id1574922594)
-[<img src="assets/app-store-badges/fdroid.png"
+<a href="https://f-droid.org/packages/com.unicornsonlsd.finamp/"><img src="assets/app-store-badges/fdroid.png"
     alt="Get it on F-Droid"
-    height="80">](https://f-droid.org/packages/com.unicornsonlsd.finamp/)
-[<img src="assets/app-store-badges/play-store.png"
+    height="80"></a>
+<a href="https://apps.apple.com/us/app/finamp/id1574922594"><img src="assets/app-store-badges/app-store.svg"
+    alt="Download on the App Store"
+    height="80"></a>
+<a href="https://play.google.com/store/apps/details?id=com.unicornsonlsd.finamp"><img src="assets/app-store-badges/play-store.png"
     alt="Get it on Google Play"
-    height="80">](https://play.google.com/store/apps/details?id=com.unicornsonlsd.finamp)
-
-*[Alternative ways to get finamp](#other-installation-methods)*
+    height="80"></a>
+  <i><a href="#other-installation-methods">Alternative ways to get Finamp</a></i>
 </div>
 
 ## TL;DR
@@ -71,87 +69,37 @@ If you encounter any errors, issues, accessibility problems or the likes please 
 
 ## Screenshots
 
-<h3 align="left">Login</h3>
-<table>
-  <tr>
-    <td valign="top">
-      <img src="assets/phonePlaceholder.jpg" alt="Your Image" width="auto" height="auto">
-    </td>
-    <td valign="top">
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean et faucibus dolor, sit amet convallis ligula. Maecenas tortor mauris, venenatis id bibendum quis, mollis et purus. Nam nec massa pellentesque, rutrum nulla vel, scelerisque velit. Fusce placerat sollicitudin neque a maximus. Morbi ullamcorper, lacus sit amet sagittis volutpat, risus tortor congue nisi, non mattis urna dolor ac augue. Vivamus viverra, eros id mattis accumsan, nisi libero accumsan erat, quis euismod ipsum massa in sapien. In tristique dolor ut orci laoreet, eget euismod ligula tristique. Vivamus condimentum ornare sodales. Cras vel pulvinar lorem. Vivamus vel tristique enim. Ut vitae dignissim velit.
-    </td>
-  </tr>
-</table>
+![Banner with screenshots of Finamp, showing the player screen, light mode, dark mode & adaptive theme colors, and the downloads screen. It includes the following text: Stream your music from your server, or download it for offline playback. Light & dark mode with adaptive theme](images/GitHub_Screenshots_1.png)
 
-<h3 align="right">Home</h3>
-<table>
-  <tr>
-    <td valign="top">
-Maecenas felis ipsum, viverra sed diam nec, venenatis scelerisque tortor. Integer sit amet tortor suscipit, auctor dui nec, venenatis libero. Maecenas ultrices luctus turpis et porttitor. Donec eu venenatis ante. In hac habitasse platea dictumst. Pellentesque in ultrices neque. Fusce venenatis feugiat ex laoreet ultrices. Curabitur ac erat nisi. Integer porttitor, nibh eu vehicula condimentum, mauris ipsum pulvinar purus, eget convallis lectus sem a nunc. Pellentesque eu malesuada augue, ut placerat lorem. Fusce a nibh non massa vestibulum congue. Nulla leo dui, venenatis ac consequat sit amet, facilisis vel nisl. Duis sagittis neque at ultricies aliquam.
-    </td>
-    <td valign="top">
-      <img src="assets/phonePlaceholder.jpg" alt="Your Image" width="auto" height="auto">
-    </td>
-  </tr>
-</table>
-
-<h3 align="left">Player</h3>
-<table>
-  <tr>
-    <td valign="top">
-      <img src="assets/phonePlaceholder.jpg" alt="Your Image" width="auto" height="auto">
-    </td>
-    <td valign="top">
-Fusce justo est, commodo non lacinia eu, semper nec urna. Phasellus eros arcu, condimentum ac venenatis non, aliquam ut turpis. Sed in ligula sit amet justo luctus tincidunt. Morbi vestibulum mi lorem. Aliquam erat volutpat. Vivamus sodales, lacus non tristique efficitur, mi felis lobortis ligula, quis ultrices nisi odio eu eros. Sed vehicula magna vel fermentum tincidunt. Sed ac sodales purus. Pellentesque a tincidunt mi, eu tincidunt nulla. Maecenas quis commodo nibh. Pellentesque non tortor ex. Phasellus pretium rhoncus tempus. Etiam ac elit eu mauris scelerisque semper quis id mi. Vivamus et rutrum sem. Morbi tristique, lorem vitae tincidunt auctor, metus sapien finibus neque, eu gravida est tortor nec quam. Vestibulum eget pellentesque ligula.
-    </td>
-  </tr>
-</table>
-
-<h3 align="right">Album / Playlist</h3>
-<table>
-  <tr>
-    <td valign="top">
-Aenean semper, massa tempor laoreet finibus, sem justo tristique mauris, vitae consequat nisi leo a massa. Aliquam in facilisis lectus. Vivamus urna libero, aliquet sit amet fringilla sit amet, molestie sed elit. Mauris nec ex maximus, sollicitudin tellus nec, placerat sapien. Duis sit amet aliquam turpis, nec consectetur tortor. Suspendisse vestibulum semper eleifend. Proin imperdiet erat at libero luctus, fermentum ullamcorper nibh volutpat. Maecenas sed nunc eleifend, eleifend odio a, malesuada justo. Nam a sagittis eros. Nulla efficitur lorem at dapibus iaculis.
-    </td>
-    <td valign="top">
-      <img src="assets/phonePlaceholder.jpg" alt="Your Image" width="auto" height="auto">
-    </td>
-  </tr>
-</table>
-
-<h3 align="left">Settings</h3>
-<table>
-  <tr>
-    <td valign="top">
-      <img src="assets/phonePlaceholder.jpg" alt="Your Image" width="auto" height="auto">
-    </td>
-    <td valign="top">
-Praesent non augue sit amet sapien venenatis lobortis. Praesent eu ipsum ac mauris rutrum imperdiet. Ut ut mi lacus. Nunc nulla est, sollicitudin eget ornare a, blandit eu sapien. Vestibulum luctus feugiat congue. Vestibulum aliquam sed diam eu maximus. Quisque molestie sollicitudin blandit. Maecenas sed mauris feugiat, porta tellus nec, lobortis lectus. Pellentesque metus libero, lacinia ac aliquam vel, ullamcorper quis enim. Integer sed leo faucibus, euismod quam sed, aliquet ligula. Vivamus sit amet lectus sem. Mauris tincidunt sollicitudin nulla eget imperdiet.
-    </td>
-  </tr>
-</table>
-
-<h3 align="right">Downloads</h3>
-<table>
-  <tr>
-    <td valign="top">
-Sed facilisis nec lorem vitae blandit. Nullam finibus neque sit amet velit varius vulputate. Nunc dapibus congue leo, sit amet porta ligula vehicula id. Nunc porttitor mi at augue suscipit sagittis. Quisque ac rutrum risus. Donec ut est ultrices, accumsan nisl tincidunt, faucibus mauris. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-    </td>
-    <td valign="top">
-      <img src="assets/phonePlaceholder.jpg" alt="Your Image" width="auto" height="auto">
-    </td>
-  </tr>
-</table>
+![Banner with screenshots of Finamp, showing the queue panel, home & library tabs, and lyrics screen. It includes the following text: Powerful queue with advanced Next Up, dedicated home tab and library browsing, time-synced lyrics support](<images/GitHub_ Screenshots_2.png>)
 
 ## Other installation methods
 
+- Android:
+  - [Google Play](https://play.google.com/store/apps/details?id=com.unicornsonlsd.finamp)
+  - [F-Droid](https://f-droid.org/en/packages/com.unicornsonlsd.finamp/)
+  - `.apk`: see the [GitHub release](https://github.com/finamp-app/finamp/releases/1.0.1)
+- iOS:
+  - [App Store](https://apps.apple.com/us/app/finamp/id1574922594)
+- Linux:
+  - [Flathub](https://flathub.org/en/apps/com.unicornsonlsd.finamp)
+  - [AUR](https://aur.archlinux.org/packages/finamp)
+- Windows:
+  - `.msix`: see the [GitHub release](https://github.com/finamp-app/finamp/releases/latest)
+  - `.zip` (for manual install): see the [GitHub release](https://github.com/finamp-app/finamp/releases/latest)
+- macOS:
+  - `.app`: see the [GitHub release](https://github.com/finamp-app/finamp/releases/latest)
+
 #### Android
 
-TODO
+- [Google Play](https://play.google.com/store/apps/details?id=com.unicornsonlsd.finamp)
+- [F-Droid](https://f-droid.org/en/packages/com.unicornsonlsd.finamp/)
+- `.apk`: see the [latest GitHub release](https://github.com/finamp-app/finamp/releases/latest)
 
 #### Windows
 
-Since the app is not available via the Microsoft Store yet, you'll have to install a self-signed certificate before you can install the `.msix` file attached to each release. **You'll only have to do this once!**
+Since the app is not available via the Microsoft Store yet, you'll have to install a self-signed certificate before you can install the [`.msix` file attached to each release](https://github.com/finamp-app/finamp/releases/latest).
+**You'll only have to do this once!**
 
 1. Download the latest `.msix` file from the [release page](https://github.com/jmshrv/finamp/releases), then navigate to the folder you downloaded it to in File Explorer
 2. Right-click the package and select *Properties*
@@ -161,17 +109,17 @@ Since the app is not available via the Microsoft Store yet, you'll have to insta
 6. **Certificate Import Wizard**: set *Store Location* to `Local Machine`, click *Next*, then *Place ... in the following store* and browse to `Trusted People`, then *Next* and *Finish*
 7. You can now close all the popups and open the MSIX file to install it!
 
-Alternatively, you could download the plain zip file and manually drag it into the correct place. This is however not a portable installation, since it will still create the database in your user directory.
+Alternatively, you could download the [plain zip archive](https://github.com/finamp-app/finamp/releases/latest) and manually drag it into the correct place. This is however not a portable installation, since it will still create the database in your user directory.
 
 #### Mac
 
-TODO
+- `.app`: see the [GitHub release](https://github.com/finamp-app/finamp/releases/latest)
 
 #### Linux
 
-| Distro | Command         |
-|:-------|:----------------|
-| Arch   | `yay -S finamp` |
+- [Flathub](https://flathub.org/en/apps/com.unicornsonlsd.finamp)
+- [AUR](https://aur.archlinux.org/packages/finamp)
+  - Install via `yay -S finamp`
 
 ## Contributing
 
