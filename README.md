@@ -11,7 +11,7 @@
     alt="Get it on F-Droid"
     height="80"></a>
   <br />
-  <i><a href="#other-installation-methods">Alternative ways to get Finamp</a></i>
+  <i><a href="#installing-finamp">Alternative ways to get Finamp</a></i>
 </div>
 
 ## TL;DR
@@ -24,7 +24,7 @@ Finamp is a **free** Jellyfin music player for Android, iOS and Desktop. It allo
 
 ## Features
 
-Finamp comes with a bunch of features, we have hand picked a few **features** we believe you'll be the **most interested** in:
+Finamp comes with a bunch of features, but here are the ones we think are **most interesting**:
 
 - Gapless playback
 - Download music to listen offline
@@ -38,42 +38,20 @@ Finamp comes with a bunch of features, we have hand picked a few **features** we
 - Support for the tracking your listening via the [Playback Reporting](https://jellyfin.org/docs/general/server/plugins/#playback-reporting) plugin, even when you are offline!
 - *And more for you to explore, e.g. via [our Wiki](https://github.com/finamp-app/finamp/wiki)!*
 
-### Community & Discussions
-
-Have a simple question about Finamp, or struggling with setting up your Jellyfin correctly?  
-Just want someone to talk to and share your favorite music with?  
-Aside from using the [Issues](https://github.com/jmshrv/finamp/issues) and [Discussions](https://github.com/jmshrv/finamp/discussions) functionality here on GitHub, you could also **[join our Discord server](https://discord.gg/xh9SZ73jWk)!**  
-We post release notes and announcements there too, and you'll likely get a reply more quickly there compared to GitHub.
-
-## FAQ - Frequently Asked Questions
-
-#### Is Finamp Free?
-
-Yes. Contributions and donations of any kind are of course welcome!
-
-#### What are Supported Formats?
-
-Mostly All. Generally speaking if Jellyfin and your Device support an format, Finamp will too! In case an format doesn't work you can always enable transcoding.
-
-#### Does finamp support Android Auto / Apple Carplay?
-
-No, but yes. Native support is in development but you can still connect your phone to your car and start listening.
-
-#### Is Finamp Legal?
-
-Finamp is Legal. Because Finamp requires a Jellyfin server for streaming Music the Admin is responsible for buying music from Artists.
-
-## Bugs, Problems and Feature Requests
-
-If you encounter any errors, issues, accessibility problems or the likes please feel free to look the the [issue tracker](https://github.com/jmshrv/finamp/issues) and open a new issue if there isnt one already.
-
 ## Screenshots
 
 ![Banner with screenshots of Finamp, showing the player screen, light mode, dark mode & adaptive theme colors, and the downloads screen. It includes the following text: Stream your music from your server, or download it for offline playback. Light & dark mode with adaptive theme](images/GitHub_Screenshots_1.png)
 
 ![Banner with screenshots of Finamp, showing the queue panel, home & library tabs, and lyrics screen. It includes the following text: Powerful queue with advanced Next Up, dedicated home tab and library browsing, time-synced lyrics support](<images/GitHub_ Screenshots_2.png>)
 
-## Other installation methods
+## Community & Discussions
+
+Have a simple question about Finamp, or struggling with setting up your Jellyfin correctly?  
+Just want someone to talk to and share your favorite music with?  
+Aside from using the [Issues](https://github.com/jmshrv/finamp/issues) and [Discussions](https://github.com/jmshrv/finamp/discussions) functionality here on GitHub, you could also **[join our Finamp Beta Discord server](https://discord.gg/xh9SZ73jWk)!**  
+We post release notes and announcements there too, and you'll likely get a reply more quickly there compared to GitHub.
+
+## Installing Finamp
 
 - Android:
   - [Google Play](https://play.google.com/store/apps/details?id=com.unicornsonlsd.finamp)
@@ -139,14 +117,35 @@ You can also help out by translating Finamp using our [weblate page](https://hos
     </a>
 </div>
 
-# Shoutout
+## FAQ - Frequently Asked Questions
+
+### Do you accept donations?
+
+Contributions and donations of any kind are welcome, but you can't donate to *Finamp* directly. So, if you see some new feature or fix in the release notes that you like, feel free to check if *the person that contributed that* accepts donations!
+
+### Which formats/codecs does Finamp support?
+
+Most. Generally speaking if Jellyfin and your device support a format, Finamp will too! In case a format doesn't work you can always enable transcoding (Finamp can transcode lossless transcoding to FLAC!).
+
+### Does Finamp support Android Auto / Apple CarPlay?
+
+Yes! Both are supported, but if you want to use Android Auto, you'll have to install the app via the Play Store.
+
+### Is Finamp legal?
+
+Yes. Finamp is a *tool* that lets you interface with a Jellyfin server. Finamp does not come with any music, and will not connect to streaming services other than Jellyfin.  
+You will need to bring your own media and add it to Jellyfin, by purchasing music online or ripping discs. This often also directly supports your favorite artists!
+
+## Bugs, Problems and Feature Requests
+
+If you encounter any errors, issues, accessibility problems or the likes please check our [issue tracker](https://github.com/jmshrv/finamp/issues) first, and open a new issue if there isn't one already.
+
+## Shoutout
 
 - Thanks to all the [Contributors and Maintainer](https://github.com/jmshrv/finamp/graphs/contributors) (see bellow) who helped to make, fix and improve Finamp! Without you Finamp wouldn't be Finamp. ❤️
 - Thanks to the [Jellyfin Contributors](https://jellyfin.org/contribute/) without whom Finamp wouldn't exists in the first place and thanks for making self-hosting and privacy easier!
 - Thanks to all the Developers who created and maintain packages Finamp uses!
 - And thank **you** for using Finamp!
-
-# Contributors
 
 <a href="https://github.com/jmshrv/finamp/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=jmshrv/finamp" width="100%"/>
