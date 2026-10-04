@@ -1,15 +1,16 @@
 ![Several screenshots of Finamp, featuring various screens in the app on desktop, Android, and iOS](<images/GitHub_Banner.png>)
 
 <div align="center">
-<a href="https://f-droid.org/packages/com.unicornsonlsd.finamp/"><img src="assets/app-store-badges/fdroid.png"
+  <a href="https://play.google.com/store/apps/details?id=com.unicornsonlsd.finamp"><img src="assets/app-store-badges/play-store.png"
+      alt="Get it on Google Play"
+      height="80"></a>
+  <a href="https://apps.apple.com/us/app/finamp/id1574922594"><img src="assets/app-store-badges/app-store.svg"
+      alt="Download on the App Store"
+      height="80"></a>
+  <a href="https://f-droid.org/packages/com.unicornsonlsd.finamp/"><img src="assets/app-store-badges/fdroid.png"
     alt="Get it on F-Droid"
     height="80"></a>
-<a href="https://apps.apple.com/us/app/finamp/id1574922594"><img src="assets/app-store-badges/app-store.svg"
-    alt="Download on the App Store"
-    height="80"></a>
-<a href="https://play.google.com/store/apps/details?id=com.unicornsonlsd.finamp"><img src="assets/app-store-badges/play-store.png"
-    alt="Get it on Google Play"
-    height="80"></a>
+  <br />
   <i><a href="#other-installation-methods">Alternative ways to get Finamp</a></i>
 </div>
 
@@ -18,7 +19,7 @@
 Finamp is a **free** Jellyfin music player for Android, iOS and Desktop. It allows you to Stream and Download the music you own. It has a **modern design** that should feel familiar right-away, a few **customizations** and of course **privacy**!
 
 > [!IMPORTANT]
-> You **need** access to a [Jellyfin](https://jellyfin.org) server or you **won't be able to use Finamp at all**.
+> You **need** access to a [Jellyfin](https://jellyfin.org) server or you **won't be able to use Finamp at all**.  
 > ([Navidrome](https://github.com/navidrome/navidrome/releases/tag/v0.64.0) and [Lyra](https://github.com/lyra-org/lyra) also work, but aren't actively supported)
 
 ## Features
@@ -31,12 +32,11 @@ Finamp comes with a bunch of features, we have hand picked a few **features** we
 - Dynamic colors based on the current track & your device's theme
 - Lyrics Support
 - Audio volume normalization (aka "ReplayGain")
-- [Desktop support](#other-installation-methods)
-- Support for the tracking your listening via the [Playback Reporting](https://jellyfin.org/docs/general/server/plugins/#playback-reporting) plugin, even when you are offline!
 - Android Auto & CarPlay support
 - Integration with [AudioMuse](https://github.com/NeptuneHub/AudioMuse-AI) for sonic analysis and improved mixes
-
-*And more for you to explore!*
+- [Desktop support](#other-installation-methods)
+- Support for the tracking your listening via the [Playback Reporting](https://jellyfin.org/docs/general/server/plugins/#playback-reporting) plugin, even when you are offline!
+- *And more for you to explore, e.g. via [our Wiki](https://github.com/finamp-app/finamp/wiki)!*
 
 ### Community & Discussions
 
