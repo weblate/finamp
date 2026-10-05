@@ -729,7 +729,7 @@
     "@releaseDateFormatMonthYear": {
         "description": "Date format option for the release date of an album, showing the year and month. Example: March 2022"
     },
-    "releaseDateFormatMonthDayYear": "Kuukausi, päivä ja vuosi",
+    "releaseDateFormatMonthDayYear": "Kuukausi, päivä ja vuosi (Lokaaliriippuvainen)",
     "@releaseDateFormatMonthDayYear": {
         "description": "Date format option for the release date of an album, showing the year and month and day/date. Example: March 2, 2022"
     },
@@ -1991,7 +1991,7 @@
     "@networkSettingsTitle": {
         "description": "Title for the network settings screen"
     },
-    "missingSchemaError": "Verkko-osoitteen täytyy alkaa http(s)://",
+    "missingSchemaError": "Verkko-osoitteen täytyy alkaa tekstillä http(s)://",
     "@missingSchemaError": {
         "description": "Snackbar message when the user changes their home/public address but it doesn't start with http"
     },
@@ -3690,5 +3690,10 @@
     "clientCertificatesUnsupported": "Asiakassertifikaatteja ei tueta tällä alustalla",
     "@clientCertificatesUnsupported": {
         "description": "Message shown when client certificates are not supported on the user's current platform."
-    }
+    },
+    "releaseDateFormatNumerical": "Lyhyt numeerinen (Lokalisaatioriippuvainen)",
+    "@releaseDateFormatNumerical": {
+        "description": "Date format option for the release date of an album, showing the date in a short numerical format. Changes based on locale such as DD/MM/YYYY for en_gb and MM/DD/YYYY for en_us."
+    },
+    "loginFlowLocalNetworkServersNoResults": "Palvelimia ei havaittua vielä - voit joutua asettamaan palvelimen osoitteen manuaalisesti."
 }
