@@ -205,31 +205,33 @@ class _DownloadDialogState extends ConsumerState<DownloadDialog> {
             ),
 
           // Only show if there are multiple download locations
-          // if (userSelectableDownloadLocations.length > 1)
-          Padding(
-            padding: const EdgeInsets.only(top: 16.0, bottom: 8),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              spacing: 16,
-              children: [
-                DropdownMenu(
-                  label: Text(l10n.downloadDialogDownloadLocationLabel),
-                  initialSelection: preferredDownloadLocation,
-                  onSelected: (value) => setState(() {
-                    selectedDownloadLocation = value;
-                  }),
-                  expandedInsets: EdgeInsets.zero,
-                  dropdownMenuEntries: userSelectableDownloadLocations
-                      .map(
-                        (downloadLocation) =>
-                            DropdownMenuEntry<DownloadLocation>(value: downloadLocation, label: downloadLocation.name),
-                      )
-                      .toList(),
-                ),
-                Text(l10n.downloadDialogPath(preferredDownloadLocation?.currentPath ?? '')),
-              ],
+          if (userSelectableDownloadLocations.length > 1)
+            Padding(
+              padding: const EdgeInsets.only(top: 16.0, bottom: 8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                spacing: 16,
+                children: [
+                  DropdownMenu(
+                    label: Text(l10n.downloadDialogDownloadLocationLabel),
+                    initialSelection: preferredDownloadLocation,
+                    onSelected: (value) => setState(() {
+                      selectedDownloadLocation = value;
+                    }),
+                    expandedInsets: EdgeInsets.zero,
+                    dropdownMenuEntries: userSelectableDownloadLocations
+                        .map(
+                          (downloadLocation) => DropdownMenuEntry<DownloadLocation>(
+                            value: downloadLocation,
+                            label: downloadLocation.name,
+                          ),
+                        )
+                        .toList(),
+                  ),
+                  Text(l10n.downloadDialogPath(preferredDownloadLocation?.currentPath ?? '')),
+                ],
+              ),
             ),
-          ),
 
           if (widget.needsTranscode)
             CheckboxListTile(
