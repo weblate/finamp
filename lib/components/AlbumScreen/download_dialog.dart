@@ -129,33 +129,49 @@ class _DownloadDialogState extends ConsumerState<DownloadDialog> {
   Widget build(BuildContext context) {
     assert(widget.children?.every((child) => BaseItemDtoType.fromItem(child) == BaseItemDtoType.track) ?? true);
 
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
 
     const double kDialogMaxWidth = 720;
     final double dialogWidth = min(kDialogMaxWidth, MediaQuery.sizeOf(context).width * 0.9);
 
-    // original file
-    final originalProfile = DownloadProfile(transcodeCodec: FinampTranscodingCodec.original);
-    final originalFileSize = widget.children?.map((e) => e.mediaSources?.first.size ?? 0).fold(0, (a, b) => a + b) ?? 0;
-    final originalFileSizeFormatted = FileSize.getSize(originalFileSize, precision: PrecisionValue.None);
+    final sources = widget.children?.map((e) => e.mediaSources?.firstOrNull).toList();
+    final List<MediaSourceInfo>? knownSources =
+        (sources != null && sources.isNotEmpty && sources.every((s) => s != null)) ? sources.nonNulls.toList() : null;
 
-    final downloadFormats = widget.children!.map((e) => e.mediaSources?.first.mediaStreams.first.codec).toSet();
-    final formatLabels = downloadFormats.whereType<String>().map((f) => f.toUpperCase()).toList()..sort();
-    final formatsAsString = formatLabels.join(', ');
+    final originalProfile = DownloadProfile(transcodeCodec: FinampTranscodingCodec.original);
+    final int? originalFileSize = (knownSources != null && knownSources.every((s) => s.size != null))
+        ? knownSources.fold<int>(0, (sum, s) => sum + s.size!)
+        : null;
+    final originalFileSizeFormatted = _formatSize(originalFileSize);
+
+    String? originalFormats;
+    if (knownSources != null) {
+      final codecs = knownSources
+          .map((s) => s.mediaStreams.where((m) => m.type == "Audio").firstOrNull?.codec)
+          .toList();
+      if (codecs.every((c) => c != null)) {
+        originalFormats = (codecs.nonNulls.map((c) => c.toUpperCase()).toSet().toList()..sort()).join(', ');
+      }
+    }
+
+    String? originalBitrate;
+    final bitrates = knownSources?.map((s) => s.bitrate).toList();
+    if (bitrates != null && bitrates.every((b) => b != null)) {
+      final minBitrate = bitrates.nonNulls.reduce(min);
+      final maxBitrate = bitrates.nonNulls.reduce(max);
+      originalBitrate = minBitrate == maxBitrate
+          ? _formatKbps(minBitrate)
+          : "${minBitrate ~/ 1000}–${_formatKbps(maxBitrate)}";
+    }
 
     // transcode
     final transcodeProfile = FinampSettingsHelper.finampSettings.downloadTranscodingProfile;
     final transcodedFileFormat = transcodeProfile.codec.name.toUpperCase();
-    final transcodedFileSize =
-        widget.children
-            ?.map(
-              (e) => e.mediaSources?.first.transcodedSize(
-                FinampSettingsHelper.finampSettings.downloadTranscodingProfile.bitrateChannels,
-              ),
-            )
-            .fold(0, (a, b) => a + (b ?? 0)) ??
-        0;
-    final transcodedFileSizeFormatted = FileSize.getSize(transcodedFileSize, precision: PrecisionValue.None);
+    final int? transcodedFileSize = knownSources?.fold<int>(
+      0,
+      (sum, s) => sum + s.transcodedSize(transcodeProfile.bitrateChannels),
+    );
+    final transcodedFileSizeFormatted = _formatSize(transcodedFileSize);
 
     DownloadLocation? getFirstSelectedLocation() {
       FinampSettings settings = FinampSettingsHelper.finampSettings;
@@ -181,11 +197,12 @@ class _DownloadDialogState extends ConsumerState<DownloadDialog> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            spacing: 4,
-            children: [Text(l10n!.downloadDialogFileSizeLabel), Text(originalFileSizeFormatted)],
-          ),
+          if (originalFileSizeFormatted != null)
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              spacing: 4,
+              children: [Text(l10n.downloadDialogFileSizeLabel), Text(originalFileSizeFormatted)],
+            ),
 
           // Only show if there are multiple download locations
           // if (userSelectableDownloadLocations.length > 1)
@@ -227,23 +244,20 @@ class _DownloadDialogState extends ConsumerState<DownloadDialog> {
                 spacing: 4,
                 children: [
                   if (transcode) ...[
-                    _TranscodeLineItem(
-                      label: l10n.downloadDialogFileSizeLabel,
-                      originalValue: originalFileSizeFormatted,
-                      transcodeValueCondition: (transcode && originalFileSize != transcodedFileSize),
-                      transcodeValue: '~$transcodedFileSizeFormatted',
-                    ),
+                    if (transcodedFileSizeFormatted != null)
+                      _TranscodeLineItem(
+                        label: l10n.downloadDialogFileSizeLabel,
+                        originalValue: originalFileSizeFormatted,
+                        transcodeValue: '~$transcodedFileSizeFormatted',
+                      ),
                     _TranscodeLineItem(
                       label: l10n.downloadDialogFormatLabel,
-                      originalValue: formatsAsString,
-                      transcodeValueCondition: (transcode && formatsAsString != transcodedFileFormat),
+                      originalValue: originalFormats,
                       transcodeValue: transcodedFileFormat,
                     ),
                     _TranscodeLineItem(
                       label: l10n.downloadDialogBitrateLabel,
-                      originalValue: originalProfile.bitrateKbps,
-                      transcodeValueCondition:
-                          (transcode && originalProfile.bitrateKbps != transcodeProfile.bitrateKbps),
+                      originalValue: originalBitrate,
                       transcodeValue: transcodeProfile.bitrateKbps,
                     ),
                   ],
@@ -304,21 +318,16 @@ class _DownloadDialogState extends ConsumerState<DownloadDialog> {
 }
 
 class _TranscodeLineItem extends StatelessWidget {
-  const _TranscodeLineItem({
-    super.key,
-    required this.label,
-    required this.originalValue,
-    required this.transcodeValueCondition,
-    required this.transcodeValue,
-  });
+  const _TranscodeLineItem({required this.label, required this.originalValue, required this.transcodeValue});
 
   final String label;
-  final String originalValue;
-  final bool transcodeValueCondition;
+  final String? originalValue;
   final String transcodeValue;
 
   @override
   Widget build(BuildContext context) {
+    final original = originalValue;
+    final showTranscode = original != transcodeValue;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -328,8 +337,9 @@ class _TranscodeLineItem extends StatelessWidget {
           alignment: WrapAlignment.center,
           crossAxisAlignment: WrapCrossAlignment.center,
           children: [
-            Text(originalValue),
-            if (transcodeValueCondition) ...[_TranscodeIcon(), Text(transcodeValue)],
+            if (original != null) Text(original),
+            if (original != null && showTranscode) const _TranscodeIcon(),
+            if (showTranscode) Text(transcodeValue),
           ],
         ),
       ],
@@ -337,8 +347,13 @@ class _TranscodeLineItem extends StatelessWidget {
   }
 }
 
+String? _formatSize(int? bytes) => bytes == null ? null : FileSize.getSize(bytes, precision: PrecisionValue.None);
+
+/// Matches the format of [DownloadProfile.bitrateKbps].
+String _formatKbps(int bitsPerSecond) => "${bitsPerSecond ~/ 1000}kbps";
+
 class _TranscodeIcon extends StatelessWidget {
-  const _TranscodeIcon({super.key});
+  const _TranscodeIcon();
 
   @override
   Widget build(BuildContext context) {
