@@ -334,20 +334,22 @@ class CarPlayImageHelper {
   /// Renders an icon font glyph to a PNG in the temp directory and returns
   /// its file URI, so CarPlay buttons can show the same icons as the phone
   /// UI. Only the glyph's alpha matters, CarPlay tints button images itself.
+  /// The @3x file name makes iOS draw the image at [size] points, not pixels.
   Future<String?> iconFontImageUri(IconData icon, double size) async {
+    final pixels = size * 3;
     final cacheFile = File(
-      path_helper.join((await getTemporaryDirectory()).path, 'carplay_icon_${icon.codePoint}_${size.round()}.png'),
+      path_helper.join((await getTemporaryDirectory()).path, 'carplay_icon_${icon.codePoint}_${size.round()}@3x.png'),
     );
     if (!await cacheFile.exists()) {
       final recorder = ui.PictureRecorder();
-      final canvas = ui.Canvas(recorder, ui.Rect.fromLTWH(0, 0, size, size));
+      final canvas = ui.Canvas(recorder, ui.Rect.fromLTWH(0, 0, pixels, pixels));
       final painter = TextPainter(
         text: TextSpan(
           text: String.fromCharCode(icon.codePoint),
           style: TextStyle(
             fontFamily: icon.fontFamily,
             package: icon.fontPackage,
-            fontSize: size,
+            fontSize: pixels,
             color: const ui.Color(0xFFFFFFFF),
           ),
         ),
@@ -355,11 +357,11 @@ class CarPlayImageHelper {
       );
       try {
         painter.layout();
-        painter.paint(canvas, ui.Offset((size - painter.width) / 2, (size - painter.height) / 2));
+        painter.paint(canvas, ui.Offset((pixels - painter.width) / 2, (pixels - painter.height) / 2));
       } finally {
         painter.dispose();
       }
-      final bytes = await _encodePng(recorder.endRecording(), size.round());
+      final bytes = await _encodePng(recorder.endRecording(), pixels.round());
       if (bytes == null) {
         return null;
       }

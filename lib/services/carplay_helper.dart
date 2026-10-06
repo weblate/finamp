@@ -282,7 +282,7 @@ class CarPlayHelper {
 
     final isShuffled = _queueService.playbackOrder == FinampPlaybackOrder.shuffled;
     final shuffleIcon =
-        await _images.iconFontImageUri(isShuffled ? TablerIcons.arrows_shuffle : TablerIcons.arrows_right, 40) ??
+        await _images.iconFontImageUri(isShuffled ? TablerIcons.arrows_shuffle : TablerIcons.arrows_right, 20) ??
         'sfsymbol:shuffle';
     final buttons = <CPNowPlayingButton>[
       CPNowPlayingImageButton(image: shuffleIcon, onPress: () => _queueService.togglePlaybackOrder()),
@@ -291,7 +291,7 @@ class CarPlayHelper {
     if (currentTrack != null && !isOffline) {
       final isFavorite = providerRef.read(isFavoriteProvider(currentTrack));
       final heartIcon =
-          await _images.iconFontImageUri(isFavorite ? TablerIcons.heart_filled : TablerIcons.heart, 40) ??
+          await _images.iconFontImageUri(isFavorite ? TablerIcons.heart_filled : TablerIcons.heart, 20) ??
           (isFavorite ? 'sfsymbol:heart.fill' : 'sfsymbol:heart');
       buttons.add(
         CPNowPlayingImageButton(
@@ -300,7 +300,7 @@ class CarPlayHelper {
         ),
       );
 
-      final radioIcon = await _images.iconFontImageUri(TablerIcons.radio, 40) ?? 'sfsymbol:radio';
+      final radioIcon = await _images.iconFontImageUri(TablerIcons.radio, 20) ?? 'sfsymbol:radio';
       buttons.add(
         CPNowPlayingImageButton(
           image: radioIcon,
