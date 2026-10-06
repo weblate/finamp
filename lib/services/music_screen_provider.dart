@@ -157,6 +157,13 @@ class PagedContent extends _$PagedContent {
     });
   }
 
+  /// Refetches the loaded pages without changing how many are loaded.
+  void reload() {
+    for (final provider in _dependencies) {
+      ref.invalidate(provider);
+    }
+  }
+
   void refresh() {
     _pageSizes = [];
     ref.invalidateSelf();

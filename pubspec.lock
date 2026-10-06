@@ -605,11 +605,11 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: 8d243ea855bd40787a55b4492cd2ff6c6b8835f4
-      resolved-ref: 8d243ea855bd40787a55b4492cd2ff6c6b8835f4
+      ref: c1bd562a83791c12b681d2161ce77d8af58b34de
+      resolved-ref: c1bd562a83791c12b681d2161ce77d8af58b34de
       url: "https://github.com/finamp-app/flutter_carplay.git"
     source: git
-    version: "1.6.5"
+    version: "1.7.0+2"
   flutter_discord_rpc:
     dependency: "direct main"
     description:

@@ -71,6 +71,12 @@ const _carPlayRecentlyPlayedLimit = 5;
 /// row, before clamping to the plugin's runtime grid-image limit.
 const _maxRecentQueues = 6;
 
+/// Tracks skipped sooner than this don't refresh the home tab.
+const _playedTrackDelay = Duration(seconds: 30);
+
+/// Track changes refresh the home tab at most this often.
+const _homeRefreshInterval = Duration(minutes: 5);
+
 typedef _HomeSections = ({
   List<CPListSection> sections,
   Future<void> Function(CPListTemplate homeTemplate, int run)? fillMissingCovers,
@@ -92,8 +98,11 @@ class CarPlayHelper {
   StreamSubscription<BoxEvent>? _queueHistorySubscription;
   Timer? _homeRefreshTimer;
   CPListTemplate? _homeTemplate;
+  DateTime? _lastHomeRefresh;
+  String? _homeSignature;
   bool _isSettingRootTemplate = false;
   bool _isUpdatingNowPlayingButtons = false;
+  bool _nowPlayingButtonsStale = false;
   int _recentQueuesListImageRun = 0;
   int _homeSectionsRun = 0;
   BaseItemId? _nowPlayingButtonsTrackId;
@@ -144,6 +153,11 @@ class CarPlayHelper {
       _nowPlayingButtonsTrackId = trackId;
       _subscribeToCurrentTrackFavorite();
       _updateNowPlayingButtons();
+      final lastRefresh = _lastHomeRefresh;
+      if (connectionStatus == ConnectionStatusTypes.connected &&
+          (lastRefresh == null || DateTime.now().difference(lastRefresh) >= _homeRefreshInterval)) {
+        _scheduleHomeRefresh(delay: _playedTrackDelay);
+      }
     });
     _subscribeToCurrentTrackFavorite();
     _updateNowPlayingButtons();
@@ -167,10 +181,7 @@ class CarPlayHelper {
       if (event.key == "latest") {
         return;
       }
-      _homeRefreshTimer?.cancel();
-      _homeRefreshTimer = Timer(const Duration(seconds: 2), () {
-        _refreshHomeSections();
-      });
+      _forceHomeRefresh();
     });
 
     // Defer initial template setup until after the first frame is rendered.
@@ -207,6 +218,7 @@ class CarPlayHelper {
       // presented unprompted on connect, so its buttons can't wait for the next
       // track or order change.
       _updateNowPlayingButtons();
+      _forceHomeRefresh();
 
       // Resume playback if there's a loaded queue that's paused
       final audioHandler = GetIt.instance<MusicPlayerBackgroundTask>();
@@ -242,14 +254,18 @@ class CarPlayHelper {
   /// no buttons when logged out and hides favourite/radio when there is no
   /// current track or while offline.
   ///
-  /// Overlapping calls are ignored.
+  /// Calls made during an update are combined into one more update afterwards.
   Future<void> _updateNowPlayingButtons() async {
     if (_isUpdatingNowPlayingButtons) {
+      _nowPlayingButtonsStale = true;
       return;
     }
     _isUpdatingNowPlayingButtons = true;
     try {
-      await _sendNowPlayingButtons();
+      do {
+        _nowPlayingButtonsStale = false;
+        await _sendNowPlayingButtons();
+      } while (_nowPlayingButtonsStale);
     } finally {
       _isUpdatingNowPlayingButtons = false;
     }
@@ -509,17 +525,25 @@ class CarPlayHelper {
   /// Loads up to [limit] items by subscribing to the paged provider and
   /// requesting more pages until it has enough or the list is exhausted,
   /// rather than reaching into the notifier for a one-shot slice.
-  Future<List<BaseItemDto>> _loadPagedItems(FinampPagedPlayable<FinampPlayableDto> request, int limit) async {
+  Future<List<BaseItemDto>> _loadPagedItems(
+    FinampPagedPlayable<FinampPlayableDto> request,
+    int limit, {
+    bool refresh = false,
+  }) async {
     final provider = pagedContentProvider(request);
     final completer = Completer<List<FinampDisplayableOrPlayable>>();
 
-    if (providerRef.read(provider).error != null) {
+    if (refresh) {
+      providerRef.read(provider.notifier).reload();
+    } else if (providerRef.read(provider).error != null) {
       providerRef.read(provider.notifier).retry();
     }
 
     // Retain the paged data so it survives for later taps, until the next root
     // rebuild releases it.
-    _templateSubscriptions.add(providerRef.listen(provider, (_, _) {}));
+    if (!refresh) {
+      _templateSubscriptions.add(providerRef.listen(provider, (_, _) {}));
+    }
 
     // Whatever closes this driver subscription must also settle the completer, or the caller hangs
     ProviderSubscription? driver;
@@ -968,13 +992,17 @@ class CarPlayHelper {
 
   /// Resolves a home section preset like the main UI home screen. Presets with no offline
   /// fallback resolve to UnavailableHomeSectionPlayable and return empty, hiding the row.
-  Future<List<BaseItemDto>> _loadHomeSectionItems(HomeScreenSectionPresetType preset, int limit) async {
+  Future<List<BaseItemDto>> _loadHomeSectionItems(
+    HomeScreenSectionPresetType preset,
+    int limit, {
+    bool refresh = false,
+  }) async {
     final section = HomeScreenSectionConfiguration.fromPreset(preset);
     final displayable = await providerRef.read(resolveSectionProvider(section).future);
     if (displayable is UnavailableHomeSectionPlayable) {
       return [];
     }
-    return _loadPagedItems(displayable as FinampPagedPlayable<FinampPlayableDto>, limit);
+    return _loadPagedItems(displayable as FinampPagedPlayable<FinampPlayableDto>, limit, refresh: refresh);
   }
 
   /// Fetches Recent Queues through the same provider path as the main UI home screen.
@@ -1104,7 +1132,7 @@ class CarPlayHelper {
     return desired;
   }
 
-  Future<_HomeSections> _buildHomeSections() async {
+  Future<_HomeSections> _buildHomeSections({bool refresh = false}) async {
     List<CPListSection> sections = [];
 
     CPListSection quickActionsSection = CPListSection(
@@ -1135,8 +1163,16 @@ class CarPlayHelper {
     sections.add(quickActionsSection);
 
     final [recentPlays, recentlyAddedFetched] = await Future.wait([
-      _loadHomeSectionItems(HomeScreenSectionPresetType.recentlyPlayedTracks, _carPlayRecentlyPlayedLimit),
-      _loadHomeSectionItems(HomeScreenSectionPresetType.recentlyAddedAlbums, _carPlayRecentlyAddedLimit),
+      _loadHomeSectionItems(
+        HomeScreenSectionPresetType.recentlyPlayedTracks,
+        _carPlayRecentlyPlayedLimit,
+        refresh: refresh,
+      ),
+      _loadHomeSectionItems(
+        HomeScreenSectionPresetType.recentlyAddedAlbums,
+        _carPlayRecentlyAddedLimit,
+        refresh: refresh,
+      ),
     ]);
 
     _carPlayLogger.info("Got ${recentlyAddedFetched.length} recently added albums");
@@ -1381,6 +1417,8 @@ class CarPlayHelper {
       systemIcon: 'music.note.house',
     );
     _homeTemplate = homeTemplate;
+    _homeSignature = _sectionsSignature(home.sections);
+    _lastHomeRefresh = DateTime.now();
 
     await FlutterCarplay.setRootTemplate(
       rootTemplate: CPTabBarTemplate(
@@ -1408,6 +1446,21 @@ class CarPlayHelper {
     unawaited(_flutterCarplay.forceUpdateRootTemplate());
   }
 
+  /// CarPlay never retries a failed cover, so the home tab is rebuilt to fetch it again.
+  void _scheduleHomeRefresh({Duration delay = const Duration(seconds: 2)}) {
+    _homeRefreshTimer?.cancel();
+    _homeRefreshTimer = Timer(delay, _refreshHomeSections);
+  }
+
+  void _forceHomeRefresh() {
+    _homeSignature = null;
+    _scheduleHomeRefresh();
+  }
+
+  /// Leaves out element ids, which are new on every build.
+  String _sectionsSignature(List<CPListSection> sections) =>
+      sections.map((section) => section.toJson()).toList().toString().replaceAll(RegExp(r'_elementId: [^,}]*'), '');
+
   /// Rebuilds the home tab's sections in place. Setting a new root template
   /// tears down CarPlay's navigation stack and dismisses the Now Playing
   /// screen, so avoid it once the root exists.
@@ -1417,8 +1470,14 @@ class CarPlayHelper {
       await setCarplayRootTemplate();
       return;
     }
+    _lastHomeRefresh = DateTime.now();
     try {
-      final home = await _buildHomeSections();
+      final home = await _buildHomeSections(refresh: true);
+      final signature = _sectionsSignature(home.sections);
+      if (signature == _homeSignature) {
+        return;
+      }
+      _homeSignature = signature;
       await _flutterCarplay.updateListTemplateSections(elementId: homeTemplate.uniqueId, sections: home.sections);
       _startCoverFill(home, homeTemplate);
     } catch (e) {
