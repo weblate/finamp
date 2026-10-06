@@ -1132,7 +1132,7 @@ class CarPlayHelper {
     return desired;
   }
 
-  Future<_HomeSections> _buildHomeSections({bool refresh = false}) async {
+  Future<_HomeSections> _buildHomeSections({bool refresh = false, bool fetch = true}) async {
     List<CPListSection> sections = [];
 
     CPListSection quickActionsSection = CPListSection(
@@ -1162,18 +1162,20 @@ class CarPlayHelper {
     );
     sections.add(quickActionsSection);
 
-    final [recentPlays, recentlyAddedFetched] = await Future.wait([
-      _loadHomeSectionItems(
-        HomeScreenSectionPresetType.recentlyPlayedTracks,
-        _carPlayRecentlyPlayedLimit,
-        refresh: refresh,
-      ),
-      _loadHomeSectionItems(
-        HomeScreenSectionPresetType.recentlyAddedAlbums,
-        _carPlayRecentlyAddedLimit,
-        refresh: refresh,
-      ),
-    ]);
+    final [recentPlays, recentlyAddedFetched] = fetch
+        ? await Future.wait([
+            _loadHomeSectionItems(
+              HomeScreenSectionPresetType.recentlyPlayedTracks,
+              _carPlayRecentlyPlayedLimit,
+              refresh: refresh,
+            ),
+            _loadHomeSectionItems(
+              HomeScreenSectionPresetType.recentlyAddedAlbums,
+              _carPlayRecentlyAddedLimit,
+              refresh: refresh,
+            ),
+          ])
+        : [<BaseItemDto>[], <BaseItemDto>[]];
 
     _carPlayLogger.info("Got ${recentlyAddedFetched.length} recently added albums");
     if (recentlyAddedFetched.isNotEmpty) {
@@ -1370,7 +1372,7 @@ class CarPlayHelper {
 
     // Fetch home sections and library items in parallel
     final results = await Future.wait([
-      _buildHomeSections(),
+      _buildHomeSections(fetch: false),
       GetIt.instance<MusicPlayerBackgroundTask>().getChildren(AudioService.browsableRootId),
     ]);
 
@@ -1444,6 +1446,7 @@ class CarPlayHelper {
     _startCoverFill(home, homeTemplate);
 
     unawaited(_flutterCarplay.forceUpdateRootTemplate());
+    unawaited(_refreshHomeSections(reload: false));
   }
 
   /// CarPlay never retries a failed cover, so the home tab is rebuilt to fetch it again.
@@ -1464,7 +1467,7 @@ class CarPlayHelper {
   /// Rebuilds the home tab's sections in place. Setting a new root template
   /// tears down CarPlay's navigation stack and dismisses the Now Playing
   /// screen, so avoid it once the root exists.
-  Future<void> _refreshHomeSections() async {
+  Future<void> _refreshHomeSections({bool reload = true}) async {
     final homeTemplate = _homeTemplate;
     if (homeTemplate == null) {
       await setCarplayRootTemplate();
@@ -1472,12 +1475,16 @@ class CarPlayHelper {
     }
     _lastHomeRefresh = DateTime.now();
     try {
-      final home = await _buildHomeSections(refresh: true);
+      final home = await _buildHomeSections(refresh: reload);
+      if (!identical(homeTemplate, _homeTemplate)) {
+        return;
+      }
       final signature = _sectionsSignature(home.sections);
       if (signature == _homeSignature) {
         return;
       }
       _homeSignature = signature;
+      _homeSectionsRun++;
       await _flutterCarplay.updateListTemplateSections(elementId: homeTemplate.uniqueId, sections: home.sections);
       _startCoverFill(home, homeTemplate);
     } catch (e) {
