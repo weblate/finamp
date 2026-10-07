@@ -2808,5 +2808,46 @@
                 "example": "Ctrl + ↑/↓"
             }
         }
+    },
+    "previousTracksPersistenceModePersistent": "기존과 같이 (확장/축소 기억)",
+    "@previousTracksPersistenceModePersistent": {
+        "description": "Does nothing to previous tracks header in queue list, using its saved value"
+    },
+    "previousTracksPersistenceModeCollapsed": "축소 (숨김)",
+    "@previousTracksPersistenceModeCollapsed": {
+        "description": "Overrides saved value to collapse previous tracks header on queue list open"
+    },
+    "previousTracksPersistenceModeExpanded": "확장 (보임)",
+    "@previousTracksPersistenceModeExpanded": {
+        "description": "Overrides saved value to expand previous tracks header on queue list open"
+    },
+    "home": "메인 화면",
+    "@home": {
+        "description": "Label for the home tab in the main navigation bar"
+    },
+    "homeScreenSettingsTitle": "메인 화면",
+    "@homeScreenSettingsTitle": {
+        "description": "Title for the home screen settings"
+    },
+    "homeScreenSectionPresetPickerMenuTitle": "프리셋 선택",
+    "@homeScreenSectionPresetPickerMenuTitle": {
+        "description": "Title for the preset picker menu, which allows users to pick a preset section to add to the home screen"
+    },
+    "homeScreenSectionCustomSectionTitle": "사용자 정의 섹션",
+    "@homeScreenSectionCustomSectionTitle": {
+        "description": "Title for the custom section type, which can be added to the home screen"
+    },
+    "exteranlStorageTip": "경로에 \"에뮬레이트됨\"이 포함되어 있지 않으면 외부 저장소일 것입니다.",
+    "@exteranlStorageTip": {
+        "description": "Helper text in Appdirectory download location config form"
+    },
+    "tooltipDisabled": "{tip} (비활성화됨)",
+    "@tooltipDisabled": {
+        "placeholders": {
+            "tip": {
+                "type": "String"
+            }
+        },
+        "description": "Added to tooltips on disabled buttons"
     }
 }
