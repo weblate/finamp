@@ -610,7 +610,7 @@
     "@confirmShuffleToQueue": {
         "description": "A confirmation message that is shown after successfully shuffling a list (album, playlist, etc.) to the end of the regular queue"
     },
-    "yourLikes": "Dina Favoriter",
+    "yourLikes": "Dina Favoriter (från \"{trackName}\")",
     "@yourLikes": {
         "description": "Title for the queue source when the user is playing their liked tracks"
     },
@@ -3116,5 +3116,19 @@
     "unnamedCollection": "Odöpt Samling",
     "@unnamedCollection": {
         "description": "Placeholder for unnamed collection in home screen section editor"
+    },
+    "allTracks": "Alla Spår (från \"{trackName}\")",
+    "@allTracks": {
+        "description": "Queue source when playing from tracks screen.",
+        "placeholders": {
+            "trackName": {
+                "type": "String",
+                "example": "Never Gonna Give You Up"
+            }
+        }
+    },
+    "clientCertificatePasswordHint": "Lösenord",
+    "@clientCertificatePasswordHint": {
+        "description": "Hint text for the password input field when importing a client certificate."
     }
 }
