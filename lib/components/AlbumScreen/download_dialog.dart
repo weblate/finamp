@@ -204,10 +204,7 @@ class _DownloadDialogState extends ConsumerState<DownloadDialog> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             spacing: 4,
-            children: [
-              Text(l10n.downloadDialogFileSizeLabel),
-              Text(originalFileSizeFormatted ?? l10n.downloadDialogFileSizeLabelUnknown),
-            ],
+            children: [Text(l10n.downloadDialogFileSizeLabel), Text(originalFileSizeFormatted ?? l10n.unknown)],
           ),
 
           // Only show if there are multiple download locations
@@ -255,19 +252,16 @@ class _DownloadDialogState extends ConsumerState<DownloadDialog> {
                     if (transcodedFileSizeFormatted != null)
                       _TranscodeLineItem(
                         label: l10n.downloadDialogFileSizeLabel,
-                        unknownLabel: l10n.downloadDialogFileSizeLabelUnknown,
                         originalValue: originalFileSizeFormatted,
                         transcodeValue: '~$transcodedFileSizeFormatted',
                       ),
                     _TranscodeLineItem(
                       label: l10n.downloadDialogFormatLabel,
-                      unknownLabel: l10n.downloadDialogFormatLabelUnknown,
                       originalValue: originalFormats,
                       transcodeValue: transcodedFileFormat,
                     ),
                     _TranscodeLineItem(
                       label: l10n.downloadDialogBitrateLabel,
-                      unknownLabel: l10n.downloadDialogBitrateLabelUnknown,
                       originalValue: originalBitrate,
                       transcodeValue: transcodeProfile.bitrateKbps,
                     ),
@@ -329,15 +323,9 @@ class _DownloadDialogState extends ConsumerState<DownloadDialog> {
 }
 
 class _TranscodeLineItem extends StatelessWidget {
-  const _TranscodeLineItem({
-    required this.label,
-    required this.unknownLabel,
-    required this.originalValue,
-    required this.transcodeValue,
-  });
+  const _TranscodeLineItem({required this.label, required this.originalValue, required this.transcodeValue});
 
   final String label;
-  final String unknownLabel;
   final String? originalValue;
   final String transcodeValue;
 
@@ -354,7 +342,7 @@ class _TranscodeLineItem extends StatelessWidget {
           alignment: WrapAlignment.center,
           crossAxisAlignment: WrapCrossAlignment.center,
           children: [
-            Text(original ?? unknownLabel),
+            Text(original ?? AppLocalizations.of(context)!.unknown),
             if (showTranscode) const _TranscodeIcon(),
             if (showTranscode) Text(transcodeValue),
           ],
