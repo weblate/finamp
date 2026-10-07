@@ -1623,7 +1623,7 @@
     "@downloadDialogFileSizeLabel": {
         "description": "Label for the original vs. transcoded file size line in the download dialog's transcode summary. Should ideally have a colon at the end."
     },
-    "downloadDialogFileSizeLabelUnknown": "Unknown files size",
+    "downloadDialogFileSizeLabelUnknown": "Unknown file size",
     "@downloadDialogFileSizeLabelUnknown": {
         "description": "Label for the file size if the download file size is unknown"
     },
