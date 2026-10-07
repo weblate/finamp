@@ -3702,5 +3702,39 @@
     "@releaseDateFormatNumerical": {
         "description": "Date format option for the release date of an album, showing the date in a short numerical format. Changes based on locale such as DD/MM/YYYY for en_gb and MM/DD/YYYY for en_us."
     },
-    "loginFlowLocalNetworkServersNoResults": "Ainda não foram detetados servidores - pode precisar de inserir manualmente o endereço do servidor."
+    "loginFlowLocalNetworkServersNoResults": "Ainda não foram detetados servidores - pode precisar de inserir manualmente o endereço do servidor.",
+    "downloadDialogDownloadLocationLabel": "Localização da Descarga",
+    "@downloadDialogDownloadLocationLabel": {
+        "description": "Label for the dropdown in the download dialog that selects where the download is stored. Only shown when multiple download locations are available."
+    },
+    "downloadDialogPath": "Caminho: {path}",
+    "@downloadDialogPath": {
+        "description": "Shows the file system path of the selected download location in the download dialog.",
+        "placeholders": {
+            "path": {
+                "type": "String",
+                "example": "/storage/emulated/0/Android/data/com.unicornsonlsd.finamp/files"
+            }
+        }
+    },
+    "downloadDialogTranscodeFilesTitle": "Transcodificar os ficheiros?",
+    "@downloadDialogTranscodeFilesTitle": {
+        "description": "Title of the checkbox in the download dialog that toggles whether the downloaded tracks are transcoded."
+    },
+    "downloadDialogFileSizeLabel": "Tamanho do Ficheiro:",
+    "@downloadDialogFileSizeLabel": {
+        "description": "Label for the original vs. transcoded file size line in the download dialog's transcode summary. Should ideally have a colon at the end."
+    },
+    "downloadDialogFormatLabel": "Formato:",
+    "@downloadDialogFormatLabel": {
+        "description": "Label for the original vs. transcoded audio format line in the download dialog's transcode summary. Should ideally have a colon at the end."
+    },
+    "downloadDialogBitrateLabel": "Taxa de bits:",
+    "@downloadDialogBitrateLabel": {
+        "description": "Label for the original vs. transcoded bitrate line in the download dialog's transcode summary. Should ideally have a colon at the end."
+    },
+    "downloadDialogTranscodedIntoSemanticLabel": "Transcodificado em",
+    "@downloadDialogTranscodedIntoSemanticLabel": {
+        "description": "Screen reader label for the arrow icon in the download dialog's transcode summary. It sits between the original value and the transcoded value, e.g. 'FLAC, transcoded into, OPUS'."
+    }
 }
