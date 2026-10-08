@@ -3621,5 +3621,31 @@
     "quickSettingsTranscodeLink": "Alle Transkodierungseinstellungen",
     "quickSettingsAllSettingsLink": "Alle Einstellungen",
     "perTabGridMode": "Je Tab auswählen",
-    "showFastScrollerSubtitle": "Zeige oder verstecke die Alphabet-Liste rechts von Musiktabs. Das erlaubt das direkte Springen zu Buchstaben."
+    "showFastScrollerSubtitle": "Zeige oder verstecke die Alphabet-Liste rechts von Musiktabs. Das erlaubt das direkte Springen zu Buchstaben.",
+    "downloadDialogBitrateLabel": "Bitrate:",
+    "@downloadDialogBitrateLabel": {
+        "description": "Label for the original vs. transcoded bitrate line in the download dialog's transcode summary. Should ideally have a colon at the end."
+    },
+    "downloadDialogPath": "Pfad: {path}",
+    "@downloadDialogPath": {
+        "description": "Shows the file system path of the selected download location in the download dialog.",
+        "placeholders": {
+            "path": {
+                "type": "String",
+                "example": "/storage/emulated/0/Android/data/com.unicornsonlsd.finamp/files"
+            }
+        }
+    },
+    "downloadDialogTranscodeFilesTitle": "Dateien transkodieren?",
+    "@downloadDialogTranscodeFilesTitle": {
+        "description": "Title of the checkbox in the download dialog that toggles whether the downloaded tracks are transcoded."
+    },
+    "downloadDialogFileSizeLabel": "Dateigröße:",
+    "@downloadDialogFileSizeLabel": {
+        "description": "Label for the original vs. transcoded file size line in the download dialog's transcode summary. Should ideally have a colon at the end."
+    },
+    "downloadDialogFormatLabel": "Format:",
+    "@downloadDialogFormatLabel": {
+        "description": "Label for the original vs. transcoded audio format line in the download dialog's transcode summary. Should ideally have a colon at the end."
+    }
 }
