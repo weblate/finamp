@@ -2,11 +2,11 @@ import json
 from extract_history import main
 from datetime import datetime
 
-start = datetime.fromisoformat("2025-01-01T00:00:00+01:00")
-end = datetime.fromisoformat("2025-12-31T23:59:59+01:00")
+start = datetime.fromisoformat("2022-08-24T00:00:00+01:00")
+end = datetime.fromisoformat("2026-10-01T23:59:59+01:00")
 
 # (name, alias) -> if a commit is named with the alias, it will be replaced with the name
-merge = [("Floschy", "flloschy"), ("herobrine1st", "HeroBrine1st Erquilenne")]
+merge = [("Floschy", "flloschy"), ("herobrine1st", "HeroBrine1st Erquilenne"), ("James Harvey", "UnicornsOnLSD")]
 
 def isSpam(path):
     if path.endswith(".g.dart"): return True
