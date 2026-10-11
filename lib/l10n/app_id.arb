@@ -1355,7 +1355,7 @@
             }
         }
     },
-    "activeDownloadsListHeader": "{itemCount} {typeName, select, downloading{Berjalan} failed{Gagal} syncFailed{Berulang Kali Tidak Tersinkron} enqueued{Diantrikan} other{}} {itemCount, plural, =1{Unduhan} other{Unduhan}}",
+    "activeDownloadsListHeader": "{itemCount} {itemCount, plural, =1{Unduhan} other{Unduhan}} {typeName, select, downloading{Berjalan} failed{Gagal} syncFailed{Berulang Kali Tidak Tersinkron} enqueued{Diantrikan} other{}}",
     "@activeDownloadsListHeader": {
         "description": "Header text for lists of active downloads of a particular state.",
         "placeholders": {
@@ -3750,5 +3750,39 @@
     "@releaseDateFormatNumerical": {
         "description": "Date format option for the release date of an album, showing the date in a short numerical format. Changes based on locale such as DD/MM/YYYY for en_gb and MM/DD/YYYY for en_us."
     },
-    "loginFlowLocalNetworkServersNoResults": "Server belum ditemukan - anda mungkin perlu mengisi alamat server secara manual."
+    "loginFlowLocalNetworkServersNoResults": "Server belum ditemukan - anda mungkin perlu mengisi alamat server secara manual.",
+    "downloadDialogDownloadLocationLabel": "Lokasi Unduhan",
+    "@downloadDialogDownloadLocationLabel": {
+        "description": "Label for the dropdown in the download dialog that selects where the download is stored. Only shown when multiple download locations are available."
+    },
+    "downloadDialogPath": "Path: {path}",
+    "@downloadDialogPath": {
+        "description": "Shows the file system path of the selected download location in the download dialog.",
+        "placeholders": {
+            "path": {
+                "type": "String",
+                "example": "/storage/emulated/0/Android/data/com.unicornsonlsd.finamp/files"
+            }
+        }
+    },
+    "downloadDialogTranscodeFilesTitle": "Transkode file?",
+    "@downloadDialogTranscodeFilesTitle": {
+        "description": "Title of the checkbox in the download dialog that toggles whether the downloaded tracks are transcoded."
+    },
+    "downloadDialogFileSizeLabel": "Ukuran File:",
+    "@downloadDialogFileSizeLabel": {
+        "description": "Label for the original vs. transcoded file size line in the download dialog's transcode summary. Should ideally have a colon at the end."
+    },
+    "downloadDialogFormatLabel": "Format:",
+    "@downloadDialogFormatLabel": {
+        "description": "Label for the original vs. transcoded audio format line in the download dialog's transcode summary. Should ideally have a colon at the end."
+    },
+    "downloadDialogBitrateLabel": "Bitrate:",
+    "@downloadDialogBitrateLabel": {
+        "description": "Label for the original vs. transcoded bitrate line in the download dialog's transcode summary. Should ideally have a colon at the end."
+    },
+    "downloadDialogTranscodedIntoSemanticLabel": "Transkode menjadi",
+    "@downloadDialogTranscodedIntoSemanticLabel": {
+        "description": "Screen reader label for the arrow icon in the download dialog's transcode summary. It sits between the original value and the transcoded value, e.g. 'FLAC, transcoded into, OPUS'."
+    }
 }
