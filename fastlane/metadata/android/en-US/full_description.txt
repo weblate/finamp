@@ -9,7 +9,8 @@ Finamp comes with a bunch of features, including these:
 - Volume normalization (aka "ReplayGain") for tracks and albums
 - Lyrics, time-synced lyrics, and even word-by-word cue highlighting
 - Flexible transcoding options
-  -Including automatic downmixing & lossless transcoding to FLAC, for maximum compatibility
+  - Choose between AAC, OPUS, Vorbis, and FLAC codecs
+  - Supports downmixing & lossless transcoding to FLAC, for maximum compatibility
 - Dedicated offline mode with automatic connectivity detection
 - A powerful download system that does it all
   - Download individual tracks, albums, entire artists & genres, or your whole library
@@ -19,10 +20,8 @@ Finamp comes with a bunch of features, including these:
   - Customizable download locations
   - And keeps all of these downloads up-to-date automatically as things change on the server
 - Advanced playback options:
-  - Use the "Next Up" sub-queue to append multiple tracks to play next (and keep appending!)
   - Choose between shuffling or playing in order
-  - Choose if you want to play now, next, or after everything else
-  - ...for everything!
+  - Choose if you want to play now, add to "Next Up", or after everything else
 - Android Auto & Apple CarPlay support
 - Desktop & Tablet Support with a split-screen layout
 - A Customizable Home Tab
@@ -36,7 +35,8 @@ Finamp comes with a bunch of features, including these:
   - You'll have to set up AudioMuse and install the AudioMuse Jellyfin plugin to use this in Finamp
 - Solid customization options, including tabs that can be hidden and reordered
 - Support for several languages
-- Jellyfin 11.8+ & 12+ compatibility
+- Jellyfin 12+ compatibility
+  - But should also work on older versions down to 10.8.x!
 - and a lot more!
 
 Have a feature request or want to report a bug? Head over to our GitHub and open an issue there:  
