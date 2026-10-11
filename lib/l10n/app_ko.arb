@@ -3019,5 +3019,119 @@
     "egFavoriteTracks": "예시: 즐겨찾기 곡",
     "@egFavoriteTracks": {
         "description": "Placeholder text in custom section title editor in home screen section editor"
+    },
+    "inCollection": "모읍집",
+    "@inCollection": {
+        "description": "Name of jellyfin 'Collection' content type"
+    },
+    "tabView": "탭 보기",
+    "@tabView": {
+        "description": "Name of home screen section type which uses the contents of a music screen tab"
+    },
+    "collection": "모음집",
+    "@collection": {
+        "description": "Name of home screen section type which uses the contents of a supplied playable item"
+    },
+    "queues": "대기열",
+    "@queues": {
+        "description": "Name of home screen section type which shows the latest played queues"
+    },
+    "favoritePlaylists": "즐겨찾기 (플레이리스트)",
+    "@favoritePlaylists": {
+        "description": "Name of a home screen section preset"
+    },
+    "favoriteGenres": "즐겨찾기 (장르)",
+    "@favoriteGenres": {
+        "description": "Name of a home screen section preset"
+    },
+    "newlyAddedAlbums": "새로운 앨범",
+    "@newlyAddedAlbums": {
+        "description": "Name of a home screen section preset"
+    },
+    "newlyAddedTracks": "새로운 노래",
+    "@newlyAddedTracks": {
+        "description": "Name of a home screen section preset"
+    },
+    "frequentlyPlayedAlbums": "자주 듣는 앨범",
+    "@frequentlyPlayedAlbums": {
+        "description": "Name of a home screen section preset"
+    },
+    "frequentlyPlayedTracks": "자주 듣는 노래",
+    "@frequentlyPlayedTracks": {
+        "description": "Name of a home screen section preset"
+    },
+    "frequentlyPlayedArtists": "자주 듣는 아티스트",
+    "@frequentlyPlayedArtists": {
+        "description": "Name of a home screen section preset"
+    },
+    "unplayedAlbums": "아직 들어보지 않은 앨범",
+    "@unplayedAlbums": {
+        "description": "Name of a home screen section preset"
+    },
+    "recentQueues": "최근 대기열",
+    "@recentQueues": {
+        "description": "Name of a home screen section preset"
+    },
+    "randomAlbums": "임의의 앨범",
+    "@randomAlbums": {
+        "description": "Name of a home screen section preset"
+    },
+    "randomAlbumArtists": "임의의 앨범 아티스트",
+    "@randomAlbumArtists": {
+        "description": "Name of a home screen section preset"
+    },
+    "recentlyAddedPlaylists": "최근 만든 플레이리스트",
+    "@recentlyAddedPlaylists": {
+        "description": "Name of a home screen section preset"
+    },
+    "favoriteAlbumsDescription": "임의의 좋아하는 앨범",
+    "@favoriteAlbumsDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "favoriteArtistsDescription": "임의의 좋아하는 아티스트",
+    "@favoriteArtistsDescription": {
+        "description": "Description  of a home screen section preset"
+    },
+    "favoritePlaylistsDescription": "임의의 좋아하는 플레이리스트",
+    "@favoritePlaylistsDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "favoriteGenresDescription": "임의의 좋아하는 장르",
+    "@favoriteGenresDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "downloadDialogDownloadLocationLabel": "다운로드 폴더",
+    "@downloadDialogDownloadLocationLabel": {
+        "description": "Label for the dropdown in the download dialog that selects where the download is stored. Only shown when multiple download locations are available."
+    },
+    "downloadDialogPath": "경로: {path}",
+    "@downloadDialogPath": {
+        "description": "Shows the file system path of the selected download location in the download dialog.",
+        "placeholders": {
+            "path": {
+                "type": "String",
+                "example": "/storage/emulated/0/Android/data/com.unicornsonlsd.finamp/files"
+            }
+        }
+    },
+    "downloadDialogTranscodeFilesTitle": "트랜스코딩 할까요?",
+    "@downloadDialogTranscodeFilesTitle": {
+        "description": "Title of the checkbox in the download dialog that toggles whether the downloaded tracks are transcoded."
+    },
+    "downloadDialogFileSizeLabel": "파일 용량:",
+    "@downloadDialogFileSizeLabel": {
+        "description": "Label for the original vs. transcoded file size line in the download dialog's transcode summary. Should ideally have a colon at the end."
+    },
+    "downloadDialogFormatLabel": "형식:",
+    "@downloadDialogFormatLabel": {
+        "description": "Label for the original vs. transcoded audio format line in the download dialog's transcode summary. Should ideally have a colon at the end."
+    },
+    "downloadDialogBitrateLabel": "비트레이트:",
+    "@downloadDialogBitrateLabel": {
+        "description": "Label for the original vs. transcoded bitrate line in the download dialog's transcode summary. Should ideally have a colon at the end."
+    },
+    "downloadDialogTranscodedIntoSemanticLabel": "트랜스코딩 됨",
+    "@downloadDialogTranscodedIntoSemanticLabel": {
+        "description": "Screen reader label for the arrow icon in the download dialog's transcode summary. It sits between the original value and the transcoded value, e.g. 'FLAC, transcoded into, OPUS'."
     }
 }
