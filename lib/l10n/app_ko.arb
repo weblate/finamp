@@ -3133,5 +3133,17 @@
     "downloadDialogTranscodedIntoSemanticLabel": "트랜스코딩 됨",
     "@downloadDialogTranscodedIntoSemanticLabel": {
         "description": "Screen reader label for the arrow icon in the download dialog's transcode summary. It sits between the original value and the transcoded value, e.g. 'FLAC, transcoded into, OPUS'."
+    },
+    "missingBlurhashWarning": "경고: Jellyfin 서버 설정 오류로 미리보기 이미지 데이터가 누락되었습니다.  이로인해 Finamp가 이미지 다운로드의 중복 제거를 할 수 없습니다.  서버 설정을 수정하고 다운로드 복구를실행하세요.",
+    "@missingBlurhashWarning": {
+        "description": "A warning message displayed on the downloads screen if the jellyfin server is missing blurhashes."
+    },
+    "noPermissionToEditMetadata": "메타 데이터 이미지를 수정하려면 관리자 권한(로그인)이 필요합니다.",
+    "@noPermissionToEditMetadata": {
+        "description": "Error message shown when the user tries to edit metadata but doesn't have permission to do so, i.e. because they are not an admin"
+    },
+    "restoreTrack": "노래 복원",
+    "@restoreTrack": {
+        "description": "Button title for restoring a track that was marked to be removed"
     }
 }
