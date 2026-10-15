@@ -3283,5 +3283,27 @@
     "customSectionTitleRequired": "사용자 지정 섹션에 제목을 정해주세요",
     "@customSectionTitleRequired": {
         "description": "Message when a custom section title is needed in home screen section editor"
+    },
+    "autoplayRestoredQueueTitle": "복원된 대기열 자동 재생",
+    "@autoplayRestoredQueueTitle": {
+        "description": "Title for the setting that controls if restored queues automatically play."
+    },
+    "volumeControlDisabledCastingHint": "앱 내 볼륨 조절을 지원하지 않는 기기로 오디오를 캐스팅중입니다.",
+    "@volumeControlDisabledCastingHint": {
+        "description": "Hint text displayed below the volume bar when the in-app volume slider is disabled because audio is being cast to a device that bypasses the in-app volume handling and handles its own volume, such as when using Airplay."
+    },
+    "seekControlHint": "{shortcut}로 -5초/+30초 건너뛰기",
+    "@seekControlHint": {
+        "description": "Shortcut hint for seeking backward 5s or forward 30s.",
+        "placeholders": {
+            "shortcut": {
+                "type": "String",
+                "example": "Ctrl + ←/→"
+            }
+        }
+    },
+    "previousTracksPersistenceModeSelectorTitle": "대기열 패널에서 지난 노래들 표시 여부",
+    "@previousTracksPersistenceModeSelectorTitle": {
+        "description": "Title for setting that allows to override state of previous tracks header in queue list"
     }
 }
