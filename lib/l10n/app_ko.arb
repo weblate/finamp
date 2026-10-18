@@ -3305,5 +3305,131 @@
     "previousTracksPersistenceModeSelectorTitle": "대기열 패널에서 지난 노래들 표시 여부",
     "@previousTracksPersistenceModeSelectorTitle": {
         "description": "Title for setting that allows to override state of previous tracks header in queue list"
+    },
+    "sectionConfigInvalid": "현재 설정이 유효히지 않습니다.",
+    "@sectionConfigInvalid": {
+        "description": "Message in home screen section edit menu preview window when a valid preview cannot be generated"
+    },
+    "searchNotAvailibleWhileOffline": "오프라인 모드에서는 검색을 이용할 수 없습니다!",
+    "@searchNotAvailibleWhileOffline": {
+        "description": "Message in home screen section editor search widget when offline"
+    },
+    "noSearchResults": "검색 결과가 없습니다.",
+    "@noSearchResults": {
+        "description": "Message in home screen section editor search widget when no results are returned"
+    },
+    "collectionDropdownHint": "모음집 선택",
+    "@collectionDropdownHint": {
+        "description": "Hint for selector dropdown in home screen editor search widget"
+    },
+    "gridImageSizeTitle": "그리드 타일 크기",
+    "@gridImageSizeTitle": {
+        "description": "Title of grid tile image size setting"
+    },
+    "gridImageSizeSubtitle": "그리드 뷰에서 항목의 크기를 선택합니다",
+    "@gridImageSizeSubtitle": {
+        "description": "Subtitle of grid tile image size setting"
+    },
+    "gridImageSizeLabel": "{colCountExact, plural, =0{~} =1{} other{}}{colCount, plural, =1{1 열 ({sizeDescriptor})} other{{colCount} 열({sizeDescriptor})}}",
+    "@gridImageSizeLabel": {
+        "placeholders": {
+            "sizeDescriptor": {
+                "type": "String",
+                "example": "Very Small"
+            },
+            "colCount": {
+                "type": "int"
+            },
+            "colCountExact": {
+                "type": "int",
+                "description": "0 = not exact, add e.g. tilde character (~), 1 = exact, just show the number"
+            }
+        },
+        "description": "Slider label in grid tile image size setting"
+    },
+    "homeScreenImageSizeTitle": "홈 화면 타일 크기",
+    "@homeScreenImageSizeTitle": {
+        "description": "Title of home screen tile image size setting"
+    },
+    "homeScreenImageSizeSubtitle": "홈 화면 항목의 크기를 선택합니다",
+    "@homeScreenImageSizeSubtitle": {
+        "description": "Subtitle of home screen tile image size setting"
+    },
+    "noFilterActive": "필터 미적용",
+    "@noFilterActive": {
+        "description": "Message in sort & filter row when no filters are active"
+    },
+    "activeFilterCount": "{filterCount, plural, =0{필터 없음} =1{1 필터} other{{filterCount} 필터}} 적용됨",
+    "@activeFilterCount": {
+        "placeholders": {
+            "filterCount": {
+                "type": "int"
+            }
+        },
+        "description": "Message in sort & filter row"
+    },
+    "inPlaylist": "플레이리스트에서",
+    "@inPlaylist": {
+        "description": "Name of 'In Playlist' content type"
+    },
+    "recentlyAddedAlbumsDescription": "라이브러리에 최근 추가된 앨범들입니다 (최신순으로 정렬)",
+    "@recentlyAddedAlbumsDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "recentlyAddedTracksDescription": "라이브러리에 최근 추가된 노래들입니다 (최신순으로 정렬)",
+    "@recentlyAddedTracksDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "frequentlyPlayedAlbumsDescription": "자주 들은 앨범들입니다 (청취순로 정렬)",
+    "@frequentlyPlayedAlbumsDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "frequentlyPlayedTracksDescription": "자주 들은 노래들입니다 (청취순로 정렬)",
+    "@frequentlyPlayedTracksDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "frequentlyPlayedArtistsDescription": "자주 들은 아티스트들입니다 (청취순로 정렬)",
+    "@frequentlyPlayedArtistsDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "neverPlayedAlbumsDescription": "아직 듣지 않은 앨범들입니다 (임의 정렬)",
+    "@neverPlayedAlbumsDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "recentQueuesDescription": "최근 만들어진 대기열들입니다 (최신순으로 정렬)",
+    "@recentQueuesDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "randomAlbumsDescription": "앨범 임의 정렬",
+    "@randomAlbumsDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "randomArtistsDescription": "아티스트 임의 정렬",
+    "@randomArtistsDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "recentlyAddedPlaylistsDescription": "최근 만들어진 플레이리스트들입니다 (최신순으로 정렬)",
+    "@recentlyAddedPlaylistsDescription": {
+        "description": "Description of a home screen section preset"
+    },
+    "shuffleTracksActionDescription": "라이브러리에서 무작위 노래들을 임의 재생합니다",
+    "@shuffleTracksActionDescription": {
+        "description": "Description of a home screen quick action"
+    },
+    "browseRecentQueuesActionDescription": "최근 재생한 대기열에서 선택합니다",
+    "@browseRecentQueuesActionDescription": {
+        "description": "Description of a home screen quick action"
+    },
+    "browsePlaybackHistoryActionDescription": "재생 이력을 탐색합니다",
+    "@browsePlaybackHistoryActionDescription": {
+        "description": "Description of a home screen quick action"
+    },
+    "syncFailedWarningLong": "일부 다운로드 항목이 서버와의 동기화에 실패했습니다.  서버의 해당 항목이 삭제 된 것 같습니다.  동기화에 실패한 다운로드 항목은 최신 정보 유지를 위해 삭제됩니다.",
+    "@syncFailedWarningLong": {
+        "description": "Expanded warning message for when download sync fails due to items being deleted from the server."
+    },
+    "openDownloads": "다운로드 화면 열기",
+    "@openDownloads": {
+        "description": "Label on a button to open the downloads screen after a sync fails."
     }
 }
