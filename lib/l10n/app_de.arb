@@ -132,7 +132,7 @@
     "enterLowPriorityStateOnPause": "Niedrige-Priorität-Modus beim Pausieren aktivieren",
     "shuffleAllTrackCount": "Anzahl zufälliger Tracks",
     "shuffleAllTrackCountSubtitle": "Die Anzahl der zu ladenden Tracks, wenn der Zufällig-Button im Titel-Tab oder auf der Genreseite benutzt wird.",
-    "viewType": "Musikseiten-Anzeigeart",
+    "viewType": "Musikansicht Darstellungssart",
     "viewTypeSubtitle": "Kontrolliert den Raster- oder Listenmodus für alle Musikseiten-Tabs mit Ausnahme des Home Screens.",
     "landscape": "Querformat",
     "showTextOnGridViewSubtitle": "Ob Text (Titel, Künstler etc.) auf dem Raster des Musikbildschirms angezeigt werden soll. Text auf dem Home-Screen wird immer angezeigt.",
@@ -3620,7 +3620,7 @@
     "quickSettingsScreen": "Schnelleinstellungen",
     "quickSettingsTranscodeLink": "Alle Transkodierungseinstellungen",
     "quickSettingsAllSettingsLink": "Alle Einstellungen",
-    "perTabGridMode": "Je Tab auswählen",
+    "perTabGridMode": "Auswahl pro Tab",
     "showFastScrollerSubtitle": "Zeige oder verstecke die Alphabet-Liste rechts von Musiktabs. Das erlaubt das direkte Springen zu Buchstaben.",
     "downloadDialogBitrateLabel": "Bitrate:",
     "@downloadDialogBitrateLabel": {
@@ -3647,5 +3647,71 @@
     "downloadDialogFormatLabel": "Format:",
     "@downloadDialogFormatLabel": {
         "description": "Label for the original vs. transcoded audio format line in the download dialog's transcode summary. Should ideally have a colon at the end."
-    }
+    },
+    "downloadDialogDownloadLocationLabel": "Download Speicherort",
+    "@downloadDialogDownloadLocationLabel": {
+        "description": "Label for the dropdown in the download dialog that selects where the download is stored. Only shown when multiple download locations are available."
+    },
+    "downloadDialogTranscodedIntoSemanticLabel": "Transcodiert in",
+    "@downloadDialogTranscodedIntoSemanticLabel": {
+        "description": "Screen reader label for the arrow icon in the download dialog's transcode summary. It sits between the original value and the transcoded value, e.g. 'FLAC, transcoded into, OPUS'."
+    },
+    "releaseDateFormatNumerical": "Kurzes numerisches Format (lokalabhängig)",
+    "@releaseDateFormatNumerical": {
+        "description": "Date format option for the release date of an album, showing the date in a short numerical format. Changes based on locale such as DD/MM/YYYY for en_gb and MM/DD/YYYY for en_us."
+    },
+    "randomAlbumArtists": "Zufällige Album-Künstler",
+    "@randomAlbumArtists": {
+        "description": "Name of a home screen section preset"
+    },
+    "randomItemAction": "Zufällig {itemType, select, albums{Album} tracks{Track} playlists{Playlist} performingArtists{Performing Artist} albumArtists{Album Artist} none{Item of <Type>} other{Item}}",
+    "@randomItemAction": {
+        "placeholders": {
+            "itemType": {
+                "type": "String",
+                "description": "Localized name of item type to be selected, or placeholder 'multiple'"
+            }
+        },
+        "description": "Name of a home screen quick action"
+    },
+    "featureChipDescription": "{chipName, select, explicit{Kennzeichnet Titel, die explizite Inhalte enthalten} additionalPeople{Mit dem Titel verbundene Personen, die keine Interpreten sind, sofern verfügbar (Komponisten, Texter usw.)} playbackMode{Statusinformationen zu Streaming und Transkodierung} bitDepth{Bits pro Audio-Sample. Gilt nur für verlustfreie Codecs, in der Regel 16 Bit.} sampleRate {Audio-Samples pro Sekunde.  In der Regel 44,1 kHz.} normalizationGain{Derzeit aktiver ReplayGain-Pegel} size{Die ursprüngliche Dateigröße des Titels} other{null}}",
+    "@featureChipDescription": {
+        "placeholders": {
+            "chipName": {
+                "type": "String",
+                "example": "playCount"
+            }
+        },
+        "description": "Descriptions of different pieces of advanced track info."
+    },
+    "collapsePlayer": "Player in die Sidebar minimieren",
+    "addSpecialDownloads": "Speziellen Download hinzufügen",
+    "@addSpecialDownloads": {
+        "description": "Button on downloads screen which allows adding special downloads, such as all playlists or all favorites."
+    },
+    "quickActionBanner": "Schauen Sie sich einige häufig geänderte Einstellungen an!",
+    "@quickActionBanner": {
+        "description": "Banner directing new users to the quick settings, where they can adjust the most commonly used settings"
+    },
+    "themeSettingTitle": "App-Farbthema (dunkel/hell)",
+    "@themeSettingTitle": {
+        "description": "Title for the setting that allows you to override the system theme and force dark or light mode"
+    },
+    "perTabGridModeScreen": "Ansichtstypen pro Tab einstellen",
+    "quickSettingsScreenDescription": "Passen Sie Finamp auf Ihre Präferenzen mit diesen Kernoptionen an. Sie kommen jederzeit über Einstellungen hierher zurück.",
+    "quickSettingsTabsLink": "Tabs umorganisieren und verstecken",
+    "quickSettingsLayoutLink": "Alle Layout- und Themeneinstellungen",
+    "quickSettingsNetworkLink": "Konfigurieren Sie die lokale Adresse für Ihren Server",
+    "loginFlowLocalNetworkServersNoResults": "Noch keine Server erkannt - Sie müssen die Serveradresse eventuell manuell eingeben.",
+    "featureChipName": "{chipName, select, explicit{Explizit} playCount{Anzahl der Aufrufe} additionalPeople{Weitere Personen} playbackMode{Wiedergabemodus} codec{Codec} bitRate{Bitrate} bitDepth{Bit Tiefe} sampleRate{Sample Rate} size{Größe} normalizationGain{Normalisierungs-Gain} other{{chipName}}}",
+    "@featureChipName": {
+        "placeholders": {
+            "chipName": {
+                "type": "String",
+                "example": "playCount"
+            }
+        },
+        "description": "Titles for settings controlling which pieces of advanced track info are displayed."
+    },
+    "maximizePlayer": "Player maximieren"
 }
