@@ -3431,5 +3431,17 @@
     "openDownloads": "다운로드 화면 열기",
     "@openDownloads": {
         "description": "Label on a button to open the downloads screen after a sync fails."
+    },
+    "homeScreenSectionPresetForgottenFavoriteTracksTitle": "뜸해진 즐겨찾기 노래들",
+    "@homeScreenSectionPresetForgottenFavoriteTracksTitle": {
+        "description": "Title for the forgotten favorite tracks preset section, which can be added to the home screen"
+    },
+    "homeScreenSectionPresetForgottenFavoriteTracksDescription": "최근에 거의 듣지 않은 좋아하는 노래들입니다",
+    "@homeScreenSectionPresetForgottenFavoriteTracksDescription": {
+        "description": "Description for the forgotten favorite tracks preset section, which can be added to the home screen"
+    },
+    "editHomeScreenSection": "홈 화면 섹션 편집",
+    "@editHomeScreenSection": {
+        "description": "Title for home screen section editor menu"
     }
 }
