@@ -106,7 +106,7 @@
     "list": "Lista",
     "theme": "Tema",
     "light": "Ljust",
-    "system": "System",
+    "system": "Följ systemet",
     "noAlbum": "Inget Album",
     "addToPlaylistTooltip": "Lägg till i spellista",
     "addToPlaylistTitle": "Lägg till i Spellista",
@@ -527,7 +527,7 @@
         }
     },
     "showFastScroller": "Visa snabb scroller",
-    "kiloBitsPerSecondLabel": "{bitrate} kbps",
+    "kiloBitsPerSecondLabel": "{bitrate} KiB/s",
     "@kiloBitsPerSecondLabel": {
         "description": "Label for the bitrate of a track or for transcoding. The value will be the bitrate in kilobits per second.",
         "placeholders": {
@@ -541,7 +541,7 @@
     "@playbackModeTranscoding": {
         "description": "Feature chip that is shown when tracks are being transcoded by the server"
     },
-    "bufferSizeSubtitle": "Storlek på bufferten i MB. Kräver en omstart",
+    "bufferSizeSubtitle": "Storlek på bufferten i MiB. Kräver en omstart",
     "shareOfflineListens": "Dela offline-lyssningar",
     "@shareOfflineListens": {
         "description": "Button for exporting the JSON file containing any playback events that couldn't be submitted to the server, either because offline mode was enabled or the connection failed"
@@ -2164,7 +2164,7 @@
     "@accentColor": {
         "description": "Title of the accent color setting"
     },
-    "systemAccentColor": "Använd System Accenten",
+    "systemAccentColor": "Använd System Accentfärgen",
     "@systemAccentColor": {
         "description": "Title of the System Accent Color setting."
     },
@@ -3130,5 +3130,15 @@
     "clientCertificatePasswordHint": "Lösenord",
     "@clientCertificatePasswordHint": {
         "description": "Hint text for the password input field when importing a client certificate."
-    }
+    },
+    "verboseLoggingSubtitle": "Behåll detaljerade loggar för buggrapporter. Lämna detta avstängt för bättre uppspelningsprestanda.",
+    "@verboseLoggingSubtitle": {
+        "description": "Subtitle explaining the verbose logging toggle"
+    },
+    "inAlbumOrPlaylist": "Album/Spellista ordning",
+    "@inAlbumOrPlaylist": {
+        "description": "Sorting order for tracks in an album or playlist (by disc, then index, then name"
+    },
+    "perTabGridMode": "Välj per flik",
+    "showFastScrollerSubtitle": "Visa eller dölj alfabetets listan till höger om musikflikarna som tillåter hoppning till bokstäver."
 }
