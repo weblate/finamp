@@ -3443,5 +3443,113 @@
     "editHomeScreenSection": "홈 화면 섹션 편집",
     "@editHomeScreenSection": {
         "description": "Title for home screen section editor menu"
+    },
+    "syncingFailed": "동기화 실패.  이 다운로드 항목은 서버에서 제거되었으므로 마찬가지로 삭제되어야 합니다.",
+    "@syncingFailed": {
+        "description": "Message shown for downloads with the sync failed status, which is generally caused by the server-side item being removed."
+    },
+    "previousTracksPersistenceModeSelectorSubtitle": "대기열 패널을 열었을 때 이전 노래들 항목을 다음과 같이 재정의합니다…",
+    "@previousTracksPersistenceModeSelectorSubtitle": {
+        "description": "Subtitle for setting that allows to override state of previous tracks header in queue list"
+    },
+    "surpriseMeActionDescription": "임의의 노래로 '연속 재생' 라디오 모드를 시작합니다",
+    "@surpriseMeActionDescription": {
+        "description": "Description of a home screen quick action"
+    },
+    "playRandomItemActionDescription": "임의 항목을 재생합니다",
+    "@playRandomItemActionDescription": {
+        "description": "Description of a home screen quick action"
+    },
+    "playRandomFavoriteItemActionDescription": "임의의 즐겨찾기 항목을 재생합니다",
+    "@playRandomFavoriteItemActionDescription": {
+        "description": "Description of a home screen quick action"
+    },
+    "playPreviousQueueActionDescription": "가장 최근에 저장된 대기열을 복원하여 재생합니다",
+    "@playPreviousQueueActionDescription": {
+        "description": "Description of a home screen quick action"
+    },
+    "configureOutputActionDescription": "출력 기기 설정을 띄웁니다",
+    "@configureOutputActionDescription": {
+        "description": "Description of a home screen quick action"
+    },
+    "errorLoadingHomeSection": "홈 화면을 불러오는 중 오류가 발생했습니다",
+    "@errorLoadingHomeSection": {
+        "description": "Message if a home screen section cannot be loaded due to a missing item"
+    },
+    "noPreviousQueueFoundToPlay": "재생을 위한 이전 대기열을 찾을 수 없습니다.",
+    "@noPreviousQueueFoundToPlay": {
+        "description": "Message if play previous queue quick action fails"
+    },
+    "unknownVersion": "알 수 없는 버전",
+    "@unknownVersion": {
+        "description": "Reported server version if request fails"
+    },
+    "isFavoriteFilter": "즐겨찾기",
+    "@isFavoriteFilter": {
+        "description": "Name of favorite filter"
+    },
+    "isUnplayedFilter": "처음 들어보기",
+    "@isUnplayedFilter": {
+        "description": "Name of unplayed items filter"
+    },
+    "isFullyDownloadedFilter": "전체 다운로드됨",
+    "@isFullyDownloadedFilter": {
+        "description": "Name of fully downloaded items filter"
+    },
+    "genreFilter": "장르: {name}",
+    "@genreFilter": {
+        "description": "Name of genreFilter",
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "artistFilter": "아티스트: {name}",
+    "@artistFilter": {
+        "description": "Name of artistFilter",
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "startsWithFilter": "다음 글자로 시작: {letter}",
+    "@startsWithFilter": {
+        "description": "Name of starts with letter filter",
+        "placeholders": {
+            "letter": {
+                "type": "String"
+            }
+        }
+    },
+    "searchTermFilter": "검색: {searchTerm}",
+    "@searchTermFilter": {
+        "description": "Name of search term filter",
+        "placeholders": {
+            "searchTerm": {
+                "type": "String"
+            }
+        }
+    },
+    "customizeHomeScreen": "홈화면 맞춤 설정",
+    "@customizeHomeScreen": {
+        "description": "Label for home screen customize button"
+    },
+    "connectedTo": "연결됨",
+    "@connectedTo": {
+        "description": "Server info in music screen menu"
+    },
+    "performingArtistFilter": "앨범 (참여 앨범)",
+    "albumArtistFilter": "앨범 (앨범아티스트 기준)",
+    "allTypes": "모든 유형",
+    "itemTypeFilterHeader": "하위 유형",
+    "useAndroidGainEffectTitle": "게인 이펙트(출력 증폭) 사용",
+    "@useAndroidGainEffectTitle": {
+        "description": "Title for Android gain effect setting.  This setting is used to work around player errors on some devices."
+    },
+    "useAndroidGainEffectSubtitle": "음량 조절에 기본 게인 이펙트를 사용합니다.  훨씬 유연하게 작동하지만 특정 기기에서 문제가 발생합니다.  이 설정을 수동으로 바꿀 필요는 없습니다.  설정을 적용하려면 앱을 재시작해야 합니다.",
+    "@useAndroidGainEffectSubtitle": {
+        "description": "Subtitle for Android gain effect setting.  This setting is used to work around player errors on some devices."
     }
 }
