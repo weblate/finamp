@@ -3551,5 +3551,55 @@
     "useAndroidGainEffectSubtitle": "음량 조절에 기본 게인 이펙트를 사용합니다.  훨씬 유연하게 작동하지만 특정 기기에서 문제가 발생합니다.  이 설정을 수동으로 바꿀 필요는 없습니다.  설정을 적용하려면 앱을 재시작해야 합니다.",
     "@useAndroidGainEffectSubtitle": {
         "description": "Subtitle for Android gain effect setting.  This setting is used to work around player errors on some devices."
+    },
+    "androidGainDisabled": "초기화 오류로 게인 이펙트 대체 모드로 전환합니다.",
+    "@androidGainDisabled": {
+        "description": "Message presented when the android gain effect fallback is enabled after an error occurs."
+    },
+    "losslessNoBitrate": "FLAC 트랜스코딩에는 적용 안 됨",
+    "@losslessNoBitrate": {
+        "description": "Settings text informing the user that transcoding bitrate does not apply to lossless transcodes."
+    },
+    "recentlyPlayedTracksDescription": "최근 들었던 노래들 (최신순)",
+    "@recentlyPlayedTracksDescription": {
+        "description": "Description for a home screen section preset"
+    },
+    "homeFavoritesDownloadWarning": "즐겨찾기 항목을 다운로드 하려는게 맞나요?  이것은 {sectionType} 뿐만 아니라 \"모든 유형\"의 즐겨찾기 항목을 다운로드 합니다.",
+    "@homeFavoritesDownloadWarning": {
+        "description": "Warning presented when pressing the download button on certain home screen sections.  This is shown because home sections show a specific item type, like Albums, but the download covers all.",
+        "placeholders": {
+            "sectionType": {
+                "type": "String",
+                "example": "Albums"
+            }
+        }
+    },
+    "homeAllPlaylistsWarning": "모든 플레이리스트를 다운로드 하려는게 맞나요? 이것은 이 섹션의 플레이리스트뿐만 아니라 \"모든 플레이리스트\"의 곡들을 다운로드 합니다.",
+    "@homeAllPlaylistsWarning": {
+        "description": "Warning presented when pressing the download button on playlist home sections with a filter applied.  This is shown because the download will not apply the filter."
+    },
+    "homeRecentAlbumsDownloadWarning": "이 작업은 서버의 최신 앨범 5개를 다운로드 합니다.  향후 서버에 새로운 앨범이 추가될 때마다 다운로드 앨범이 갱신되고 오래된 항목들은 삭제됩니다.",
+    "@homeRecentAlbumsDownloadWarning": {
+        "description": "Warning presented when pressing the download button on certain home screen sections.  This is shown because the behavior of the 5 latest albums download is not a 100% match to the home sections."
+    },
+    "alreadyRandomized": "이 섹션은 이미 임의 순서로 나열되어 있습니다",
+    "@alreadyRandomized": {
+        "description": "Tooltip for shuffle button on home screen sections using a random sort order, where it is disabled due to being unneeded"
+    },
+    "libraryQualifierActive": "활성화됨",
+    "@libraryQualifierActive": {
+        "description": "Label shown next to the currently selected library in the Finamp menu/drawer"
+    },
+    "voiceSearch": "음성 검색",
+    "@voiceSearch": {
+        "description": "Heading for the page that prompts the user to perform a voice search."
+    },
+    "carPlaySiriHint": "\"시리야, Finamp에서 [노래/아티스트/앨범]을 재생해줘\"라고 말해보세요",
+    "@carPlaySiriHint": {
+        "description": "Hint text for how to use Siri to search in CarPlay."
+    },
+    "carPlayLoginPrompt": "휴대폰으로 Finamp 앱을 열어서 Jellyfin 서버에 로그인 하세요.",
+    "@carPlayLoginPrompt": {
+        "description": "Label shown when the user is trying to use CarPlay without being logged in."
     }
 }
