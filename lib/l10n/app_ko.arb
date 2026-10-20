@@ -113,7 +113,7 @@
     "unknownError": "알수 없는 오류",
     "shuffleAllTrackCount": "전곡 임의 재생시 곡 수",
     "shuffleAllTrackCountSubtitle": "노래 또는 장르 탭에서 '전곡 임의 재생' 버튼을 사용할 때 불러올 곡(들)의 개수입니다.",
-    "viewTypeSubtitle": "모든 음악 화면 탭에서 그리드나 리스트 모드를 제어합니다. (단, 홈스크린은 제외)",
+    "viewTypeSubtitle": "모든 음악 화면 탭에서 그리드나 리스트 모드를 제어합니다. (단, 홈스크린은 제외).",
     "list": "목록",
     "grid": "그리드(격자)",
     "landscape": "가로 보기",
@@ -2791,7 +2791,7 @@
     "@forceAudioOffloadingOnAndroidTitle": {
         "description": "Title for the setting that controls audio offloading on Android."
     },
-    "forceAudioOffloadingOnAndroidSubtitle": "기기가 지원하는 경우 오디오 처리를 DSP가 수행합니다.",
+    "forceAudioOffloadingOnAndroidSubtitle": "기기가 지원하는 경우 오디오 처리를 전용 하드웨어가 수행합니다.",
     "@forceAudioOffloadingOnAndroidSubtitle": {
         "description": "Subtitle for the setting that controls audio offloading on Android."
     },
@@ -3601,5 +3601,156 @@
     "carPlayLoginPrompt": "휴대폰으로 Finamp 앱을 열어서 Jellyfin 서버에 로그인 하세요.",
     "@carPlayLoginPrompt": {
         "description": "Label shown when the user is trying to use CarPlay without being logged in."
-    }
+    },
+    "offlineSortFallback": "{onlineSort}를 통한 정렬은 온라인 상태에서만 가능합니다.  현재는 기본 정렬로 대체됩니다",
+    "@offlineSortFallback": {
+        "description": "Warning presented in sort and filter menu when an online-only sort is chosen.",
+        "placeholders": {
+            "onlineSort": {
+                "type": "String",
+                "example": "Play Count"
+            }
+        }
+    },
+    "retry": "재시도",
+    "retryPageLoad": "서버에서 항목들을 불러오는 데 실패했습니다. 재시도 하려면 클릭하세요.",
+    "itemType": "{itemType, select, album{앨범} playlist{플레이리스트} artist{아티스트} genre{장르} track{곡} library{라이브러리} collection{모음집} unknown{항목} other{{itemType}}}",
+    "@itemType": {
+        "placeholders": {
+            "itemType": {
+                "type": "String",
+                "example": "album"
+            }
+        },
+        "description": "Item type name."
+    },
+    "connectionStateInfoString": "{state, select, syncing{서버와 동기화중} downloading{서버에서 다운로드중} deleting{오래된 다운로드 항목 삭제중} connectedLocal{근거리 네트워크로 연결됨} syncingLocal{근거리 네트워크로 동기화중} downloadingLocal{근거리 네트워크로 다운로드중} other{}}",
+    "@connectionStateInfoString": {
+        "description": "String describing the current connection state to the server, shown in the music screen drawer/menu.",
+        "placeholders": {
+            "state": {
+                "type": "String",
+                "example": "syncingLocal"
+            }
+        }
+    },
+    "advanced": "고급 설정",
+    "@advanced": {
+        "description": "Label for the button on the login screen that opens the advanced options screen, and the title of that screen."
+    },
+    "clientCertificate": "클라이언트 인증서 (mTLS)",
+    "@clientCertificate": {
+        "description": "Title for the setting that allows managing SSL client certificates used for authentication"
+    },
+    "clientCertificateUnavailable": "인증서 미설정, 추가적인 클라이언트 인증이 비활성화 됐습니다",
+    "@clientCertificateUnavailable": {
+        "description": "Message shown when the user has no SSL client certificate available to use."
+    },
+    "clientCertificateInstalled": "인증서 설치됨",
+    "@clientCertificateInstalled": {
+        "description": "Message shown when the user has successfully installed an SSL client certificate."
+    },
+    "clientCertificatesUnsupported": "이 플랫폼은 클라이언트 인증서를 지원하지 않습니다",
+    "@clientCertificatesUnsupported": {
+        "description": "Message shown when client certificates are not supported on the user's current platform."
+    },
+    "clientCertificateDescription": "TLS 클라이언트 인증서(.p12 또는 .pfx 확장자 파일)는 이 기기를 Jellyfin 서버에서 추가적으로 인증할 때 사용됩니다. 서버가 상호 TLS를 사용하도록 설정된 경우에만 필요합니다.",
+    "@clientCertificateDescription": {
+        "description": "Explanatory text in the client certificate settings menu describing what a client certificate is used for"
+    },
+    "importClientCertificate": "인증서 가져오기",
+    "@importClientCertificate": {
+        "description": "Label for the button to import a new SSL client certificate."
+    },
+    "removeClientCertificate": "인증서 삭제",
+    "@removeClientCertificate": {
+        "description": "Label for the button to remove the currently installed SSL client certificate."
+    },
+    "clientCertificatePasswordTitle": "인증서 비밀번호",
+    "@clientCertificatePasswordTitle": {
+        "description": "Title of the dialog prompting the user to enter the password for the client certificate being imported."
+    },
+    "clientCertificatePasswordHint": "비밀번호",
+    "@clientCertificatePasswordHint": {
+        "description": "Hint text for the password input field when importing a client certificate."
+    },
+    "clientCertificateDeleteConfirm": "설치된 인증서를 삭제하시겠습니까? 클라이언트 인증이 비활성화 됩니다.",
+    "@clientCertificateDeleteConfirm": {
+        "description": "Confirmation prompt shown before removing the installed client certificate."
+    },
+    "clientCertificateImportSuccess": "인증서 가져오기에 성공했습니다",
+    "@clientCertificateImportSuccess": {
+        "description": "Message shown after successfully importing a client certificate."
+    },
+    "clientCertificateImportError": "인증서 가져오기에 실패했습니다",
+    "@clientCertificateImportError": {
+        "description": "Error message shown when importing a client certificate fails."
+    },
+    "clientCertificateRequired": "클라이언트 인증서가 필요합니다",
+    "@clientCertificateRequired": {
+        "description": "Message shown on the server selection screen when the server requires a client certificate to be provided."
+    },
+    "cancelChanges": "변경 취소",
+    "@cancelChanges": {
+        "description": "Button on sort and filter menu that clears any pending changes."
+    },
+    "applyChangesOnClose": "메뉴 창을 닫으면 변경 사항이 적용됩니다",
+    "@applyChangesOnClose": {
+        "description": "Notification on sort and filter menu that currently pending changes will be automatically applied on close."
+    },
+    "removeFromQueue": "대기열에서 삭제",
+    "featureChipName": "{chipName, select, explicit{성인등급} playCount{재생횟수} additionalPeople{참여 인원} playbackMode{재생 모드} codec{오디오 코덱} bitRate{비트레이트} bitDepth{오디오 심도} sampleRate{샘플링 레이트} size{용량} normalizationGain{음량 평준화 게인값} other{{chipName}}}",
+    "@featureChipName": {
+        "placeholders": {
+            "chipName": {
+                "type": "String",
+                "example": "playCount"
+            }
+        },
+        "description": "Titles for settings controlling which pieces of advanced track info are displayed."
+    },
+    "featureChipDescription": "{chipName, select, explicit{성인등급 노래 표시} additionalPeople{가능한 경우 곡과 관련된 아티스트 이외의 인원 (작곡가, 작사가, 기타등등)} playbackMode{스트리밍 및 트랜스코딩 정보} bitDepth{무손실 음원에서 샘플 당 비트수를 표시(보통 16비트).} sampleRate{초당 샘플링 횟수(보통 44.1kHz).} normalizationGain{현재 활성화된 리플레이 게인값(곡 간 음량 평준화)} size{노래의 원래 파일 용량} other{null}}",
+    "@featureChipDescription": {
+        "placeholders": {
+            "chipName": {
+                "type": "String",
+                "example": "playCount"
+            }
+        },
+        "description": "Descriptions of different pieces of advanced track info."
+    },
+    "maximizePlayer": "플레이어 최대화",
+    "collapsePlayer": "플레이어를 사이드바로 접기",
+    "addSpecialDownloads": "특별한 다운로드 추가",
+    "@addSpecialDownloads": {
+        "description": "Button on downloads screen which allows adding special downloads, such as all playlists or all favorites."
+    },
+    "allTracks": "전체 곡 (\"{trackName}\" 기준)",
+    "@allTracks": {
+        "description": "Queue source when playing from tracks screen.",
+        "placeholders": {
+            "trackName": {
+                "type": "String",
+                "example": "Never Gonna Give You Up"
+            }
+        }
+    },
+    "quickActionBanner": "주요 설정 항목들을 확인해 보세요!",
+    "@quickActionBanner": {
+        "description": "Banner directing new users to the quick settings, where they can adjust the most commonly used settings"
+    },
+    "themeSettingTitle": "앱 색상 테마 (어둡게/밝게)",
+    "@themeSettingTitle": {
+        "description": "Title for the setting that allows you to override the system theme and force dark or light mode"
+    },
+    "perTabGridModeScreen": "탭별 보기 유형 설정",
+    "perTabAlbumGrid": "앨범을 그리드 유형으로만 표시",
+    "quickSettingsScreen": "빠른 설정",
+    "quickSettingsScreenDescription": "핵심 옵션들을 이용해서 Finamp를 맞춤 설정하세요. 설정 화면에서 언제든 여기로 돌아올 수 있습니다.",
+    "quickSettingsTabsLink": "탭을 재정렬 및 숨기기",
+    "quickSettingsTranscodeLink": "모든 트랜스코딩 설정",
+    "quickSettingsLayoutLink": "모든 레이아웃 및 테마 설정",
+    "quickSettingsAllSettingsLink": "모든 설정",
+    "quickSettingsNetworkLink": "서버의 근거리 네트워크 주소 설정",
+    "loginFlowLocalNetworkServersNoResults": "서버가 아직 찾을 수 없습니다 - 서버 주소를 직접 입력해야 할 수 있습니다."
 }
